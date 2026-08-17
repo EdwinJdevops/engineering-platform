@@ -33,7 +33,7 @@ jobs:
       - run: npm ci
       - run: hugo --minify --baseURL="https://edwindevops.github.io/engineering-platform/"
       - uses: actions/configure-pages@983d7736951b742f1d1e56cae1ebf4aebfbbebef
-      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
         with:
           path: './public'
       - id: deployment
