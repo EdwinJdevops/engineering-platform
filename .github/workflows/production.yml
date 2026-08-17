@@ -1,0 +1,51 @@
+name: Deploy to production
+on:
+  push:
+    branches: [main]
+    paths: ['content/**', 'layouts/**', 'assets/**', 'hugo.toml', 'package.json']
+permissions:
+  contents: read
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://edwindevops.github.io/engineering-platform/
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+        with:
+          fetch-depth: 0
+      - uses: peaceiris/actions-hugo@16a02c1c8e2e11788151b549a7422e01da6f2866
+        with:
+          hugo-version: 'latest'
+          extended: true
+      - uses: actions/setup-node@1a4442caab129478691007bf940d9caf9c66b4ef
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: hugo --minify --baseURL="https://edwindevops.github.io/engineering-platform/"
+      - uses: actions/configure-pages@983d7736951b742f1d1e56cae1ebf4aebfbbebef
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
+        with:
+          path: './public'
+      - id: deployment
+        uses: actions/deploy-pages@d6db90164830723ce3dd474eeee5a44ea8466117
+      - run: |
+          sleep 5
+          for i in {1..5}; do
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://edwindevops.github.io/engineering-platform/)
+            if [ "$HTTP_CODE" = "200" ]; then
+              echo "✅ Deployed: HTTP $HTTP_CODE"
+              exit 0
+            fi
+            sleep 3
+          done
+          exit 1

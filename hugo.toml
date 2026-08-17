@@ -1,0 +1,29 @@
+baseURL = "https://edwindevops.github.io/engineering-platform/"
+languageCode = "en-us"
+title = "Edwin Jonathan - Engineering Platform"
+publishDir = "public"
+
+[params]
+description = "Cloud DevOps, Platform Engineering, AI Infrastructure"
+author = "Edwin Jonathan"
+github = "https://github.com/EdwinJdevops"
+dev = "https://dev.to/edwindevops"
+hashnode = "https://hashnode.com/@jonathandevops"
+linkedin = "https://www.linkedin.com/in/edwin-jonathan-1094093b0"
+twitter = "https://x.com/TheCloudDeveng"
+
+[markup]
+[markup.highlight]
+style = "dracula"
+
+[markup.goldmark.renderer]
+unsafe = false
+
+[outputs]
+home = ["HTML", "JSON", "RSS"]
+page = ["HTML"]
+section = ["HTML", "JSON", "RSS"]
+
+[sitemap]
+changefreq = "weekly"
+priority = 0.5
