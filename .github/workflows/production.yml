@@ -25,16 +25,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
-      - uses: peaceiris/actions-hugo@2752ce1d29631191ea3f27c23495fa06139a5b78
-        with:
-          hugo-version: '0.134.3'
-          extended: true
       - uses: actions/configure-pages@983d7736951b742f1d1e56cae1ebf4aebfbbebef
         id: pages
       - name: Build
         env:
           HUGO_ENVIRONMENT: production
-        run: hugo --minify --gc --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: |
+          docker run --rm -v "$PWD:/src" -w /src \
+            ghcr.io/gohugoio/hugo:v0.164.0@sha256:630fef353bd10c5a23f909002d18dcdc031682375632a38d4fcfd20ad1e5441f \
+            --minify --gc --baseURL "${{ steps.pages.outputs.base_url }}/"
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
         with:
           path: public
