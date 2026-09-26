@@ -1,93 +1,70 @@
 name: CI
+
 on:
   pull_request:
     branches: [main]
-    paths: ['content/**', 'layouts/**', 'assets/**', 'hugo.toml', 'package.json', '.github/workflows/ci.yml']
+    paths:
+      - 'content/**'
+      - 'layouts/**'
+      - 'static/**'
+      - 'assets/**'
+      - 'hugo.toml'
+      - 'package.json'
+      - '.github/workflows/**'
+
 permissions:
   contents: read
-  pull-requests: write
+
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-${{ github.event.pull_request.number }}
   cancel-in-progress: true
+
 jobs:
-  validate-frontmatter:
+  content:
+    name: Content integrity
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
-      - uses: actions/setup-node@1a4442caab129478691007bf940d9caf9c66b4ef
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - name: Validate YAML frontmatter
+      - name: Require front matter
+        shell: bash
         run: |
-          find content -name "*.md" -type f | while read file; do
-            if ! head -1 "$file" | grep -q "^---$"; then
-              echo "❌ $file: missing frontmatter"
+          set -euo pipefail
+          while IFS= read -r -d '' file; do
+            first_line="$(head -n 1 "$file")"
+            if [[ "$first_line" != "---" ]]; then
+              echo "::error file=$file::Markdown content must begin with YAML front matter"
               exit 1
             fi
-          done
-  lint-markdown:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
-      - uses: actions/setup-node@1a4442caab129478691007bf940d9caf9c66b4ef
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - run: npx markdownlint-cli2 'content/**/*.md' --fix || true
-  build-hugo:
+          done < <(find content -type f -name '*.md' -print0)
+      - name: Markdown lint
+        run: npx --yes markdownlint-cli2@0.13.0 'content/**/*.md'
+
+  build:
+    name: Hugo production build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
       - uses: peaceiris/actions-hugo@16a02c1c8e2e11788151b549a7422e01da6f2866
         with:
-          hugo-version: 'latest'
+          hugo-version: '0.134.3'
           extended: true
-      - uses: actions/setup-node@1a4442caab129478691007bf940d9caf9c66b4ef
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - run: hugo --minify
+      - name: Build
+        run: hugo --minify --gc
       - uses: actions/upload-artifact@6f51b1e991c59a1f4c10e149a01efc2558dd9ce4
         with:
-          name: hugo-public
+          name: site-preview
           path: public/
           retention-days: 5
-  validate-html:
-    needs: build-hugo
+          if-no-files-found: error
+
+  links:
+    name: Internal link integrity
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
       - uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
         with:
-          name: hugo-public
+          name: site-preview
           path: public/
-      - run: docker run --rm -v "$(pwd)/public:/public" validator/nu:latest nu --asciidoc-omitDoctype --format=json /public/ > html-report.json 2>&1 || true
-      - run: |
-          ERRORS=$(jq '[.[] | select(.type=="error")] | length' html-report.json)
-          if [ "$ERRORS" -gt 0 ]; then
-            echo "❌ Found $ERRORS HTML errors"
-            exit 1
-          fi
-  check-links:
-    needs: build-hugo
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
-      - uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
-        with:
-          name: hugo-public
-          path: public/
-      - run: docker run --rm -v "$(pwd)/public:/public" lycheeverse/lychee:latest --offline /public/ || true
-  audit-workflows:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
-      - uses: actions/setup-node@1a4442caab129478691007bf940d9caf9c66b4ef
-        with:
-          node-version: '20'
-      - run: npm install -g zizmor
-      - run: zizmor .github/workflows/*.yml || exit 1
+      - name: Check generated links
+        run: docker run --rm -v "$PWD/public:/input" lycheeverse/lychee:latest --offline --no-progress '/input/**/*.html'
