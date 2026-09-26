@@ -1,5 +1,5 @@
 baseURL = "https://edwinjdevops.github.io/engineering-platform/"
-languageCode = "en-us"
+locale = "en-US"
 title = "Edwin Jonathan — Platform, Cloud & DevOps Engineering"
 publishDir = "public"
 enableRobotsTXT = true
