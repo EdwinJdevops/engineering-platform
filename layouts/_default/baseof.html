@@ -4,11 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#080b10">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · Edwin Jonathan{{ end }}</title>
   <meta name="description" content="{{ .Description | default site.Params.description }}">
+  <meta name="author" content="Edwin Jonathan">
   <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
   <link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | absURL }}" title="{{ site.Title }}">
+  <meta property="og:site_name" content="Edwin Jonathan Engineering Platform">
   <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
   <meta property="og:description" content="{{ .Description | default site.Params.description }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
