@@ -1,10 +1,11 @@
-baseURL = "https://edwindevops.github.io/engineering-platform/"
+baseURL = "https://edwinjdevops.github.io/engineering-platform/"
 languageCode = "en-us"
-title = "Edwin Jonathan - Engineering Platform"
+title = "Edwin Jonathan — Platform, Cloud & DevOps Engineering"
 publishDir = "public"
+enableRobotsTXT = true
 
 [params]
-description = "Cloud DevOps, Platform Engineering, AI Infrastructure"
+description = "Edwin Jonathan's engineering platform: cloud and platform engineering, DevOps services, technical writing, projects, and delivery-system evidence."
 author = "Edwin Jonathan"
 github = "https://github.com/EdwinJdevops"
 dev = "https://dev.to/edwindevops"
@@ -13,11 +14,11 @@ linkedin = "https://www.linkedin.com/in/edwin-jonathan-1094093b0"
 twitter = "https://x.com/TheCloudDeveng"
 
 [markup]
-[markup.highlight]
-style = "dracula"
+  [markup.highlight]
+  style = "dracula"
 
-[markup.goldmark.renderer]
-unsafe = false
+  [markup.goldmark.renderer]
+  unsafe = false
 
 [outputs]
 home = ["HTML", "JSON", "RSS"]
@@ -27,3 +28,4 @@ section = ["HTML", "JSON", "RSS"]
 [sitemap]
 changefreq = "weekly"
 priority = 0.5
+filename = "sitemap.xml"
