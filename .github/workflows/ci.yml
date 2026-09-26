@@ -46,7 +46,7 @@ jobs:
         run: |
           docker run --rm --user "$(id -u):$(id -g)" -e HOME=/tmp -e HUGO_CACHEDIR=/tmp/hugo_cache -v "$PWD:/src" -w /src \
             ghcr.io/gohugoio/hugo:v0.164.0@sha256:630fef353bd10c5a23f909002d18dcdc031682375632a38d4fcfd20ad1e5441f \
-            --minify --gc
+            --minify --gc --baseURL "/"
 
       - name: Verify generated site
         shell: bash
@@ -60,4 +60,4 @@ jobs:
           grep -q 'Edwin Cloud DevOps Services' public/services/index.html
 
       - name: Check generated links
-        run: docker run --rm -v "$PWD/public:/input" lycheeverse/lychee:latest --offline --no-progress '/input/**/*.html'
+        run: docker run --rm -v "$PWD/public:/input" lycheeverse/lychee:latest --offline --no-progress --root-dir /input '/input/**/*.html'
