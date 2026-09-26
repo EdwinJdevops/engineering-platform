@@ -1,0 +1,10 @@
+{{ define "main" }}
+<article class="shell prose">
+  <header class="page-head">
+    <p class="eyebrow">{{ .Section | upper }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  </header>
+  <div class="prose-body">{{ .Content }}</div>
+</article>
+{{ end }}
