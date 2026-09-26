@@ -8,7 +8,7 @@ For engineering roles, infrastructure work, platform/DevOps engagements, or tech
 
 - [LinkedIn](https://www.linkedin.com/in/edwin-jonathan-1094093b0)
 - [GitHub](https://github.com/EdwinJdevops)
-- [X](https://x.com/TheCloudDeveng)
+- [X / Twitter](https://x.com/TheCloudDeveng)
 
 ## Booking
 

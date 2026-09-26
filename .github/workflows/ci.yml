@@ -64,3 +64,27 @@ jobs:
         with:
           args: --offline --no-progress --root-dir public 'public/**/*.html'
           failIfEmpty: true
+
+      - name: Validate generated HTML
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error \
+            --output /tmp/htmltest.tar.gz \
+            https://github.com/wjdp/htmltest/releases/download/v0.17.0/htmltest_0.17.0_linux_amd64.tar.gz
+          tar -xzf /tmp/htmltest.tar.gz -C /tmp htmltest
+          /tmp/htmltest -s public
+
+      - name: Accessibility audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --directory public >/tmp/site-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..20}; do
+            curl --fail --silent http://127.0.0.1:4173/ >/dev/null && break
+            sleep 0.5
+          done
+          curl --fail --silent http://127.0.0.1:4173/ >/dev/null
+          npx --yes pa11y-ci@3.1.0 --config .pa11yci.json

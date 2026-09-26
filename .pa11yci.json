@@ -1,10 +1,18 @@
 {
-  "runners": ["axe"],
-  "standard": "WCAG2AA",
-  "timeout": 10000,
+  "defaults": {
+    "runners": ["axe"],
+    "standard": "WCAG2AA",
+    "timeout": 10000,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+    }
+  },
   "urls": [
-    "http://localhost:1313/engineering-platform/",
-    "http://localhost:1313/engineering-platform/articles/",
-    "http://localhost:1313/engineering-platform/projects/"
+    "http://127.0.0.1:4173/",
+    "http://127.0.0.1:4173/portfolio/",
+    "http://127.0.0.1:4173/projects/",
+    "http://127.0.0.1:4173/services/",
+    "http://127.0.0.1:4173/engineering/",
+    "http://127.0.0.1:4173/contact/"
   ]
 }
