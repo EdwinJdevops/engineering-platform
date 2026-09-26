@@ -10,6 +10,7 @@ on:
       - 'assets/**'
       - 'hugo.toml'
       - 'package.json'
+      - '.markdownlint-cli2.jsonc'
       - '.github/workflows/**'
 
 permissions:
