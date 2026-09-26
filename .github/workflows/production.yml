@@ -31,7 +31,7 @@ jobs:
         env:
           HUGO_ENVIRONMENT: production
         run: |
-          docker run --rm -v "$PWD:/src" -w /src \
+          docker run --rm --user "$(id -u):$(id -g)" -e HOME=/tmp -v "$PWD:/src" -w /src \
             ghcr.io/gohugoio/hugo:v0.164.0@sha256:630fef353bd10c5a23f909002d18dcdc031682375632a38d4fcfd20ad1e5441f \
             --minify --gc --baseURL "${{ steps.pages.outputs.base_url }}/"
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
