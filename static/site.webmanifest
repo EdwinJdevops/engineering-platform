@@ -1,0 +1,9 @@
+{
+  "name": "Edwin Jonathan Engineering Platform",
+  "short_name": "Edwin Jonathan",
+  "description": "Platform engineering, cloud, DevOps services, projects and technical writing.",
+  "start_url": "/engineering-platform/",
+  "display": "standalone",
+  "background_color": "#080b10",
+  "theme_color": "#080b10"
+}
