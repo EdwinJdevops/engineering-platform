@@ -1,0 +1,22 @@
+{{ define "main" }}
+<section class="shell">
+  <header class="page-head">
+    <p class="eyebrow">EDWIN / {{ .Section | upper }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+    <div class="prose-body">{{ .Content }}</div>
+  </header>
+  <div class="card-grid">
+    {{ range .Pages.ByDate.Reverse }}
+    <article class="card">
+      <p class="card-kicker">{{ .Section }}</p>
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      {{ with .Description }}<p>{{ . }}</p>{{ end }}
+      <a class="text-link" href="{{ .RelPermalink }}">Read →</a>
+    </article>
+    {{ else }}
+    <div class="empty-state"><strong>Publishing pipeline ready.</strong><p>Verified work will appear here as it is migrated and reviewed.</p></div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,37 @@
+{{ define "main" }}
+<section class="hero shell">
+  <div class="hero-copy">
+    <p class="eyebrow">PLATFORM ENGINEERING · CLOUD · DEVOPS</p>
+    <h1>Engineering systems that are <span>operable by design.</span></h1>
+    <p class="lede">I’m Edwin Jonathan. I build cloud infrastructure, delivery platforms and reliability tooling—and document the decisions, failure modes and trade-offs behind the work.</p>
+    <div class="actions">
+      <a class="button primary" href="{{ "projects/" | relURL }}">Inspect the work</a>
+      <a class="button" href="{{ "services/" | relURL }}">Cloud & DevOps services</a>
+    </div>
+  </div>
+  <aside class="signal-panel" aria-label="Platform principles">
+    <div class="signal-head"><span class="status-dot"></span> ENGINEERING PLATFORM</div>
+    <dl>
+      <div><dt>Delivery</dt><dd>Git → CI → Pages</dd></div>
+      <div><dt>Runtime</dt><dd>Static / zero server</dd></div>
+      <div><dt>Quality</dt><dd>Automated gates</dd></div>
+      <div><dt>Operations</dt><dd>Verified deploys</dd></div>
+    </dl>
+    <p class="mono-note">Complexity must earn its place.</p>
+  </aside>
+</section>
+
+<section class="shell section-block">
+  <div class="section-heading"><p class="eyebrow">THREE SURFACES · ONE BODY OF EVIDENCE</p><h2>Built to be inspected, not merely viewed.</h2></div>
+  <div class="card-grid three">
+    <article class="card"><p class="card-kicker">01 / ENGINEERING</p><h3>Systems & case studies</h3><p>Architecture, constraints, security, failure modes and operational decisions from real infrastructure work.</p><a class="text-link" href="{{ "projects/" | relURL }}">Projects →</a></article>
+    <article class="card"><p class="card-kicker">02 / WRITING</p><h3>Technical publication</h3><p>Canonical engineering notes and articles on cloud, platform engineering, security and AI infrastructure.</p><a class="text-link" href="{{ "articles/" | relURL }}">Writing →</a></article>
+    <article class="card"><p class="card-kicker">03 / SERVICES</p><h3>Edwin Cloud DevOps Services</h3><p>Focused infrastructure and delivery engineering for teams that need systems made repeatable, observable and maintainable.</p><a class="text-link" href="{{ "services/" | relURL }}">Services →</a></article>
+  </div>
+</section>
+
+<section class="shell section-block split">
+  <div><p class="eyebrow">THE PLATFORM IS ALSO EVIDENCE</p><h2>The delivery system is part of the portfolio.</h2></div>
+  <div class="prose-body"><p>This site is intentionally static. Changes move through source control, automated validation, production deployment and post-deploy verification. Kubernetes, databases and service meshes are absent because this workload does not justify them.</p><a class="text-link" href="{{ "engineering/" | relURL }}">Inspect engineering decisions →</a></div>
+</section>
+{{ end }}

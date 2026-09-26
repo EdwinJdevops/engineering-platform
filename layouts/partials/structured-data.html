@@ -1,0 +1,21 @@
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ProfilePage",
+  "mainEntity":{
+    "@type":"Person",
+    "name":"Edwin Jonathan",
+    "url":"{{ .Permalink }}",
+    "jobTitle":"Platform and Cloud Engineer",
+    "sameAs":[
+      "{{ site.Params.github }}",
+      "{{ site.Params.linkedin }}",
+      "{{ site.Params.dev }}",
+      "{{ site.Params.hashnode }}",
+      "{{ site.Params.twitter }}"
+    ]
+  }
+}
+</script>
+{{ end }}
