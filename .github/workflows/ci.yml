@@ -21,11 +21,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  content:
-    name: Content integrity
+  verify:
+    name: Build and verify
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+
       - name: Require front matter
         shell: bash
         run: |
@@ -37,34 +38,26 @@ jobs:
               exit 1
             fi
           done < <(find content -type f -name '*.md' -print0)
+
       - name: Markdown lint
         run: npx --yes markdownlint-cli2@0.13.0 'content/**/*.md'
 
-  build:
-    name: Hugo production build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
       - name: Build with pinned Hugo container
         run: |
           docker run --rm -v "$PWD:/src" -w /src \
             ghcr.io/gohugoio/hugo:v0.164.0@sha256:630fef353bd10c5a23f909002d18dcdc031682375632a38d4fcfd20ad1e5441f \
             --minify --gc
-      - uses: actions/upload-artifact@6f51b1e991c59a1f4c10e149a01efc2558dd9ce4
-        with:
-          name: site-preview
-          path: public/
-          retention-days: 5
-          if-no-files-found: error
 
-  links:
-    name: Internal link integrity
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
-        with:
-          name: site-preview
-          path: public/
+      - name: Verify generated site
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s public/index.html
+          test -s public/services/index.html
+          test -s public/about/index.html
+          test -s public/contact/index.html
+          grep -q 'Edwin Jonathan' public/index.html
+          grep -q 'Edwin Cloud DevOps Services' public/services/index.html
+
       - name: Check generated links
         run: docker run --rm -v "$PWD/public:/input" lycheeverse/lychee:latest --offline --no-progress '/input/**/*.html'
