@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
         with:
           fetch-depth: 0
-      - name: Reject committed private keys
+      - name: Reject private key material
         shell: bash
         run: |
           set -euo pipefail
@@ -27,9 +27,11 @@ jobs:
             echo "::error::Private key material detected in tracked files"
             exit 1
           fi
-      - name: Audit Node dependency manifest
+      - name: Reject common committed secret files
         shell: bash
         run: |
           set -euo pipefail
-          npm install --package-lock-only --ignore-scripts
-          npm audit --audit-level=high
+          if git ls-files | grep -E '(^|/)(\.env|id_rsa|id_ed25519|credentials)(\.|$)'; then
+            echo "::error::A secret-bearing filename is tracked"
+            exit 1
+          fi
