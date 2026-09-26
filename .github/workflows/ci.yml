@@ -73,7 +73,7 @@ jobs:
             --output /tmp/htmltest.tar.gz \
             https://github.com/wjdp/htmltest/releases/download/v0.17.0/htmltest_0.17.0_linux_amd64.tar.gz
           tar -xzf /tmp/htmltest.tar.gz -C /tmp htmltest
-          /tmp/htmltest public
+          /tmp/htmltest -s public
 
       - name: Accessibility audit
         shell: bash
