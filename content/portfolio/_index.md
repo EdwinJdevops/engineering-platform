@@ -17,9 +17,17 @@ This is the short path through my engineering work for hiring teams and technica
 - Observability foundations
 - Python-based engineering tools and APIs
 
+## Commercial engineering
+
+Alongside public engineering projects, I have delivered paid cloud and DevOps work through Edwin Cloud DevOps Services.
+
+Some engagements are contractually confidential. Client identities and sensitive implementation details remain private. Public descriptions are limited to claims that can be made without violating those agreements.
+
+[Edwin Cloud DevOps Services →]({{< relref "/services" >}})
+
 ## Evidence over claims
 
-The project pages on this platform are being published from real repositories and implementation evidence. Each case study is expected to document the problem, constraints, architecture, implementation, failure modes, security decisions, testing, operations and trade-offs.
+The project pages on this platform are published from real repositories and implementation evidence. Each case study is expected to document the problem, constraints, architecture, implementation, failure modes, security decisions, testing, operations and trade-offs.
 
 [Inspect projects →]({{< relref "/projects" >}})
 
