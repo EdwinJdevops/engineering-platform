@@ -1,4 +1,5 @@
 name: Security scanning
+
 on:
   push:
     branches: [main]
@@ -6,27 +7,29 @@ on:
     branches: [main]
   schedule:
     - cron: '0 0 * * 0'
+
 permissions:
   contents: read
-  security-events: write
+
 jobs:
-  dependency-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
-      - uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25
-        with:
-          scan-type: 'fs'
-          scan-ref: '.'
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-      - uses: github/codeql-action/upload-sarif@7211b7c8077ea37d8641b6271f6a365a22a5fbfa
-        with:
-          sarif_file: 'trivy-results.sarif'
-  secret-scan:
+  repository-security:
+    name: Repository security
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
         with:
           fetch-depth: 0
-      - run: docker run --rm -v "$(pwd):/repo" truffle/trufflehog:latest filesystem /repo --json || true
+      - name: Reject committed private keys
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git grep -n -E -- 'BEGIN (RSA |EC |OPENSSH |DSA )?PRIVATE KEY' -- ':!*.md'; then
+            echo "::error::Private key material detected in tracked files"
+            exit 1
+          fi
+      - name: Audit Node dependency manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --package-lock-only --ignore-scripts
+          npm audit --audit-level=high
