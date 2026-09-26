@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://edwinjdevops.github.io/engineering-platform/sitemap.xml

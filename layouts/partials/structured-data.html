@@ -3,8 +3,11 @@
 {
   "@context":"https://schema.org",
   "@type":"ProfilePage",
+  "name":"Edwin Jonathan Engineering Platform",
+  "url":"{{ .Permalink }}",
   "mainEntity":{
     "@type":"Person",
+    "@id":"{{ .Permalink }}#edwin-jonathan",
     "name":"Edwin Jonathan",
     "url":"{{ .Permalink }}",
     "jobTitle":"Platform and Cloud Engineer",
@@ -16,6 +19,17 @@
       "{{ site.Params.twitter }}"
     ]
   }
+}
+</script>
+{{ else if and (eq .Section "articles") .IsPage }}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BlogPosting",
+  "headline":{{ .Title | jsonify | safeJS }},
+  "description":{{ (.Description | default site.Params.description) | jsonify | safeJS }},
+  "url":"{{ .Permalink }}",
+  "author":{"@type":"Person","name":"Edwin Jonathan","url":"{{ site.BaseURL }}"}
 }
 </script>
 {{ end }}
