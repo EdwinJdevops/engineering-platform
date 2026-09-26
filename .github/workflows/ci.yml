@@ -64,3 +64,21 @@ jobs:
         with:
           args: --offline --no-progress --root-dir public 'public/**/*.html'
           failIfEmpty: true
+
+      - name: Validate generated HTML
+        run: |
+          docker run --rm -v "$PWD/public:/site:ro" ghcr.io/wjdp/htmltest:v0.17.0@sha256:103e7e43f7d5cbca79fb6dfc9e4f17e4e99e62a5fc22791f9f3ec0e45b91e69c /site
+
+      - name: Accessibility audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --directory public >/tmp/site-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..20}; do
+            curl --fail --silent http://127.0.0.1:4173/ >/dev/null && break
+            sleep 0.5
+          done
+          curl --fail --silent http://127.0.0.1:4173/ >/dev/null
+          npx --yes pa11y-ci@3.1.0 --config .pa11yci.json
