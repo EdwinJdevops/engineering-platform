@@ -1,51 +1,71 @@
-name: Deploy to production
+name: Deploy production
+
 on:
   push:
     branches: [main]
-    paths: ['content/**', 'layouts/**', 'assets/**', 'hugo.toml', 'package.json']
+    paths:
+      - 'content/**'
+      - 'layouts/**'
+      - 'static/**'
+      - 'assets/**'
+      - 'hugo.toml'
+      - '.github/workflows/production.yml'
+  workflow_dispatch:
+
 permissions:
   contents: read
+
 concurrency:
-  group: production-deploy
+  group: pages-production
   cancel-in-progress: false
+
 jobs:
-  build-and-deploy:
+  build:
+    name: Build production artifact
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+      - uses: peaceiris/actions-hugo@16a02c1c8e2e11788151b549a7422e01da6f2866
+        with:
+          hugo-version: '0.134.3'
+          extended: true
+      - uses: actions/configure-pages@983d7736951b742f1d1e56cae1ebf4aebfbbebef
+        id: pages
+      - name: Build
+        env:
+          HUGO_ENVIRONMENT: production
+        run: hugo --minify --gc --baseURL "${{ steps.pages.outputs.base_url }}/"
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
+        with:
+          path: public
+
+  deploy:
+    name: Deploy and verify
+    needs: build
     runs-on: ubuntu-latest
     environment:
-      name: production
-      url: https://edwindevops.github.io/engineering-platform/
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     permissions:
-      contents: read
       pages: write
       id-token: write
     steps:
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
-        with:
-          fetch-depth: 0
-      - uses: peaceiris/actions-hugo@16a02c1c8e2e11788151b549a7422e01da6f2866
-        with:
-          hugo-version: 'latest'
-          extended: true
-      - uses: actions/setup-node@1a4442caab129478691007bf940d9caf9c66b4ef
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - run: hugo --minify --baseURL="https://edwindevops.github.io/engineering-platform/"
-      - uses: actions/configure-pages@983d7736951b742f1d1e56cae1ebf4aebfbbebef
-      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
-        with:
-          path: './public'
-      - id: deployment
+      - name: Deploy Pages
+        id: deployment
         uses: actions/deploy-pages@d6db90164830723ce3dd474eeee5a44ea8466117
-      - run: |
-          sleep 5
-          for i in {1..5}; do
-            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://edwindevops.github.io/engineering-platform/)
-            if [ "$HTTP_CODE" = "200" ]; then
-              echo "✅ Deployed: HTTP $HTTP_CODE"
+      - name: Verify production
+        env:
+          SITE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4 5; do
+            code="$(curl --location --silent --show-error --output /dev/null --write-out '%{http_code}' --max-time 15 "$SITE_URL" || true)"
+            if [[ "$code" == "200" ]]; then
+              echo "Production verification passed: HTTP 200"
               exit 0
             fi
-            sleep 3
+            echo "Attempt $attempt returned HTTP $code"
+            sleep 10
           done
+          echo "::error::Production endpoint did not return HTTP 200"
           exit 1
