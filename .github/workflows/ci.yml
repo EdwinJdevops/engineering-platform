@@ -60,4 +60,7 @@ jobs:
           grep -q 'Edwin Cloud DevOps Services' public/services/index.html
 
       - name: Check generated links
-        run: docker run --rm -v "$PWD/public:/input" lycheeverse/lychee:latest --offline --no-progress --root-dir /input '/input/**/*.html'
+        uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411 # v2.8.0
+        with:
+          args: --offline --no-progress --root-dir public 'public/**/*.html'
+          failIfEmpty: true
