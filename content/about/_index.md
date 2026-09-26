@@ -16,4 +16,4 @@ Cloud infrastructure, CI/CD, GitOps, Kubernetes, infrastructure automation, secu
 
 Do not evaluate this site from a technology list. Inspect the repositories, architecture decisions, constraints, tests, failure modes and operational trade-offs attached to each project.
 
-[Inspect projects →](/engineering-platform/projects/) · [Read engineering notes →](/engineering-platform/engineering/)
+[Inspect projects →]({{< ref "/projects" >}}) · [Read engineering notes →]({{< ref "/engineering" >}})
