@@ -14,13 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
-      - uses: aquasecurity/trivy-action@6e7b7d1ac3245eba8d3ebb337c6feb0dfe921fc8
+      - uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25
         with:
           scan-type: 'fs'
           scan-ref: '.'
           format: 'sarif'
           output: 'trivy-results.sarif'
-      - uses: github/codeql-action/upload-sarif@6d857a5973188e9fdeef6d5fc12c456b09f04ff5
+      - uses: github/codeql-action/upload-sarif@7211b7c8077ea37d8641b6271f6a365a22a5fbfa
         with:
           sarif_file: 'trivy-results.sarif'
   secret-scan:
