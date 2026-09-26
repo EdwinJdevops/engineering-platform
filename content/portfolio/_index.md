@@ -21,16 +21,16 @@ This is the short path through my engineering work for hiring teams and technica
 
 The project pages on this platform are being published from real repositories and implementation evidence. Each case study is expected to document the problem, constraints, architecture, implementation, failure modes, security decisions, testing, operations and trade-offs.
 
-[Inspect projects →](/engineering-platform/projects/)
+[Inspect projects →]({{< relref "/projects" >}})
 
 ## Technical writing
 
 My writing is being consolidated here as the canonical source while existing publishing profiles remain distribution channels.
 
-[Read technical writing →](/engineering-platform/articles/)
+[Read technical writing →]({{< relref "/articles" >}})
 
 ## Roles and collaboration
 
 For engineering roles, technical collaboration, or contract work, use the contact page.
 
-[Contact Edwin →](/engineering-platform/contact/)
+[Contact Edwin →]({{< relref "/contact" >}})
