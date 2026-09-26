@@ -66,8 +66,14 @@ jobs:
           failIfEmpty: true
 
       - name: Validate generated HTML
+        shell: bash
         run: |
-          docker run --rm -v "$PWD/public:/site:ro" ghcr.io/wjdp/htmltest:v0.17.0@sha256:103e7e43f7d5cbca79fb6dfc9e4f17e4e99e62a5fc22791f9f3ec0e45b91e69c /site
+          set -euo pipefail
+          curl --fail --location --silent --show-error \
+            --output /tmp/htmltest.tar.gz \
+            https://github.com/wjdp/htmltest/releases/download/v0.17.0/htmltest_0.17.0_linux_amd64.tar.gz
+          tar -xzf /tmp/htmltest.tar.gz -C /tmp htmltest
+          /tmp/htmltest public
 
       - name: Accessibility audit
         shell: bash
