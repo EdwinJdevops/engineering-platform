@@ -28,6 +28,6 @@ Infrastructure security review, dependency and container scanning, policy contro
 
 We begin with the system and the constraint—not a predetermined tool stack. The first conversation establishes the current architecture, delivery bottleneck, operational risk and the smallest useful scope.
 
-[Discuss an engagement →](/engineering-platform/contact/)
+[Discuss an engagement →]({{< ref "/contact" >}})
 
 > This page intentionally does not publish client names, testimonials, outcome metrics or capabilities that have not been verified for public use.
