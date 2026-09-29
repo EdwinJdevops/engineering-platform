@@ -11,6 +11,7 @@ on:
       - 'hugo.toml'
       - 'package.json'
       - '.markdownlint-cli2.jsonc'
+      - '.pa11yci.json'
       - '.github/workflows/**'
 
 permissions:
