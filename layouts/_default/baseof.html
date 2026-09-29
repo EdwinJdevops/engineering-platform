@@ -9,6 +9,7 @@
   <meta name="description" content="{{ .Description | default site.Params.description }}">
   <meta name="author" content="Edwin Jonathan">
   <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
   <link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | absURL }}" title="{{ site.Title }}">
@@ -17,7 +18,7 @@
   <meta property="og:description" content="{{ .Description | default site.Params.description }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary">
   {{ partial "structured-data.html" . }}
 </head>
 <body>
