@@ -1,4 +1,26 @@
 {{ define "main" }}
+{{ if eq .Section "projects" }}
+<article class="shell case-study">
+  <header class="case-hero">
+    <p class="eyebrow">ENGINEERING CASE STUDY</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+    <dl class="case-meta">
+      <div><dt>Evidence model</dt><dd>Repository-audited</dd></div>
+      <div><dt>Claims</dt><dd>Implementation-bounded</dd></div>
+      <div><dt>Review boundary</dt><dd>Limitations published</dd></div>
+    </dl>
+  </header>
+  <div class="case-layout">
+    <aside class="case-rail" aria-label="Case study guide">
+      <p class="case-rail-label">READING MODEL</p>
+      <p>Architecture intent is separated from checked-in implementation, test evidence and operational proof.</p>
+      <a href="{{ "projects/" | relURL }}">← All case studies</a>
+    </aside>
+    <div class="prose-body case-body">{{ .Content }}</div>
+  </div>
+</article>
+{{ else }}
 <article class="shell prose">
   <header class="page-head">
     <p class="eyebrow">{{ .Section | upper }}</p>
@@ -7,4 +29,5 @@
   </header>
   <div class="prose-body">{{ .Content }}</div>
 </article>
+{{ end }}
 {{ end }}
