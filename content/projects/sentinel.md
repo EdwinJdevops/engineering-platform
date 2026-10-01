@@ -3,6 +3,8 @@ title: "SENTINEL"
 description: "A Kubernetes security-scanning lab combining container vulnerability and posture scan evidence with scheduled CI automation."
 date: 2026-09-26
 draft: false
+domain: "Kubernetes security scanning"
+evidence_boundary: "Automates and aggregates scan evidence; does not establish the broader production security platform described upstream."
 ---
 
 ## Scope
