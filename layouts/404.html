@@ -1,0 +1,11 @@
+{{ define "main" }}
+<section class="shell error-page">
+  <p class="eyebrow">HTTP / 404</p>
+  <h1>That route does not exist.</h1>
+  <p class="lede">The page may have moved, the URL may be incomplete, or the resource may no longer be published.</p>
+  <div class="actions">
+    <a class="button primary" href="{{ "" | relURL }}">Return home</a>
+    <a class="button" href="{{ "projects/" | relURL }}">Browse engineering work</a>
+  </div>
+</section>
+{{ end }}
