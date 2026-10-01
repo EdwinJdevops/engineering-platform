@@ -3,6 +3,9 @@ title: "Optimization Evidence"
 description: "Engineering research into proving whether infrastructure optimization produces safe, attributable, realized savings."
 date: 2026-09-26
 draft: false
+domain: "FinOps / infrastructure experimentation"
+evidence: "Implemented evidence foundation + proposed MVP"
+boundary: "EXP-001 not yet executed"
 ---
 
 ## Problem

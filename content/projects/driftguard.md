@@ -3,6 +3,9 @@ title: "DriftGuard"
 description: "Terraform drift detection and review-based remediation for AWS infrastructure."
 date: 2026-09-26
 draft: false
+domain: "Infrastructure reconciliation"
+evidence: "Implemented system + automated tests"
+boundary: "Review-based remediation; AWS-specific"
 ---
 
 ## Problem

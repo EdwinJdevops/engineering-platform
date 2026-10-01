@@ -3,6 +3,9 @@ title: "ARCHNET"
 description: "A Kubernetes platform prototype combining AWS infrastructure, k3s bootstrap, ArgoCD reconciliation and basic observability configuration."
 date: 2026-09-26
 draft: false
+domain: "Kubernetes platform engineering"
+evidence: "Repository-backed platform prototype"
+boundary: "Architecture intent exceeds current implementation"
 ---
 
 ## Scope
