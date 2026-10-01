@@ -3,6 +3,8 @@ title: "InfraGuard Agent"
 description: "A cloud-security remediation agent prototype with deterministic security mappings, Terraform proposal generation and GitHub pull-request delivery."
 date: 2026-09-26
 draft: false
+domain: "Cloud security / Agentic remediation"
+evidence_boundary: "Main branch proposes Terraform through GitHub review; newer hardening work remains unmerged."
 ---
 
 ## Scope
