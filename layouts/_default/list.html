@@ -6,6 +6,26 @@
     {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
     <div class="prose-body">{{ .Content }}</div>
   </header>
+  {{ if eq .Section "projects" }}
+  <div class="project-index">
+    {{ range .Pages.ByTitle }}
+    <article class="project-row">
+      <div class="project-row-main">
+        <p class="card-kicker">{{ with .Params.domain }}{{ . }}{{ else }}Engineering case study{{ end }}</p>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ with .Description }}<p>{{ . }}</p>{{ end }}
+      </div>
+      <dl class="project-facts">
+        <div><dt>Evidence</dt><dd>{{ .Params.evidence }}</dd></div>
+        <div><dt>Boundary</dt><dd>{{ .Params.boundary }}</dd></div>
+      </dl>
+      <a class="text-link project-entry" href="{{ .RelPermalink }}" aria-label="Read {{ .Title }} engineering case study">Case study →</a>
+    </article>
+    {{ else }}
+    <div class="empty-state"><strong>No audited case studies yet.</strong><p>Projects appear here after repository review establishes enough evidence to describe them accurately.</p></div>
+    {{ end }}
+  </div>
+  {{ else }}
   <div class="card-grid">
     {{ range .Pages.ByDate.Reverse }}
     <article class="card">
@@ -18,5 +38,6 @@
     <div class="empty-state"><strong>Publishing pipeline ready.</strong><p>Verified work will appear here as it is migrated and reviewed.</p></div>
     {{ end }}
   </div>
+  {{ end }}
 </section>
 {{ end }}
