@@ -352,3 +352,23 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 @media(prefers-reduced-motion:reduce){
   .home-work,.home-proof,.home-lower,.home-portrait{animation:none!important;transform:none!important}
 }
+
+/* Interaction refinement: meaningful feedback on actual links, no faux clickable cards. */
+.featured-project{position:relative;isolation:isolate;padding-inline:16px;margin-inline:-16px}
+.featured-project h3 a::after{content:"";position:absolute;inset:0;z-index:0}
+.featured-project h3 a{position:static}
+.featured-project-end a{position:relative;z-index:1}
+.featured-project:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.featured-project:focus-within h3 a,.featured-project:hover h3 a{color:var(--accent)}
+.featured-project-end a{display:inline-flex;align-items:center;min-height:44px}
+.expertise-list details>div a{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);font-weight:700}
+@media(prefers-reduced-motion:no-preference){
+  .featured-project{transition:background-color .24s ease,border-color .24s ease}
+  .featured-project h3{transition:transform .24s cubic-bezier(.2,.7,.2,1)}
+  .featured-project:hover h3,.featured-project:focus-within h3{transform:translateX(6px)}
+  .featured-project-end a{transition:color .24s ease}
+}
+@media(max-width:620px){
+  .featured-project{margin-inline:-8px;padding-inline:8px}
+  .featured-project-end{gap:10px}
+}
