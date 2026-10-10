@@ -1,0 +1,38 @@
+name: Publish reviewed original DEV articles
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/publish-verified-dev-articles]
+    paths:
+      - 'scripts/promote_reviewed_articles.py'
+      - '.github/workflows/publish-reviewed-articles.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+        with:
+          ref: ${{ github.ref_name }}
+      - name: Download verified source review artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 38048874881 --repo "${{ github.repository }}" --name article-migration-review --dir article-import-review
+      - name: Validate and promote full original articles
+        run: python3 scripts/promote_reviewed_articles.py
+      - name: Normalize original Markdown for repository lint rules
+        run: npx --yes markdownlint-cli2@0.13.0 --fix 'content/articles/**/*.md' || true
+      - name: Commit migrated content on the selected branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/articles/
+          git diff --cached --check
+          git diff --cached --quiet && { echo "No content changes"; exit 1; }
+          git commit -m "content: migrate nine verified original DEV articles"
+          git push origin "HEAD:${{ github.ref_name }}"

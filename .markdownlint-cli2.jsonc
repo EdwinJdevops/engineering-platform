@@ -1,5 +1,21 @@
 {
   "config": {
-    "MD013": false
-  }
+    "MD013": false,
+    "MD003": false,
+    "MD025": false
+  },
+  "overrides": [
+    {
+      "files": ["content/articles/*.md"],
+      "config": {
+        "MD003": false,
+        "MD012": false,
+        "MD022": false,
+        "MD025": false,
+        "MD026": false,
+        "MD032": false,
+        "MD034": false
+      }
+    }
+  ]
 }
