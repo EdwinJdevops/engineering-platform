@@ -132,13 +132,13 @@ body{background:var(--bg)}
 .hero-index{display:flex;align-items:center;gap:12px;color:var(--accent)}
 .hero-index-dot{display:inline-block;width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 5px rgba(166,255,203,.08)}
 .hero-index-num{color:var(--muted);margin-left:8px}
-.infra-scene{min-height:540px;border:1px solid rgba(166,255,203,.18);background:linear-gradient(rgba(166,255,203,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(166,255,203,.04) 1px,transparent 1px),radial-gradient(ellipse at center,rgba(43,113,84,.20),transparent 72%);background-size:35px 35px,35px 35px,auto;clip-path:polygon(0 0,calc(100% - 24px) 0,100% 24px,100% 100%,24px 100%,0 calc(100% - 24px))}
+.infra-scene{min-height:540px;border:1px solid rgba(166,255,203,.18);background-color:#0b1918;background-image:linear-gradient(rgba(166,255,203,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(166,255,203,.04) 1px,transparent 1px);background-size:35px 35px,35px 35px,auto;clip-path:polygon(0 0,calc(100% - 24px) 0,100% 24px,100% 100%,24px 100%,0 calc(100% - 24px))}
 .infra-stack{transform:rotateX(58deg) rotateZ(-36deg) scale(1.16);filter:drop-shadow(0 45px 32px rgba(0,0,0,.55));animation:infra-drift 9s ease-in-out infinite alternate}
 .infra-layer{border-width:2px;background:linear-gradient(145deg,rgba(28,76,67,.97),rgba(8,24,30,.96));box-shadow:18px 22px 0 rgba(2,9,12,.5),0 0 48px rgba(114,226,174,.11)}
 .infra-layer span{font-size:11px;color:#f2fff7}
 .scene-coordinate{position:absolute;left:24px;right:24px;z-index:2;font:700 10px/1.5 ui-monospace,monospace;letter-spacing:.13em;color:#b4d9ca}
 .scene-coordinate-top{top:22px}
-.scene-coordinate-bottom{bottom:20px;display:flex;justify-content:space-between;gap:8px;color:#8eaaa2;font-size:9px}
+.scene-coordinate-bottom{bottom:20px;display:flex;justify-content:space-between;gap:8px;color:#c8e4d8;font-size:9px}
 .practice-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:16px}
 .practice-strip span{padding:17px 12px;font:700 10px/1.5 ui-monospace,monospace;letter-spacing:.08em;color:var(--muted);border-right:1px solid var(--line)}
 .practice-strip span:last-child{border-right:0}
