@@ -2,12 +2,10 @@
   <div class="shell nav">
     <a class="brand" href="{{ "" | relURL }}" aria-label="Edwin Jonathan home"><span>EJ</span><strong>Edwin Jonathan</strong></a>
     <nav aria-label="Primary">
-      <a href="{{ "portfolio/" | relURL }}">Portfolio</a>
-      <a href="{{ "projects/" | relURL }}">Projects</a>
-      <a href="{{ "articles/" | relURL }}">Writing</a>
-      <a href="{{ "services/" | relURL }}">Services</a>
-      <a href="{{ "engineering/" | relURL }}">Engineering</a>
-      <a class="nav-cta" href="{{ "contact/" | relURL }}">Contact</a>
+      <a href="{{ "projects/" | relURL }}"{{ if eq .Section "projects" }} aria-current="page"{{ end }}>Work</a>
+      <a href="{{ "articles/" | relURL }}"{{ if eq .Section "articles" }} aria-current="page"{{ end }}>Writing</a>
+      <a href="{{ "portfolio/" | relURL }}"{{ if eq .Section "portfolio" }} aria-current="page"{{ end }}>About</a>
+      <a class="nav-cta" href="{{ "contact/" | relURL }}">Get in touch ↗</a>
     </nav>
   </div>
 </header>
