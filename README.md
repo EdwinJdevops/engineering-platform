@@ -1,33 +1,45 @@
-# Engineering Platform
+# Edwin Jonathan — Engineering Platform
 
-Edwin Jonathan's technical publishing and portfolio platform.
+A Hugo-based engineering publication, project case-study library, portfolio, and services site. Source code and claims are reviewable; project limitations are documented.
 
-## Quick Start
+Production: https://edwinjdevops.github.io/engineering-platform/
 
-```bash
-npm install
-npm run dev
+## Architecture
+
+- Hugo generates static HTML; GitHub Pages hosts production.
+- GitHub Actions validates PRs and deploys merges to `main`.
+- Article and project content lives in `content/`. Templates are in `layouts/`; CSS and scripts are in `static/`.
+- The homepage uses a CSS 3D diagram by default. Desktop browsers with WebGL and no reduced-motion preference progressively enhance it using `static/js/infrastructure-webgl.js`.
+- Native `details`/ `summary` navigation works without JavaScript on narrow screens.
+
+## Local development
+
+Requires Hugo v0.164.0 or compatible:
+
+```sh
+hugo server --baseURL http://localhost:1313/ --disableFastRender
 ```
 
-Site runs at `http://localhost:1313/engineering-platform/`
+Visit http://localhost:1313/. No `npm install` is required for site development. CI uses a pinned Hugo container, so the exact release build is reproducible.
 
 ## Build
 
-```bash
-npm run build
-hugo
+```sh
+hugo --minify --gc --baseURL /
 ```
 
-## Deploy
+The generated output is in `public/`. Do not commit generated HTML.
 
-Push to `main`. GitHub Actions handles the rest.
+## Release
 
-## Content
+1. Open a PR targeting `main`.
+2. Wait for CI, security scanning, and the visual browser audit to pass.
+3. Review `browser-visual-audit` screenshots for small mobile, mobile, tablet, and desktop.
+4. Merge; the GitHub Pages workflow builds and deploys.
+5. Confirm the production workflow's route checks pass.
 
-- `/content/articles/` - Technical writing
-- `/content/projects/` - Portfolio projects
-- `/content/engineering/` - Architecture & decisions
+The visual audit includes scroll behavior, keyboard menu access, horizontal overflow, reduced-motion fallback, and frontend asset budgets. Browser automation is not a substitute for testing on real devices.
 
-## License
+## Safety and scope
 
-MIT
+No application database, cluster, tracking code, external WebGL package, or third-party fonts are needed. Content should not include credentials or unsupported operational claims.
