@@ -10,7 +10,6 @@
   const canvas = document.createElement('canvas');
   canvas.className = 'infra-webgl';
   canvas.setAttribute('aria-hidden', 'true');
-  canvas.tabIndex = -1;
   if (!desktop.matches || reduced.matches) return;
 
   let gl;
