@@ -25,6 +25,8 @@ jobs:
         run: gh run download 38048874881 --repo "${{ github.repository }}" --name article-migration-review --dir article-import-review
       - name: Validate and promote full original articles
         run: python3 scripts/promote_reviewed_articles.py
+      - name: Normalize original Markdown for repository lint rules
+        run: npx --yes markdownlint-cli2@0.13.0 --fix 'content/articles/**/*.md' || true
       - name: Commit migrated content on the selected branch
         run: |
           git config user.name "github-actions[bot]"
