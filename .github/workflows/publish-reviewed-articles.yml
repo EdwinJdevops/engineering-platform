@@ -1,6 +1,11 @@
 name: Publish reviewed original DEV articles
 on:
   workflow_dispatch:
+  push:
+    branches: [feature/publish-verified-dev-articles]
+    paths:
+      - 'scripts/promote_reviewed_articles.py'
+      - '.github/workflows/publish-reviewed-articles.yml'
 
 permissions:
   contents: write
