@@ -4,7 +4,7 @@
   <h1>Let's work on<br>something that matters.</h1>
   <p class="lede">Engineering roles, production infrastructure, delivery systems and technical collaborations. Send a concise brief and I'll have the context to respond.</p>
   <div class="contact-methods">
-    <a href="mailto:{{ site.Params.email }}?subject=Engineering%20inquiry"><span><strong>Email Edwin directly ↗</strong><small>{{ site.Params.email }} · Best for a project brief or job opportunity</small></span></a>
+    {{ with site.Params.email }}<a href="mailto:{{ . }}?subject=Engineering%20inquiry"><span><strong>Email Edwin directly ↗</strong><small>{{ . }} · Best for a project brief or job opportunity</small></span></a>{{ end }}
     <a href="{{ site.Params.linkedin }}"><span><strong>LinkedIn ↗</strong><small>Professional introductions and engineering roles</small></span></a>
     <a href="{{ site.Params.github }}"><span><strong>GitHub ↗</strong><small>Code, issues and technical evidence</small></span></a>
     <a href="{{ site.Params.twitter }}"><span><strong>X ↗</strong><small>Engineering conversations</small></span></a>
