@@ -78,6 +78,8 @@ def main() -> None:
             articles.extend(collector())
         except (OSError, ValueError, KeyError, ET.ParseError) as exc:
             errors.append(f"{source}: {type(exc).__name__}: {exc}")
+    if not errors and (out / "source-errors.json").exists():
+        (out / "source-errors.json").unlink()
     if errors:
         (out / "source-errors.json").write_text(
             json.dumps(errors, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
