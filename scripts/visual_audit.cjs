@@ -89,6 +89,18 @@ const fs = require("node:fs");
   observations.push({ size:"desktop-motion",route:"/",renderMode,progressBefore:before,progressAfter:after });
   if (renderMode === "webgl" && !(await page.locator(".infra-webgl").isVisible()))
     failures.push("WebGL mode reports active but canvas is hidden");
+  const card = page.locator(".featured-project").first();
+  if (!(await card.isVisible())) failures.push("featured project card missing");
+  await card.locator("h3 a").focus();
+  if (!(await card.evaluate(el => el.matches(":focus-within"))))
+    failures.push("project card focus state not applied");
+  const detail = page.locator(".expertise-list details").first();
+  await detail.locator("summary").click();
+  if (await detail.getAttribute("open") === null)
+    failures.push("expertise disclosure did not open");
+  await detail.locator("summary").click();
+  if (await detail.getAttribute("open") !== null)
+    failures.push("expertise disclosure did not close");
   await page.screenshot({path:"visual-audit/desktop-motion-home.png",fullPage:true});
   await page.close();
   await browser.close();
