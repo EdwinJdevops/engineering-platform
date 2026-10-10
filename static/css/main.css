@@ -307,3 +307,7 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 @media(max-width:420px){
   .services-intro h1,.contact-intro h1{font-size:clamp(36px,10.5vw,44px);overflow-wrap:break-word}
 }
+
+/* Render the menu glyph entirely in CSS; never show overlapping open/close icons. */
+.mobile-nav summary span::before{content:"☰";font-size:19px}
+.mobile-nav[open] summary span::before{content:"×";font-size:25px}
