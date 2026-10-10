@@ -6,15 +6,15 @@
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
     <dl class="case-meta">
-      <div><dt>Evidence model</dt><dd>Repository-audited</dd></div>
-      <div><dt>Claims</dt><dd>Implementation-bounded</dd></div>
-      <div><dt>Review boundary</dt><dd>Limitations published</dd></div>
+      <div><dt>Domain</dt><dd>{{ .Params.domain | default "Engineering" }}</dd></div>
+      <div><dt>Evidence</dt><dd>{{ .Params.evidence | default "Repository-backed" }}</dd></div>
+      <div><dt>Limitations</dt><dd>{{ .Params.boundary | default "See case study" }}</dd></div>
     </dl>
   </header>
   <div class="case-layout">
     <aside class="case-rail" aria-label="Case study guide">
-      <p class="case-rail-label">READING MODEL</p>
-      <p>Architecture intent is separated from checked-in implementation, test evidence and operational proof.</p>
+      <p class="case-rail-label">REVIEW THE EVIDENCE</p>
+      <p>Read the implementation, security decisions, tests and limitations before drawing production-readiness conclusions.</p>
       <a href="{{ "projects/" | relURL }}">← All case studies</a>
     </aside>
     <div class="prose-body case-body">{{ .Content }}</div>
@@ -23,10 +23,11 @@
 {{ else }}
 <article class="shell prose">
   <header class="page-head">
-    <p class="eyebrow">{{ .Section | upper }}</p>
+    <p class="eyebrow">{{ .Section | upper }}{{ if eq .Section "articles" }} · {{ .Date.Format "02 Jan 2006" }}{{ end }}</p>
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
   </header>
+  {{ with .Params.original_url }}<p class="article-source">Originally published at <a href="{{ . }}" rel="noopener noreferrer">{{ $.Params.original_platform | default "the original publication" }}</a>.</p>{{ end }}
   <div class="prose-body">{{ .Content }}</div>
 </article>
 {{ end }}

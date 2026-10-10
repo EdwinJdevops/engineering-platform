@@ -1,0 +1,27 @@
+{{ define "main" }}
+<section class="shell services-intro">
+  <p class="eyebrow">EDWIN CLOUD DEVOPS SERVICES</p>
+  <h1>Cloud infrastructure.<br><span>Delivery engineering.</span></h1>
+  <p class="lede">Scoped engineering support for teams dealing with unreliable deployments, infrastructure changes or cloud operations. The starting point is the existing system—not a prescribed tool stack.</p>
+  <div class="actions"><a class="button primary" href="{{ "contact/" | relURL }}">Discuss an engagement</a><a class="button" href="{{ "projects/" | relURL }}">Review technical work</a></div>
+</section>
+<section class="shell section-block">
+  <div class="home-section-title"><div><p class="eyebrow">AREAS OF WORK</p><h2>Specific engineering problems, bounded delivery.</h2></div></div>
+  <div class="service-grid">
+    <article><span>01</span><h3>AWS infrastructure</h3><p>Terraform, IAM, networking, deployment architecture and review of infrastructure change risks.</p></article>
+    <article><span>02</span><h3>CI/CD and release controls</h3><p>GitHub Actions, build validation, deployment pipelines, rollback planning and post-deploy checks.</p></article>
+    <article><span>03</span><h3>Kubernetes and GitOps</h3><p>Workload delivery, ArgoCD reconciliation, security posture and operational diagnostics where Kubernetes is justified.</p></article>
+    <article><span>04</span><h3>Reliability and security</h3><p>Observability foundations, scanning, incident-oriented debugging and actionable remediation plans.</p></article>
+  </div>
+</section>
+<section class="shell section-block services-process">
+  <div><p class="eyebrow">ENGAGEMENT MODEL</p><h2>Define the problem before the implementation.</h2></div>
+  <ol><li><strong>Scope.</strong> Review the current architecture, constraints and failure symptoms.</li><li><strong>Agree evidence.</strong> Define a deliverable and observable acceptance criteria.</li><li><strong>Implement.</strong> Make targeted changes with reviewable source and configuration.</li><li><strong>Verify.</strong> Record test results, operational handover and remaining limitations.</li></ol>
+</section>
+<section class="shell services-outro">
+  <p class="eyebrow">START A CONVERSATION</p>
+  <h2>What needs to work better?</h2>
+  <p>Send the system context, the problem, your timeframe and the outcome you need. Do not include credentials or private customer data.</p>
+  <a class="button primary" href="{{ "contact/" | relURL }}">Contact Edwin ↗</a>
+</section>
+{{ end }}
