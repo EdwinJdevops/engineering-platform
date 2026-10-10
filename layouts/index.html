@@ -36,6 +36,14 @@
   </div>
 </section>
 
+<section class="shell home-proof section-block" aria-labelledby="proof-heading">
+  <div class="home-section-title"><div><p class="eyebrow">INSPECTABLE EVIDENCE</p><h2 id="proof-heading">Review the engineering, not just the claims.</h2></div><a class="text-link" href="{{ "engineering/" | relURL }}">How this website ships ↗</a></div>
+  <div class="proof-grid">
+    <article><p class="card-kicker">01 / FAILURE HANDLING</p><h3>DriftGuard: incomplete inventory</h3><p>A failed AWS inventory request must not be interpreted as evidence that resources were deleted. The change is covered by regression tests and a merged pull request.</p><a href="https://github.com/EdwinJdevops/driftguard/pull/3">Review fix and tests ↗</a></article>
+    <article><p class="card-kicker">02 / DELIVERY SYSTEM</p><h3>Pull requests to production</h3><p>This Hugo site uses GitHub Actions for build, link, accessibility and security checks before source-controlled deployment. The checks have explicit coverage limits.</p><a href="https://github.com/EdwinJdevops/engineering-platform/actions">Inspect workflow runs ↗</a></article>
+    <article><p class="card-kicker">03 / ENGINEERING JUDGMENT</p><h3>Limitations are documented</h3><p>Case studies distinguish repository implementation, test evidence and operational proof. Unverified production claims are excluded.</p><a href="{{ "projects/" | relURL }}">Read case studies ↗</a></article>
+  </div>
+</section>
 <section class="shell home-lower section-block">
   <div><p class="eyebrow">WRITING</p><h2>Technical notes, backed by the work.</h2><p>Implementation details, failures and decisions from projects in the repository.</p><a class="text-link" href="{{ "articles/" | relURL }}">Read articles ↗</a></div>
   <div><p class="eyebrow">SERVICES</p><h2>Infrastructure and delivery engineering.</h2><p>For teams that need help with cloud infrastructure, deployment pipelines or operating existing systems.</p><a class="text-link" href="{{ "services/" | relURL }}">Services and contact ↗</a></div>
