@@ -71,7 +71,6 @@ The repository states the current gaps explicitly:
 
 These limitations are part of the engineering evidence. Hiding them would make the case study weaker, not stronger.
 
-
 ## Failure case: incomplete AWS inventory
 
 An AWS collector that fails midway through enumeration must not return an empty resource list. An empty result can mean "no resources exist", while an exception or partial API response means "the system does not know". Conflating those states can produce false deletion findings.
