@@ -7,8 +7,8 @@
     <div class="prose-body">{{ .Content }}</div>
   </header>
   {{ if eq .Section "projects" }}
-  <div class="project-index">
-    {{ range .Pages.ByTitle }}
+  <div class="project-index project-index-editorial">
+    {{ range .Pages.ByDate.Reverse }}
     <article class="project-row">
       <div class="project-row-main">
         <p class="card-kicker">{{ with .Params.domain }}{{ . }}{{ else }}Engineering case study{{ end }}</p>
