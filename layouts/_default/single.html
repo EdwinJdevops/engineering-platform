@@ -17,7 +17,14 @@
       <p>Read the implementation, security decisions, tests and limitations before drawing production-readiness conclusions.</p>
       <a href="{{ "projects/" | relURL }}">← All case studies</a>
     </aside>
-    <div class="prose-body case-body">{{ .Content }}</div>
+    <div class="case-content">
+      <nav class="case-contents" aria-label="On this page">
+        <p class="case-rail-label">ON THIS PAGE</p>
+        {{ .TableOfContents }}
+      </nav>
+      <div class="prose-body case-body">{{ .Content }}</div>
+      <div class="case-next"><p class="eyebrow">CONTINUE REVIEWING</p><a href="{{ "projects/" | relURL }}">Explore other case studies ↗</a><a href="{{ "contact/" | relURL }}">Discuss engineering work ↗</a></div>
+    </div>
   </div>
 </article>
 {{ else }}

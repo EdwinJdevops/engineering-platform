@@ -103,3 +103,18 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .proof-grid article>a{font-size:14px;font-weight:650;margin-top:18px;text-decoration:underline;text-underline-offset:5px}
 .proof-grid article>a:hover{color:var(--accent)}
 @media(max-width:850px){.proof-grid{grid-template-columns:1fr}.proof-grid article{padding:25px}}
+
+/* Technical case-study navigation and reviewer journey */
+.case-content{min-width:0}
+.case-contents{padding:20px 24px;margin:0 0 36px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.015)}
+.case-contents .case-rail-label{margin:0 0 12px}
+.case-contents nav ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 20px}
+.case-contents nav li{margin:0}
+.case-contents nav a{font-size:13px;line-height:1.5;text-decoration:none;color:var(--muted)}
+.case-contents nav a:hover,.case-contents nav a:focus-visible{color:var(--text);text-decoration:underline}
+.case-contents nav ul ul{display:none}
+.case-next{border-top:1px solid var(--line);margin-top:50px;padding:25px 0 60px;display:flex;flex-wrap:wrap;gap:14px 24px}
+.case-next .eyebrow{width:100%;margin:0}
+.case-next a{text-decoration:underline;text-underline-offset:5px;font-size:14px}
+.case-body h2{scroll-margin-top:100px}
+@media(max-width:700px){.case-contents nav ul{grid-template-columns:1fr}.case-contents{padding:18px}}
