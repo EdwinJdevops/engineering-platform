@@ -4,7 +4,7 @@ const fs = require("node:fs");
   const browser = await chromium.launch({ headless: true });
   fs.mkdirSync("visual-audit", { recursive: true });
   const routes = ["/", "/portfolio/", "/projects/driftguard/", "/services/", "/contact/"];
-  const widths = [{ name: "mobile", width: 390, height: 844 }, { name: "tablet", width: 768, height: 1024 }, { name: "desktop", width: 1440, height: 900 }];
+  const widths = [{ name: "small-mobile", width: 320, height: 740 }, { name: "mobile", width: 390, height: 844 }, { name: "tablet", width: 768, height: 1024 }, { name: "desktop", width: 1440, height: 900 }];
   const failures = [];
   for (const size of widths) {
     const page = await browser.newPage({ viewport: { width: size.width, height: size.height }, deviceScaleFactor: 1, reducedMotion: "reduce" });
@@ -22,10 +22,20 @@ const fs = require("node:fs");
         if (animation === "none") failures.push(size.name + " homepage 3D transform missing");
       }
     }
+    const navPage = await page.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+    if (!navPage || navPage.status() !== 200) failures.push(size.name + " navigation smoke HTTP failure");
+    const navAudit = await page.locator(".site-header nav a").evaluateAll(links => links.map(link => {
+      const rect = link.getBoundingClientRect();
+      const style = getComputedStyle(link);
+      return { label: link.textContent.trim(), height: rect.height, width: rect.width, visible: style.display !== "none" && style.visibility !== "hidden" };
+    }));
+    for (const link of navAudit) {
+      if (!link.visible || link.height < 43) failures.push(size.name + " navigation target " + JSON.stringify(link));
+    }
     await page.close();
   }
   await browser.close();
   fs.writeFileSync("visual-audit/results.json", JSON.stringify({ failures, routes, widths }, null, 2));
   if (failures.length) { console.error(failures.join("\n")); process.exit(1); }
-  console.log("Visual audit passed: 15 route/viewport combinations; screenshots uploaded as artifact.");
+  console.log("Visual audit passed: 20 route/viewport combinations; screenshots uploaded as artifact.");
 })().catch(err => { console.error(err); process.exit(1); });
