@@ -121,7 +121,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 
 /* Editorial direction: precise typography, technical grid, unmistakable 3D composition. */
 :root{--bg:#070b0d;--surface:#0d1517;--surface2:#111c1e;--text:#eef2f7;--muted:#c2d0cc;--line:#29403c;--accent:#a6ffcb;--accent2:#d0e9e0;--max:1240px}
-body{background:radial-gradient(ellipse 75% 36% at 88% 3%,rgba(43,113,84,.15),transparent 80%),var(--bg)}
+body{background:var(--bg)}
 .site-header{background:rgba(7,11,13,.93)}
 .home-intro{position:relative;grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);gap:22px;min-height:760px;padding-block:110px 110px}
 .home-intro-copy{position:relative;z-index:2}
