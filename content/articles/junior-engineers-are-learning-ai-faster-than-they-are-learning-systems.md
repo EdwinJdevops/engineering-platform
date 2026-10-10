@@ -9,6 +9,7 @@ aliases: []
 ---
 
 ## **The most important engineering gap nobody seems interested in talking about**
+
 A few months ago, I noticed something strange.
 
 Everywhere I looked, people were learning AI.

@@ -23,6 +23,7 @@ When you do this:
 AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
 AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
  You have a long-lived credential sitting in GitHub that:
+
 - Never rotates automatically
 - Has blast radius if the repo is compromised
 - Violates least-privilege by existing at all

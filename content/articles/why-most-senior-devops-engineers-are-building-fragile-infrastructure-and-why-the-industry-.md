@@ -179,6 +179,7 @@ Senior engineering removes it.
 **
 
 ## What Young Engineers Should Understand Early
+
 **
 
 The industry will constantly pressure you to perform intelligence instead of building competence.
@@ -209,6 +210,7 @@ That knowledge separates infrastructure operators from infrastructure engineers.
 **
 
 ## My Own Shift in Thinking
+
 **
 
 At 17, I started realizing something uncomfortable:
@@ -243,6 +245,7 @@ That single question changes how you engineer permanently.
 **
 
 ##
+
 Final Thought
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/n5ysyg1wqnmyktc8ktb6.png)

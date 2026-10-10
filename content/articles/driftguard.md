@@ -30,7 +30,7 @@ Benchmarks and MITRE ATT&CK, calculates the monthly cost
 delta, and opens a GitHub PR with the exact Terraform HCL
 fix — automatically.
 
-Live API: https://driftguard-endm.onrender.com/docs
+Live API: <https://driftguard-endm.onrender.com/docs>
 GitHub: github.com/EdwinJdevops/driftguard
 
 No VC funding. No team. Built in Lagos.

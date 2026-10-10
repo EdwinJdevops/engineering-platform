@@ -21,6 +21,7 @@ What is an Internal Developer Platform?
 
 An IDP is the infrastructure layer that sits between your code
 and your cloud. It handles:
+
 - How code gets deployed
 - How secrets are managed
 - How the system monitors itself
@@ -92,6 +93,7 @@ This is self-healing infrastructure.
 ## Observability Stack
 
 Three pillars:
+
 - **Metrics** — Prometheus collects from every pod
 - **Logs** — Loki aggregates from every container
 - **Alerts** — AlertManager fires to Slack on anomalies

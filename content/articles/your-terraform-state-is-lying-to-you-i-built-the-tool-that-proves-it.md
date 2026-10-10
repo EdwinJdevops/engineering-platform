@@ -8,9 +8,7 @@ original_platform: "devto"
 aliases: []
 ---
 
-## The Quiet Failure Mode Every AWS Team Pretends Doesn't Exist I Found the Gap Every DevOps Tool Stopped Short Of Closing Nobody Finished This Tool. So I Did.
-
-
+## The Quiet Failure Mode Every AWS Team Pretends Doesn't Exist I Found the Gap Every DevOps Tool Stopped Short Of Closing Nobody Finished This Tool. So I Did
 
      Open your AWS console right now and compare it to your Terraform state file, line by line. I'll save you the trouble. They don't match.
 
@@ -60,8 +58,8 @@ Before DriftGuard, I'd already built a Zero-Trust Kubernetes platform end to end
 
 DriftGuard is the first project I'm putting directly in front of an industry that hasn't had a reason to look yet. It solves a problem real infrastructure teams actually have. Test it against your own AWS account. Try to break it. File an issue — I read every one, and I close them fast, because a maintainer who goes quiet is the fastest way to lose trust in a tool.
 
-Live API: https://driftguard-endm.onrender.com/docs
-GitHub: https://github.com/EdwinJdevops/driftguard
+Live API: <https://driftguard-endm.onrender.com/docs>
+GitHub: <https://github.com/EdwinJdevops/driftguard>
 
 Closing
 I didn't write this to introduce myself. The repository is public, the API is live, and the commit history will tell you more about how I work than any paragraph here could.

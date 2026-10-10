@@ -181,7 +181,6 @@ Exceptional engineers build systems that continue working when things go wrong.
 
 That mindset shift changed how I think about architecture, automation, observability, and operational excellence.
 
-
 ## Final Thoughts
 
 As a 17-year-old building a career in DevOps and Cloud Engineering, this project reinforced something important:
