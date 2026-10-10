@@ -1,48 +1,24 @@
-# Architecture Decision Record
+# Architecture and visual-system decisions
 
-## Hugo + GitHub Pages + GitHub Actions
+## Static delivery
 
-### Why Hugo?
-- Single binary. No runtime dependencies.
-- Fast builds (< 2s).
-- Native GitHub Pages support.
-- Mature ecosystem.
+Hugo renders Markdown and templates into static HTML. GitHub Actions builds and validates changes; GitHub Pages serves the published artifact. This site does not require Kubernetes, Terraform, an application server, persistent storage, or a managed database.
 
-### Why GitHub Pages?
-- Free hosting.
-- Integrated with GitHub repository.
-- Auto TLS/HTTPS.
-- Sufficient CDN (Fastly).
-- No vendor lock-in.
+## Rendering strategy
 
-### Why GitHub Actions?
-- Free CI/CD.
-- Integrated with repository.
-- Full control over pipeline.
-- Native GitHub permissions model.
+The site uses a warm editorial palette, system-font stack, semantic sections and links. Navigation is ordinary HTML on desktop and native `details` / `summary` on mobile so keyboard and no-JavaScript access remain functional.
 
-### Why NOT Kubernetes?
-Static site. No container orchestration needed.
+The infrastructure diagram is progressive enhancement, not a business-critical dependency:
 
-### Why NOT Terraform?
-GitHub Pages infrastructure is minimal. Manual setup sufficient.
+1. CSS creates three readable geometric layers on every supported viewport.
+2. On sufficiently wide screens where motion is allowed, a small self-contained WebGL 1 script renders depth-tested 3D plates and components.
+3. The WebGL drawing runs only on scroll, pointer, resize, and visibility changes. It uses a low-power context and caps pixel density.
+4. Missing WebGL support, reduced-motion, a small viewport, or lost context leaves the CSS illustration available.
 
-### Why NOT Databases?
-All content is Markdown + Git. JSON files for metadata. No persistence layer needed.
+No Three.js, CDN asset, external font, persistent rendering loop, or remote telemetry is added.
 
-## Quality Gates
+## Release verification
 
-- Frontmatter validation
-- Markdown linting
-- Hugo build success
-- HTML validation
-- Link checking
-- Accessibility compliance
-- GitHub Actions security audit
+The pull-request CI validates front matter, Markdown, Hugo output, internal links, HTML, and Pa11y accessibility for configured routes. Security checks run separately. A Playwright audit captures homepage and key interior routes at 320px, 390px, 768px and 1440px. It checks overflow, nav toggling with pointer and keyboard, the CSS fallback, scroll state, and size budgets for frontend CSS/JS.
 
-## Deployment
-
-- PR preview: GitHub Actions artifact upload
-- Production: GitHub Pages deployment environment
-- Rollback: git revert + normal CI/CD pipeline
-- Verification: HTTP 200 checks post-deploy
+GitHub Pages deployment checks the configured production routes for HTTP 200. Screenshots are artifacts for manual review; automated checks cannot prove that the design is perfect, the site has a specific availability SLA, or the layout works on every device.
