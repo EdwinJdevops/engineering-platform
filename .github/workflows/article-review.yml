@@ -1,6 +1,11 @@
 name: Retrieve original articles for review
 on:
   workflow_dispatch:
+  push:
+    branches: [quality/article-import-and-link-integrity]
+    paths:
+      - '.github/workflows/article-review.yml'
+      - 'scripts/review_article_import.py'
 
 permissions:
   contents: read
