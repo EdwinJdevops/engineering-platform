@@ -56,7 +56,6 @@
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   reveals.forEach((element) => {
-    element.classList.add('reveal-ready');
     observer.observe(element);
   });
 })();
