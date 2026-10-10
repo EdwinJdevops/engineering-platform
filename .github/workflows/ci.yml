@@ -57,8 +57,16 @@ jobs:
           test -s public/services/index.html
           test -s public/about/index.html
           test -s public/contact/index.html
+          test -s public/portfolio/index.html
+          test -s public/projects/driftguard/index.html
+          test -s public/projects/archnet/index.html
+          test -s public/projects/sentinel/index.html
+          test -s public/articles/index.html
           grep -q 'Edwin Jonathan' public/index.html
           grep -q 'Edwin Cloud DevOps Services' public/services/index.html
+          grep -q 'INSPECTABLE EVIDENCE' public/index.html
+          grep -q 'github.com/EdwinJdevops/driftguard/pull/3' public/index.html
+          grep -q 'github.com/EdwinJdevops/engineering-platform/actions' public/index.html
 
       - name: Check generated links
         uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411 # v2.8.0
