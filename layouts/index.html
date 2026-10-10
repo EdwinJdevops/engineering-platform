@@ -11,6 +11,12 @@
     </div>
     <p class="home-profile-links"><a href="https://github.com/EdwinJdevops">GitHub ↗</a><a href="https://www.linkedin.com/in/edwin-jonathan-1094093b0">LinkedIn ↗</a><a href="{{ "portfolio/" | relURL }}">Portfolio ↗</a></p>
   </div>
+  {{ if fileExists "static/images/edwin-portrait.webp" }}
+  <figure class="home-portrait" data-reveal>
+    <img src="{{ "images/edwin-portrait.webp" | relURL }}" alt="Portrait of Edwin Jonathan" width="720" height="1205" fetchpriority="high" decoding="async">
+    <figcaption>EDWIN JONATHAN / ENGINEERING PRACTICE</figcaption>
+  </figure>
+  {{ end }}
   <div class="infra-scene" aria-label="Three infrastructure layers: application, delivery, and infrastructure" role="img" data-infra-scene>
     <div class="scene-coordinate scene-coordinate-top" aria-hidden="true">FIG. 01 / DELIVERY LAYERS</div>
     <div class="infra-stack" aria-hidden="true">
@@ -48,6 +54,15 @@
     <article><p class="card-kicker">01 / FAILURE HANDLING</p><h3>DriftGuard: incomplete inventory</h3><p>A failed AWS inventory request must not be interpreted as evidence that resources were deleted. The change is covered by regression tests and a merged pull request.</p><a href="https://github.com/EdwinJdevops/driftguard/pull/3">Review fix and tests ↗</a></article>
     <article><p class="card-kicker">02 / DELIVERY SYSTEM</p><h3>Pull requests to production</h3><p>This Hugo site uses GitHub Actions for build, link, accessibility and security checks before source-controlled deployment. The checks have explicit coverage limits.</p><a href="https://github.com/EdwinJdevops/engineering-platform/actions">Inspect workflow runs ↗</a></article>
     <article><p class="card-kicker">03 / ENGINEERING JUDGMENT</p><h3>Limitations are documented</h3><p>Case studies distinguish repository implementation, test evidence and operational proof. Unverified production claims are excluded.</p><a href="{{ "projects/" | relURL }}">Read case studies ↗</a></article>
+  </div>
+</section>
+<section class="shell section-block home-expertise" aria-labelledby="expertise-heading">
+  <div class="home-section-title"><div><p class="eyebrow">AREAS OF EXPERTISE</p><h2 id="expertise-heading">Where I can contribute.</h2></div><a class="text-link" href="{{ "services/" | relURL }}">Engagement details ↗</a></div>
+  <div class="expertise-list">
+    <details><summary><span>01</span><strong>Cloud infrastructure and IaC</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>AWS architecture, Terraform, IAM and infrastructure change review. Focus: reproducibility, safe permissions and operational clarity.</p><a href="{{ "projects/driftguard/" | relURL }}">Related work: DriftGuard ↗</a></div></details>
+    <details><summary><span>02</span><strong>Delivery systems and GitOps</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>CI/CD controls, release verification, ArgoCD reconciliation and rollback planning. Choose tooling to match the system and failure modes.</p><a href="{{ "projects/archnet/" | relURL }}">Related work: ARCHNET ↗</a></div></details>
+    <details><summary><span>03</span><strong>Kubernetes security and reliability</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>Workload security posture, scanning, observability and actionable diagnostics, with explicit boundaries around what tests prove.</p><a href="{{ "projects/sentinel/" | relURL }}">Related work: SENTINEL ↗</a></div></details>
+    <details><summary><span>04</span><strong>Platform and backend engineering</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>Python services, infrastructure-facing APIs, deployment automation and failure-aware engineering workflows.</p><a href="{{ "projects/" | relURL }}">Explore engineering projects ↗</a></div></details>
   </div>
 </section>
 <section class="shell home-lower section-block" data-reveal>
