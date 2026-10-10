@@ -1,0 +1,27 @@
+name: Retrieve original articles for review
+on:
+  workflow_dispatch:
+  push:
+    branches: [quality/article-import-and-link-integrity]
+    paths:
+      - '.github/workflows/article-review.yml'
+      - 'scripts/review_article_import.py'
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+      - name: Fetch original author posts
+        run: python3 scripts/review_article_import.py --output article-import-review
+      - name: Upload review drafts and source errors
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: article-migration-review
+          path: article-import-review/
+          if-no-files-found: warn
