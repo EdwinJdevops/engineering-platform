@@ -1,11 +1,21 @@
 <header class="site-header">
   <div class="shell nav">
-    <a class="brand" href="{{ "" | relURL }}" aria-label="Edwin Jonathan home"><span>EJ</span><strong>Edwin Jonathan</strong></a>
-    <nav aria-label="Primary">
+    <a class="brand" href="{{ "" | relURL }}" aria-label="Edwin Jonathan home"><span aria-hidden="true">EJ</span><strong>Edwin Jonathan</strong></a>
+    <nav class="desktop-nav" aria-label="Primary">
       <a href="{{ "projects/" | relURL }}"{{ if eq .Section "projects" }} aria-current="page"{{ end }}>Work</a>
       <a href="{{ "articles/" | relURL }}"{{ if eq .Section "articles" }} aria-current="page"{{ end }}>Writing</a>
       <a href="{{ "portfolio/" | relURL }}"{{ if eq .Section "portfolio" }} aria-current="page"{{ end }}>About</a>
       <a class="nav-cta" href="{{ "contact/" | relURL }}">Get in touch ↗</a>
     </nav>
+    <details class="mobile-nav">
+      <summary aria-label="Toggle navigation">Menu <span aria-hidden="true">☰</span></summary>
+      <nav aria-label="Mobile primary">
+        <a href="{{ "projects/" | relURL }}"{{ if eq .Section "projects" }} aria-current="page"{{ end }}>Work</a>
+        <a href="{{ "articles/" | relURL }}"{{ if eq .Section "articles" }} aria-current="page"{{ end }}>Writing</a>
+        <a href="{{ "portfolio/" | relURL }}"{{ if eq .Section "portfolio" }} aria-current="page"{{ end }}>About</a>
+        <a href="{{ "services/" | relURL }}">Services</a>
+        <a href="{{ "contact/" | relURL }}">Get in touch ↗</a>
+      </nav>
+    </details>
   </div>
 </header>
