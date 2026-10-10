@@ -295,3 +295,10 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
   .footer-grid,.footer-base{flex-wrap:wrap}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+
+/* WebGL enhancement is drawn only for motion-allowed desktop viewports. */
+.infra-webgl{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;pointer-events:none}
+.infra-scene.webgl-ready .infra-stack{opacity:0;pointer-events:none}
+.infra-scene.webgl-ready .scene-coordinate{z-index:3}
+@media(prefers-reduced-motion:reduce){.infra-scene .infra-webgl{display:none}}
+@media(max-width:899px){.infra-scene .infra-webgl{display:none}}
