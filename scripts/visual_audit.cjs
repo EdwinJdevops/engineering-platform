@@ -13,6 +13,17 @@ const fs = require("node:fs");
     { name:"desktop", width:1440, height:900 }
   ];
   const failures = [], observations = [];
+  const assetBudgets = [
+    { path:"public/css/main.css", maximum:64000 },
+    { path:"public/js/infrastructure-scene.js", maximum:8000 },
+    { path:"public/js/infrastructure-webgl.js", maximum:16000 }
+  ];
+  for (const asset of assetBudgets) {
+    const bytes = fs.statSync(asset.path).size;
+    observations.push({ asset:asset.path,bytes,budget:asset.maximum });
+    if (bytes > asset.maximum)
+      failures.push("Asset budget exceeded: "+asset.path+" "+bytes+" > "+asset.maximum);
+  }
   for (const size of widths) {
     const page = await browser.newPage({
       viewport:{ width:size.width,height:size.height },
@@ -36,6 +47,13 @@ const fs = require("node:fs");
         await page.screenshot({ path:"visual-audit/"+size.name+"-"+key+"-menu.png",fullPage:false });
         await menu.locator("summary").click();
         if (await menu.getAttribute("open") !== null) failures.push(size.name+" "+route+" menu did not close");
+        if (route === "/") {
+          await menu.locator("summary").focus();
+          await page.keyboard.press("Enter");
+          if (await menu.getAttribute("open") === null) failures.push(size.name+" keyboard did not open menu");
+          await page.keyboard.press("Enter");
+          if (await menu.getAttribute("open") !== null) failures.push(size.name+" keyboard did not close menu");
+        }
       } else if (!(await page.locator(".desktop-nav").isVisible())) {
         failures.push(size.name+" "+route+" desktop navigation hidden");
       }
@@ -76,5 +94,5 @@ const fs = require("node:fs");
   await browser.close();
   fs.writeFileSync("visual-audit/results.json",JSON.stringify({ failures,observations,routes,widths },null,2));
   if (failures.length) { console.error(failures.join("\n"));process.exit(1); }
-  console.log("Visual audit passed: 20 routes/viewports, navigation toggle, reduced-motion fallback, and scroll state.");
+  console.log("Visual audit passed: 20 routes/viewports, keyboard navigation, asset budgets, reduced-motion fallback, and scroll state.");
 })().catch(error => { console.error(error);process.exit(1); });
