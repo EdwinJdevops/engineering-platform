@@ -71,6 +71,18 @@ The repository states the current gaps explicitly:
 
 These limitations are part of the engineering evidence. Hiding them would make the case study weaker, not stronger.
 
+## Failure case: incomplete AWS inventory
+
+An AWS collector that fails midway through enumeration must not return an empty resource list. An empty result can mean "no resources exist", while an exception or partial API response means "the system does not know". Conflating those states can produce false deletion findings.
+
+The drift engine now treats supported EC2, S3, security-group and RDS enumeration failures as incomplete inventory and stops that scan path rather than interpreting the failure as a clean empty inventory. This is a fail-closed decision about evidence quality, not a claim that AWS cannot experience partial failures.
+
+Terraform resources created with `count` or `for_each` also require distinct state addresses. The parser preserves instance indices and string keys so that two instances of the same resource do not collapse into one finding.
+
+**Verification boundary:** regression tests were added for incomplete inventory and indexed Terraform instances. The associated GitHub pull request passed backend tests, CLI checks, frontend build and VS Code extension build before merge. Those checks establish repository behavior under the tested conditions; they do not establish a production SLA or comprehensive AWS API fault coverage.
+
+[Review the inventory-safety change](https://github.com/EdwinJdevops/driftguard/pull/3)
+
 ## Why this project matters
 
 DriftGuard demonstrates a control-plane problem rather than a deployment tutorial: reconcile declared infrastructure with observed infrastructure, preserve a security boundary around credentials, produce an auditable proposed change, and stop before autonomous mutation.
