@@ -150,3 +150,9 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 @media(max-width:1000px){.home-intro{grid-template-columns:1fr;gap:40px;padding-block:76px}.home-intro h1{font-size:clamp(78px,14vw,130px)}.infra-scene{min-height:430px}.practice-strip{grid-template-columns:repeat(2,1fr)}.practice-strip span:nth-child(2){border-right:0}.practice-strip span:nth-child(-n+2){border-bottom:1px solid var(--line)}}
 @media(max-width:560px){.home-intro{padding-block:56px 60px;gap:30px}.home-intro h1{font-size:clamp(65px,16vw,95px);margin:28px 0}.home-role{font-size:25px}.infra-scene{min-height:345px}.infra-stack{transform:rotateX(58deg) rotateZ(-36deg) scale(.85)}.scene-coordinate{left:14px;right:14px}.scene-coordinate-bottom{font-size:8px}.practice-strip span{font-size:9px;padding:15px 9px}}
 @media(prefers-reduced-motion:reduce){.infra-stack{animation:none}}
+
+/* Keep diagram annotations legible over the illustration's layered backgrounds. */
+.scene-coordinate-top{display:inline-block;left:18px;right:auto;top:16px;padding:7px 10px;background:#07100e;color:#ffffff;border:1px solid #496d60}
+.scene-coordinate-bottom{left:14px;right:14px;bottom:14px;gap:8px;justify-content:space-between}
+.scene-coordinate-bottom span{display:inline-block;padding:5px 7px;background:#07100e;color:#ffffff;border:1px solid #496d60}
+@media(max-width:560px){.scene-coordinate-top{left:10px;top:10px}.scene-coordinate-bottom{left:7px;right:7px;bottom:8px;gap:3px}.scene-coordinate-bottom span{font-size:7px;padding:4px}}
