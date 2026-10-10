@@ -47,10 +47,15 @@ async function sample(browser, profile) {
   });
   await session.send('Emulation.setCPUThrottlingRate', { rate: 4 });
   await page.addInitScript(() => {
-    window.__audit = { lcp: null, shifts: [], longTasks: [] };
+    window.__audit = { lcp: null, lcpElement: null, lcpResource: null, shifts: [], longTasks: [] };
     try {
       new PerformanceObserver(list => {
-        for (const entry of list.getEntries()) window.__audit.lcp = entry.startTime;
+        for (const entry of list.getEntries()) {
+          window.__audit.lcp = entry.startTime;
+          const element = entry.element;
+          window.__audit.lcpElement = element ? { tag: element.tagName.toLowerCase(), id: element.id || null, className: typeof element.className === 'string' ? element.className.slice(0, 120) : null } : null;
+          window.__audit.lcpResource = entry.url || null;
+        }
       }).observe({ type: 'largest-contentful-paint', buffered: true });
     } catch (_error) { /* Metric unsupported: report null. */ }
     try {
@@ -96,12 +101,14 @@ async function sample(browser, profile) {
         loadMs: nav?.loadEventEnd ?? null,
         fcpMs: fcp?.startTime ?? null,
         lcpMs: window.__audit.lcp,
+        lcpElement: window.__audit.lcpElement,
+        lcpResource: window.__audit.lcpResource,
         cls,
         longTaskBlockingMs: tbt,
         resourceCount: resources.length,
         transferBytes: resources.reduce((sum, resource) => sum + (resource.transferSize || 0), nav?.transferSize || 0),
-        renderMode: document.querySelector('[data-infra-scene]')?.dataset.renderMode || 'css-fallback',
-        portraitLoaded: document.querySelector('.home-portrait img')?.naturalWidth > 0 ?? null
+        renderMode: document.querySelector('[data-infra-scene]') ? (document.querySelector('[data-infra-scene]').dataset.renderMode || 'css-fallback') : 'not-applicable',
+        portraitLoaded: document.querySelector('.home-portrait img') ? document.querySelector('.home-portrait img').naturalWidth > 0 : null
       };
     });
     return { status: 'ok', url, errors, ...Object.fromEntries(Object.entries(measurements).map(([key, value]) => [key, typeof value === 'number' ? finite(value) : value])) };
