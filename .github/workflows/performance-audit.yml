@@ -1,0 +1,42 @@
+name: Production performance audit
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/performance_audit.cjs'
+      - '.github/workflows/performance-audit.yml'
+      - 'docs/performance.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Measure deployed site
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+      - name: Install browser
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Audit production
+        env:
+          PERFORMANCE_AUDIT_URL: https://edwinjdevops.github.io/engineering-platform/
+        run: node scripts/performance_audit.cjs
+      - name: Publish summary
+        if: always()
+        run: |
+          if [[ -f performance-audit/summary.md ]]; then
+            cat performance-audit/summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Preserve measurements
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: production-performance-audit
+          path: performance-audit/
+          if-no-files-found: warn
