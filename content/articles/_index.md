@@ -1,11 +1,11 @@
 ---
-title: "Articles"
-description: "Technical writing and engineering notes; no articles have been published on this site yet."
+title: "Writing"
+description: "Engineering articles about AWS infrastructure, Terraform, deployment recovery, Kubernetes and operational failures."
 draft: false
 ---
 
-This section will hold source-backed technical articles on cloud infrastructure, delivery engineering, security and platform operations.
+Technical articles written by Edwin Jonathan. This site contains original repository-reviewed work; earlier publications are also available on [DEV Community](https://dev.to/edwindevops) and [Hashnode](https://edwinjonathand-devops.hashnode.dev/).
 
-No articles are published here yet. Until the first article is reviewed and added, browse the [engineering case studies]({{< relref "/projects" >}}) or inspect the [platform's delivery system]({{< relref "/engineering" >}}).
+Articles from those platforms are being reviewed for migration. A post is not republished here until its full text, original source and duplicate status have been checked. The original publications remain accessible.
 
-Existing writing profiles are linked in the site footer; they are separate publications and should not be mistaken for articles already migrated here.
+For implementation details and test evidence, see the [project case studies]({{< relref "/projects" >}}).
