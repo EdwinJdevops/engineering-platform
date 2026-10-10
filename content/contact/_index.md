@@ -4,14 +4,12 @@ description: "Contact Edwin Jonathan about engineering roles, technical collabor
 draft: false
 ---
 
-For engineering roles, infrastructure work, platform/DevOps engagements, or technical collaboration, use one of the verified channels below.
+For engineering roles, infrastructure work, platform/DevOps engagements or technical collaboration, the primary contact channel is [LinkedIn](https://www.linkedin.com/in/edwin-jonathan-1094093b0).
 
-- [LinkedIn](https://www.linkedin.com/in/edwin-jonathan-1094093b0)
-- [GitHub](https://github.com/EdwinJdevops)
-- [X / Twitter](https://x.com/TheCloudDeveng)
+For an engineering role, include the role, team, location or remote policy, and a link to the job description.
 
-## Booking
+For a scoped infrastructure engagement, include the current system, the problem or constraint, the expected outcome and the timeframe. Do not send credentials, private infrastructure diagrams or customer data in an initial message.
 
-A dedicated booking workflow is not published yet. Until a booking provider and availability policy are selected, this page will not pretend that one exists.
+You can also review the public [GitHub repositories](https://github.com/EdwinJdevops) or reach out through [X](https://x.com/TheCloudDeveng).
 
-For Edwin Cloud DevOps Services, contact me through LinkedIn and include the system, current constraint, expected outcome and timeframe.
+No booking calendar or guaranteed response-time commitment is currently offered.
