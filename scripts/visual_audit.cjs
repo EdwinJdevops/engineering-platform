@@ -64,6 +64,9 @@ const fs = require("node:fs");
         failures.push(size.name+" "+route+" desktop navigation hidden");
       }
       if (route === "/") {
+        const reducedAnimation = await page.locator(".home-work").evaluate(el => getComputedStyle(el).animationName);
+        if (reducedAnimation !== "none")
+          failures.push(size.name+" reduced motion still animates home work: "+reducedAnimation);
         const portrait = page.locator(".home-portrait img");
         if (await portrait.count()) {
           const photo = await portrait.evaluate(el => ({
@@ -110,6 +113,14 @@ const fs = require("node:fs");
   observations.push({ size:"desktop-motion",route:"/",renderMode,progressBefore:before,progressAfter:after });
   if (renderMode === "webgl" && !(await page.locator(".infra-webgl").isVisible()))
     failures.push("WebGL mode reports active but canvas is hidden");
+  const work = page.locator(".home-work");
+  await work.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(150);
+  if (!(await work.evaluate(el => el.classList.contains("is-visible"))))
+    failures.push("scroll-triggered home work never entered visible state");
+  const animation = await work.evaluate(el => getComputedStyle(el).animationName);
+  if (!animation.includes("section-arrive"))
+    failures.push("scroll-triggered entrance animation not applied: "+animation);
   const card = page.locator(".featured-project").first();
   if (!(await card.isVisible())) failures.push("featured project card missing");
   await card.locator("h3 a").focus();
