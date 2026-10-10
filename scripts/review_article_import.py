@@ -71,7 +71,20 @@ def main() -> None:
     args = parser.parse_args()
     out = Path(args.output)
     out.mkdir(parents=True, exist_ok=True)
-    articles = collect_dev() + collect_hashnode()
+    articles = []
+    errors = []
+    for source, collector in (("DEV", collect_dev), ("Hashnode", collect_hashnode)):
+        try:
+            articles.extend(collector())
+        except (OSError, ValueError, KeyError, ET.ParseError) as exc:
+            errors.append(f"{source}: {type(exc).__name__}: {exc}")
+    if errors:
+        (out / "source-errors.json").write_text(
+            json.dumps(errors, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+        )
+        print("Some sources could not be retrieved; inspect source-errors.json.")
+    if not articles:
+        raise SystemExit("No source articles retrieved; no migration was performed.")
     seen: set[str] = set()
     manifest = []
     for item in articles:
