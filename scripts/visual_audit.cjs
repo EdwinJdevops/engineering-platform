@@ -16,7 +16,8 @@ const fs = require("node:fs");
   const assetBudgets = [
     { path:"public/css/main.css", maximum:64000 },
     { path:"public/js/infrastructure-scene.js", maximum:8000 },
-    { path:"public/js/infrastructure-webgl.js", maximum:16000 }
+    { path:"public/js/infrastructure-webgl.js", maximum:16000 },
+    { path:"public/images/edwin-portrait-web.webp", maximum:200000 }
   ];
   for (const asset of assetBudgets) {
     const bytes = fs.statSync(asset.path).size;
@@ -24,6 +25,7 @@ const fs = require("node:fs");
     if (bytes > asset.maximum)
       failures.push("Asset budget exceeded: "+asset.path+" "+bytes+" > "+asset.maximum);
   }
+  // Hugo may minify HTML attribute quotes; verify DOM semantics instead.
   for (const size of widths) {
     const page = await browser.newPage({
       viewport:{ width:size.width,height:size.height },
@@ -89,6 +91,12 @@ const fs = require("node:fs");
   });
   page.on("pageerror",error => failures.push("desktop motion JS exception: "+error.message));
   await page.goto("http://127.0.0.1:4173/",{waitUntil:"networkidle"});
+  const portraitHints = await page.locator(".home-portrait img").evaluate(el => ({
+    priority:el.getAttribute("fetchpriority"),
+    decoding:el.getAttribute("decoding")
+  }));
+  if (portraitHints.priority !== "high") failures.push("Portrait priority hint missing");
+  if (portraitHints.decoding !== "async") failures.push("Portrait asynchronous decoding hint missing");
   const scene = page.locator("[data-infra-scene]");
   const before = await scene.evaluate(el => Number.parseFloat(el.style.getPropertyValue("--scene-progress")));
   await page.evaluate(() => window.scrollTo(0,500));
