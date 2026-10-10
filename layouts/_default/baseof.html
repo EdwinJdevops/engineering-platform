@@ -8,7 +8,7 @@
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · Edwin Jonathan{{ end }}</title>
   <meta name="description" content="{{ .Description | default site.Params.description }}">
   <meta name="author" content="Edwin Jonathan">
-  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="canonical" href="{{ with .Params.canonical_url }}{{ . }}{{ else }}{{ .Permalink }}{{ end }}">
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
