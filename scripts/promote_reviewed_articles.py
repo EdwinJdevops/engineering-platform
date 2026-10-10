@@ -45,10 +45,14 @@ def main() -> None:
             f"{key}: {json.dumps(value, ensure_ascii=False)}" for key, value in fields.items()
         ) + "\n---\n\n"
         destination = TARGET / source.name
-        if destination.exists():
-            raise SystemExit(f"Existing page would be overwritten: {destination}")
         clean_body = "\n".join(line.rstrip() for line in body.lstrip().split("\n"))
-        destination.write_text(front + clean_body, encoding="utf-8")
+        proposed = front + clean_body
+        if destination.exists():
+            existing = destination.read_text(encoding="utf-8")
+            if existing != proposed and not existing.startswith(front):
+                raise SystemExit(f"Existing page differs from source: {destination}")
+        else:
+            destination.write_text(proposed, encoding="utf-8")
         imported.add(url)
     if imported != expected:
         raise SystemExit(f"Missing complete DEV articles: {sorted(expected - imported)}")
