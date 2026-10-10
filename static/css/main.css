@@ -39,3 +39,6 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 @media(max-width:950px){.home-intro{grid-template-columns:1fr;gap:5px;padding-block:75px 45px}.infra-scene{min-height:340px}.infra-stack{transform:scale(.83) rotateX(58deg) rotateZ(-36deg);animation:none}.home-lower{gap:35px}}
 @media(max-width:620px){.home-intro h1{font-size:clamp(68px,17vw,100px)}.home-intro{padding-top:60px}.infra-scene{min-height:285px}.infra-stack{transform:scale(.72) rotateX(58deg) rotateZ(-36deg)}.home-section-title{align-items:start;flex-direction:column}.featured-project{grid-template-columns:1fr;gap:18px}.featured-project-end{align-items:flex-start;text-align:left}.home-lower{grid-template-columns:1fr;gap:48px}.home-profile-links{gap:17px}}
 @media(prefers-reduced-motion:reduce){.infra-stack{animation:none}}
+
+/* Decorative layers do not carry readable information. */
+.infra-layer span{display:none}
