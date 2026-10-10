@@ -44,6 +44,10 @@ const fs = require("node:fs");
         if (!(await menu.locator("summary").isVisible())) failures.push(size.name+" "+route+" mobile menu toggle hidden");
         await menu.locator("summary").click();
         if (!(await menu.locator("nav a").first().isVisible())) failures.push(size.name+" "+route+" menu did not open");
+        const mobileLink = menu.locator('nav a[href$="/projects/"]').first();
+        if (!(await mobileLink.isVisible())) failures.push(size.name+" "+route+" projects navigation link not visible");
+        if (!(await mobileLink.evaluate(el => el.getBoundingClientRect().height >= 44)))
+          failures.push(size.name+" "+route+" projects navigation touch target under 44px");
         await page.screenshot({ path:"visual-audit/"+size.name+"-"+key+"-menu.png",fullPage:false });
         await menu.locator("summary").click();
         if (await menu.getAttribute("open") !== null) failures.push(size.name+" "+route+" menu did not close");
@@ -58,6 +62,15 @@ const fs = require("node:fs");
         failures.push(size.name+" "+route+" desktop navigation hidden");
       }
       if (route === "/") {
+        const portrait = page.locator(".home-portrait img");
+        if (await portrait.count()) {
+          const photo = await portrait.evaluate(el => ({
+            loaded:el.complete && el.naturalWidth > 0,
+            visible:el.getBoundingClientRect().width > 0 && el.getBoundingClientRect().height > 0
+          }));
+          if (!photo.loaded || !photo.visible) failures.push(size.name+" portrait failed to load or is hidden: "+JSON.stringify(photo));
+          observations.push({size:size.name,portrait:photo});
+        } else failures.push(size.name+" portrait element absent");
         const stack = page.locator(".infra-stack");
         if (!(await stack.isVisible())) failures.push(size.name+" homepage CSS 3D fallback missing");
         if (await stack.evaluate(el => getComputedStyle(el).transform) === "none")
