@@ -337,3 +337,18 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 @media(max-width:820px){.home-intro:has(.home-portrait){grid-template-columns:1fr}.home-portrait{width:min(100%,430px);max-width:none}.home-portrait img{height:auto;max-height:520px;aspect-ratio:4/5}}
 @media(max-width:560px){.expertise-list summary{grid-template-columns:28px minmax(0,1fr) 24px;gap:10px;padding:20px 4px}.expertise-list details>div{padding:0 12px 20px 42px}.expertise-list summary strong{font-size:19px}}
 @media(prefers-reduced-motion:no-preference){.featured-project,.expertise-list details{transition:background-color .25s ease,border-color .25s ease}.featured-project:hover,.expertise-list details:hover{background-color:rgba(80,120,190,.055)}}
+
+/* Entrance motion never hides content: readable before JS, during animation, and without JS. */
+@keyframes section-arrive {
+  from { transform:translate3d(0,18px,0) }
+  to { transform:translate3d(0,0,0) }
+}
+@media(prefers-reduced-motion:no-preference){
+  .home-work.is-visible,.home-proof.is-visible,.home-lower.is-visible,.home-portrait.is-visible{
+    animation:section-arrive 620ms cubic-bezier(.2,.7,.2,1) both;
+  }
+  .home-proof.is-visible{animation-duration:720ms}
+}
+@media(prefers-reduced-motion:reduce){
+  .home-work,.home-proof,.home-lower,.home-portrait{animation:none!important;transform:none!important}
+}
