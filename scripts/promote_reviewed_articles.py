@@ -47,7 +47,8 @@ def main() -> None:
         destination = TARGET / source.name
         if destination.exists():
             raise SystemExit(f"Existing page would be overwritten: {destination}")
-        destination.write_text(front + body.lstrip(), encoding="utf-8")
+        clean_body = "\n".join(line.rstrip() for line in body.lstrip().split("\n"))
+        destination.write_text(front + clean_body, encoding="utf-8")
         imported.add(url)
     if imported != expected:
         raise SystemExit(f"Missing complete DEV articles: {sorted(expected - imported)}")
