@@ -16,7 +16,8 @@ const fs = require("node:fs");
   const assetBudgets = [
     { path:"public/css/main.css", maximum:64000 },
     { path:"public/js/infrastructure-scene.js", maximum:8000 },
-    { path:"public/js/infrastructure-webgl.js", maximum:16000 }
+    { path:"public/js/infrastructure-webgl.js", maximum:16000 },
+    { path:"public/images/edwin-portrait-web.webp", maximum:200000 }
   ];
   for (const asset of assetBudgets) {
     const bytes = fs.statSync(asset.path).size;
@@ -24,6 +25,9 @@ const fs = require("node:fs");
     if (bytes > asset.maximum)
       failures.push("Asset budget exceeded: "+asset.path+" "+bytes+" > "+asset.maximum);
   }
+  const homeHtml = fs.readFileSync("public/index.html","utf8");
+  if (!homeHtml.includes('fetchpriority="high"')) failures.push("Portrait priority hint missing");
+  if (!homeHtml.includes('decoding="async"')) failures.push("Portrait asynchronous decoding hint missing");
   for (const size of widths) {
     const page = await browser.newPage({
       viewport:{ width:size.width,height:size.height },
