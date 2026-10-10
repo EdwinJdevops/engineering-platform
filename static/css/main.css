@@ -159,7 +159,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 
 /* Scroll-driven editorial infrastructure illustration. */
 .home-intro{position:relative;isolation:isolate}
-.home-intro:before{content:"";position:absolute;inset:0 -3vw;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 77% 48%,rgba(75,130,160,.12),transparent 48%)}
+.home-intro:before{content:none}
 .infra-scene{--scene-progress:.28;--scene-pointer-x:0;--scene-pointer-y:0;perspective:1100px;overflow:visible}
 .infra-stack{transform:rotateX(calc(3deg * var(--scene-pointer-y))) rotateY(calc(5deg * var(--scene-pointer-x))) translateY(calc(-20px * var(--scene-progress)));transform-style:preserve-3d;transition:transform .12s linear}
 .infra-layer{transition:filter .25s ease;will-change:transform}
@@ -169,6 +169,6 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .scene-scroll-indicator{display:flex;justify-content:space-between;gap:20px;padding-block:12px 22px;border-bottom:1px solid var(--line);color:var(--muted);font:700 10px/1.4 ui-monospace,monospace;letter-spacing:.18em}
 [data-reveal].reveal-ready{transition:none}
 [data-reveal].reveal-ready.is-visible{opacity:1;transform:none}
-@media(max-width:820px){.infra-scene{perspective:800px}.scene-scroll-indicator{font-size:9px}.home-intro:before{inset:0}}
+@media(max-width:820px){.infra-scene{perspective:800px}.scene-scroll-indicator{font-size:9px}.home-intro:before{content:none}}
 @media(max-width:560px){.home-intro{padding-top:36px}.infra-scene{min-height:290px}.scene-scroll-indicator{padding-top:0}}
 @media(prefers-reduced-motion:reduce){.infra-stack{transform:rotateX(0deg)!important;transition:none!important}.infra-layer{transition:none!important;will-change:auto}.reveal-ready{opacity:1!important;transform:none!important;transition:none!important}}
