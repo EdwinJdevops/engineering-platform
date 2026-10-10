@@ -5,6 +5,8 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import time
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -17,8 +19,18 @@ HEADERS = {"User-Agent": "EdwinEngineeringPlatform/1.0 (article migration review
 
 def get(url: str) -> bytes:
     request = urllib.request.Request(url, headers=HEADERS)
-    with urllib.request.urlopen(request, timeout=25) as response:
-        return response.read()
+    for attempt in range(5):
+        try:
+            with urllib.request.urlopen(request, timeout=25) as response:
+                return response.read()
+        except urllib.error.HTTPError as exc:
+            if exc.code not in (429, 500, 502, 503, 504) or attempt == 4:
+                raise
+            retry_after = exc.headers.get("Retry-After", "")
+            delay = min(60, int(retry_after)) if retry_after.isdigit() else min(40, 3 * (2 ** attempt))
+            print(f"Source returned HTTP {exc.code}; retrying in {delay}s ({attempt + 1}/4)")
+            time.sleep(delay)
+    raise RuntimeError("Article retrieval exhausted retries")
 
 
 def slug(value: str) -> str:
