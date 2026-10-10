@@ -81,7 +81,7 @@ Terraform resources created with `count` or `for_each` also require distinct sta
 
 **Verification boundary:** regression tests were added for incomplete inventory and indexed Terraform instances. The associated GitHub pull request passed backend tests, CLI checks, frontend build and VS Code extension build before merge. Those checks establish repository behavior under the tested conditions; they do not establish a production SLA or comprehensive AWS API fault coverage.
 
-[Review the inventory-safety change](https://github.com/EdwinJdevops/driftguard/pull/3) · [Read the detailed failure analysis]({{< relref "/articles/aws-inventory-failure-terraform-drift" >}})
+[Review the inventory-safety change](https://github.com/EdwinJdevops/driftguard/pull/3)
 
 ## Why this project matters
 
