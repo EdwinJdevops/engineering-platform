@@ -57,14 +57,23 @@ jobs:
           SITE_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
           set -euo pipefail
-          for attempt in 1 2 3 4 5; do
-            code="$(curl --location --silent --show-error --output /dev/null --write-out '%{http_code}' --max-time 15 "$SITE_URL" || true)"
-            if [[ "$code" == "200" ]]; then
-              echo "Production verification passed: HTTP 200"
-              exit 0
+          base="${SITE_URL%/}/"
+          routes=("" "portfolio/" "projects/" "articles/" "services/" "engineering/" "contact/")
+          for route in "${routes[@]}"; do
+            passed=false
+            for attempt in 1 2 3 4 5; do
+              code="$(curl --location --silent --show-error --output /dev/null --write-out '%{http_code}' --max-time 15 "${base}${route}" || true)"
+              if [[ "$code" == "200" ]]; then
+                passed=true
+                break
+              fi
+              echo "Attempt $attempt: ${route:-/} returned HTTP $code"
+              sleep 10
+            done
+            if [[ "$passed" != true ]]; then
+              echo "::error::Production route ${route:-/} did not return HTTP 200"
+              exit 1
             fi
-            echo "Attempt $attempt returned HTTP $code"
-            sleep 10
+            echo "Verified HTTP 200: ${route:-/}"
           done
-          echo "::error::Production endpoint did not return HTTP 200"
-          exit 1
+          echo "Production route smoke checks passed"
