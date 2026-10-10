@@ -1,5 +1,5 @@
 {{ define "main" }}
-<section class="shell home-intro">
+<section class="shell home-intro" data-scroll-scene>
   <div class="home-intro-copy">
     <p class="eyebrow hero-index"><span class="hero-index-dot" aria-hidden="true"></span> INDEPENDENT ENGINEERING PRACTICE <span class="hero-index-num">/ 001</span></p>
     <h1>Edwin<br><span>Jonathan.</span></h1>
@@ -11,7 +11,7 @@
     </div>
     <p class="home-profile-links"><a href="https://github.com/EdwinJdevops">GitHub ↗</a><a href="https://www.linkedin.com/in/edwin-jonathan-1094093b0">LinkedIn ↗</a><a href="{{ "portfolio/" | relURL }}">Portfolio ↗</a></p>
   </div>
-  <div class="infra-scene" aria-label="Decorative three-dimensional arrangement of infrastructure layers" role="img">
+  <div class="infra-scene" aria-label="Three infrastructure layers: application, delivery, and infrastructure" role="img" data-infra-scene>
     <div class="scene-coordinate scene-coordinate-top" aria-hidden="true">FIG. 01 / DELIVERY LAYERS</div>
     <div class="infra-stack" aria-hidden="true">
       <div class="infra-layer layer-top"><span>APPLICATION</span><i></i><i></i><i></i></div>
@@ -23,11 +23,12 @@
     
   </div>
 </section>
+<div class="scene-scroll-indicator shell" aria-hidden="true"><span>SCROLL TO EXPLORE THE SYSTEM</span></div>
 <section class="shell practice-strip" aria-label="Engineering disciplines">
   <span>01 / CLOUD SYSTEMS</span><span>02 / DELIVERY AUTOMATION</span><span>03 / KUBERNETES</span><span>04 / FAILURE ANALYSIS</span>
 </section>
 
-<section class="shell home-work section-block" aria-labelledby="selected-work">
+<section class="shell home-work section-block" data-reveal aria-labelledby="selected-work">
   <div class="home-section-title"><div><p class="eyebrow">SELECTED WORK</p><h2 id="selected-work">Projects with source code and documented limitations.</h2></div><a class="text-link" href="{{ "projects/" | relURL }}">All projects ↗</a></div>
   <div class="featured-projects">
     {{ range $slug := slice "driftguard" "archnet" "sentinel" }}
@@ -41,7 +42,7 @@
   </div>
 </section>
 
-<section class="shell home-proof section-block" aria-labelledby="proof-heading">
+<section class="shell home-proof section-block" data-reveal aria-labelledby="proof-heading">
   <div class="home-section-title"><div><p class="eyebrow">INSPECTABLE EVIDENCE</p><h2 id="proof-heading">Review the engineering, not just the claims.</h2></div><a class="text-link" href="{{ "engineering/" | relURL }}">How this website ships ↗</a></div>
   <div class="proof-grid">
     <article><p class="card-kicker">01 / FAILURE HANDLING</p><h3>DriftGuard: incomplete inventory</h3><p>A failed AWS inventory request must not be interpreted as evidence that resources were deleted. The change is covered by regression tests and a merged pull request.</p><a href="https://github.com/EdwinJdevops/driftguard/pull/3">Review fix and tests ↗</a></article>
@@ -49,8 +50,9 @@
     <article><p class="card-kicker">03 / ENGINEERING JUDGMENT</p><h3>Limitations are documented</h3><p>Case studies distinguish repository implementation, test evidence and operational proof. Unverified production claims are excluded.</p><a href="{{ "projects/" | relURL }}">Read case studies ↗</a></article>
   </div>
 </section>
-<section class="shell home-lower section-block">
+<section class="shell home-lower section-block" data-reveal>
   <div><p class="eyebrow">WRITING</p><h2>Technical notes, backed by the work.</h2><p>Implementation details, failures and decisions from projects in the repository.</p><a class="text-link" href="{{ "articles/" | relURL }}">Read articles ↗</a></div>
   <div><p class="eyebrow">SERVICES</p><h2>Infrastructure and delivery engineering.</h2><p>For teams that need help with cloud infrastructure, deployment pipelines or operating existing systems.</p><a class="text-link" href="{{ "services/" | relURL }}">Services and contact ↗</a></div>
 </section>
+<script src="{{ "js/infrastructure-scene.js" | relURL }}" defer></script>
 {{ end }}
