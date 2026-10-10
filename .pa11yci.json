@@ -1,10 +1,15 @@
 {
   "defaults": {
-    "runners": ["axe"],
+    "runners": [
+      "axe"
+    ],
     "standard": "WCAG2AA",
     "timeout": 10000,
     "chromeLaunchConfig": {
-      "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+      "args": [
+        "--no-sandbox",
+        "--disable-setuid-sandbox"
+      ]
     }
   },
   "urls": [
@@ -13,6 +18,11 @@
     "http://127.0.0.1:4173/projects/",
     "http://127.0.0.1:4173/services/",
     "http://127.0.0.1:4173/engineering/",
-    "http://127.0.0.1:4173/contact/"
+    "http://127.0.0.1:4173/contact/",
+    "http://127.0.0.1:4173/projects/driftguard/",
+    "http://127.0.0.1:4173/projects/archnet/",
+    "http://127.0.0.1:4173/projects/sentinel/",
+    "http://127.0.0.1:4173/articles/",
+    "http://127.0.0.1:4173/about/"
   ]
 }
