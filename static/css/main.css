@@ -156,3 +156,19 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .scene-coordinate-bottom{left:14px;right:14px;bottom:14px;gap:8px;justify-content:space-between}
 .scene-coordinate-bottom span{display:inline-block;padding:5px 7px;background:#07100e;color:#ffffff;border:1px solid #496d60}
 @media(max-width:560px){.scene-coordinate-top{left:10px;top:10px}.scene-coordinate-bottom{left:7px;right:7px;bottom:8px;gap:3px}.scene-coordinate-bottom span{font-size:7px;padding:4px}}
+
+/* Scroll-driven editorial infrastructure illustration. */
+.home-intro{position:relative;isolation:isolate}
+.home-intro:before{content:"";position:absolute;inset:0 -3vw;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 77% 48%,rgba(75,130,160,.12),transparent 48%)}
+.infra-scene{--scene-progress:.28;--scene-pointer-x:0;--scene-pointer-y:0;perspective:1100px;overflow:visible}
+.infra-stack{transform:rotateX(calc(3deg * var(--scene-pointer-y))) rotateY(calc(5deg * var(--scene-pointer-x))) translateY(calc(-20px * var(--scene-progress)));transform-style:preserve-3d;transition:transform .12s linear}
+.infra-layer{transition:filter .25s ease;will-change:transform}
+.infra-layer.layer-top{transform:translate3d(0,calc(-42px - 42px * var(--scene-progress)),calc(16px + 28px * var(--scene-progress))) rotateX(58deg) rotateZ(-42deg)}
+.infra-layer.layer-mid{transform:translate3d(0,calc(0px - 4px * var(--scene-progress)),0) rotateX(58deg) rotateZ(-42deg)}
+.infra-layer.layer-bottom{transform:translate3d(0,calc(42px + 30px * var(--scene-progress)),calc(-16px - 22px * var(--scene-progress))) rotateX(58deg) rotateZ(-42deg)}
+.scene-scroll-indicator{display:flex;justify-content:space-between;gap:20px;padding-block:12px 22px;border-bottom:1px solid var(--line);color:var(--muted);font:700 10px/1.4 ui-monospace,monospace;letter-spacing:.18em}
+[data-reveal].reveal-ready{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+[data-reveal].reveal-ready.is-visible{opacity:1;transform:none}
+@media(max-width:820px){.infra-scene{perspective:800px}.scene-scroll-indicator{font-size:9px}.home-intro:before{inset:0}}
+@media(max-width:560px){.home-intro{padding-top:36px}.infra-scene{min-height:290px}.scene-scroll-indicator{padding-top:0}}
+@media(prefers-reduced-motion:reduce){.infra-stack,.infra-layer{transform:none!important;transition:none!important;will-change:auto}.infra-layer{position:relative!important}.reveal-ready{opacity:1!important;transform:none!important;transition:none!important}}
