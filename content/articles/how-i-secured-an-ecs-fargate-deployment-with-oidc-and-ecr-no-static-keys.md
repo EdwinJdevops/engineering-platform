@@ -8,7 +8,7 @@ original_platform: "hashnode"
 canonical_url: "https://edwinjonathand-devops.hashnode.dev/how-i-secured-an-ecs-fargate-deployment-with-oidc-and-ecr-no-static-keys"
 ---
 
-**Introduction**
+### Introduction
 
 Most AWS CI/CD tutorials hand you a `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` and call it a day. That's a security failure waiting to happen. Static keys get leaked in logs, committed to repos, and rotated too late.
 
@@ -16,22 +16,21 @@ I built a full deployment pipeline for a real DevOps challenge — GitHub Action
 
 * * *
 
-**The Problem With Static Keys**
+### The Problem With Static Keys
 
 When you store AWS credentials as GitHub secrets and reference them in your pipeline, you're creating long-lived credentials that:
 
-*   Never expire unless you manually rotate them
-    
-*   Have blast radius if leaked
-    
-*   Violate AWS security best practices
-    
-*   Will fail a real security audit
-    
+* Never expire unless you manually rotate them
+
+* Have blast radius if leaked
+
+* Violate AWS security best practices
+
+* Will fail a real security audit
 
 OIDC federation eliminates this entirely.
 
-**How OIDC Federation Works**
+### How OIDC Federation Works
 
 GitHub Actions requests a short-lived token from GitHub's OIDC provider. AWS is configured to trust that provider. When the pipeline runs, AWS exchanges the GitHub token for a temporary STS credential scoped to an IAM role — valid for the duration of the job only.
 
@@ -39,7 +38,7 @@ No secret stored. No rotation needed. No leak vector.
 
 * * *
 
-**Step 1 — Configure the OIDC Provider in AWS**
+### Step 1 — Configure the OIDC Provider in AWS
 
 bash
 
@@ -52,7 +51,7 @@ aws iam create-open-id-connect-provider \
 
 * * *
 
-**Step 2 — Create the IAM Role**
+### Step 2 — Create the IAM Role
 
 Trust policy (`trust-policy.json`):
 

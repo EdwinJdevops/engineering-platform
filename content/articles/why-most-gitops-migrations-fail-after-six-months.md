@@ -12,7 +12,7 @@ canonical_url: "https://edwinjonathand-devops.hashnode.dev/why-most-gitops-migra
 
 Before discussing why GitOps projects fail, it's useful to understand the production architecture this article refers to.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/c043b545-d3b2-4a89-8f52-34ec81fa6b4d.png)
+![Illustration accompanying The Problem](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/c043b545-d3b2-4a89-8f52-34ec81fa6b4d.png)
 
 Everyone talks about GitOps as if installing ArgoCD is the finish line.
 
@@ -38,20 +38,19 @@ The engineering challenge shifts from deploying applications to managing change 
 
 The questions become different.
 
-*   Who approves production changes?
-    
-*   How are secrets managed?
-    
-*   How do multiple teams share one cluster safely?
-    
-*   How do we detect configuration drift?
-    
-*   What happens when synchronization fails?
-    
-*   How do we roll back without introducing new failures?
-    
-*   How do platform teams know a deployment is healthy before users do?
-    
+* Who approves production changes?
+
+* How are secrets managed?
+
+* How do multiple teams share one cluster safely?
+
+* How do we detect configuration drift?
+
+* What happens when synchronization fails?
+
+* How do we roll back without introducing new failures?
+
+* How do platform teams know a deployment is healthy before users do?
 
 Those questions cannot be answered by ArgoCD alone.
 
@@ -61,7 +60,7 @@ They require architecture.
 
 ## GitOps Is Part of a Bigger System
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/abddf18f-2adc-4c47-ba88-e41e1c9517a2.png)
+![Illustration accompanying GitOps Is Part of a Bigger System](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/abddf18f-2adc-4c47-ba88-e41e1c9517a2.png)
 
 Looking at the architecture makes one thing clear.
 
@@ -111,8 +110,7 @@ The problem was the operating model.
 
 ### **The Five Failure Patterns**
 
-1.  **Git Stops Being the Source of Truth**
-    
+1. **Git Stops Being the Source of Truth**
 
 The biggest promise of GitOps is simple.
 
@@ -200,9 +198,9 @@ If every team owns everything, nobody owns the platform.
 
 Successful organizations solve this by establishing dedicated platform engineering teams responsible for the developer platform rather than individual applications.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/b1a50796-cf81-4a5a-978d-c01daeb67486.png)
+![Illustration accompanying **The Five Failure Patterns**](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/b1a50796-cf81-4a5a-978d-c01daeb67486.png)
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/af762728-0435-4958-b910-65ed4e7d15ed.png)
+![Illustration accompanying **The Five Failure Patterns**](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/af762728-0435-4958-b910-65ed4e7d15ed.png)
 
 ## The Pattern Behind Successful Platform Teams
 
@@ -212,24 +210,23 @@ They treat it as one capability inside a larger production platform.
 
 Their priorities look different.
 
-*   Standardized repository structures
-    
-*   Automated policy validation before deployment
-    
-*   Infrastructure managed through Terraform
-    
-*   Secrets managed centrally
-    
-*   Consistent deployment templates
-    
-*   Built-in observability
-    
-*   Automated rollback strategies
-    
-*   Continuous compliance checks
-    
-*   Clear platform ownership
-    
+* Standardized repository structures
+
+* Automated policy validation before deployment
+
+* Infrastructure managed through Terraform
+
+* Secrets managed centrally
+
+* Consistent deployment templates
+
+* Built-in observability
+
+* Automated rollback strategies
+
+* Continuous compliance checks
+
+* Clear platform ownership
 
 Notice what is missing.
 
@@ -277,7 +274,7 @@ The engineers become its customers.
 
 A production platform is a collection of capabilities that work together
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/014fb4a2-bd59-412b-96ab-58ad3e4414c1.png)
+![Illustration accompanying The Platform Layer](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/014fb4a2-bd59-412b-96ab-58ad3e4414c1.png)
 
 Notice something.
 
@@ -299,28 +296,27 @@ A developer creates a repository.
 
 Everything else already exists.
 
-*   CI pipeline
-    
-*   Deployment workflow
-    
-*   Container build
-    
-*   Security scanning
-    
-*   Secret management
-    
-*   Monitoring
-    
-*   Logging
-    
-*   Metrics
-    
-*   Alerting
-    
-*   Rollback strategy
-    
-*   Policy validation
-    
+* CI pipeline
+
+* Deployment workflow
+
+* Container build
+
+* Security scanning
+
+* Secret management
+
+* Monitoring
+
+* Logging
+
+* Metrics
+
+* Alerting
+
+* Rollback strategy
+
+* Policy validation
 
 The application becomes the only thing the developer owns.
 
@@ -346,7 +342,7 @@ Reliable recovery is essential.
 
 A mature platform plans for failure before failure happens.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/d67399a1-9e20-4024-bd2b-572cbfbc07bd.png)
+![Illustration accompanying Deployment Is Only One Capability](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/d67399a1-9e20-4024-bd2b-572cbfbc07bd.png)
 
 Recovery is not something added after deployment.
 
@@ -436,7 +432,7 @@ It should be part of the platform from the beginning.
 
 Imagine this deployment.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/ee569261-d74e-4af1-87fa-1f755684a0e8.png)
+![Illustration accompanying A Healthy Deployment Doesn't Mean a Healthy Service](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/ee569261-d74e-4af1-87fa-1f755684a0e8.png)
 
 Now every service follows the same logging standard.
 
@@ -450,20 +446,19 @@ Modern applications rarely consist of one service.
 
 A single request may travel through:
 
-*   API Gateway
-    
-*   Authentication
-    
-*   Backend Service
-    
-*   Message Queue
-    
-*   Payment Service
-    
-*   Database
-    
-*   External Provider
-    
+* API Gateway
+
+* Authentication
+
+* Backend Service
+
+* Message Queue
+
+* Payment Service
+
+* Database
+
+* External Provider
 
 Without distributed tracing, engineers only know the request is slow.
 
@@ -504,7 +499,7 @@ The other validates change.
 
 Neither replaces the other.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/8c7652ab-8c5e-4312-870b-73da5644a8a0.png)
+![Illustration accompanying GitOps and Observability Work Together](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/8c7652ab-8c5e-4312-870b-73da5644a8a0.png)
 
 This creates a continuous feedback loop.
 
@@ -548,7 +543,7 @@ That's why mature platform teams separate **deployment** from **validation**.
 
 A typical GitOps workflow looks like this.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/64afc850-33a0-4706-84c8-0873a29efa87.png)
+![Illustration accompanying A Deployment Is Only the Beginning](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/64afc850-33a0-4706-84c8-0873a29efa87.png)
 
 Simple.
 
@@ -558,7 +553,7 @@ Predictable.
 
 Now compare that with what happens in production.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/4cc7f4d0-f732-4ae6-b710-e8e1185b05ac.png)
+![Illustration accompanying A Deployment Is Only the Beginning](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/4cc7f4d0-f732-4ae6-b710-e8e1185b05ac.png)
 
 Notice something.
 
@@ -576,22 +571,21 @@ The platform should enforce them automatically.
 
 Examples include:
 
-*   Containers cannot run as root.
-    
-*   Images must come from approved registries.
-    
-*   Every Deployment must define CPU and memory requests.
-    
-*   Every Service must expose only required ports.
-    
-*   Every Namespace must have ResourceQuotas.
-    
-*   Every Ingress must terminate TLS.
-    
-*   Secrets cannot be committed into Git.
-    
-*   Every image must pass vulnerability scanning before deployment.
-    
+* Containers cannot run as root.
+
+* Images must come from approved registries.
+
+* Every Deployment must define CPU and memory requests.
+
+* Every Service must expose only required ports.
+
+* Every Namespace must have ResourceQuotas.
+
+* Every Ingress must terminate TLS.
+
+* Secrets cannot be committed into Git.
+
+* Every image must pass vulnerability scanning before deployment.
 
 Those aren't developer responsibilities.
 
@@ -629,16 +623,15 @@ An image can be perfectly clean and still become a security problem after deploy
 
 Examples include:
 
-*   A privileged container.
-    
-*   A workload mounting the host filesystem.
-    
-*   A Pod running with unnecessary Linux capabilities.
-    
-*   A Service accidentally exposed to the public Internet.
-    
-*   An IAM role granting excessive permissions.
-    
+* A privileged container.
+
+* A workload mounting the host filesystem.
+
+* A Pod running with unnecessary Linux capabilities.
+
+* A Service accidentally exposed to the public Internet.
+
+* An IAM role granting excessive permissions.
 
 These aren't build-time problems.
 
@@ -658,7 +651,7 @@ Automatic.
 
 Actionable.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/04f0a1e5-8efa-481b-b23f-ed14ad3a043d.png)
+![Illustration accompanying Security Is Another Feedback Loop](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/04f0a1e5-8efa-481b-b23f-ed14ad3a043d.png)
 
 Every deployment creates another opportunity to improve the platform.
 
@@ -680,22 +673,21 @@ The platform should already provide them.
 
 That includes:
 
-*   Secure deployment templates.
-    
-*   Standardized RBAC.
-    
-*   Default network policies.
-    
-*   Automatic certificate management.
-    
-*   Secret management.
-    
-*   Image signing.
-    
-*   Admission policies.
-    
-*   Runtime enforcement.
-    
+* Secure deployment templates.
+
+* Standardized RBAC.
+
+* Default network policies.
+
+* Automatic certificate management.
+
+* Secret management.
+
+* Image signing.
+
+* Admission policies.
+
+* Runtime enforcement.
 
 Security becomes part of the platform rather than another checklist before release.
 
@@ -773,7 +765,7 @@ Mature platform teams do the opposite.
 
 Every new service follows the same foundation.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/5dd063dc-5ca2-4fea-a2f9-c7505853804a.png)
+![Illustration accompanying Platforms Should Become Simpler as They Grow](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/5dd063dc-5ca2-4fea-a2f9-c7505853804a.png)
 
 Notice that developers are not designing deployment pipelines.
 
@@ -795,33 +787,27 @@ That changes the questions they ask.
 
 Instead of:
 
-*   How many clusters do we manage?
-    
+* How many clusters do we manage?
 
 They ask:
 
-*   How long does it take a new engineer to deploy safely?
-    
+* How long does it take a new engineer to deploy safely?
 
 Instead of:
 
-*   How many pipelines do we have?
-    
+* How many pipelines do we have?
 
 They ask:
 
-*   How much operational work did the platform eliminate this quarter?
-    
+* How much operational work did the platform eliminate this quarter?
 
 Instead of:
 
-*   How much infrastructure did we automate?
-    
+* How much infrastructure did we automate?
 
 They ask:
 
-*   How many production incidents did our standards prevent?
-    
+* How many production incidents did our standards prevent?
 
 Those are platform metrics.
 
@@ -831,7 +817,7 @@ Not infrastructure metrics.
 
 ## A Mature Platform
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/a4cba778-e958-42cf-98c3-37992a7ec438.png)
+![Illustration accompanying A Mature Platform](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/a4cba778-e958-42cf-98c3-37992a7ec438.png)
 
 The architecture forms a continuous improvement loop.
 
@@ -861,7 +847,7 @@ Knowledge becomes part of the platform instead of remaining inside one person's 
 
 * * *
 
-## What Changed My Perspective
+## What Changed My Perspective (continued)
 
 When I first started learning GitOps, I thought the objective was automation.
 
@@ -985,12 +971,11 @@ The platform should enforce them.
 
 Instead of writing documentation that says:
 
-*   Every Deployment must define resource limits.
-    
-*   Every Service must expose only approved ports.
-    
-*   Every workload must include health checks.
-    
+* Every Deployment must define resource limits.
+
+* Every Service must expose only approved ports.
+
+* Every workload must include health checks.
 
 The platform validates those requirements automatically.
 
@@ -1010,7 +995,7 @@ Every alert highlights an opportunity to improve the platform.
 
 That creates a continuous engineering loop.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/5f58b1aa-28c1-4361-870d-d71279b4044f.png)
+![Illustration accompanying Feedback Should Drive Improvement](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/5f58b1aa-28c1-4361-870d-d71279b4044f.png)
 
 Over time, operational knowledge moves from individual engineers into the platform itself.
 
@@ -1018,7 +1003,7 @@ That is how engineering organizations scale without depending on institutional m
 
 * * *
 
-## Technology Changes. Engineering Principles Don't.
+## Technology Changes. Engineering Principles Don't
 
 Five years from now, the tools in this article may be different.
 
@@ -1140,7 +1125,7 @@ Every production incident becomes another opportunity to improve the platform ra
 
 ## Final Architecture
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/317c88d3-8d7b-4b8f-836b-1b1c822953da.png)
+![Illustration accompanying Final Architecture](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/317c88d3-8d7b-4b8f-836b-1b1c822953da.png)
 
 The architecture forms a continuous engineering loop.
 
@@ -1176,4 +1161,4 @@ If this article encourages even one engineer to think beyond "How do I deploy th
 
 I'd like to hear from platform engineers who have operated GitOps in production.
 
-**What was the hardest problem after the migration was complete, and what would you do differently today?**
+### What was the hardest problem after the migration was complete, and what would you do differently today?

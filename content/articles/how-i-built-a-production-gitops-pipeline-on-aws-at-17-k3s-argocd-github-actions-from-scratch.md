@@ -114,7 +114,7 @@ K3s is Kubernetes stripped to its core — no bloat, single binary, installs in 
 
 \`\`\`bash
 
-curl -sfL https://get.k3s.io | sh -
+curl -sfL <https://get.k3s.io> | sh -
 
 sudo kubectl get nodes
 
@@ -144,7 +144,7 @@ sudo kubectl create namespace argocd
 
 sudo kubectl apply -n argocd \\
 
-\-f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+\-f <https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml>
 
 ## Expose the UI
 
@@ -322,7 +322,7 @@ project: default
 
 source:
 
-repoURL: https://github.com/EdwinJdevops/devshelf.git
+repoURL: <https://github.com/EdwinJdevops/devshelf.git>
 
 targetRevision: main
 
@@ -330,7 +330,7 @@ path: k8s
 
 destination:
 
-server: https://kubernetes.default.svc
+server: <https://kubernetes.default.svc>
 
 namespace: default
 
@@ -446,7 +446,7 @@ sed -i "s|image:.\*|image: $ECR\_REGISTRY/$ECR\_REPOSITORY:$IMAGE\_TAG|g" k8s/de
 
 git config user.name "github-actions"
 
-git config user.email "actions@github.com"
+git config user.email "<actions@github.com>"
 
 git add k8s/deployment.yaml
 
@@ -524,13 +524,13 @@ devshelf Synced Healthy
 
 I'm building DevShelf in public — a real Internal Developer Platform from Lagos, Nigeria.
 
-\- \*\*GitHub:\*\* \[github.com/EdwinJdevops\](https://github.com/EdwinJdevops)
+\- \*\*GitHub:\*\* \[github.com/EdwinJdevops\](<https://github.com/EdwinJdevops>)
 
 \- \*\*LinkedIn:\*\* \[linkedin.co
 
-m/in/edwin-jonathan-1094093b0\](https://www.linkedin.com/in/edwin-jonathan-1094093b0)
+m/in/edwin-jonathan-1094093b0\](<https://www.linkedin.com/in/edwin-jonathan-1094093b0>)
 
-\- \*\*X:\*\* \[@TheCloudDeveng\](https://x.com/TheCloudDeveng)
+\- \*\*X:\*\* \[@TheCloudDeveng\](<https://x.com/TheCloudDeveng>)
 
 If you're building in DevOps or Cloud, let's connect. The infrastructure doesn't care where you're from.
 

@@ -50,7 +50,7 @@ This article walks through the architecture I'd build today using AWS.
 
 * * *
 
-## AI Doesn't Need More Memory. It Needs Better Retrieval.
+## AI Doesn't Need More Memory. It Needs Better Retrieval
 
 A common misconception is that AI systems become more useful by giving them larger context windows.
 
@@ -64,20 +64,19 @@ The answer isn't inside the model.
 
 It's inside:
 
-*   CloudTrail logs
-    
-*   CI/CD deployment records
-    
-*   Terraform plans
-    
-*   Incident reports
-    
-*   CloudWatch metrics
-    
-*   Runbooks
-    
-*   Internal documentation
-    
+* CloudTrail logs
+
+* CI/CD deployment records
+
+* Terraform plans
+
+* Incident reports
+
+* CloudWatch metrics
+
+* Runbooks
+
+* Internal documentation
 
 The application retrieves those documents first.
 
@@ -95,7 +94,7 @@ When those responsibilities are separated, systems become easier to secure, audi
 
 ## Architecture Overview
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/6dd69753-cfb9-41f8-b949-fd749d9107e1.png)
+![Illustration accompanying Architecture Overview](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/6dd69753-cfb9-41f8-b949-fd749d9107e1.png)
 
 Nothing here is experimental.
 
@@ -223,18 +222,17 @@ Without operational memory, the model guesses.
 
 With operational memory, it retrieves:
 
-*   CloudTrail events
-    
-*   Terraform plan
-    
-*   Pull request
-    
-*   Deployment logs
-    
-*   Incident ticket
-    
-*   Previous rollback
-    
+* CloudTrail events
+
+* Terraform plan
+
+* Pull request
+
+* Deployment logs
+
+* Incident ticket
+
+* Previous rollback
 
 Then it answers using actual evidence instead of probability.
 
@@ -268,7 +266,7 @@ The only difference is that the model can now retrieve them before producing an 
 
 That's a better use of AI than asking it to remember everything inside a prompt. It keeps the model stateless while the infrastructure holds the history. That scales better, survives model upgrades, and makes every response traceable back to operational data rather than memory.
 
-## Bedrock Doesn't Run Your Platform. Your Application Does.
+## Bedrock Doesn't Run Your Platform. Your Application Does
 
 One of the easiest mistakes to make is giving the model too much responsibility.
 
@@ -288,7 +286,7 @@ It returns a structured response.
 
 Everything else remains the application's responsibility.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/c4479206-be09-48d4-8d15-af2d0f8be345.png)
+![Illustration accompanying Bedrock Doesn't Run Your Platform. Your Application Does](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/c4479206-be09-48d4-8d15-af2d0f8be345.png)
 
 Notice what isn't in the diagram.
 
@@ -296,16 +294,15 @@ Bedrock never talks directly to AWS resources.
 
 The application decides:
 
-*   which documents are retrieved
-    
-*   how much context is sent
-    
-*   who is authorized
-    
-*   which actions are allowed
-    
-*   what gets logged
-    
+* which documents are retrieved
+
+* how much context is sent
+
+* who is authorized
+
+* which actions are allowed
+
+* what gets logged
 
 That separation makes the system easier to test and easier to secure.
 
@@ -366,24 +363,23 @@ For example, imagine someone asks:
 
 That answer could exist across multiple systems:
 
-*   CloudTrail
-    
-*   CloudWatch Logs
-    
-*   Terraform plans
-    
-*   Deployment artifacts
-    
-*   Incident reports
-    
-*   Runbooks
-    
+* CloudTrail
+
+* CloudWatch Logs
+
+* Terraform plans
+
+* Deployment artifacts
+
+* Incident reports
+
+* Runbooks
 
 A production system shouldn't send every document to Bedrock.
 
 It should retrieve only the documents related to the question.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/c1e32478-ef06-47bf-8f83-0c6f44bd6ac7.png)
+![Illustration accompanying Building the Retrieval Layer](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/c1e32478-ef06-47bf-8f83-0c6f44bd6ac7.png)
 
 This approach has two advantages.
 
@@ -480,7 +476,7 @@ Its responsibility ends at generating a response.
 
 Everything after that belongs to your application.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/35509b89-10ac-4a41-93a6-a6cda95544ca.png)
+![Illustration accompanying Security and IAM: The Model Should Never Be Trusted](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/35509b89-10ac-4a41-93a6-a6cda95544ca.png)
 
 The application decides whether the response is safe.
 
@@ -547,12 +543,11 @@ A minimal policy is easier to review and easier to audit.
 
 Notice what's missing.
 
-*   `s3:*`
-    
-*   `AdministratorAccess`
-    
-*   Wildcard permissions across the account
-    
+* `s3:*`
+
+* `AdministratorAccess`
+
+* Wildcard permissions across the account
 
 The application receives only the permissions required to retrieve context.
 
@@ -576,18 +571,17 @@ Every request should also leave an audit trail.
 
 When an engineer asks a question, record:
 
-*   Timestamp
-    
-*   User identity
-    
-*   Retrieved documents
-    
-*   Model version
-    
-*   Response latency
-    
-*   Success or failure
-    
+* Timestamp
+
+* User identity
+
+* Retrieved documents
+
+* Model version
+
+* Response latency
+
+* Success or failure
 
 If someone asks six months later why a particular answer was returned, the platform should be able to explain it using logs,not memory.
 
@@ -617,20 +611,19 @@ If engineers stop trusting the answers, the platform has already failed regardle
 
 A production deployment should answer simple operational questions.
 
-*   Is the application responding within the expected latency?
-    
-*   Are retrieval requests succeeding?
-    
-*   Are Bedrock requests failing?
-    
-*   Is S3 returning the expected documents?
-    
-*   Has the cost per request increased unexpectedly?
-    
+* Is the application responding within the expected latency?
+
+* Are retrieval requests succeeding?
+
+* Are Bedrock requests failing?
+
+* Is S3 returning the expected documents?
+
+* Has the cost per request increased unexpectedly?
 
 These metrics reveal platform health long before users report problems.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/2855e165-f004-45d9-a453-babdc0904f30.png)
+![Illustration accompanying Operating the System in Production](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/2855e165-f004-45d9-a453-babdc0904f30.png)
 
 CloudWatch becomes the operational dashboard.
 
@@ -740,7 +733,7 @@ Every dependency in the request path can fail.
 
 Your application should assume that it eventually will.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/53edbd38-2733-427f-9374-c8b96441241f.png)
+![Illustration accompanying Failure Modes You Should Design For](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/53edbd38-2733-427f-9374-c8b96441241f.png)
 
 The objective is not to eliminate failures.
 
@@ -859,14 +852,13 @@ Monitor usage.
 
 Questions worth tracking include:
 
-*   Which requests consume the most tokens?
-    
-*   Which documents are retrieved most often?
-    
-*   Which teams generate the highest traffic?
-    
-*   Can repeated responses be cached?
-    
+* Which requests consume the most tokens?
+
+* Which documents are retrieved most often?
+
+* Which teams generate the highest traffic?
+
+* Can repeated responses be cached?
 
 Operational efficiency matters as much as model quality.
 
@@ -934,7 +926,7 @@ The model is only one dependency in the request path.
 
 The application, storage layer, IAM policies, logging, and monitoring have a much bigger impact on whether engineers actually trust the platform.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/8277392c-e2a5-4fb6-9138-e4457798c1f7.png)
+![Illustration accompanying Lessons Learned While Building It](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/8277392c-e2a5-4fb6-9138-e4457798c1f7.png)
 
 Another lesson was resisting the temptation to automate everything.
 
@@ -944,16 +936,15 @@ Recommendations and execution should remain separate.
 
 An engineer should always know:
 
-*   what evidence was retrieved
-    
-*   why the recommendation was made
-    
-*   which documents were referenced
-    
-*   how confident the application is
-    
-*   what happens if the recommendation is ignored
-    
+* what evidence was retrieved
+
+* why the recommendation was made
+
+* which documents were referenced
+
+* how confident the application is
+
+* what happens if the recommendation is ignored
 
 That level of transparency matters more than making the system feel autonomous.
 

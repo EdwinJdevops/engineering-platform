@@ -8,7 +8,7 @@ original_platform: "hashnode"
 canonical_url: "https://edwinjonathand-devops.hashnode.dev/securing-aws-deployments-with-github-actions-oidc-a-production-walkthrough"
 ---
 
-**The Problem Nobody Talks About Enough**
+### The Problem Nobody Talks About Enough
 
 Every tutorial shows you how to deploy to AWS from GitHub Actions using \`AWS\_ACCESS\_KEY\_ID\` and \`AWS\_SECRET\_ACCESS\_KEY\` stored as repository secrets.
 
@@ -18,11 +18,11 @@ The production answer is OIDC — and most engineers using it don't fully unders
 
 \---
 
-**What OIDC Actually Does**
+### What OIDC Actually Does
 
 OIDC (OpenID Connect) replaces static keys with short-lived tokens issued per workflow run.
 
-**The trust chain works like this:**
+### The trust chain works like this
 
 1\. GitHub acts as an \*\*Identity Provider (IdP)\*\* — it issues a signed JWT token for each workflow run
 
@@ -36,7 +36,7 @@ No secrets stored anywhere. No rotation schedule. No exposure surface after the 
 
 \---
 
-**AWS Side Setup**
+### AWS Side Setup
 
 ***Step 1 — Create the OIDC Identity Provider***
 
@@ -44,7 +44,7 @@ No secrets stored anywhere. No rotation schedule. No exposure surface after the 
 
 aws iam create-open-id-connect-provider \\
 
-\--url https://token.actions.githubusercontent.com \\
+\--url <https://token.actions.githubusercontent.com> \\
 
 \--client-id-list sts.amazonaws.com \\
 
@@ -120,9 +120,9 @@ aws iam attach-role-policy \\
 
 Principle of least privilege applies — scope this tighter in production.
 
-**GitHub Actions Side Setup**
+### GitHub Actions Side Setup
 
-**The Workflow**
+### The Workflow
 
 name: Deploy to AWS
 
@@ -234,6 +234,6 @@ Separate roles per environment — dev, staging, and prod each get their own IAM
 
 I'm currently building SENTINEL — an automated Kubernetes security posture engine — where this OIDC pattern gates every deployment through a security scan pipeline before anything hits the cluster. More on that soon.
 
-**Edwin Jonathan — Cloud/DevOps Engineer | ALX Cloud DevOps Programme**
+### Edwin Jonathan — Cloud/DevOps Engineer | ALX Cloud DevOps Programme
 
 GitHub · LinkedIn

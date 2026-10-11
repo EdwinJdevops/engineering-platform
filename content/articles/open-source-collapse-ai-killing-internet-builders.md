@@ -244,7 +244,7 @@ Prove me wrong.
 
 If you think AI can replace the people creating knowledge, explain where the next generation of knowledge comes from.
 
-**\[LinkedIn\]**: https://www.linkedin.com/in/edwin-jonathan-1094093b0  
-**\[X/Twitter\]**:https://x.com/TheCloudDeveng
+**\[LinkedIn\]**: <https://www.linkedin.com/in/edwin-jonathan-1094093b0>  
+**\[X/Twitter\]**:<https://x.com/TheCloudDeveng>
 
 I'm Edwin Jonathan — a 17-year-old self-taught DevOps Engineer building from Lagos, Nigeria. No degree, no shortcuts ,just real infrastructure, real pipelines, and real results. Follow the journey: 🔗 GitHub: github.com/EdwinJdevops ✍️ Hashnode: [edwinjonathand-devops.hashnode.dev](http://edwinjonathand-devops.hashnode.dev) 💼 Open to remote DevOps/Cloud roles globally

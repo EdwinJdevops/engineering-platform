@@ -20,18 +20,17 @@ Production failures rarely happen because GPT-5, Claude or Gemini suddenly becom
 
 They happen because nobody knows:
 
-*   why latency suddenly doubled
-    
-*   which prompt caused hallucinations
-    
-*   which deployment increased token usage
-    
-*   why costs exploded overnight
-    
-*   which customer experienced degraded responses
-    
-*   where requests failed across twenty microservices
-    
+* why latency suddenly doubled
+
+* which prompt caused hallucinations
+
+* which deployment increased token usage
+
+* why costs exploded overnight
+
+* which customer experienced degraded responses
+
+* where requests failed across twenty microservices
 
 Traditional monitoring tools were never designed for AI workloads.
 
@@ -113,7 +112,7 @@ Without tracing, you're blind.
 
 ### Production Architecture
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/e33664a5-40a4-4881-8ca7-57c72c3d0ed0.png)
+![Illustration accompanying Production Architecture](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/e33664a5-40a4-4881-8ca7-57c72c3d0ed0.png)
 
 This is no longer an API.
 
@@ -167,20 +166,19 @@ Telemetry Export
 
 Every stage emits:
 
-*   traces
-    
-*   metrics
-    
-*   logs
-    
-*   prompt metadata
-    
-*   token usage
-    
-*   latency
-    
-*   costs
-    
+* traces
+
+* metrics
+
+* logs
+
+* prompt metadata
+
+* token usage
+
+* latency
+
+* costs
 
 Nothing is invisible.
 
@@ -198,18 +196,17 @@ Metrics answer
 
 Examples
 
-*   Requests/sec
-    
-*   Tokens/sec
-    
-*   GPU Utilization
-    
-*   Prompt Errors
-    
-*   Cache Hit Rate
-    
-*   Cost Per Minute
-    
+* Requests/sec
+
+* Tokens/sec
+
+* GPU Utilization
+
+* Prompt Errors
+
+* Cache Hit Rate
+
+* Cost Per Minute
 
 * * *
 
@@ -349,13 +346,13 @@ Production systems don't fail gracefully.
 
 They fail silently.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/391386e0-36a1-4ef0-8ca1-70a9c4c63ee8.png)
+![Illustration accompanying Failure Path](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/391386e0-36a1-4ef0-8ca1-70a9c4c63ee8.png)
 
 Nobody knows why.
 
 Now compare with observability.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/691b2e2c-05e3-46b3-9591-e6d21af41faf.png)
+![Illustration accompanying Failure Path](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/691b2e2c-05e3-46b3-9591-e6d21af41faf.png)
 
 Failures become explainable instead of mysterious.
 
@@ -369,20 +366,19 @@ It's about visibility.
 
 Every production AI system should answer these questions instantly:
 
-*   Which prompt version failed?
-    
-*   Which model generated it?
-    
-*   How many tokens were consumed?
-    
-*   Which deployment introduced the regression?
-    
-*   Which customer experienced it?
-    
-*   How much money did it cost?
-    
-*   Which trace contains the failure?
-    
+* Which prompt version failed?
+
+* Which model generated it?
+
+* How many tokens were consumed?
+
+* Which deployment introduced the regression?
+
+* Which customer experienced it?
+
+* How much money did it cost?
+
+* Which trace contains the failure?
 
 If you can't answer those questions in under five minutes, you don't have observability.
 
@@ -402,20 +398,19 @@ Production platforms require much more.
 
 They need to survive:
 
-*   Node failures
-    
-*   Rolling deployments
-    
-*   Traffic spikes
-    
-*   Model outages
-    
-*   Network latency
-    
-*   Token quota exhaustion
-    
-*   Regional failures
-    
+* Node failures
+
+* Rolling deployments
+
+* Traffic spikes
+
+* Model outages
+
+* Network latency
+
+* Token quota exhaustion
+
+* Regional failures
 
 Kubernetes provides the control plane.
 
@@ -425,7 +420,7 @@ The platform still needs to be designed.
 
 ## Production Kubernetes Architecture
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/c37fad24-8b7f-4df9-b14b-ea69aee6878d.png)
+![Illustration accompanying Production Kubernetes Architecture](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/c37fad24-8b7f-4df9-b14b-ea69aee6878d.png)
 
 ## Request Flow
 
@@ -499,24 +494,23 @@ AI platforms need context.
 
 Every request should carry information such as
 
-*   User ID
-    
-*   Prompt Version
-    
-*   Deployment Version
-    
-*   Model
-    
-*   Trace ID
-    
-*   Region
-    
-*   Environment
-    
-*   Request Latency
-    
-*   Token Count
-    
+* User ID
+
+* Prompt Version
+
+* Deployment Version
+
+* Model
+
+* Trace ID
+
+* Region
+
+* Environment
+
+* Request Latency
+
+* Token Count
 
 Without context, metrics become isolated numbers
 
@@ -524,7 +518,7 @@ Without context, metrics become isolated numbers
 
 ## OpenTelemetry Architecture
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/1adfd028-58e6-4574-856e-851ac7ad8ed8.png)
+![Illustration accompanying OpenTelemetry Architecture](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/1adfd028-58e6-4574-856e-851ac7ad8ed8.png)
 
 The collector becomes the central telemetry pipeline.
 
@@ -536,7 +530,7 @@ The collector distributes everywhere.
 
 ## AI Request Lifecycle
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/1a8e3f3c-e76a-40e0-8764-fc35071723c0.png)
+![Illustration accompanying AI Request Lifecycle](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/1a8e3f3c-e76a-40e0-8764-fc35071723c0.png)
 
 * * *
 
@@ -561,7 +555,7 @@ The AI layer is just as important as the infrastructure layer.
 
 ## Production Deployment Flow
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/adb64036-c744-4245-9876-27fe0e8bc4cb.png)
+![Illustration accompanying Production Deployment Flow](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/adb64036-c744-4245-9876-27fe0e8bc4cb.png)
 
 Every deployment should be repeatable.
 
@@ -579,20 +573,19 @@ Healthy platforms assume components will fail.
 
 Examples include:
 
-*   OpenAI rate limits requests
-    
-*   Anthropic API becomes unavailable
-    
-*   Vector database is slow
-    
-*   Redis becomes unavailable
-    
-*   One Kubernetes node crashes
-    
-*   Prometheus restarts
-    
-*   Grafana becomes unavailable
-    
+* OpenAI rate limits requests
+
+* Anthropic API becomes unavailable
+
+* Vector database is slow
+
+* Redis becomes unavailable
+
+* One Kubernetes node crashes
+
+* Prometheus restarts
+
+* Grafana becomes unavailable
 
 A production platform should continue operating with degraded functionality instead of complete failure.
 
@@ -602,32 +595,31 @@ A production platform should continue operating with degraded functionality inst
 
 Before calling an AI system production-ready, verify that it has:
 
-*   Kubernetes health probes
-    
-*   Horizontal Pod Autoscaler
-    
-*   OpenTelemetry instrumentation
-    
-*   Prompt version tracking
-    
-*   Distributed tracing
-    
-*   Cost monitoring
-    
-*   Centralized logging
-    
-*   Secret management
-    
-*   GitOps deployment
-    
-*   Automatic rollback
-    
-*   Alerting
-    
-*   Audit logs
-    
-*   Disaster recovery plan
-    
+* Kubernetes health probes
+
+* Horizontal Pod Autoscaler
+
+* OpenTelemetry instrumentation
+
+* Prompt version tracking
+
+* Distributed tracing
+
+* Cost monitoring
+
+* Centralized logging
+
+* Secret management
+
+* GitOps deployment
+
+* Automatic rollback
+
+* Alerting
+
+* Audit logs
+
+* Disaster recovery plan
 
 An AI application becomes a production platform when it can answer operational questions as reliably as it answers user prompts.
 
@@ -647,7 +639,7 @@ Nothing else.
 
 ## Production Infrastructure
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/e73820e6-c976-4336-9fba-9600a693edce.png)
+![Illustration accompanying Production Infrastructure](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/e73820e6-c976-4336-9fba-9600a693edce.png)
 
 Terraform provisions the infrastructure.
 
@@ -663,18 +655,17 @@ Creating infrastructure manually introduces inconsistency.
 
 Examples include:
 
-*   Different security groups
-    
-*   Incorrect IAM permissions
-    
-*   Missing encryption
-    
-*   Network drift
-    
-*   Resources with no ownership
-    
-*   Production changes that cannot be audited
-    
+* Different security groups
+
+* Incorrect IAM permissions
+
+* Missing encryption
+
+* Network drift
+
+* Resources with no ownership
+
+* Production changes that cannot be audited
 
 Infrastructure as Code eliminates these problems by making every change reviewable before it reaches production.
 
@@ -729,7 +720,7 @@ Git becomes the deployment interface.
 
 Nobody deploys from a laptop.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/02e6db63-10f0-4054-90ae-3eb5afdcfcd1.png)
+![Illustration accompanying GitOps Workflow](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/02e6db63-10f0-4054-90ae-3eb5afdcfcd1.png)
 
 Every deployment follows the same path.
 
@@ -799,25 +790,23 @@ The deployment is complete only after the platform confirms it is healthy.
 
 Production secrets should never exist in:
 
-*   Git repositories
-    
-*   Kubernetes manifests
-    
-*   Dockerfiles
-    
-*   CI variables in plain text
-    
+* Git repositories
+
+* Kubernetes manifests
+
+* Dockerfiles
+
+* CI variables in plain text
 
 Instead, use a dedicated secret manager and inject secrets at runtime.
 
 Examples include:
 
-*   AWS Secrets Manager
-    
-*   Azure Key Vault
-    
-*   HashiCorp Vault
-    
+* AWS Secrets Manager
+
+* Azure Key Vault
+
+* HashiCorp Vault
 
 Applications request credentials only when they need them.
 
@@ -827,22 +816,21 @@ Applications request credentials only when they need them.
 
 A deployment should prove itself before serving everyone.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/fa7e02cb-84c0-4f5e-ba3c-df6e4d688835.png)
+![Illustration accompanying Progressive Delivery](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/fa7e02cb-84c0-4f5e-ba3c-df6e4d688835.png)
 
 Promotion is based on telemetry, not intuition.
 
 Monitor:
 
-*   Error rate
-    
-*   Latency
-    
-*   Token cost
-    
-*   Request success rate
-    
-*   User feedback
-    
+* Error rate
+
+* Latency
+
+* Token cost
+
+* Request success rate
+
+* User feedback
 
 If any exceed defined thresholds, the release should roll back automatically.
 
@@ -854,14 +842,13 @@ Infrastructure changes outside Terraform create drift.
 
 Examples include:
 
-*   Manual firewall changes
-    
-*   IAM policy edits
-    
-*   New storage buckets
-    
-*   Deleted resources
-    
+* Manual firewall changes
+
+* IAM policy edits
+
+* New storage buckets
+
+* Deleted resources
 
 Drift should be detected automatically during CI and corrected through version-controlled changes.
 
@@ -875,24 +862,23 @@ Git.
 
 Every production platform should satisfy these principles:
 
-*   Reproducible from code
-    
-*   Fully automated deployments
-    
-*   Version-controlled infrastructure
-    
-*   Immutable container images
-    
-*   Declarative Kubernetes resources
-    
-*   Observable by default
-    
-*   Least-privilege access
-    
-*   Automated rollback
-    
-*   Continuous validation
-    
+* Reproducible from code
+
+* Fully automated deployments
+
+* Version-controlled infrastructure
+
+* Immutable container images
+
+* Declarative Kubernetes resources
+
+* Observable by default
+
+* Least-privilege access
+
+* Automated rollback
+
+* Continuous validation
 
 These principles reduce operational risk and make the platform predictable as it grows.
 
@@ -910,7 +896,7 @@ Production engineering begins after the first successful deployment.
 
 ## Production Security Architecture
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/248faf54-c81a-43cc-adfb-cccf24d7bbbb.png)
+![Illustration accompanying Production Security Architecture](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/248faf54-c81a-43cc-adfb-cccf24d7bbbb.png)
 
 Security should be part of the request path.
 
@@ -928,18 +914,17 @@ Every prompt should be treated like external input.
 
 Potential risks include:
 
-*   Prompt injection
-    
-*   Jailbreak attempts
-    
-*   Sensitive data exposure
-    
-*   Tool misuse
-    
-*   Excessive token consumption
-    
-*   Malicious file uploads
-    
+* Prompt injection
+
+* Jailbreak attempts
+
+* Sensitive data exposure
+
+* Tool misuse
+
+* Excessive token consumption
+
+* Malicious file uploads
 
 Prompt validation belongs in the platform.
 
@@ -1005,16 +990,15 @@ Production systems should retrieve secrets only at runtime.
 
 Examples include:
 
-*   OpenAI API keys
-    
-*   Anthropic API keys
-    
-*   Database passwords
-    
-*   Object storage credentials
-    
-*   Encryption keys
-    
+* OpenAI API keys
+
+* Anthropic API keys
+
+* Database passwords
+
+* Object storage credentials
+
+* Encryption keys
 
 Applications should never know where secrets are stored.
 
@@ -1043,7 +1027,7 @@ The platform is healthy only when both layers are healthy.
 
 ## Failure Recovery
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/dfbd1ec3-11d6-45d2-b0fb-49df5b0bc5cf.png)
+![Illustration accompanying Failure Recovery](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/dfbd1ec3-11d6-45d2-b0fb-49df5b0bc5cf.png)
 
 Production platforms assume dependencies will fail.
 
@@ -1059,20 +1043,19 @@ Production AI systems require near real-time visibility.
 
 Track metrics such as:
 
-*   Cost per request
-    
-*   Cost per customer
-    
-*   Cost per model
-    
-*   Cost by feature
-    
-*   Token consumption
-    
-*   Cache hit ratio
-    
-*   Average prompt length
-    
+* Cost per request
+
+* Cost per customer
+
+* Cost per model
+
+* Cost by feature
+
+* Token consumption
+
+* Cache hit ratio
+
+* Average prompt length
 
 Without these metrics, optimization becomes guesswork.
 
@@ -1084,16 +1067,15 @@ Every production platform should answer questions before a request reaches the m
 
 Examples:
 
-*   Can this user access this model?
-    
-*   Does this prompt contain sensitive information?
-    
-*   Has the request exceeded its quota?
-    
-*   Is the selected model approved for production?
-    
-*   Does this request violate organizational policy?
-    
+* Can this user access this model?
+
+* Does this prompt contain sensitive information?
+
+* Has the request exceeded its quota?
+
+* Is the selected model approved for production?
+
+* Does this request violate organizational policy?
 
 Policy enforcement belongs at the platform level.
 
@@ -1147,40 +1129,39 @@ It is preventing the same failure from recurring.
 
 * * *
 
-## Production Readiness Checklist
+## Production Readiness Checklist (continued)
 
 Before exposing an AI service to customers, verify that it has:
 
-*   Multi-factor authentication
-    
-*   Role-based access control
-    
-*   API rate limiting
-    
-*   Prompt validation
-    
-*   Secret management
-    
-*   Distributed tracing
-    
-*   Centralized logging
-    
-*   Cost monitoring
-    
-*   Automatic rollback
-    
-*   Disaster recovery
-    
-*   Audit logging
-    
-*   Backup and restore procedures
-    
-*   Security scanning
-    
-*   Dependency vulnerability scanning
-    
-*   Policy enforcement
-    
+* Multi-factor authentication
+
+* Role-based access control
+
+* API rate limiting
+
+* Prompt validation
+
+* Secret management
+
+* Distributed tracing
+
+* Centralized logging
+
+* Cost monitoring
+
+* Automatic rollback
+
+* Disaster recovery
+
+* Audit logging
+
+* Backup and restore procedures
+
+* Security scanning
+
+* Dependency vulnerability scanning
+
+* Policy enforcement
 
 Production readiness is measured by operational resilience, not feature count.
 
@@ -1270,7 +1251,7 @@ Every folder has a single responsibility.
 
 Every change follows the same deployment path.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/fae87394-19a7-4729-b181-aaeaebc7612c.png)
+![Illustration accompanying Deployment Pipeline](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/fae87394-19a7-4729-b181-aaeaebc7612c.png)
 
 Notice something.
 
@@ -1344,66 +1325,63 @@ A production dashboard should answer operational questions immediately.
 
 Dashboard 1
 
-**Platform Health**
+### Platform Health
 
 Monitor:
 
-*   Request rate
-    
-*   Error rate
-    
-*   Response latency
-    
-*   Availability
-    
-*   CPU
-    
-*   Memory
-    
-*   Network
-    
+* Request rate
+
+* Error rate
+
+* Response latency
+
+* Availability
+
+* CPU
+
+* Memory
+
+* Network
 
 * * *
 
 Dashboard 2
 
-**AI Performance**
+### AI Performance
 
 Monitor:
 
-*   Prompt latency
-    
-*   Completion latency
-    
-*   Token usage
-    
-*   Requests per model
-    
-*   Failed generations
-    
-*   Retry count
-    
+* Prompt latency
+
+* Completion latency
+
+* Token usage
+
+* Requests per model
+
+* Failed generations
+
+* Retry count
 
 * * *
 
 Dashboard 3
 
-**Business Metrics**
+### Business Metrics
 
 Monitor:
 
-*   Cost per request
-    
-*   Cost per customer
-    
-*   Requests by organization
-    
-*   Daily token consumption
-    
-*   Cache hit ratio
-    
-*   Average prompt size
-    
+* Cost per request
+
+* Cost per customer
+
+* Requests by organization
+
+* Daily token consumption
+
+* Cache hit ratio
+
+* Average prompt size
 
 Infrastructure metrics alone don't explain production health.
 
@@ -1417,12 +1395,11 @@ A customer reports that responses have become slow.
 
 Without observability:
 
-*   Guess the problem
-    
-*   Restart pods
-    
-*   Hope it improves
-    
+* Guess the problem
+
+* Restart pods
+
+* Hope it improves
 
 With observability:
 
@@ -1470,7 +1447,7 @@ The investigation becomes measurable instead of speculative.
 
 Production platforms evolve through stages.
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/43ea8a91-2afd-47dc-a17a-4337497c3200.png)
+![Illustration accompanying Operational Maturity](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/43ea8a91-2afd-47dc-a17a-4337497c3200.png)
 
 Most teams automate deployments.
 
@@ -1524,22 +1501,21 @@ An API returning HTTP 200 doesn't guarantee useful output.
 
 This platform follows a few simple rules.
 
-*   Infrastructure should be reproducible.
-    
-*   Deployments should be automated.
-    
-*   Every request should be observable.
-    
-*   Security should be built into the platform.
-    
-*   Rollbacks should be automatic.
-    
-*   Failures should be explainable.
-    
-*   Costs should be measurable.
-    
-*   Recovery should be practiced before incidents occur.
-    
+* Infrastructure should be reproducible.
+
+* Deployments should be automated.
+
+* Every request should be observable.
+
+* Security should be built into the platform.
+
+* Rollbacks should be automatic.
+
+* Failures should be explainable.
+
+* Costs should be measurable.
+
+* Recovery should be practiced before incidents occur.
 
 These principles apply regardless of which model provider you use.
 
@@ -1573,22 +1549,21 @@ Every month we see better models.
 
 The infrastructure problems remain the same.
 
-*   Production incidents
-    
-*   Cost overruns
-    
-*   Poor observability
-    
-*   Security risks
-    
-*   Model routing
-    
-*   Vendor lock-in
-    
-*   Compliance
-    
-*   Reliability
-    
+* Production incidents
+
+* Cost overruns
+
+* Poor observability
+
+* Security risks
+
+* Model routing
+
+* Vendor lock-in
+
+* Compliance
+
+* Reliability
 
 The conversation is slowly shifting from **"Which model should we use?"** to **"How do we operate AI systems at scale?"**
 
@@ -1686,18 +1661,17 @@ The surrounding platform became the product.
 
 I think platform engineers will spend less time deploying models and more time answering questions like:
 
-*   Which model should handle this request?
-    
-*   Should this request use a local model or a hosted API?
-    
-*   Can this response be cached?
-    
-*   Is the additional latency acceptable?
-    
-*   Did this deployment increase cost per request?
-    
-*   Should traffic automatically shift to another provider?
-    
+* Which model should handle this request?
+
+* Should this request use a local model or a hosted API?
+
+* Can this response be cached?
+
+* Is the additional latency acceptable?
+
+* Did this deployment increase cost per request?
+
+* Should traffic automatically shift to another provider?
 
 Those aren't machine learning questions.
 
@@ -1707,7 +1681,7 @@ They're infrastructure questions.
 
 ## Architecture Evolution
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/2464ab61-7cbd-4a15-b1f1-73904320ad4c.png)
+![Illustration accompanying Architecture Evolution](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/2464ab61-7cbd-4a15-b1f1-73904320ad4c.png)
 
 The industry is moving away from evaluating models in isolation.
 
@@ -1723,28 +1697,27 @@ Engineering principles don't.
 
 The skills I believe will continue to matter include:
 
-*   Linux
-    
-*   Networking
-    
-*   Kubernetes
-    
-*   GitOps
-    
-*   Infrastructure as Code
-    
-*   Distributed Systems
-    
-*   OpenTelemetry
-    
-*   Security
-    
-*   Observability
-    
-*   Cost Engineering
-    
-*   Reliability Engineering
-    
+* Linux
+
+* Networking
+
+* Kubernetes
+
+* GitOps
+
+* Infrastructure as Code
+
+* Distributed Systems
+
+* OpenTelemetry
+
+* Security
+
+* Observability
+
+* Cost Engineering
+
+* Reliability Engineering
 
 These skills remain valuable regardless of whether the underlying model is GPT, Claude, Gemini, or an open-weight alternative.
 
@@ -1752,7 +1725,7 @@ These skills remain valuable regardless of whether the underlying model is GPT, 
 
 ## Final Architecture
 
-![](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/8d5880e0-57b6-473d-a2a8-53ec8d23eb9c.png)
+![Illustration accompanying Final Architecture](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/8d5880e0-57b6-473d-a2a8-53ec8d23eb9c.png)
 
 ## Closing Thoughts
 
@@ -1772,18 +1745,18 @@ That's the area I intend to keep exploring.
 
 ## References
 
-*   OpenTelemetry documentation
-    
-*   Kubernetes documentation
-    
-*   Prometheus documentation
-    
-*   Grafana documentation
-    
-*   Langfuse documentation
-    
-*   CNCF landscape
-    
-*   Argo CD documentation
-    
-*   Terraform documentation
+* OpenTelemetry documentation
+
+* Kubernetes documentation
+
+* Prometheus documentation
+
+* Grafana documentation
+
+* Langfuse documentation
+
+* CNCF landscape
+
+* Argo CD documentation
+
+* Terraform documentation

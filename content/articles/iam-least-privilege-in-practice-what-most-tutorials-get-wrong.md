@@ -8,7 +8,7 @@ original_platform: "hashnode"
 canonical_url: "https://edwinjonathand-devops.hashnode.dev/iam-least-privilege-in-practice-what-most-tutorials-get-wrong"
 ---
 
-**Introduction**
+### Introduction
 
 Every AWS tutorial tells you to use least privilege. Almost none of them show you what it actually looks like. Most examples online attach `AdministratorAccess` to a role "for simplicity" and move on.
 
@@ -16,9 +16,9 @@ That's not simplicity. That's a breach waiting to happen. Here's what real IAM d
 
 * * *
 
-**The Most Common Mistakes**
+### The Most Common Mistakes
 
-**Mistake 1 — Wildcard actions on wildcard resources:**
+### Mistake 1 — Wildcard actions on wildcard resources
 
 ```json
 {
@@ -30,7 +30,7 @@ That's not simplicity. That's a breach waiting to happen. Here's what real IAM d
 
 This is AdministratorAccess. Never use it outside break-glass emergency scenarios.
 
-**Mistake 2 — Service-level wildcards:**
+### Mistake 2 — Service-level wildcards
 
 ```json
 {
@@ -42,7 +42,7 @@ This is AdministratorAccess. Never use it outside break-glass emergency scenario
 
 You wanted read access. You gave delete, ACL modification, and bucket policy write access too.
 
-**Mistake 3 — Not scoping resources:**
+### Mistake 3 — Not scoping resources
 
 ```json
 {
@@ -56,9 +56,9 @@ This allows reading every S3 bucket in your account. Scope it to the specific bu
 
 * * *
 
-**What Least Privilege Actually Looks Like**
+### What Least Privilege Actually Looks Like
 
-**Correct — S3 read for one specific bucket:**
+### Correct — S3 read for one specific bucket
 
 ```json
 {
@@ -79,7 +79,7 @@ This allows reading every S3 bucket in your account. Scope it to the specific bu
 }
 ```
 
-**Correct — ECS deploy role, nothing more:**
+### Correct — ECS deploy role, nothing more
 
 ```json
 {
@@ -106,22 +106,21 @@ This allows reading every S3 bucket in your account. Scope it to the specific bu
 
 * * *
 
-**The Framework I Use**
+### The Framework I Use
 
-1.  **Start with zero permissions.** Add only what breaks.
-    
-2.  **Scope every Resource ARN** — never use `*` unless the API requires it.
-    
-3.  **Separate roles per workload** — CI/CD role, application role, and admin role are three different things.
-    
-4.  **Use IAM Access Analyzer** to detect overly permissive policies before they hit production.
-    
-5.  **Set permission boundaries** on roles created programmatically.
-    
+1. **Start with zero permissions.** Add only what breaks.
+
+2. **Scope every Resource ARN** — never use `*` unless the API requires it.
+
+3. **Separate roles per workload** — CI/CD role, application role, and admin role are three different things.
+
+4. **Use IAM Access Analyzer** to detect overly permissive policies before they hit production.
+
+5. **Set permission boundaries** on roles created programmatically.
 
 * * *
 
-**IAM Access Analyzer — run this:**
+### IAM Access Analyzer — run this
 
 ```bash
 aws accessanalyzer create-analyzer \
@@ -133,7 +132,7 @@ It will flag any resources accessible from outside your account within minutes.
 
 * * *
 
-**One Rule That Changes Everything**
+### One Rule That Changes Everything
 
 Before attaching any policy, ask: *what is the minimum set of actions on the minimum set of resources this identity needs to complete its job?*
 
