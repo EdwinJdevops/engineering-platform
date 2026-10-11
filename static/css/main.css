@@ -372,3 +372,24 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
   .featured-project{margin-inline:-8px;padding-inline:8px}
   .featured-project-end{gap:10px}
 }
+
+/* Reversible entrance motion across articles, projects, and homepage.
+   CSS keeps content visible if JavaScript is missing, disabled or reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html.scroll-reveal-active .scroll-reveal-pending {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    transition: opacity 570ms ease, transform 640ms cubic-bezier(.19,.68,.22,1);
+  }
+  html.scroll-reveal-active .scroll-reveal-pending.is-visible,
+  html.scroll-reveal-active .scroll-reveal-pending:focus-within {
+    opacity: 1;
+    transform: none;
+  }
+  html.scroll-reveal-active .scroll-reveal-pending.is-visible:focus-within {
+    transition-duration: 0ms;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal-pending { opacity: 1!important; transform: none!important; transition: none!important; }
+}
