@@ -158,7 +158,13 @@ const fs = require("node:fs");
       const link = editorial.locator('.work-visual-card a[href$="/projects/'+slug+'/"]').first();
       if (await link.count() !== 1) failures.push("Missing named project: "+slug);
     }
-    const images = await editorial.locator(".work-image-link img").evaluateAll(nodes =>
+    const projectImages = editorial.locator(".work-image-link img");
+    for (let i = 0; i < await projectImages.count(); i++) {
+      const image = projectImages.nth(i);
+      await image.scrollIntoViewIfNeeded();
+      await image.evaluate(img => img.decode());
+    }
+    const images = await projectImages.evaluateAll(nodes =>
       nodes.map(img => ({loaded:img.complete && img.naturalWidth > 0, src:img.getAttribute("src")})));
     if (images.length !== 8 || images.some(img => !img.loaded))
       failures.push("Featured project SVG failed to load: "+JSON.stringify(images.filter(img => !img.loaded)));
