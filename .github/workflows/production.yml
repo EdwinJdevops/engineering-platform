@@ -58,7 +58,10 @@ jobs:
         run: |
           set -euo pipefail
           base="${SITE_URL%/}/"
-          routes=("" "portfolio/" "projects/" "articles/" "services/" "engineering/" "contact/")
+          routes=("" "portfolio/" "projects/" "articles/" "services/" "engineering/" "contact/"
+            "projects/warden/" "projects/infraguard/" "projects/infraguard-agent/"
+            "projects/consequential-execution-runtime/"
+            "articles/building-production-ai-observability-on-kubernetes-opentelemetry-langfuse-prometheus-grafana-from-zero-to-scale/")
           for route in "${routes[@]}"; do
             passed=false
             for attempt in 1 2 3 4 5; do
@@ -78,7 +81,13 @@ jobs:
           done
           echo "Production route smoke checks passed"
           # A successful HTML response alone does not establish that the portrait and assets shipped.
-          for asset in "images/edwin-portrait-web.webp" "css/main.css" "js/infrastructure-scene.js" "js/infrastructure-webgl.js"; do
+          for asset in "images/edwin-portrait-web.webp" "css/main.css" \
+            "js/infrastructure-scene.js" "js/infrastructure-webgl.js" \
+            "js/scroll-reveal.js" "js/editorial-covers.js" \
+            "images/projects/warden.svg" "images/projects/infraguard.svg" \
+            "images/projects/infraguard-agent.svg" "images/projects/driftguard.svg" \
+            "images/projects/optimization-evidence.svg" "images/projects/cer.svg" \
+            "images/projects/sentinel.svg" "images/projects/archnet.svg"; do
             url="${base}${asset}"
             code="$(curl --location --silent --show-error --output /dev/null --write-out '%{http_code}' --max-time 15 "$url")"
             if [[ "$code" != "200" ]]; then
