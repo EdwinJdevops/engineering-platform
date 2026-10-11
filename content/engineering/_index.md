@@ -26,11 +26,15 @@ The separate [security workflow](https://github.com/EdwinJdevops/engineering-pla
 
 The [production workflow](https://github.com/EdwinJdevops/engineering-platform/blob/main/.github/workflows/production.yml) builds the Hugo site on eligible pushes to `main`, uploads a Pages artifact, and deploys it using GitHub Pages Actions. The workflow grants read access by default; the deployment job receives Pages-write and OIDC-token permissions.
 
-After deployment, the workflow verifies HTTP 200 for seven published routes and four critical assets (the portrait, stylesheet and two infrastructure scripts). It also checks that the portrait response is nonempty and starts with a RIFF signature. These are availability and basic artifact-sanity checks, not complete visual, WebP-format or real-device validation.
+After deployment, the workflow checks HTTP 200 for thirteen published routes, including the public delivery record, and fourteen first-party assets (portrait, CSS, browser scripts and project illustrations). It also checks the portrait size and both RIFF and WEBP signature markers. These are availability and basic asset-integrity checks, not exhaustive decoding, browser compatibility or real-device validation.
 
 The [live production browser smoke workflow](https://github.com/EdwinJdevops/engineering-platform/blob/main/.github/workflows/production-browser-smoke.yml) separately exercises the deployed site in Chromium across mobile and desktop profiles. It checks portrait loading, the WebGL/CSS fallback, reduced motion, navigation, project focus, expertise panels and contact email. **It runs on demand and on changes to its own test files; it is not automatically triggered by every production deployment.** Its evidence concerns the tested browser profiles, not all user devices or an uptime SLO.
 
 The [production performance audit](https://github.com/EdwinJdevops/engineering-platform/blob/main/.github/workflows/performance-audit.yml) collects synthetic load measurements on demand. These are not real-user Core Web Vitals or INP results.
+
+## A fully traceable public delivery example
+
+The [public delivery record]({{< relref "/engineering/delivery-record" >}}) follows the site's article-cover defect through correction, browser regression tests, review and successful production deployment. It links to source changes and workflow conclusions. This independent, self-owned project evidence is not an anonymous customer testimonial or a substitute for validating private contracts.
 
 ## Failure and recovery model
 
