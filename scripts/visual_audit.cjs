@@ -146,6 +146,37 @@ const fs = require("node:fs");
   await page.screenshot({path:"visual-audit/desktop-motion-home.png",fullPage:true});
   await page.close();
 
+
+  // Editorial release gate: featured projects, original article covers and navigation.
+  for (const viewport of [{width:320,height:720},{width:390,height:844},{width:1440,height:900}]) {
+    const editorial = await browser.newPage({ viewport, reducedMotion:"reduce" });
+    editorial.on("pageerror", error => failures.push("Editorial "+viewport.width+" JS exception: "+error.message));
+    await editorial.goto("http://127.0.0.1:4173/projects/", { waitUntil:"domcontentloaded" });
+    if (await editorial.locator(".work-visual-card").count() !== 8)
+      failures.push("Projects index must expose eight evidence-backed visual cards: "+viewport.width);
+    for (const slug of ["warden","infraguard","infraguard-agent","driftguard"]) {
+      const link = editorial.locator('.work-visual-card a[href$="/projects/'+slug+'/"]').first();
+      if (await link.count() !== 1) failures.push("Missing named project: "+slug);
+    }
+    const images = await editorial.locator(".work-image-link img").evaluateAll(nodes =>
+      nodes.map(img => ({loaded:img.complete && img.naturalWidth > 0, src:img.getAttribute("src")})));
+    if (images.length !== 8 || images.some(img => !img.loaded))
+      failures.push("Featured project SVG failed to load: "+JSON.stringify(images.filter(img => !img.loaded)));
+    const projectOverflow = await editorial.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    if (projectOverflow > 2) failures.push("Projects overflow at "+viewport.width+"px: "+projectOverflow);
+    await editorial.goto("http://127.0.0.1:4173/articles/", { waitUntil:"domcontentloaded" });
+    const featuredCount = await editorial.locator(".editorial-feature-article").count();
+    const archiveCount = await editorial.locator(".editorial-archive-item").count();
+    if (featuredCount !== 3 || archiveCount !== 17)
+      failures.push("Unexpected article counts: featured="+featuredCount+", archive="+archiveCount);
+    if (await editorial.locator(".editorial-cover").count() !== 20)
+      failures.push("Missing editorial art on an article listing: "+viewport.width);
+    const articleOverflow = await editorial.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    if (articleOverflow > 2) failures.push("Article index overflow at "+viewport.width+"px: "+articleOverflow);
+    await editorial.screenshot({path:"visual-audit/editorial-"+viewport.width+".png",fullPage:true});
+    await editorial.close();
+  }
+
   const noScript = await browser.newPage({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
   await noScript.goto("http://127.0.0.1:4173/", { waitUntil: "load" });
   const staticVisibility = await noScript.locator(".home-work").evaluate(el => ({
