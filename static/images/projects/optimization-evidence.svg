@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+<title id="title">OPTIMIZATION EVIDENCE — illustrative engineering flow</title>
+<desc id="desc">ATTRIBUTABLE COST RESEARCH. The diagram illustrates CHANGE PROVENANCE, BILLING EVIDENCE, ATTRIBUTION and is not a runtime monitoring screenshot.</desc>
+<defs><pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#294254" stroke-width="1" opacity=".35"/></pattern></defs>
+<rect width="1200" height="640" fill="#0E1721"/>
+<rect width="1200" height="640" fill="url(#grid)"/>
+<path d="M0 0H1200M0 638H1200" stroke="#F4DFA6" stroke-opacity=".45"/>
+<text x="64" y="86" font-family="Arial,Helvetica,sans-serif" font-size="19" letter-spacing="4" fill="#F4DFA6">EDWIN / ENGINEERING SYSTEMS</text>
+<text x="64" y="160" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="55" letter-spacing="-3" fill="#FFF">OPTIMIZATION EVIDENCE</text>
+<text x="65" y="201" font-family="Arial,Helvetica,sans-serif" font-size="17" letter-spacing="3" fill="#BCD0E0">ATTRIBUTABLE COST RESEARCH</text>
+<g>
+<rect x="65" y="260" width="308" height="160" rx="8" fill="#172533" stroke="#536779" stroke-width="2"/>
+<rect x="83" y="281" width="28" height="5" rx="2" fill="#F4DFA6"/>
+<text x="85" y="327" fill="#B9C9D7" font-size="18" font-family="Arial,Helvetica,sans-serif">01 / SOURCE</text>
+<text x="85" y="380" fill="#FFFFFF" font-weight="700" font-size="19" font-family="Arial,Helvetica,sans-serif">CHANGE PROVENANCE</text>
+</g><g>
+<rect x="445" y="260" width="308" height="160" rx="8" fill="#172533" stroke="#536779" stroke-width="2"/>
+<rect x="463" y="281" width="28" height="5" rx="2" fill="#F4DFA6"/>
+<text x="465" y="327" fill="#B9C9D7" font-size="18" font-family="Arial,Helvetica,sans-serif">02 / CONTROL</text>
+<text x="465" y="380" fill="#FFFFFF" font-weight="700" font-size="23" font-family="Arial,Helvetica,sans-serif">BILLING EVIDENCE</text>
+</g><g>
+<rect x="825" y="260" width="308" height="160" rx="8" fill="#172533" stroke="#536779" stroke-width="2"/>
+<rect x="843" y="281" width="28" height="5" rx="2" fill="#F4DFA6"/>
+<text x="845" y="327" fill="#B9C9D7" font-size="18" font-family="Arial,Helvetica,sans-serif">03 / OUTPUT</text>
+<text x="845" y="380" fill="#FFFFFF" font-weight="700" font-size="23" font-family="Arial,Helvetica,sans-serif">ATTRIBUTION</text>
+</g>
+<path d="M373 340H441M753 340H821" fill="none" stroke="#F4DFA6" stroke-width="3"/>
+<path d="M435 333l9 7-9 7M815 333l9 7-9 7" fill="none" stroke="#F4DFA6" stroke-width="3"/>
+<path d="M64 520H1136" stroke="#354A59" stroke-width="2"/>
+<text x="65" y="557" font-family="Arial,Helvetica,sans-serif" font-size="18" fill="#DCE7EF">SOURCE-BACKED ARCHITECTURE SKETCH</text>
+<text x="65" y="593" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#A7BECD">ILLUSTRATIVE / NOT A LIVE SYSTEM SCREENSHOT</text>
+</svg>
