@@ -215,7 +215,14 @@ const fs = require("node:fs");
     const loadedState = await fallbackCover.evaluate(cover => ({
       opacity: getComputedStyle(cover.querySelector("img")).opacity,
       imageWidth: cover.querySelector("img").naturalWidth,
-      fallbackVisibility: getComputedStyle(cover.querySelector(".editorial-cover-graphic")).visibility
+      fallbackVisibility: getComputedStyle(cover.querySelector(".editorial-cover-graphic")).visibility,
+      imgClass: cover.querySelector("img").className,
+      coverClass: cover.className,
+      cssLink: document.querySelector('link[href$="css/main.css"]')?.href || null,
+      cssRulesMatching: [...document.styleSheets].flatMap(sheet => {
+        try { return [...sheet.cssRules].filter(rule => /editorial-cover img\.is-ready|editorial-cover\.has-loaded-image/.test(rule.cssText)).map(rule => rule.cssText.slice(0,180)); }
+        catch (_) { return []; }
+      })
     }));
     if (Number(loadedState.opacity) !== 1 || loadedState.imageWidth <= 0 || loadedState.fallbackVisibility !== "hidden")
       failures.push("Loaded editorial image state incorrect: "+JSON.stringify(loadedState));
