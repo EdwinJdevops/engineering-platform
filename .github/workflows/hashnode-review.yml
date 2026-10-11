@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   collect:
@@ -18,10 +18,27 @@ jobs:
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Fetch author-published Hashnode Markdown
         run: python3 scripts/hashnode_fulltext_review.py
       - name: Prepare nonduplicate Hugo articles for review
         run: python3 scripts/promote_hashnode_articles.py
+      - name: Commit ten validated articles to the review PR branch
+        if: ${{ github.event_name == 'pull_request' && github.head_ref == 'feat/hashnode-fulltext-review' && github.event.pull_request.head.repo.full_name == github.repository }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/articles/
+          added="$(git diff --cached --name-only --diff-filter=A | wc -l)"
+          modified="$(git diff --cached --name-only --diff-filter=M | wc -l)"
+          if [[ "$added" -ne 10 || "$modified" -ne 0 ]]; then
+            echo "::error::Expected exactly ten new article files and zero modifications"
+            exit 1
+          fi
+          git commit -m "Import ten full Hashnode articles with verified provenance"
+          git push origin HEAD:refs/heads/feat/hashnode-fulltext-review
       - name: Preserve source and duplicate manifest
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
