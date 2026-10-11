@@ -77,6 +77,31 @@ The repository states the current gaps explicitly:
 
 These limitations are part of the engineering evidence. Hiding them would make the case study weaker, not stronger.
 
+## Executed AWS drift proof — September 18, 2026
+
+The repository also has an [actual AWS-backed GitHub Actions execution](https://github.com/EdwinJdevops/driftguard/actions/runs/35343278654), separate from the inventory-failure unit tests.
+
+That completed run used temporary AWS credentials and Terraform to create a disposable **AWS Systems Manager parameter**. It then changed the parameter through the AWS API outside Terraform, ran `terraform plan -refresh-only`, converted the resulting provider plan to a DriftGuard evidence bundle, verified sensitive values were omitted, and destroyed the test resource.
+
+The job logs recorded:
+
+```json
+{
+  "resource_address": "aws_ssm_parameter.proof",
+  "actions": ["update"],
+  "changed_paths": ["/value", "/version"],
+  "redaction_verified": true
+}
+```
+
+The excerpt contains selected fields from the run's output, **not a claim that the exact JSON object above is a separately published artifact**. The run concluded successfully, including the cleanup step that checked the disposable parameter no longer existed.
+
+**What it establishes:** one real Terraform AWS provider refresh, one deliberately introduced out-of-band parameter change, successful evidence generation and value redaction, and cleanup under the tested environment.
+
+**What it does not establish:** that the entire FastAPI collector successfully scans live multi-account infrastructure, that every AWS resource type is supported end to end, or that production scheduling, throughput and recovery guarantees exist. In particular, the SSM parameter exercised the *provider-native evidence path*; it is not proof of the application's separate EC2/S3/RDS inventory collection.
+
+[Examine the executed AWS workflow and its logs](https://github.com/EdwinJdevops/driftguard/actions/runs/35343278654).
+
 ## Failure case: incomplete AWS inventory
 
 An AWS collector that fails midway through enumeration must not return an empty resource list. An empty result can mean "no resources exist", while an exception or partial API response means "the system does not know". Conflating those states can produce false deletion findings.
