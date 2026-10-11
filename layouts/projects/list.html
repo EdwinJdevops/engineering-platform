@@ -41,7 +41,7 @@
     <div class="repository-directory">
       {{ range site.Data.public_repositories.repositories }}
       <a href="{{ .url }}" rel="noopener noreferrer">
-        <span>{{ .name }}</span><span aria-hidden="true">↗</span>
+        <span>{{ .name }}</span><span class="directory-arrow" aria-hidden="true"></span>
       </a>
       {{ end }}
     </div>
