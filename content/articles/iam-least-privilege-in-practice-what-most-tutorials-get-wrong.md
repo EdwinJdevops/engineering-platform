@@ -1,7 +1,7 @@
 ---
 title: "IAM Least Privilege in Practice — What Most Tutorials Get Wrong"
 date: "2026-05-17"
-description: "Every AWS tutorial tells you to use least privilege. Almost none of them show you what it actually looks like. Most examples online attach `AdministratorAccess` to a…"
+description: "Practical AWS IAM least-privilege analysis covering scoped permissions, role delegation, and Access Analyzer."
 draft: false
 original_url: "https://edwinjonathand-devops.hashnode.dev/iam-least-privilege-in-practice-what-most-tutorials-get-wrong"
 original_platform: "hashnode"
