@@ -1,7 +1,7 @@
 ---
 title: "How I Built a Production GitOps Pipeline on AWS at 17 — K3s + ArgoCD + GitHub Actions from Scratch"
 date: "2026-04-27"
-description: "Most people learning DevOps are watching tutorials, copying commands they don't understand, and calling it"
+description: "A first-person AWS GitOps pipeline walkthrough covering k3s, ArgoCD, GitHub Actions, and delivery architecture."
 draft: false
 original_url: "https://edwinjonathand-devops.hashnode.dev/how-i-built-a-production-gitops-pipeline-on-aws-at-17-k3s-argocd-github-actions-from-scratch"
 original_platform: "hashnode"
