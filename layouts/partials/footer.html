@@ -1,12 +1,19 @@
-<footer class="site-footer">
+<footer class="site-footer site-footer-editorial">
+  <div class="shell footer-invitation">
+    <p class="eyebrow">ENGINEERING ROLES / CONTRACT DELIVERY / TECHNICAL COLLABORATION</p>
+    <h2>Bring the system.<br><span>We'll examine the constraints.</span></h2>
+    <a class="footer-email" href="mailto:{{ site.Params.email }}">{{ site.Params.email }} ↗</a>
+  </div>
   <div class="shell footer-grid">
-    <div><strong>Edwin Jonathan</strong><p>Platform engineering · Cloud · DevOps</p></div>
-    <div class="footer-links">
+    <div><strong>Edwin Jonathan</strong><p>Platform · DevOps · Cloud · Backend software engineering</p></div>
+    <nav class="footer-links" aria-label="Professional profiles">
       <a href="{{ site.Params.github }}">GitHub</a>
       <a href="{{ site.Params.linkedin }}">LinkedIn</a>
       <a href="{{ site.Params.dev }}">DEV</a>
       <a href="{{ site.Params.hashnode }}">Hashnode</a>
-    </div>
+      <a href="{{ "portfolio/" | relURL }}">About</a>
+    </nav>
   </div>
-  <div class="shell footer-base"><span>© {{ now.Year }} Edwin Jonathan</span><span>Static by design · Built with Hugo</span></div>
+  <div class="shell footer-signature" aria-hidden="true">EDWIN <span>JONATHAN</span></div>
+  <div class="shell footer-base"><span>© {{ now.Year }} Edwin Jonathan</span><span>Static by design · Hugo / GitHub Pages · <a href="{{ "engineering/" | relURL }}">Inspect delivery ↗</a></span></div>
 </footer>

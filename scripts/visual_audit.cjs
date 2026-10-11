@@ -239,6 +239,35 @@ const fs = require("node:fs");
   await blockedArtwork.screenshot({path:"visual-audit/editorial-blocked-cover-fallback.png",fullPage:false});
   await blockedArtwork.close();
 
+  // Recruiter journey regression: multidisciplinary scope, CV-based roles, privacy and contact.
+  for (const viewport of [{width:320,height:720},{width:390,height:844},{width:768,height:1024},{width:1440,height:900}]) {
+    const identity = await browser.newPage({ viewport, reducedMotion:"reduce" });
+    identity.on("pageerror", error => failures.push("Identity pages "+viewport.width+" JS exception: "+error.message));
+    await identity.goto("http://127.0.0.1:4173/", {waitUntil:"domcontentloaded"});
+    if (await identity.locator(".home-expertise .expertise-list details").count() !== 7)
+      failures.push("Homepage must link seven actual engineering disciplines: "+viewport.width);
+    if (await identity.locator(".experience-entry").count() !== 4)
+      failures.push("Homepage experience entries missing: "+viewport.width);
+    const introLink = identity.locator('.home-intro a[href$="/portfolio/"]').first();
+    if (await introLink.count() !== 1) failures.push("About route missing from hero");
+    const homepageEmail = identity.locator('.footer-email[href^="mailto:edwinjonathanchibuike123@gmail.com"]').first();
+    if (await homepageEmail.count() !== 1) failures.push("Verified contact link missing from footer");
+    const homeOverflow = await identity.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    if (homeOverflow > 2) failures.push("Identity homepage overflow at "+viewport.width+"px: "+homeOverflow);
+    await identity.goto("http://127.0.0.1:4173/portfolio/", {waitUntil:"domcontentloaded"});
+    if (await identity.locator(".tech-stack-grid > div").count() !== 6)
+      failures.push("Expected six technical stack groups: "+viewport.width);
+    if (await identity.locator(".career-timeline > li").count() !== 4)
+      failures.push("Expected four CV-reported professional roles: "+viewport.width);
+    const aboutText = await identity.locator(".profile-confidential").innerText();
+    if (!aboutText.includes("permission") || !aboutText.includes("confidential"))
+      failures.push("Confidential engagement publication boundary is missing");
+    const profileOverflow = await identity.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    if (profileOverflow > 2) failures.push("About page overflow at "+viewport.width+"px: "+profileOverflow);
+    await identity.screenshot({path:"visual-audit/identity-about-"+viewport.width+".png",fullPage:true});
+    await identity.close();
+  }
+
   const noScript = await browser.newPage({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
   await noScript.goto("http://127.0.0.1:4173/", { waitUntil: "load" });
   const staticVisibility = await noScript.locator(".home-work").evaluate(el => ({
