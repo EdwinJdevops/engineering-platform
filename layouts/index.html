@@ -55,12 +55,32 @@
   </div>
 </section>
 
-<section class="shell home-proof section-block" data-reveal aria-labelledby="proof-heading">
-  <div class="home-section-title"><div><p class="eyebrow">INSPECTABLE EVIDENCE</p><h2 id="proof-heading">Review the engineering, not just the claims.</h2></div><a class="text-link" href="{{ "engineering/" | relURL }}">How this website ships ↗</a></div>
-  <div class="proof-grid">
-    <article><p class="card-kicker">01 / FAILURE HANDLING</p><h3>DriftGuard: incomplete inventory</h3><p>A failed AWS inventory request must not be interpreted as evidence that resources were deleted. The change is covered by regression tests and a merged pull request.</p><a href="https://github.com/EdwinJdevops/driftguard/pull/3">Review fix and tests ↗</a></article>
-    <article><p class="card-kicker">02 / DELIVERY SYSTEM</p><h3>Pull requests to production</h3><p>This Hugo site uses GitHub Actions for build, link, accessibility and security checks before source-controlled deployment. The checks have explicit coverage limits.</p><a href="https://github.com/EdwinJdevops/engineering-platform/actions">Inspect workflow runs ↗</a></article>
-    <article><p class="card-kicker">03 / ENGINEERING JUDGMENT</p><h3>Limitations are documented</h3><p>Case studies distinguish repository implementation, test evidence and operational proof. Unverified production claims are excluded.</p><a href="{{ "projects/" | relURL }}">Read case studies ↗</a></article>
+<section class="shell home-proof section-block home-public-record" data-reveal aria-labelledby="proof-heading">
+  <div class="home-section-title"><div><p class="eyebrow">PUBLIC EVIDENCE / NO CLIENT DATA</p><h2 id="proof-heading">A record you can inspect.</h2></div><a class="text-link" href="{{ "engineering/delivery-record/" | relURL }}">Follow a full delivery trace ↗</a></div>
+  <p class="public-record-intro">Confidential contracts do not belong on a public website. These references come from my own open engineering work—not anonymous customer testimonials, ratings or client projects.</p>
+  <div class="proof-grid public-record-grid">
+    <article>
+      <p class="card-kicker">01 / FAILURE INVESTIGATION</p>
+      <h3>Prove what a failed cloud read means.</h3>
+      <p>DriftGuard's inventory regression distinguishes a failed AWS read from evidence that infrastructure was deleted.</p>
+      <a href="https://github.com/EdwinJdevops/driftguard/pull/3">Review the fix and regression tests ↗</a>
+    </article>
+    <article>
+      <p class="card-kicker">02 / DEFECT → CORRECTION</p>
+      <h3>Fix the underlying condition.</h3>
+      <p>PR #64 addressed broken remote article imagery and added browser tests for failed and successful image loading.</p>
+      <a href="https://github.com/EdwinJdevops/engineering-platform/pull/64">Inspect code and review history ↗</a>
+    </article>
+    <article>
+      <p class="card-kicker">03 / RELEASE ASSURANCE</p>
+      <h3>Verify the published result.</h3>
+      <p>PR #65 expanded post-deployment checks to the editorial scripts, feature routes and original project illustrations.</p>
+      <a href="https://github.com/EdwinJdevops/engineering-platform/actions/runs/38140959718">Inspect the production run ↗</a>
+    </article>
+  </div>
+  <div class="public-record-bottom">
+    <p>**Evidence category:** open-source and self-owned engineering delivery. **Not presented as:** customer endorsement, third-party audit or proof of five-star reviews.</p>
+    <a class="text-link" href="{{ "engineering/delivery-record/" | relURL }}">Read the delivery record and its limitations ↗</a>
   </div>
 </section>
 <section class="shell section-block home-expertise" aria-labelledby="expertise-heading">
@@ -87,7 +107,7 @@
   </div>
   <div class="engagement-boundary">
     <div><p class="eyebrow">CLIENT CONFIDENTIALITY</p><h3>Private work stays private.</h3></div>
-    <p>I can discuss my engineering responsibilities and methods without sharing protected client identities, internal systems or source code. Employer names above describe roles recorded in my CV; they do not represent endorsements or client testimonials.</p>
+    <div><p>Public work can be reviewed without revealing a customer's identity, environment or commercial terms. Employer names above identify roles recorded in my CV, not client endorsements.</p><a class="text-link" href="{{ "engineering/delivery-record/" | relURL }}">Read an independent delivery example ↗</a></div>
   </div>
 </section>
 <section class="shell home-articles section-block" aria-labelledby="home-articles-heading">
