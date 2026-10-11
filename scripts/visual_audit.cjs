@@ -183,6 +183,62 @@ const fs = require("node:fs");
     await editorial.close();
   }
 
+  // Regression: blocked original-host images must not leave empty dark covers.
+  const blockedArtwork = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
+  await blockedArtwork.route("https://cdn.hashnode.com/**", route => route.abort("failed"));
+  await blockedArtwork.goto("http://127.0.0.1:4173/articles/", { waitUntil: "domcontentloaded" });
+  const fallbackCover = blockedArtwork.locator(".editorial-feature-article .editorial-cover").first();
+  const originalImage = fallbackCover.locator("img");
+  if (await originalImage.count() !== 1)
+    failures.push("Hashnode feature lacks an original-image element for resilience test");
+  else {
+    await originalImage.scrollIntoViewIfNeeded();
+    await originalImage.evaluate(img => img.decode().catch(() => {}));
+    const fallbackState = await fallbackCover.evaluate(el => ({
+      title: el.querySelector(".editorial-cover-graphic strong")?.textContent?.trim() || "",
+      visibleTitle: !!el.querySelector(".editorial-cover-graphic strong") &&
+        getComputedStyle(el.querySelector(".editorial-cover-graphic strong")).display !== "none",
+      visibleArtwork: getComputedStyle(el.querySelector("img")).opacity,
+      naturalWidth: el.querySelector("img").naturalWidth
+    }));
+    if (!fallbackState.visibleTitle || !fallbackState.title || fallbackState.visibleArtwork !== "0" || fallbackState.naturalWidth !== 0)
+      failures.push("Blocked external image did not show source-labelled cover: "+JSON.stringify(fallbackState));
+    await originalImage.evaluate(async img => {
+      img.src = "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='48'%20height='32'%3E%3Crect%20width='48'%20height='32'%20fill='%230d2740'/%3E%3C/svg%3E";
+      await img.decode();
+    });
+    await blockedArtwork.waitForFunction(() => {
+      const img = document.querySelector(".editorial-feature-article .editorial-cover img");
+      return img?.classList.contains("is-ready") &&
+        img.closest(".editorial-cover")?.classList.contains("has-loaded-image");
+    });
+    await blockedArtwork.waitForFunction(() => {
+      const cover = document.querySelector(".editorial-feature-article .editorial-cover");
+      if (!cover) return false;
+      const image = cover.querySelector("img");
+      const graphic = cover.querySelector(".editorial-cover-graphic");
+      return image?.naturalWidth > 0 &&
+        Number(getComputedStyle(image).opacity) === 1 &&
+        getComputedStyle(graphic).visibility === "hidden";
+    }, undefined, { timeout: 5000 }).catch(() => {});
+    const loadedState = await fallbackCover.evaluate(cover => ({
+      opacity: getComputedStyle(cover.querySelector("img")).opacity,
+      imageWidth: cover.querySelector("img").naturalWidth,
+      fallbackVisibility: getComputedStyle(cover.querySelector(".editorial-cover-graphic")).visibility,
+      imgClass: cover.querySelector("img").className,
+      coverClass: cover.className,
+      cssLink: document.querySelector('link[href$="css/main.css"]')?.href || null,
+      cssRulesMatching: [...document.styleSheets].flatMap(sheet => {
+        try { return [...sheet.cssRules].filter(rule => /editorial-cover img\.is-ready|editorial-cover\.has-loaded-image/.test(rule.cssText)).map(rule => rule.cssText.slice(0,180)); }
+        catch (_) { return []; }
+      })
+    }));
+    if (Number(loadedState.opacity) !== 1 || loadedState.imageWidth <= 0 || loadedState.fallbackVisibility !== "hidden")
+      failures.push("Loaded editorial image state incorrect: "+JSON.stringify(loadedState));
+  }
+  await blockedArtwork.screenshot({path:"visual-audit/editorial-blocked-cover-fallback.png",fullPage:false});
+  await blockedArtwork.close();
+
   const noScript = await browser.newPage({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
   await noScript.goto("http://127.0.0.1:4173/", { waitUntil: "load" });
   const staticVisibility = await noScript.locator(".home-work").evaluate(el => ({

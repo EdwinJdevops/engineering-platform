@@ -425,7 +425,9 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 .editorial-cover-orbit{position:absolute;width:42%;aspect-ratio:1;border:1px solid rgba(174,216,242,.42);border-radius:50%;right:-7%;top:-30%}
 .editorial-cover-orbit--two{width:60%;right:-14%;top:-51%;border-color:rgba(174,216,242,.18)}
 .editorial-cover-cross{position:absolute;right:14%;bottom:9%;font-size:68px;line-height:1;font-weight:200;color:#99c9ed;opacity:.65}
-.editorial-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:2;background:transparent}
+.editorial-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:2;background:transparent;opacity:0}
+.editorial-cover img.is-ready{opacity:1}
+.editorial-cover.has-loaded-image .editorial-cover-graphic{visibility:hidden}
 .editorial-cover--compact .editorial-cover-graphic strong{font-size:clamp(15px,1.7vw,25px)}
 .editorial-cover--hero{aspect-ratio:2.25/1;margin:0 0 20px;max-width:1050px}
 .editorial-cover--hero .editorial-cover-graphic{padding:38px}
