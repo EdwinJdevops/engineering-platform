@@ -510,3 +510,8 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 .editorial-cover-graphic::after{content:"";position:absolute;right:8%;bottom:10%;width:36%;aspect-ratio:1;border:1px solid #7394ae;border-radius:50%;pointer-events:none}
 .directory-arrow::after{content:"↗";color:#153f73}
 .editorial-migration-note a{color:#153f73;font-weight:650;text-decoration:underline;text-underline-offset:3px}
+
+/* A solid provenance surface makes text contrast deterministic in browser audits. */
+.editorial-migration-note{background:#f5f3ed;color:#263c4a}
+.editorial-migration-note .prose-body{color:#263c4a}
+.editorial-migration-note .prose-body a{color:#112e5b;background:#f5f3ed;font-weight:700}
