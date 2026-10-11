@@ -1,0 +1,59 @@
+{{ define "main" }}
+<section class="shell editorial-index">
+  <header class="page-head editorial-index-head">
+    <p class="eyebrow">PUBLICATIONS / CLOUD SYSTEMS & ENGINEERING</p>
+    <h1>Writing that goes beneath the interface.</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+    <div class="prose-body">{{ .Content }}</div>
+  </header>
+  {{ $featuredSlugs := slice
+    "building-production-ai-observability-on-kubernetes-opentelemetry-langfuse-prometheus-grafana-from-zero-to-scale"
+    "why-most-gitops-migrations-fail-after-six-months"
+    "building-agentic-operations-assistant-aws-bedrock-s3"
+  }}
+  <section class="editorial-featured" aria-labelledby="editorial-featured-heading">
+    <div class="editorial-section-heading">
+      <p class="eyebrow">SELECTED TECHNICAL WRITING / 01–03</p>
+      <h2 id="editorial-featured-heading">Featured articles</h2>
+    </div>
+    <div class="editorial-featured-grid">
+    {{ range $featuredSlugs }}
+      {{ with site.GetPage (printf "/articles/%s" .) }}
+      <article class="editorial-feature-article">
+        <a href="{{ .RelPermalink }}" class="editorial-visual-link" aria-label="Read {{ .Title }}">
+          {{ partial "editorial-cover.html" (dict "page" . "variant" "card") }}
+        </a>
+        <div class="editorial-feature-copy">
+          <p class="editorial-article-meta">{{ .Date.Format "02 Jan 2006" }} <span aria-hidden="true">/</span> {{ .ReadingTime }} min read</p>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p>{{ .Description }}</p>
+          <a class="editorial-read" href="{{ .RelPermalink }}">Read publication ↗</a>
+        </div>
+      </article>
+      {{ end }}
+    {{ end }}
+    </div>
+  </section>
+  <section class="editorial-all" aria-labelledby="editorial-all-heading">
+    <div class="editorial-section-heading">
+      <p class="eyebrow">THE WRITING ARCHIVE</p>
+      <h2 id="editorial-all-heading">All articles</h2>
+    </div>
+    <div class="editorial-archive-grid">
+    {{ range .Pages.ByDate.Reverse }}
+      {{ if not (in $featuredSlugs .File.BaseFileName) }}
+      <article class="editorial-archive-item">
+        <a href="{{ .RelPermalink }}" class="editorial-visual-link" aria-label="Read {{ .Title }}">
+          {{ partial "editorial-cover.html" (dict "page" . "variant" "compact") }}
+        </a>
+        <p class="editorial-article-meta">{{ .Date.Format "02 Jan 2006" }} <span aria-hidden="true">/</span> {{ .Params.original_platform | default "Engineering notes" }}</p>
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <p>{{ .Description }}</p>
+        <a class="editorial-read" href="{{ .RelPermalink }}">Read article ↗</a>
+      </article>
+      {{ end }}
+    {{ end }}
+    </div>
+  </section>
+</section>
+{{ end }}
