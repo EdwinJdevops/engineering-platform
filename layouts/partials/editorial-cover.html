@@ -13,10 +13,8 @@
   <div class="editorial-cover-graphic" aria-hidden="true">
     <span class="editorial-cover-orbit editorial-cover-orbit--one"></span>
     <span class="editorial-cover-orbit editorial-cover-orbit--two"></span>
-    {{ if not $url }}
-      <span class="editorial-cover-type">EDWIN / SYSTEM NOTES</span>
-      <strong>{{ $page.Title }}</strong>
-    {{ end }}
+    <span class="editorial-cover-type">EDWIN / SYSTEM NOTES</span>
+    <strong>{{ $page.Title }}</strong>
   </div>
   {{ with $url }}
     <img src="{{ . }}" alt="Original illustration published with {{ $page.Title }}" loading="{{ if eq $variant "hero" }}eager{{ else }}lazy{{ end }}" decoding="async" referrerpolicy="no-referrer">
