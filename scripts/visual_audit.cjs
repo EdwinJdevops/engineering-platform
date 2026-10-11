@@ -121,6 +121,14 @@ const fs = require("node:fs");
   const animation = await work.evaluate(el => getComputedStyle(el).animationName);
   if (!animation.includes("section-arrive"))
     failures.push("scroll-triggered entrance animation not applied: "+animation);
+  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+  await page.waitForTimeout(200);
+  if (await work.evaluate(el => el.classList.contains("is-visible")))
+    failures.push("work section did not reset after leaving the viewport");
+  await work.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(200);
+  if (!(await work.evaluate(el => el.classList.contains("is-visible"))))
+    failures.push("work section did not replay on upward scroll");
   const card = page.locator(".featured-project").first();
   if (!(await card.isVisible())) failures.push("featured project card missing");
   await card.locator("h3 a").focus();
@@ -135,6 +143,17 @@ const fs = require("node:fs");
     failures.push("expertise disclosure did not close");
   await page.screenshot({path:"visual-audit/desktop-motion-home.png",fullPage:true});
   await page.close();
+
+  const noScript = await browser.newPage({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
+  await noScript.goto("http://127.0.0.1:4173/", { waitUntil: "load" });
+  const staticVisibility = await noScript.locator(".home-work").evaluate(el => ({
+    opacity: getComputedStyle(el).opacity,
+    height: el.getBoundingClientRect().height,
+    hasMotionClass: document.documentElement.classList.contains("scroll-reveal-active")
+  }));
+  if (staticVisibility.opacity !== "1" || staticVisibility.height <= 0 || staticVisibility.hasMotionClass)
+    failures.push("No-JavaScript fallback conceals content: "+JSON.stringify(staticVisibility));
+  await noScript.close();
   await browser.close();
   fs.writeFileSync("visual-audit/results.json",JSON.stringify({ failures,observations,routes,widths },null,2));
   if (failures.length) { console.error(failures.join("\n"));process.exit(1); }
