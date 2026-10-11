@@ -207,10 +207,18 @@ const fs = require("node:fs");
       img.src = "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='48'%20height='32'%3E%3Crect%20width='48'%20height='32'%20fill='%230d2740'/%3E%3C/svg%3E";
       await img.decode();
     });
-    await blockedArtwork.waitForFunction(() =>
-      document.querySelector(".editorial-feature-article .editorial-cover img")?.classList.contains("is-ready"));
-    if (await originalImage.evaluate(img => getComputedStyle(img).opacity) !== "1")
-      failures.push("Successful editorial image is not shown after decoding");
+    await blockedArtwork.waitForFunction(() => {
+      const img = document.querySelector(".editorial-feature-article .editorial-cover img");
+      return img?.classList.contains("is-ready") &&
+        img.closest(".editorial-cover")?.classList.contains("has-loaded-image");
+    });
+    const loadedState = await fallbackCover.evaluate(cover => ({
+      opacity: getComputedStyle(cover.querySelector("img")).opacity,
+      imageWidth: cover.querySelector("img").naturalWidth,
+      fallbackVisibility: getComputedStyle(cover.querySelector(".editorial-cover-graphic")).visibility
+    }));
+    if (Number(loadedState.opacity) !== 1 || loadedState.imageWidth <= 0 || loadedState.fallbackVisibility !== "hidden")
+      failures.push("Loaded editorial image state incorrect: "+JSON.stringify(loadedState));
   }
   await blockedArtwork.screenshot({path:"visual-audit/editorial-blocked-cover-fallback.png",fullPage:false});
   await blockedArtwork.close();
