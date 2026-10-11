@@ -48,6 +48,12 @@ The Kubernetes and security documentation describe Azure Workload Identity and s
 
 The documentation's claim that no static credentials exist is therefore not established by the current main-branch runtime code.
 
+## API authentication default
+
+The main-branch FastAPI code reads `INFRAGUARD_API_KEY` but falls back to a hard-coded, publicly visible demo key when that variable is absent. A deployment using the fallback would accept a known credential, even though requests still pass through an API-key check. Rate limiting does not repair this authentication weakness.
+
+A secure deployment must explicitly configure an independently generated secret; a stronger implementation should refuse startup when the API key is missing. The source review does not establish whether the public demonstration deployment currently uses the fallback, so this case study does **not** claim that the running service is exposed.
+
 ## Security-model caveats
 
 Several security controls are real configuration artifacts: non-root execution, read-only filesystem, dropped capabilities, namespace-scoped RBAC and a NetworkPolicy.
