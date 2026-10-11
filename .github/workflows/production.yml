@@ -58,7 +58,7 @@ jobs:
         run: |
           set -euo pipefail
           base="${SITE_URL%/}/"
-          routes=("" "portfolio/" "projects/" "articles/" "services/" "engineering/" "contact/"
+          routes=("" "portfolio/" "projects/" "articles/" "services/" "engineering/" "engineering/delivery-record/" "contact/"
             "projects/warden/" "projects/infraguard/" "projects/infraguard-agent/"
             "projects/consequential-execution-runtime/"
             "articles/building-production-ai-observability-on-kubernetes-opentelemetry-langfuse-prometheus-grafana-from-zero-to-scale/")
