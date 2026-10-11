@@ -200,6 +200,13 @@ body{background:var(--bg);color:var(--text)}
 .button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .button.primary:hover{background:#103765;border-color:#103765;color:#fff}
 .prose-body{color:#32424b}
+/* Technical article media must not increase the page's viewport width. */
+.prose-body{min-width:0;overflow-wrap:anywhere}
+.prose-body img,.prose-body video,.prose-body iframe,.prose-body svg{max-width:100%;height:auto}
+.prose-body pre{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;white-space:pre}
+.prose-body pre code{overflow-wrap:normal;white-space:inherit}
+.prose-body table{display:block;max-width:100%;overflow-x:auto}
+
 .prose-body code{color:#174c91}
 .prose-body blockquote{background:#e7eae6}
 .prose-body a,.case-rail a,.case-body>p:last-child a{color:var(--accent)}
