@@ -8,4 +8,4 @@ Technical writing by Edwin Jonathan, with archived originals from [DEV Community
 
 This collection contains nine full DEV-origin articles, ten additional nonduplicate Hashnode-origin articles, and one original repository-authored engineering article. Original publication dates and source links are preserved; Hashnode copies retain their original canonical URLs.
 
-Articles reflect the author's published analysis at the time, not independent evidence that every described architecture is deployed or production-ready. For implementation status, current limitations and test evidence, consult the [project case studies]({{< relref "/projects" >}}).
+Articles reflect the author's published analysis at the time, not independent evidence that every described architecture is deployed or production-ready. For implementation status, current limitations and test evidence, consult the project case studies.
