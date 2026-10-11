@@ -268,6 +268,46 @@ const fs = require("node:fs");
     await identity.close();
   }
 
+  // Public trust without private client material: exact code-backed evidence and disclosures.
+  for (const viewport of [{width:320,height:720},{width:390,height:844},{width:1440,height:900}]) {
+    const publicEvidence = await browser.newPage({ viewport, reducedMotion:"reduce" });
+    publicEvidence.on("pageerror", error => failures.push("Public evidence "+viewport.width+" JS exception: "+error.message));
+    await publicEvidence.goto("http://127.0.0.1:4173/", {waitUntil:"domcontentloaded"});
+    if (await publicEvidence.locator(".public-record-grid article").count() !== 3)
+      failures.push("Expected three source-backed homepage evidence receipts: "+viewport.width);
+    if (await publicEvidence.locator('.home-public-record a[href$="/engineering/delivery-record/"]').count() < 1)
+      failures.push("Missing public delivery record link: "+viewport.width);
+    const firstPartyEvidence = await publicEvidence.locator(".home-public-record").innerText();
+    if (!firstPartyEvidence.includes("not anonymous customer testimonials") ||
+        !firstPartyEvidence.includes("Failure") && !firstPartyEvidence.includes("failed AWS"))
+      failures.push("Home source/disclosure distinction absent: "+viewport.width);
+    const homeOverflow = await publicEvidence.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    if (homeOverflow > 2) failures.push("Evidence homepage overflow at "+viewport.width+"px: "+homeOverflow);
+
+    await publicEvidence.goto("http://127.0.0.1:4173/services/", {waitUntil:"domcontentloaded"});
+    if (await publicEvidence.locator(".assurance-ledger article").count() !== 3)
+      failures.push("Service delivery boundaries missing: "+viewport.width);
+    const serviceIntro = await publicEvidence.locator(".service-assurance-intro").innerText();
+    if (!serviceIntro.includes("not a customer's system"))
+      failures.push("Services misrepresented a client work sample: "+viewport.width);
+    const serviceOverflow = await publicEvidence.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    if (serviceOverflow > 2) failures.push("Services evidence overflow at "+viewport.width+"px: "+serviceOverflow);
+
+    await publicEvidence.goto("http://127.0.0.1:4173/engineering/delivery-record/", {waitUntil:"domcontentloaded"});
+    const recordText = await publicEvidence.locator("main").innerText();
+    for (const required of ["not a customer project", "PR #64", "PR #65", "does not prove"]) {
+      if (!recordText.toLowerCase().includes(required.toLowerCase()))
+        failures.push("Delivery evidence provenance / limits missing: "+required);
+    }
+    const recordOverflow = await publicEvidence.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    if (recordOverflow > 2) failures.push("Delivery record overflow at "+viewport.width+"px: "+recordOverflow);
+    await publicEvidence.screenshot({path:"visual-audit/public-delivery-record-"+viewport.width+".png",fullPage:true});
+    await publicEvidence.close();
+  }
+
   const noScript = await browser.newPage({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
   await noScript.goto("http://127.0.0.1:4173/", { waitUntil: "load" });
   const staticVisibility = await noScript.locator(".home-work").evaluate(el => ({
