@@ -18,6 +18,6 @@
     <strong>{{ $page.Title }}</strong>
   </div>
   {{ with $url }}
-    <img src="{{ . }}" alt="" loading="{{ if eq $variant "hero" }}eager{{ else }}lazy{{ end }}" decoding="async" referrerpolicy="no-referrer">
+    <img src="{{ . }}" alt="Original illustration published with {{ $page.Title }}" loading="{{ if eq $variant "hero" }}eager{{ else }}lazy{{ end }}" decoding="async" referrerpolicy="no-referrer">
   {{ end }}
 </div>
