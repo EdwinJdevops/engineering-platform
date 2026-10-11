@@ -1,7 +1,7 @@
 ---
 title: "How I Secured an ECS Fargate Deployment With OIDC and ECR — No Static Keys"
 date: "2026-05-16"
-description: "Most AWS CI/CD tutorials hand you a `AWSACCESSKEYID` and `AWSSECRETACCESSKEY` and call it a day. That's a security failure waiting to happen. Static keys get leaked in…"
+description: "A GitHub Actions to AWS ECS Fargate deployment walkthrough using OIDC federation, Amazon ECR, and short-lived credentials."
 draft: false
 original_url: "https://edwinjonathand-devops.hashnode.dev/how-i-secured-an-ecs-fargate-deployment-with-oidc-and-ecr-no-static-keys"
 original_platform: "hashnode"
