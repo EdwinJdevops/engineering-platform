@@ -1,4 +1,8 @@
 ---
+artifact_file: "controller/internal/remediation/tier_test.go"
+artifact_url: "https://github.com/EdwinJdevops/warden/blob/master/controller/internal/remediation/tier_test.go"
+artifact_summary: "Manual-gate policy tests that reject automatic merge"
+artifact_kind: "GO TEST / SOURCE FILE"
 title: "Warden"
 date: 2026-10-11
 draft: false
