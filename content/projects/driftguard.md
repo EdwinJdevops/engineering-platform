@@ -1,4 +1,6 @@
 ---
+illustration: "driftguard"
+featured_rank: 3
 title: "DriftGuard"
 description: "Terraform drift detection and review-based remediation for AWS infrastructure."
 date: 2026-09-26
