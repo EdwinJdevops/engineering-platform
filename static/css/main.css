@@ -494,6 +494,7 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
   .editorial-featured{padding-bottom:56px}
 }
 @media(max-width:420px){
+  .work-index-head h1{overflow-wrap:anywhere;font-size:clamp(43px,12vw,64px)}
   .repository-directory{grid-template-columns:1fr}
   .editorial-cover-graphic{padding:17px}
   .editorial-cover-graphic strong{font-size:18px}
