@@ -21,7 +21,7 @@ async function expectPage(page, relativePath) {
   observations.push({ url, status: response.status() });
 }
 
-async function checkHomepage(page, name, expectMotion) {
+async function checkHomepage(page, name, { reducedMotion, mobile }) {
   await expectPage(page, '');
   const portrait = page.locator('.home-portrait img');
   assert.equal(await portrait.count(), 1, 'Authentic portrait element missing: ' + name);
@@ -40,8 +40,10 @@ async function checkHomepage(page, name, expectMotion) {
     assert.notEqual(await page.locator('.infra-stack').evaluate(el => getComputedStyle(el).transform), 'none',
       'CSS infrastructure fallback has no 3D transform: ' + name);
   }
-  if (!expectMotion) {
-    assert.notEqual(mode, 'webgl', 'Reduced motion or mobile incorrectly enables WebGL');
+  if (mobile || reducedMotion === 'reduce') {
+    assert.notEqual(mode, 'webgl', 'Mobile or reduced-motion setting incorrectly enables WebGL');
+  }
+  if (reducedMotion === 'reduce') {
     assert.equal(await page.locator('.home-work').evaluate(el => getComputedStyle(el).animationName), 'none',
       'Reduced motion still animates the home-work section');
   } else {
@@ -77,7 +79,7 @@ async function runProfile(browser, { name, viewport, reducedMotion, mobile }) {
       if (new URL(response.url()).origin === BASE.origin && response.status() >= 400)
         errors.push('First-party HTTP ' + response.status() + ': ' + response.url());
     });
-    await checkHomepage(page, name, reducedMotion === 'no-preference' && !mobile);
+    await checkHomepage(page, name, { reducedMotion, mobile });
     const overflow = await page.evaluate(() => ({
       viewport: document.documentElement.clientWidth,
       document: document.documentElement.scrollWidth
@@ -120,6 +122,12 @@ async function runProfile(browser, { name, viewport, reducedMotion, mobile }) {
   fs.mkdirSync(REPORT_DIR, { recursive: true });
   const browser = await chromium.launch({ headless: true });
   try {
+    await runProfile(browser, {
+      name: 'small-mobile-motion', viewport: { width: 320, height: 720 }, reducedMotion: 'no-preference', mobile: true
+    });
+    await runProfile(browser, {
+      name: 'mobile-motion', viewport: { width: 390, height: 844 }, reducedMotion: 'no-preference', mobile: true
+    });
     await runProfile(browser, {
       name: 'mobile-reduced-motion', viewport: { width: 390, height: 844 }, reducedMotion: 'reduce', mobile: true
     });
