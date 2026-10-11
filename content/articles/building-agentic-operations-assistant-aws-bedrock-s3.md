@@ -1,7 +1,7 @@
 ---
 title: "Building an Agentic Operations Assistant on AWS with Amazon Bedrock and Amazon S3"
 date: "2026-07-14"
-description: "Most of those demos fail the moment they're introduced to a real production"
+description: "An architecture discussion of AWS Bedrock, S3-backed operational knowledge, IAM, retrieval reliability, and failure handling."
 draft: false
 original_url: "https://edwinjonathand-devops.hashnode.dev/building-agentic-operations-assistant-aws-bedrock-s3"
 original_platform: "hashnode"
