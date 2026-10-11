@@ -26,7 +26,11 @@ The separate [security workflow](https://github.com/EdwinJdevops/engineering-pla
 
 The [production workflow](https://github.com/EdwinJdevops/engineering-platform/blob/main/.github/workflows/production.yml) builds the Hugo site on eligible pushes to `main`, uploads a Pages artifact, and deploys it using GitHub Pages Actions. The workflow grants read access by default; the deployment job receives Pages-write and OIDC-token permissions.
 
-After deployment, a bounded retry loop requests the published site URL and requires HTTP 200. This confirms basic endpoint reachability at that moment. It does **not** prove that every page is correct, that users can complete all journeys, or that the site meets an uptime SLO.
+After deployment, the workflow verifies HTTP 200 for seven published routes and four critical assets (the portrait, stylesheet and two infrastructure scripts). It also checks that the portrait response is nonempty and starts with a RIFF signature. These are availability and basic artifact-sanity checks, not complete visual, WebP-format or real-device validation.
+
+The [live production browser smoke workflow](https://github.com/EdwinJdevops/engineering-platform/blob/main/.github/workflows/production-browser-smoke.yml) separately exercises the deployed site in Chromium across mobile and desktop profiles. It checks portrait loading, the WebGL/CSS fallback, reduced motion, navigation, project focus, expertise panels and contact email. **It runs on demand and on changes to its own test files; it is not automatically triggered by every production deployment.** Its evidence concerns the tested browser profiles, not all user devices or an uptime SLO.
+
+The [production performance audit](https://github.com/EdwinJdevops/engineering-platform/blob/main/.github/workflows/performance-audit.yml) collects synthetic load measurements on demand. These are not real-user Core Web Vitals or INP results.
 
 ## Failure and recovery model
 

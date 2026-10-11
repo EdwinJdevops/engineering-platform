@@ -4,7 +4,7 @@ description: "Contact Edwin Jonathan about engineering roles, technical collabor
 draft: false
 ---
 
-For engineering roles, infrastructure work, platform/DevOps engagements or technical collaboration, the primary contact channel is [LinkedIn](https://www.linkedin.com/in/edwin-jonathan-1094093b0).
+For engineering roles, infrastructure work, platform/DevOps engagements or technical collaboration, contact me directly at [edwinjonathanchibuike123@gmail.com](mailto:edwinjonathanchibuike123@gmail.com?subject=Engineering%20inquiry). [LinkedIn](https://www.linkedin.com/in/edwin-jonathan-1094093b0) is also available for professional introductions.
 
 For an engineering role, include the role, team, location or remote policy, and a link to the job description.
 
