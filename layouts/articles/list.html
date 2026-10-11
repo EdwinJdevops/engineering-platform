@@ -2,9 +2,8 @@
 <section class="shell editorial-index">
   <header class="page-head editorial-index-head">
     <p class="eyebrow">PUBLICATIONS / CLOUD SYSTEMS & ENGINEERING</p>
-    <h1>Writing that goes beneath the interface.</h1>
+    <h1>Engineering, documented.</h1>
     {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
-    <div class="prose-body">{{ .Content }}</div>
   </header>
   {{ $featuredSlugs := slice
     "building-production-ai-observability-on-kubernetes-opentelemetry-langfuse-prometheus-grafana-from-zero-to-scale"
@@ -55,5 +54,9 @@
     {{ end }}
     </div>
   </section>
+  <aside class="editorial-migration-note" aria-label="Publication provenance and limits">
+    <h2>Publishing provenance</h2>
+    <div class="prose-body">{{ .Content }}</div>
+  </aside>
 </section>
 {{ end }}
