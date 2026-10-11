@@ -1,4 +1,6 @@
 ---
+illustration: "archnet"
+featured_rank: 8
 title: "ARCHNET"
 description: "A Kubernetes platform prototype combining AWS infrastructure, k3s bootstrap, ArgoCD reconciliation and basic observability configuration."
 date: 2026-09-26
