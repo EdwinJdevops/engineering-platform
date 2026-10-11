@@ -1,0 +1,23 @@
+{{- $page := .page -}}
+{{- $variant := .variant | default "card" -}}
+{{- $matches := findRE "!\\[[^]]*\\]\\(https?://[^) ]+" $page.RawContent 1 -}}
+{{- $url := "" -}}
+{{- with $page.Params.cover_image -}}
+  {{- $url = . -}}
+{{- else -}}
+  {{- with $matches -}}
+    {{- $url = replaceRE "^.*\\(" "" (index . 0) -}}
+  {{- end -}}
+{{- end -}}
+<div class="editorial-cover editorial-cover--{{ $variant }}" role="img" aria-label="Editorial artwork for {{ $page.Title }}">
+  <div class="editorial-cover-graphic" aria-hidden="true">
+    <span class="editorial-cover-orbit editorial-cover-orbit--one"></span>
+    <span class="editorial-cover-orbit editorial-cover-orbit--two"></span>
+    <span class="editorial-cover-cross">×</span>
+    <span class="editorial-cover-type">EDWIN / SYSTEM NOTES</span>
+    <strong>{{ $page.Title }}</strong>
+  </div>
+  {{ with $url }}
+    <img src="{{ . }}" alt="" loading="{{ if eq $variant "hero" }}eager{{ else }}lazy{{ end }}" decoding="async" referrerpolicy="no-referrer">
+  {{ end }}
+</div>
