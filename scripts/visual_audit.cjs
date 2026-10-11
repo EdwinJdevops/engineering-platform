@@ -152,22 +152,27 @@ const fs = require("node:fs");
     const editorial = await browser.newPage({ viewport, reducedMotion:"reduce" });
     editorial.on("pageerror", error => failures.push("Editorial "+viewport.width+" JS exception: "+error.message));
     await editorial.goto("http://127.0.0.1:4173/projects/", { waitUntil:"domcontentloaded" });
-    if (await editorial.locator(".work-visual-card").count() !== 8)
-      failures.push("Projects index must expose eight evidence-backed visual cards: "+viewport.width);
-    for (const slug of ["warden","infraguard","infraguard-agent","driftguard"]) {
-      const link = editorial.locator('.work-visual-card a[href$="/projects/'+slug+'/"]').first();
-      if (await link.count() !== 1) failures.push("Missing named project: "+slug);
+    if (await editorial.locator(".work-visual-card").count() !== 3)
+      failures.push("Expected three implementation-first source cards: "+viewport.width);
+    if (await editorial.locator(".work-research-list article").count() !== 5)
+      failures.push("Five research-stage entries must remain accessible: "+viewport.width);
+    for (const slug of ["driftguard","warden","sentinel"]) {
+      const link = editorial.locator('.work-visual-card h3 a[href$="/projects/'+slug+'/"]').first();
+      if (await link.count() !== 1) failures.push("Missing tested implementation: "+slug);
     }
-    const projectImages = editorial.locator(".work-image-link img");
-    for (let i = 0; i < await projectImages.count(); i++) {
-      const image = projectImages.nth(i);
-      await image.scrollIntoViewIfNeeded();
-      await image.evaluate(img => img.decode());
+    for (const slug of ["infraguard-agent","infraguard","consequential-execution-runtime","optimization-evidence","archnet"]) {
+      const link = editorial.locator('.work-research-list h3 a[href$="/projects/'+slug+'/"]').first();
+      if (await link.count() !== 1) failures.push("Research project inaccessible: "+slug);
     }
-    const images = await projectImages.evaluateAll(nodes =>
-      nodes.map(img => ({loaded:img.complete && img.naturalWidth > 0, src:img.getAttribute("src")})));
-    if (images.length !== 8 || images.some(img => !img.loaded))
-      failures.push("Featured project SVG failed to load: "+JSON.stringify(images.filter(img => !img.loaded)));
+    const sourceLinks = editorial.locator(".work-visual-card .source-artifact");
+    if (await sourceLinks.count() !== 3)
+      failures.push("Each featured project must link real source evidence");
+    const artifacts = await sourceLinks.evaluateAll(nodes =>
+      nodes.map(a => ({url:a.href,filename:a.querySelector("code")?.textContent.trim() || ""})));
+    if (artifacts.some(a => !a.url.startsWith("https://github.com/EdwinJdevops/") || !a.filename || !a.url.includes("/blob/")))
+      failures.push("Unverifiable artifact source link: "+JSON.stringify(artifacts));
+    if (await editorial.locator(".work-image-link img").count() > 0)
+      failures.push("No synthetic project render should appear as source evidence");
     const projectOverflow = await editorial.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     if (projectOverflow > 2) failures.push("Projects overflow at "+viewport.width+"px: "+projectOverflow);
     await editorial.goto("http://127.0.0.1:4173/articles/", { waitUntil:"domcontentloaded" });
@@ -273,14 +278,21 @@ const fs = require("node:fs");
     const publicEvidence = await browser.newPage({ viewport, reducedMotion:"reduce" });
     publicEvidence.on("pageerror", error => failures.push("Public evidence "+viewport.width+" JS exception: "+error.message));
     await publicEvidence.goto("http://127.0.0.1:4173/", {waitUntil:"domcontentloaded"});
-    if (await publicEvidence.locator(".public-record-grid article").count() !== 3)
-      failures.push("Expected three source-backed homepage evidence receipts: "+viewport.width);
-    if (await publicEvidence.locator('.home-public-record a[href$="/engineering/delivery-record/"]').count() < 1)
-      failures.push("Missing public delivery record link: "+viewport.width);
-    const firstPartyEvidence = await publicEvidence.locator(".home-public-record").innerText();
-    if (!firstPartyEvidence.includes("not anonymous customer testimonials") ||
-        !firstPartyEvidence.includes("Failure") && !firstPartyEvidence.includes("failed AWS"))
-      failures.push("Home source/disclosure distinction absent: "+viewport.width);
+    if (await publicEvidence.locator(".public-record-grid article").count() !== 1)
+      failures.push("Only independent DriftGuard failure case should lead homepage: "+viewport.width);
+    if (await publicEvidence.locator('.home-public-record a[href="https://github.com/EdwinJdevops/driftguard/pull/3"]').count() < 1)
+      failures.push("Missing merged external DriftGuard PR evidence: "+viewport.width);
+    const evidenceText = await publicEvidence.locator(".home-public-record").innerText();
+    if (!evidenceText.includes("failed read") || !evidenceText.includes("not a client testimonial"))
+      failures.push("Missing precise independent implementation disclosure: "+viewport.width);
+    if (await publicEvidence.locator(".featured-project").count() !== 3)
+      failures.push("Research stage projects were not excluded from homepage selected work");
+    const heroText = await publicEvidence.locator(".home-intro").innerText();
+    if (!heroText.includes("LAGOS, NIGERIA") || !heroText.includes("remote engineering roles"))
+      failures.push("Role, location, or application availability absent in homepage hero");
+    const socialImage = await publicEvidence.locator('meta[property="og:image"]').getAttribute("content");
+    if (socialImage !== "https://edwinjdevops.github.io/engineering-platform/images/edwin-portrait-web.webp")
+      failures.push("Missing canonical first-party social image: "+socialImage);
     const homeOverflow = await publicEvidence.evaluate(() =>
       document.documentElement.scrollWidth - document.documentElement.clientWidth);
     if (homeOverflow > 2) failures.push("Evidence homepage overflow at "+viewport.width+"px: "+homeOverflow);
