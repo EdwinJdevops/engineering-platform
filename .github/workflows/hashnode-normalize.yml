@@ -1,0 +1,43 @@
+name: One-time Hashnode Markdown normalization
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/hashnode_markdown_normalize.py'
+      - '.github/workflows/hashnode-normalize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    if: ${{ github.head_ref == 'feat/hashnode-fulltext-review' && github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Normalize Hashnode-specific Markdown
+        run: python3 scripts/hashnode_markdown_normalize.py
+      - name: Apply mechanical Markdown formatting fixes
+        run: |
+          set -euo pipefail
+          mapfile -t sources < <(grep -l '^original_platform: "hashnode"$' content/articles/*.md)
+          test "${#sources[@]}" -eq 10
+          npx --yes markdownlint-cli2@0.13.0 --fix "${sources[@]}" || true
+          npx --yes markdownlint-cli2@0.13.0 "${sources[@]}"
+      - name: Commit only normalized Hashnode originals to review branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/articles/
+          test -n "$(git diff --cached --name-only)"
+          if git diff --cached --name-only | grep -v '^content/articles/'; then
+            echo "::error::Unexpected change outside articles"
+            exit 1
+          fi
+          git commit -m "Normalize Hashnode Markdown for accessible, lint-clean rendering"
+          git push origin HEAD:refs/heads/feat/hashnode-fulltext-review
