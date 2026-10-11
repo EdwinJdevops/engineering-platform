@@ -1,7 +1,7 @@
 ---
 title: "Securing AWS deployments with GitHub Actions OIDC — a production walkthrough"
 date: "2026-05-08"
-description: "Every tutorial shows you how to deploy to AWS from GitHub Actions using `AWSACCESSKEYID` and `AWSSECRETACCESSKEY` stored as repository"
+description: "A technical walkthrough of GitHub Actions OIDC federation and scoped AWS IAM roles as alternatives to static CI credentials."
 draft: false
 original_url: "https://edwinjonathand-devops.hashnode.dev/securing-aws-deployments-with-github-actions-oidc-a-production-walkthrough"
 original_platform: "hashnode"
