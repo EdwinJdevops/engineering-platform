@@ -77,3 +77,22 @@ jobs:
             echo "Verified HTTP 200: ${route:-/}"
           done
           echo "Production route smoke checks passed"
+          # A successful HTML response alone does not establish that the portrait and assets shipped.
+          for asset in "images/edwin-portrait-web.webp" "css/main.css" "js/infrastructure-scene.js" "js/infrastructure-webgl.js"; do
+            url="${base}${asset}"
+            code="$(curl --location --silent --show-error --output /dev/null --write-out '%{http_code}' --max-time 15 "$url")"
+            if [[ "$code" != "200" ]]; then
+              echo "::error::Production asset $asset returned HTTP $code"
+              exit 1
+            fi
+            echo "Verified HTTP 200: $asset"
+          done
+          # Verify the portrait is nonempty and WebP, rather than a missing-page response.
+          curl --fail --location --silent --show-error --max-time 20 "${base}images/edwin-portrait-web.webp" -o /tmp/production-portrait.webp
+          bytes="$(wc -c < /tmp/production-portrait.webp)"
+          signature="$(od -An -tx1 -N4 /tmp/production-portrait.webp | tr -d ' \n')"
+          if [[ "$bytes" -lt 10000 || "$signature" != "52494646" ]]; then
+            echo "::error::Production portrait failed file sanity check"
+            exit 1
+          fi
+          echo "Production portrait validated ($bytes bytes)"
