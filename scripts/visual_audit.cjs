@@ -121,10 +121,12 @@ const fs = require("node:fs");
   const animation = await work.evaluate(el => getComputedStyle(el).animationName);
   if (!animation.includes("section-arrive"))
     failures.push("scroll-triggered entrance animation not applied: "+animation);
-  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-  await page.waitForTimeout(200);
-  if (await work.evaluate(el => el.classList.contains("is-visible")))
-    failures.push("work section did not reset after leaving the viewport");
+  await page.evaluate(() => {
+    document.documentElement.style.scrollBehavior = "auto";
+    window.scrollTo(0, document.documentElement.scrollHeight);
+  });
+  await page.waitForFunction(() => document.querySelector(".home-work").getBoundingClientRect().bottom < 0);
+  await page.waitForFunction(() => !document.querySelector(".home-work").classList.contains("is-visible"));
   await work.scrollIntoViewIfNeeded();
   await page.waitForTimeout(200);
   if (!(await work.evaluate(el => el.classList.contains("is-visible"))))
