@@ -1,7 +1,7 @@
 ---
 title: "AI Agents in DevOps: Building Autonomous Cloud Infrastructure That Operates Itself"
 date: "2026-05-10"
-description: "The traditional DevOps pipeline is breaking under modern infrastructure"
+description: "An exploratory analysis of AI agents in infrastructure operations, Kubernetes, GitOps, and observability."
 draft: false
 original_url: "https://edwinjonathand-devops.hashnode.dev/ai-agents-in-devops-building-autonomous-cloud-infrastructure-that-operates-itself"
 original_platform: "hashnode"
