@@ -14,10 +14,11 @@
     </div>
     <div class="work-visual-grid">
     {{ range $projects.ByParam "featured_rank" }}
+      {{ $project := . }}
       <article class="work-visual-card">
         <a class="work-image-link" href="{{ .RelPermalink }}" aria-label="Read {{ .Title }} case study">
           {{ with .Params.illustration }}
-            <img src="{{ printf "images/projects/%s.svg" . | relURL }}" alt="Source-labelled architecture illustration for {{ $.Title }}" loading="lazy" decoding="async" width="1200" height="640">
+            <img src="{{ printf "images/projects/%s.svg" . | relURL }}" alt="Source-labelled architecture illustration for {{ $project.Title }}" loading="lazy" decoding="async" width="1200" height="640">
           {{ end }}
         </a>
         <div class="work-visual-copy">
