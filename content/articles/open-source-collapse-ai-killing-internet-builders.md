@@ -1,7 +1,7 @@
 ---
 title: "The Open-Source Collapse: Why AI Is Quietly Killing the People Who Built the Internet"
 date: "2026-07-01"
-description: "Every time someone says AI will replace developers, I know they don't understand where AI came"
+description: "An essay on the dependence of AI infrastructure on open-source software and the economics of maintaining it."
 draft: false
 original_url: "https://edwinjonathand-devops.hashnode.dev/open-source-collapse-ai-killing-internet-builders"
 original_platform: "hashnode"
