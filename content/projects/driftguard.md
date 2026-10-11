@@ -83,18 +83,14 @@ The repository also has an [actual AWS-backed GitHub Actions execution](https://
 
 That completed run used temporary AWS credentials and Terraform to create a disposable **AWS Systems Manager parameter**. It then changed the parameter through the AWS API outside Terraform, ran `terraform plan -refresh-only`, converted the resulting provider plan to a DriftGuard evidence bundle, verified sensitive values were omitted, and destroyed the test resource.
 
-The job logs recorded:
+The job logs reported the following selected evidence fields:
 
-```json
-{
-  "resource_address": "aws_ssm_parameter.proof",
-  "actions": ["update"],
-  "changed_paths": ["/value", "/version"],
-  "redaction_verified": true
-}
-```
+- Resource address: `aws_ssm_parameter.proof`
+- Change action: `update`
+- Changed paths: `/value` and `/version`
+- Redaction verification: `true`
 
-The excerpt contains selected fields from the run's output, **not a claim that the exact JSON object above is a separately published artifact**. The run concluded successfully, including the cleanup step that checked the disposable parameter no longer existed.
+These are fields from the run's output, **not a claim that this list is a separately published artifact**. The run concluded successfully, including the cleanup step that checked the disposable parameter no longer existed.
 
 **What it establishes:** one real Terraform AWS provider refresh, one deliberately introduced out-of-band parameter change, successful evidence generation and value redaction, and cleanup under the tested environment.
 
