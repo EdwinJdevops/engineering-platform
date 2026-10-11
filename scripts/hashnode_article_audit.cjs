@@ -35,7 +35,16 @@ if (files.length !== 10) throw new Error('Expected exactly ten nonduplicate Hash
           bodyCharacters:(document.querySelector('.prose-body')?.textContent || '').length,
           canonical:document.querySelector('link[rel="canonical"]')?.href || '',
           source:document.querySelector('.article-source a')?.href || '',
-          images:document.querySelectorAll('.prose-body img').length
+          images:document.querySelectorAll('.prose-body img').length,
+          overflowingElements: [...document.querySelectorAll('main *')].filter(el => {
+            const rect = el.getBoundingClientRect();
+            return rect.width > 0 && (rect.right > document.documentElement.clientWidth + 2 || rect.left < -2);
+          }).slice(0, 12).map(el => ({
+            tag: el.tagName.toLowerCase(), className: typeof el.className === 'string' ? el.className.slice(0, 80) : '',
+            width: Math.round(el.getBoundingClientRect().width),
+            right: Math.round(el.getBoundingClientRect().right),
+            sample: (el.textContent || '').slice(0, 60)
+          }))
         }));
         if (observation.document > observation.viewport + 2) errors.push(slug + ' horizontal overflow ' + JSON.stringify(dimensions));
         if (observation.headings !== 1) errors.push(slug + ' should have exactly one H1');
