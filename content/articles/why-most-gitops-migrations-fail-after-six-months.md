@@ -1,7 +1,7 @@
 ---
 title: "Why Most GitOps Migrations Fail After Six Months"
 date: "2026-07-21"
-description: "Before discussing why GitOps projects fail, it's useful to understand the production architecture this article refers"
+description: "Why GitOps adoption can degrade over time: drift, platform ownership, policy enforcement, observability, and recovery."
 draft: false
 original_url: "https://edwinjonathand-devops.hashnode.dev/why-most-gitops-migrations-fail-after-six-months"
 original_platform: "hashnode"
@@ -198,9 +198,9 @@ If every team owns everything, nobody owns the platform.
 
 Successful organizations solve this by establishing dedicated platform engineering teams responsible for the developer platform rather than individual applications.
 
-![Illustration accompanying **The Five Failure Patterns**](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/b1a50796-cf81-4a5a-978d-c01daeb67486.png)
+![Illustration accompanying The Five Failure Patterns](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/b1a50796-cf81-4a5a-978d-c01daeb67486.png)
 
-![Illustration accompanying **The Five Failure Patterns**](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/af762728-0435-4958-b910-65ed4e7d15ed.png)
+![Illustration accompanying The Five Failure Patterns](https://cdn.hashnode.com/uploads/covers/69eb5d4d1e45c4e0dadd0fc8/af762728-0435-4958-b910-65ed4e7d15ed.png)
 
 ## The Pattern Behind Successful Platform Teams
 
