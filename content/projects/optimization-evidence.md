@@ -1,4 +1,6 @@
 ---
+illustration: "optimization-evidence"
+featured_rank: 5
 title: "Optimization Evidence"
 description: "Engineering research into proving whether infrastructure optimization produces safe, attributable, realized savings."
 date: 2026-09-26

@@ -1,0 +1,85 @@
+{
+  "source": "Public repositories owned by EdwinJdevops, verified 2026-10-11; no implementation status implied",
+  "repositories": [
+    {
+      "name": "aatgo",
+      "url": "https://github.com/EdwinJdevops/aatgo"
+    },
+    {
+      "name": "ai-log-analyzer",
+      "url": "https://github.com/EdwinJdevops/ai-log-analyzer"
+    },
+    {
+      "name": "ai-log-mointor",
+      "url": "https://github.com/EdwinJdevops/ai-log-mointor"
+    },
+    {
+      "name": "authz-delta",
+      "url": "https://github.com/EdwinJdevops/authz-delta"
+    },
+    {
+      "name": "aws-authz-conformance",
+      "url": "https://github.com/EdwinJdevops/aws-authz-conformance"
+    },
+    {
+      "name": "aws-community-intelligence",
+      "url": "https://github.com/EdwinJdevops/aws-community-intelligence"
+    },
+    {
+      "name": "boundary-verifier",
+      "url": "https://github.com/EdwinJdevops/boundary-verifier"
+    },
+    {
+      "name": "cortex-",
+      "url": "https://github.com/EdwinJdevops/cortex-"
+    },
+    {
+      "name": "crossplane-authz-lab",
+      "url": "https://github.com/EdwinJdevops/crossplane-authz-lab"
+    },
+    {
+      "name": "damolak-challenge",
+      "url": "https://github.com/EdwinJdevops/damolak-challenge"
+    },
+    {
+      "name": "devshelf",
+      "url": "https://github.com/EdwinJdevops/devshelf"
+    },
+    {
+      "name": "engineering-platform",
+      "url": "https://github.com/EdwinJdevops/engineering-platform"
+    },
+    {
+      "name": "engineering-platform-",
+      "url": "https://github.com/EdwinJdevops/engineering-platform-"
+    },
+    {
+      "name": "gitlab-upgrade-rehearsal-lab",
+      "url": "https://github.com/EdwinJdevops/gitlab-upgrade-rehearsal-lab"
+    },
+    {
+      "name": "kube-release-envelope",
+      "url": "https://github.com/EdwinJdevops/kube-release-envelope"
+    },
+    {
+      "name": "nexusmcp",
+      "url": "https://github.com/EdwinJdevops/nexusmcp"
+    },
+    {
+      "name": "prestashop-aws-deployment",
+      "url": "https://github.com/EdwinJdevops/prestashop-aws-deployment"
+    },
+    {
+      "name": "system-monitor",
+      "url": "https://github.com/EdwinJdevops/system-monitor"
+    },
+    {
+      "name": "terraform-azure-vm",
+      "url": "https://github.com/EdwinJdevops/terraform-azure-vm"
+    },
+    {
+      "name": "unmark",
+      "url": "https://github.com/EdwinJdevops/unmark"
+    }
+  ]
+}

@@ -34,6 +34,9 @@
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
   </header>
+  {{ if eq .Section "articles" }}
+    {{ partial "editorial-cover.html" (dict "page" . "variant" "hero") }}
+  {{ end }}
   {{ with .Params.original_url }}<p class="article-source">Originally published at <a href="{{ . }}" rel="noopener noreferrer">{{ $.Params.original_platform | default "the original publication" }}</a>.</p>{{ end }}
   <div class="prose-body">{{ .Content }}</div>
 </article>
