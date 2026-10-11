@@ -1,4 +1,8 @@
 ---
+artifact_file: ".github/workflows/sentinel-scan.yml"
+artifact_url: "https://github.com/EdwinJdevops/SENTINEL/blob/main/.github/workflows/sentinel-scan.yml"
+artifact_summary: "Trivy and Kubescape scan jobs with uploaded artifacts"
+artifact_kind: "CI WORKFLOW / SOURCE FILE"
 illustration: "sentinel"
 featured_rank: 7
 title: "SENTINEL"

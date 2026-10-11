@@ -20,6 +20,14 @@
   <meta property="og:description" content="{{ .Description | default site.Params.description }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">
+  {{ $socialImage := "https://edwinjdevops.github.io/engineering-platform/images/edwin-portrait-web.webp" }}
+  <meta property="og:image" content="{{ $socialImage }}">
+  <meta property="og:image:secure_url" content="{{ $socialImage }}">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="720">
+  <meta property="og:image:height" content="1205">
+  <meta property="og:image:alt" content="Portrait of Edwin Jonathan, platform and cloud engineer">
+  <meta name="twitter:image" content="{{ $socialImage }}">
   <meta name="twitter:card" content="summary">
   {{ partial "structured-data.html" . }}
 </head>

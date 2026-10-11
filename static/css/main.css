@@ -610,3 +610,31 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 .assurance-ledger p{font-size:14px;line-height:1.75;color:var(--muted);margin:0}
 .service-assurance-note{font-size:13px;color:var(--muted);line-height:1.7;max-width:800px;margin:23px 0 0}
 @media(max-width:850px){.assurance-ledger{grid-template-columns:1fr}.public-record-bottom{flex-direction:column;gap:6px}.assurance-ledger article{padding:25px 20px}}
+
+/* Real-file evidence hierarchy: no simulated telemetry, screenshots or invented CI output. */
+.home-availability{max-width:750px;margin:20px 0 0;color:var(--muted);font-size:13px;line-height:1.65;font-weight:600}
+.source-artifact{min-height:205px;display:flex;flex-direction:column;justify-content:space-between;gap:13px;padding:24px;border:1px solid #344b5f;background:#142537;color:#ecf3f8;text-decoration:none;overflow:hidden;max-width:100%;overflow-wrap:anywhere}
+.source-artifact:hover,.source-artifact:focus-visible{background:#18344d;border-color:#a5d5ec}
+.source-artifact-kind{color:#d0e8f7;font:700 11px/1.4 ui-monospace,Consolas,monospace;letter-spacing:.09em}
+.source-artifact code{font:600 clamp(13px,1.7vw,21px)/1.4 ui-monospace,Consolas,monospace;color:#fff;white-space:normal;overflow-wrap:anywhere}
+.source-artifact-description{font-size:13px;line-height:1.5;color:#e2eef7;max-width:560px}
+.source-artifact-action{font-size:12px;font-weight:700;color:#bce4f8}
+.featured-projects-visual .source-artifact{width:100%;min-height:210px}
+.work-visual-grid .source-artifact{min-height:220px}
+.work-research{border-top:1px solid var(--line);margin-top:75px}
+.work-research-list{border-top:1px solid var(--line)}
+.work-research-list article{display:flex;justify-content:space-between;gap:35px;padding:25px 0;border-bottom:1px solid var(--line);align-items:center}
+.work-research-list article>div{flex:1;min-width:0}
+.work-research-list h3{font-size:clamp(23px,3vw,37px);letter-spacing:-.045em;line-height:1.14;margin:6px 0 12px}
+.work-research-list h3 a{color:var(--text);text-decoration:none}
+.work-research-list h3 a:hover{color:var(--accent)}
+.work-research-list article p:not(.card-kicker){color:var(--muted);line-height:1.6;margin:0;max-width:720px}
+.work-research-list article>.editorial-read{flex:none;align-self:center}
+.home-public-record .public-record-grid{grid-template-columns:minmax(0,1fr)}
+.home-public-record .public-record-grid article{max-width:1100px}
+@media(max-width:640px){
+  .source-artifact{padding:19px;min-height:190px}
+  .work-research-list article{display:block}
+  .work-research-list article>.editorial-read{margin-top:10px}
+  .home-availability{font-size:12px}
+}

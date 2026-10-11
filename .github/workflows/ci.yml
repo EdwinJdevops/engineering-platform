@@ -65,10 +65,24 @@ jobs:
           test -s public/engineering/delivery-record/index.html
           grep -q 'Edwin Jonathan' public/index.html
           grep -q 'Edwin Cloud DevOps Services' public/services/index.html
-          grep -q 'PUBLIC EVIDENCE / NO CLIENT DATA' public/index.html
-          grep -q 'github.com/EdwinJdevops/driftguard/pull/3' public/index.html
-          grep -q 'github.com/EdwinJdevops/engineering-platform/pull/64' public/index.html
-          grep -q 'github.com/EdwinJdevops/engineering-platform/actions/runs/38140959718' public/index.html
+          require_html() {
+            local label="$1" fragment="$2" file="$3"
+            if ! grep -Fq -- "$fragment" "$file"; then
+              echo "::error::Missing expected rendered content [$label] in $file"
+              exit 1
+            fi
+            echo "Verified rendered content: $label"
+          }
+          require_html "independent DriftGuard case" 'ENGINEERING EVIDENCE / DRIFTGUARD' public/index.html
+          require_html "external merged regression PR" 'github.com/EdwinJdevops/driftguard/pull/3' public/index.html
+          require_html "engineer location" 'LAGOS, NIGERIA' public/index.html
+          require_html "Warden source file" 'controller/internal/remediation/tier_test.go' public/index.html
+          require_html "social image metadata" 'property="og:image"' public/index.html
+          require_html "security scan workflow" 'github.com/EdwinJdevops/SENTINEL/blob/main/.github/workflows/sentinel-scan.yml' public/index.html
+          if grep -Eq 'github.com/EdwinJdevops/engineering-platform/(pull/(64|65)|actions/runs/38140959718)' public/index.html; then
+            echo "::error::Homepage still presents self-site fixes as independent engineering evidence"
+            exit 1
+          fi
           grep -q 'not a customer project' public/engineering/delivery-record/index.html
 
       - name: Check generated links
