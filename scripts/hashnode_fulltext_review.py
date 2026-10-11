@@ -43,6 +43,14 @@ PUBLISHED = Path("content/articles")
 def normalize(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
 
+def shingles(text: str, window: int = 6) -> set[tuple[str, ...]]:
+    words = normalize(text).split()
+    return set(tuple(words[i:i + window]) for i in range(max(0, len(words) - window + 1)))
+
+
+def similarity(a: set, b: set) -> float:
+    return round(len(a & b) / max(1, len(a | b)), 4)
+
 
 def published_metadata() -> list[dict[str, str]]:
     published = []
@@ -64,7 +72,7 @@ def published_metadata() -> list[dict[str, str]]:
             except json.JSONDecodeError:
                 val = val.strip('"').strip("'")
             fields[key.strip()] = str(val)
-        published.append({"path": file.as_posix(), **fields})
+        published.append({"path": file.as_posix(), "body_shingles": shingles(source.split("---", 2)[-1]), **fields})
     return published
 
 
@@ -115,7 +123,17 @@ def main() -> None:
             normalized = normalize(entry["heading"])
             matches = [x for x in published if
                        normalize(x.get("title", "")) == normalized or x.get("original_url") == original_url]
-            entry["existing_exact_matches"] = matches
+            entry["existing_exact_matches"] = [
+                {"path": p["path"], "title": p.get("title"), "original_url": p.get("original_url")}
+                for p in matches
+            ]
+            source_shingles = shingles(markdown)
+            ranked = sorted((
+                {"title": p.get("title"), "path": p["path"],
+                 "body_jaccard_6gram": similarity(source_shingles, p["body_shingles"])}
+                for p in published
+            ), key=lambda x: x["body_jaccard_6gram"], reverse=True)
+            entry["top_body_matches"] = ranked[:3]
             entry["potentially_similar"] = [
                 {"title": p.get("title"), "path": p["path"]}
                 for p in published
