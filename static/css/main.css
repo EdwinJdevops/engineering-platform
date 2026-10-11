@@ -372,3 +372,21 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
   .featured-project{margin-inline:-8px;padding-inline:8px}
   .featured-project-end{gap:10px}
 }
+
+/* Reversible transform-only entrance motion. Preserves text contrast and no-JS reading. */
+@media (prefers-reduced-motion: no-preference) {
+  html.scroll-reveal-active .scroll-reveal-pending {
+    transform: translate3d(0, 24px, 0);
+    transition: transform 640ms cubic-bezier(.19,.68,.22,1);
+  }
+  html.scroll-reveal-active .scroll-reveal-pending.is-visible,
+  html.scroll-reveal-active .scroll-reveal-pending:focus-within {
+    transform: none;
+  }
+  html.scroll-reveal-active .scroll-reveal-pending.is-visible:focus-within {
+    transition-duration: 0ms;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal-pending { opacity: 1!important; transform: none!important; transition: none!important; }
+}
