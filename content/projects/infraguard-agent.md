@@ -1,4 +1,6 @@
 ---
+illustration: "infraguard-agent"
+featured_rank: 4
 title: "InfraGuard Agent"
 description: "A cloud-security remediation agent prototype with deterministic security mappings, Terraform proposal generation and GitHub pull-request delivery."
 date: 2026-09-26
