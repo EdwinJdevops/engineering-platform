@@ -1,7 +1,7 @@
 ---
 title: "Building Production AI Observability on Kubernetes: OpenTelemetry, Langfuse, Prometheus & Grafana From Zero to Scale"
 date: "2026-07-24"
-description: "Very few teams are benchmarking"
+description: "A technical examination of Kubernetes AI observability using OpenTelemetry, Langfuse, Prometheus, Grafana, and operational telemetry."
 draft: false
 original_url: "https://edwinjonathand-devops.hashnode.dev/building-production-ai-observability-on-kubernetes-opentelemetry-langfuse-prometheus-grafana-from-zero-to-scale"
 original_platform: "hashnode"
