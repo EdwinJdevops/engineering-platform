@@ -419,7 +419,7 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 .editorial-read:hover{text-decoration:underline;text-underline-offset:4px}
 .editorial-cover{position:relative;overflow:hidden;isolation:isolate;background:#101a29;color:#f2f6ff;aspect-ratio:16/9;border:1px solid #283c50}
 .editorial-visual-link{display:block;text-decoration:none;overflow:hidden;min-width:0}
-.editorial-cover-graphic{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:26px;background:radial-gradient(circle at 90% 8%,rgba(80,158,213,.35),transparent 50%),linear-gradient(125deg,#122943,#101a29 70%);z-index:0}
+.editorial-cover-graphic{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:26px;background:#14283d;z-index:0}
 .editorial-cover-graphic strong{position:relative;z-index:1;font-size:clamp(17px,2.15vw,36px);line-height:1.14;font-weight:650;max-width:83%;letter-spacing:-.04em}
 .editorial-cover-type{position:relative;z-index:1;font:700 10px/1.3 ui-monospace,monospace;letter-spacing:.15em;color:#c4dfef}
 .editorial-cover-orbit{position:absolute;width:42%;aspect-ratio:1;border:1px solid rgba(174,216,242,.42);border-radius:50%;right:-7%;top:-30%}
@@ -503,3 +503,10 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 .editorial-migration-note{border-top:1px solid var(--line);padding:40px 0 22px;margin-top:75px;color:var(--muted)}
 .editorial-migration-note h2{font-size:22px;font-weight:550;margin:0 0 22px;color:var(--text)}
 .editorial-migration-note .prose-body{max-width:900px;font-size:14px;line-height:1.75}
+
+/* Pa11y-visible editorial text uses solid, high-contrast surfaces; ornaments are non-text. */
+.editorial-cover-graphic strong,.editorial-cover-type{display:block;align-self:flex-start;background:#14283d;color:#fff;position:relative;z-index:1}
+.editorial-cover-type{color:#d5e9f5}
+.editorial-cover-graphic::after{content:"";position:absolute;right:8%;bottom:10%;width:36%;aspect-ratio:1;border:1px solid #7394ae;border-radius:50%;pointer-events:none}
+.directory-arrow::after{content:"↗";color:#153f73}
+.editorial-migration-note a{color:#153f73;font-weight:650;text-decoration:underline;text-underline-offset:3px}
