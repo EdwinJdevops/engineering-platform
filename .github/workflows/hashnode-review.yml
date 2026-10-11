@@ -20,10 +20,19 @@ jobs:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
       - name: Fetch author-published Hashnode Markdown
         run: python3 scripts/hashnode_fulltext_review.py
+      - name: Prepare nonduplicate Hugo articles for review
+        run: python3 scripts/promote_hashnode_articles.py
       - name: Preserve source and duplicate manifest
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: hashnode-fulltext-review
           path: hashnode-import-review/
+          if-no-files-found: error
+      - name: Preserve article migration preview
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: hashnode-hugo-review
+          path: content/articles/
           if-no-files-found: error
