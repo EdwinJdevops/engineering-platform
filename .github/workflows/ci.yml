@@ -65,10 +65,16 @@ jobs:
           test -s public/engineering/delivery-record/index.html
           grep -q 'Edwin Jonathan' public/index.html
           grep -q 'Edwin Cloud DevOps Services' public/services/index.html
-          grep -q 'PUBLIC EVIDENCE / NO CLIENT DATA' public/index.html
+          grep -q 'ENGINEERING EVIDENCE / DRIFTGUARD' public/index.html
           grep -q 'github.com/EdwinJdevops/driftguard/pull/3' public/index.html
-          grep -q 'github.com/EdwinJdevops/engineering-platform/pull/64' public/index.html
-          grep -q 'github.com/EdwinJdevops/engineering-platform/actions/runs/38140959718' public/index.html
+          grep -q 'LAGOS, NIGERIA' public/index.html
+          grep -q 'controller/internal/remediation/tier_test.go' public/index.html
+          grep -q 'property="og:image"' public/index.html
+          grep -q 'href="https://github.com/EdwinJdevops/SENTINEL/blob/main/.github/workflows/sentinel-scan.yml"' public/index.html
+          if grep -Eq 'github.com/EdwinJdevops/engineering-platform/(pull/(64|65)|actions/runs/38140959718)' public/index.html; then
+            echo "::error::Homepage still presents self-site fixes as independent engineering evidence"
+            exit 1
+          fi
           grep -q 'not a customer project' public/engineering/delivery-record/index.html
 
       - name: Check generated links
