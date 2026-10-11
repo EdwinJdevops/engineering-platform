@@ -183,6 +183,38 @@ const fs = require("node:fs");
     await editorial.close();
   }
 
+  // Regression: blocked original-host images must not leave empty dark covers.
+  const blockedArtwork = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
+  await blockedArtwork.route("https://cdn.hashnode.com/**", route => route.abort("failed"));
+  await blockedArtwork.goto("http://127.0.0.1:4173/articles/", { waitUntil: "domcontentloaded" });
+  const fallbackCover = blockedArtwork.locator(".editorial-feature-article .editorial-cover").first();
+  const originalImage = fallbackCover.locator("img");
+  if (await originalImage.count() !== 1)
+    failures.push("Hashnode feature lacks an original-image element for resilience test");
+  else {
+    await originalImage.scrollIntoViewIfNeeded();
+    await originalImage.evaluate(img => img.decode().catch(() => {}));
+    const fallbackState = await fallbackCover.evaluate(el => ({
+      title: el.querySelector(".editorial-cover-graphic strong")?.textContent?.trim() || "",
+      visibleTitle: !!el.querySelector(".editorial-cover-graphic strong") &&
+        getComputedStyle(el.querySelector(".editorial-cover-graphic strong")).display !== "none",
+      visibleArtwork: getComputedStyle(el.querySelector("img")).opacity,
+      naturalWidth: el.querySelector("img").naturalWidth
+    }));
+    if (!fallbackState.visibleTitle || !fallbackState.title || fallbackState.visibleArtwork !== "0" || fallbackState.naturalWidth !== 0)
+      failures.push("Blocked external image did not show source-labelled cover: "+JSON.stringify(fallbackState));
+    await originalImage.evaluate(async img => {
+      img.src = "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='48'%20height='32'%3E%3Crect%20width='48'%20height='32'%20fill='%230d2740'/%3E%3C/svg%3E";
+      await img.decode();
+    });
+    await blockedArtwork.waitForFunction(() =>
+      document.querySelector(".editorial-feature-article .editorial-cover img")?.classList.contains("is-ready"));
+    if (await originalImage.evaluate(img => getComputedStyle(img).opacity) !== "1")
+      failures.push("Successful editorial image is not shown after decoding");
+  }
+  await blockedArtwork.screenshot({path:"visual-audit/editorial-blocked-cover-fallback.png",fullPage:false});
+  await blockedArtwork.close();
+
   const noScript = await browser.newPage({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
   await noScript.goto("http://127.0.0.1:4173/", { waitUntil: "load" });
   const staticVisibility = await noScript.locator(".home-work").evaluate(el => ({
