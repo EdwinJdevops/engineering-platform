@@ -3,13 +3,13 @@
   <div class="home-intro-copy">
     <p class="eyebrow hero-index"><span class="hero-index-dot" aria-hidden="true"></span> INDEPENDENT ENGINEERING PRACTICE <span class="hero-index-num">/ 001</span></p>
     <h1>Edwin<br><span>Jonathan.</span></h1>
-    <p class="home-role">I build infrastructure that engineers can reason about.</p>
-    <p class="lede">I work on AWS infrastructure, deployment systems, Kubernetes and the software that helps engineers operate them. This site documents what I built, how it works, and what still needs work.</p>
+    <p class="home-role">Cloud infrastructure, delivery systems and the software behind them.</p>
+    <p class="lede">I design and build cloud infrastructure, deployment pipelines and backend tools. My work connects what teams declare in code with what actually runs: access, networking, releases, security and recovery. This site makes the implementation and its limits inspectable.</p>
     <div class="actions">
       <a class="button primary" href="{{ "projects/" | relURL }}">View engineering work </a>
-      <a class="button" href="{{ "contact/" | relURL }}">Discuss a project </a>
+      <a class="button" href="{{ "portfolio/" | relURL }}">More about me ↗</a>
     </div>
-    <p class="home-profile-links"><a href="https://github.com/EdwinJdevops">GitHub ↗</a><a href="https://www.linkedin.com/in/edwin-jonathan-1094093b0">LinkedIn ↗</a><a href="{{ "portfolio/" | relURL }}">Portfolio ↗</a></p>
+    <p class="home-profile-links"><a href="https://github.com/EdwinJdevops">GitHub ↗</a><a href="https://www.linkedin.com/in/edwin-jonathan-1094093b0">LinkedIn ↗</a><a href="{{ "contact/" | relURL }}">Discuss an engagement ↗</a></p>
   </div>
   {{ if fileExists "static/images/edwin-portrait-web.webp" }}
   <figure class="home-portrait" data-reveal>
@@ -31,7 +31,7 @@
 </section>
 <div class="scene-scroll-indicator shell" aria-hidden="true"><span>SCROLL TO EXPLORE THE SYSTEM</span></div>
 <section class="shell practice-strip" aria-label="Engineering disciplines">
-  <span>01 / CLOUD SYSTEMS</span><span>02 / DELIVERY AUTOMATION</span><span>03 / KUBERNETES</span><span>04 / FAILURE ANALYSIS</span>
+  <span>01 / PLATFORM ENGINEERING</span><span>02 / CLOUD &amp; IaC</span><span>03 / DEVOPS &amp; DELIVERY</span><span>04 / BACKEND SOFTWARE</span>
 </section>
 
 <section class="shell home-work section-block" data-reveal aria-labelledby="selected-work">
@@ -64,12 +64,30 @@
   </div>
 </section>
 <section class="shell section-block home-expertise" aria-labelledby="expertise-heading">
-  <div class="home-section-title"><div><p class="eyebrow">AREAS OF EXPERTISE</p><h2 id="expertise-heading">Where I can contribute.</h2></div><a class="text-link" href="{{ "services/" | relURL }}">Engagement details ↗</a></div>
+  <div class="home-section-title"><div><p class="eyebrow">AREAS OF EXPERTISE / THE WORK I DO</p><h2 id="expertise-heading">Infrastructure and software, together.</h2></div><a class="text-link" href="{{ "portfolio/" | relURL }}">Background and technical stack ↗</a></div>
+  <p class="expertise-context">Cloud engineering is not separate from software delivery. I work across the layers where infrastructure, applications, permissions and operational behaviour meet. Each discipline below connects to work you can inspect.</p>
   <div class="expertise-list">
-    <details><summary><span>01</span><strong>Cloud infrastructure and IaC</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>AWS architecture, Terraform, IAM and infrastructure change review. Focus: reproducibility, safe permissions and operational clarity.</p><a href="{{ "projects/driftguard/" | relURL }}">Related work: DriftGuard ↗</a></div></details>
-    <details><summary><span>02</span><strong>Delivery systems and GitOps</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>CI/CD controls, release verification, ArgoCD reconciliation and rollback planning. Choose tooling to match the system and failure modes.</p><a href="{{ "projects/archnet/" | relURL }}">Related work: ARCHNET ↗</a></div></details>
-    <details><summary><span>03</span><strong>Kubernetes security and reliability</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>Workload security posture, scanning, observability and actionable diagnostics, with explicit boundaries around what tests prove.</p><a href="{{ "projects/sentinel/" | relURL }}">Related work: SENTINEL ↗</a></div></details>
-    <details><summary><span>04</span><strong>Platform and backend engineering</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>Python services, infrastructure-facing APIs, deployment automation and failure-aware engineering workflows.</p><a href="{{ "projects/" | relURL }}">Explore engineering projects ↗</a></div></details>
+    <details><summary><span>01</span><strong>Platform engineering</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>Internal engineering workflows, service boundaries, GitOps delivery and infrastructure-facing APIs. I focus on reducing repeated manual operations without introducing an opaque control plane.</p><a href="{{ "projects/warden/" | relURL }}">Warden: policy-bound automation ↗</a></div></details>
+    <details><summary><span>02</span><strong>DevOps and release engineering</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>CI/CD, containers, GitHub Actions, Argo CD, deployment health checks and rollback/recovery considerations. A successful build is not the same thing as a verified release.</p><a href="{{ "engineering/" | relURL }}">Inspect this site's delivery workflow ↗</a></div></details>
+    <details><summary><span>03</span><strong>Cloud engineering and infrastructure as code</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>AWS networking, IAM and resource configuration, Terraform, short-lived credentials and drift investigation. I prefer reproducible changes that can be reviewed before they reach a live environment.</p><a href="{{ "projects/driftguard/" | relURL }}">DriftGuard: live state versus desired state ↗</a></div></details>
+    <details><summary><span>04</span><strong>Backend and software engineering</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>Python, FastAPI, PostgreSQL, APIs, tests and services that expose infrastructure state safely. The software must handle failed dependencies, retries, identities and incomplete results explicitly.</p><a href="{{ "projects/driftguard/" | relURL }}">Review the backend implementation ↗</a></div></details>
+    <details><summary><span>05</span><strong>Kubernetes and infrastructure security</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>Kubernetes deployment configuration, GitOps reconciliation, RBAC, container scanning, runtime signals and policy controls. Finding an issue and authorizing its remediation are different security boundaries.</p><a href="{{ "projects/sentinel/" | relURL }}">SENTINEL: security posture investigation ↗</a></div></details>
+    <details><summary><span>06</span><strong>Observability and operational reliability</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>Metrics, logs, traces, failure investigation and post-deployment verification. I treat monitoring as evidence for decisions, not proof that a system is fault-tolerant.</p><a href="{{ "articles/building-production-ai-observability-on-kubernetes-opentelemetry-langfuse-prometheus-grafana-from-zero-to-scale/" | relURL }}">Read my observability research ↗</a></div></details>
+    <details><summary><span>07</span><strong>Execution safety and AI infrastructure research</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>Execution identity, recovery contracts and controls around automated infrastructure changes. These are active research and implementation areas, not claims of deployed autonomous production systems.</p><a href="{{ "projects/consequential-execution-runtime/" | relURL }}">CER: execution safety research ↗</a></div></details>
+  </div>
+</section>
+<section class="shell section-block home-experience" aria-labelledby="experience-heading">
+  <div class="home-section-title"><div><p class="eyebrow">PROFESSIONAL BACKGROUND / SELECTED WORK</p><h2 id="experience-heading">Engineering beyond public repositories.</h2></div><a class="text-link" href="{{ "portfolio/" | relURL }}">Full background ↗</a></div>
+  <p class="experience-intro">Alongside open-source engineering, I deliver paid infrastructure and DevOps work through Edwin Cloud DevOps Services. Some commercial engagements cannot be identified publicly. I do not substitute client logos or anonymous praise for permission-backed references.</p>
+  <div class="experience-ledger">
+    <div class="experience-entry"><span>2026 — PRESENT</span><div><h3>Edwin Cloud DevOps Services</h3><p>Independent cloud and DevOps engineering · Contract delivery, infrastructure changes, pipelines and technical handoff.</p></div><a href="{{ "services/" | relURL }}">Services ↗</a></div>
+    <div class="experience-entry"><span>2026</span><div><h3>Allianz</h3><p>Remote DevOps contract · CI/CD operations, deployment verification and cloud application environments under team oversight.</p></div><a href="{{ "portfolio/" | relURL }}">Role context ↗</a></div>
+    <div class="experience-entry"><span>2026</span><div><h3>TeKnowledge</h3><p>Remote DevOps internship · Infrastructure-as-code tasks, CI support and deployment troubleshooting.</p></div><a href="{{ "portfolio/" | relURL }}">Role context ↗</a></div>
+    <div class="experience-entry"><span>2024 — 2025</span><div><h3>Bincom Dev Center</h3><p>Cloud and DevOps internship · Linux, AWS application deployment and Git-based infrastructure workflows.</p></div><a href="{{ "portfolio/" | relURL }}">Role context ↗</a></div>
+  </div>
+  <div class="engagement-boundary">
+    <div><p class="eyebrow">CLIENT CONFIDENTIALITY</p><h3>Private work stays private.</h3></div>
+    <p>I can discuss my engineering responsibilities and methods without sharing protected client identities, internal systems or source code. Employer names above describe roles recorded in my CV; they do not represent endorsements or client testimonials.</p>
   </div>
 </section>
 <section class="shell home-articles section-block" aria-labelledby="home-articles-heading">
@@ -91,6 +109,12 @@
       {{ end }}
     {{ end }}
   </div>
+</section>
+<section class="shell section-block home-signoff" aria-labelledby="home-signoff-heading">
+  <p class="eyebrow">CLOUD / PLATFORM / DEVOPS / BACKEND</p>
+  <h2 id="home-signoff-heading">Make the system <em>understandable.</em><br>Then make it work.</h2>
+  <p>For engineering roles, platform delivery or a specific infrastructure problem, start with the code and the constraints. Then we can discuss the work.</p>
+  <div class="actions"><a class="button primary" href="{{ "contact/" | relURL }}">Contact Edwin ↗</a><a class="button" href="{{ "portfolio/" | relURL }}">About and experience ↗</a></div>
 </section>
 <section class="shell home-lower section-block" data-reveal>
   <div><p class="eyebrow">WRITING</p><h2>Technical notes, backed by the work.</h2><p>Implementation details, failures and decisions from projects in the repository.</p><a class="text-link" href="{{ "articles/" | relURL }}">Read articles ↗</a></div>
