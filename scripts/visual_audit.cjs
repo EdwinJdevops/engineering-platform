@@ -212,6 +212,15 @@ const fs = require("node:fs");
       return img?.classList.contains("is-ready") &&
         img.closest(".editorial-cover")?.classList.contains("has-loaded-image");
     });
+    await blockedArtwork.waitForFunction(() => {
+      const cover = document.querySelector(".editorial-feature-article .editorial-cover");
+      if (!cover) return false;
+      const image = cover.querySelector("img");
+      const graphic = cover.querySelector(".editorial-cover-graphic");
+      return image?.naturalWidth > 0 &&
+        Number(getComputedStyle(image).opacity) === 1 &&
+        getComputedStyle(graphic).visibility === "hidden";
+    }, undefined, { timeout: 5000 }).catch(() => {});
     const loadedState = await fallbackCover.evaluate(cover => ({
       opacity: getComputedStyle(cover.querySelector("img")).opacity,
       imageWidth: cover.querySelector("img").naturalWidth,
