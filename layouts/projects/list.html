@@ -1,0 +1,50 @@
+{{ define "main" }}
+<section class="shell work-index">
+  <header class="page-head work-index-head">
+    <p class="eyebrow">ENGINEERING / SOURCE & EVIDENCE</p>
+    <h1>Systems, not screenshots.</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+    <div class="prose-body">{{ .Content }}</div>
+  </header>
+  {{ $projects := where site.RegularPages "Section" "projects" }}
+  <section aria-labelledby="work-featured-heading">
+    <div class="editorial-section-heading">
+      <p class="eyebrow">SELECTED WORK / IMPLEMENTATION & EXPERIMENTS</p>
+      <h2 id="work-featured-heading">Featured projects</h2>
+    </div>
+    <div class="work-visual-grid">
+    {{ range $projects.ByParam "featured_rank" }}
+      <article class="work-visual-card">
+        <a class="work-image-link" href="{{ .RelPermalink }}" aria-label="Read {{ .Title }} case study">
+          {{ with .Params.illustration }}
+            <img src="{{ printf "images/projects/%s.svg" . | relURL }}" alt="Source-labelled architecture illustration for {{ $.Title }}" loading="lazy" decoding="async" width="1200" height="640">
+          {{ end }}
+        </a>
+        <div class="work-visual-copy">
+          <p class="card-kicker">{{ .Params.domain | default "ENGINEERING" }}</p>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p>{{ .Description }}</p>
+          <p class="work-boundary"><strong>Evidence boundary:</strong> {{ .Params.boundary }}</p>
+          <a class="editorial-read" href="{{ .RelPermalink }}">Review case study ↗</a>
+        </div>
+      </article>
+    {{ end }}
+    </div>
+  </section>
+  <section class="repository-inventory section-block" aria-labelledby="repository-inventory-heading">
+    <div class="editorial-section-heading">
+      <p class="eyebrow">SOURCE DIRECTORY / ADDITIONAL PUBLIC WORK</p>
+      <h2 id="repository-inventory-heading">Other repositories</h2>
+      <p>Additional publicly accessible repositories, linked by their verified names. They are not presented as independently audited or production-qualified systems. Private repositories are intentionally not disclosed here.</p>
+    </div>
+    <div class="repository-directory">
+      {{ range site.Data.public_repositories.repositories }}
+      <a href="{{ .url }}" rel="noopener noreferrer">
+        <span>{{ .name }}</span><span aria-hidden="true">↗</span>
+      </a>
+      {{ end }}
+    </div>
+    <p class="repository-profile-link"><a class="text-link" href="{{ site.Params.github }}">View the complete GitHub profile ↗</a></p>
+  </section>
+</section>
+{{ end }}
