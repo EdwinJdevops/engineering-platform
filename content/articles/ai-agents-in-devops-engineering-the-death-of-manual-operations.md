@@ -1,7 +1,7 @@
 ---
 title: "AI Agents in DevOps Engineering: The Death of Manual Operations Has Already Started"
 date: "2026-05-07"
-description: "Most engineers still think AI in DevOps means “Copilot"
+description: "An essay on autonomous operations, context engineering, tooling interfaces, and security implications for DevOps teams."
 draft: false
 original_url: "https://edwinjonathand-devops.hashnode.dev/ai-agents-in-devops-engineering-the-death-of-manual-operations"
 original_platform: "hashnode"
