@@ -7,6 +7,7 @@ on:
       - 'static/**'
       - 'content/**'
       - 'scripts/visual_audit.cjs'
+      - 'scripts/hashnode_article_audit.cjs'
       - '.github/workflows/visual-audit.yml'
   workflow_dispatch:
 
@@ -32,6 +33,7 @@ jobs:
         run: |
           python3 -m http.server 4173 --directory public >/tmp/site.log 2>&1 &
           node scripts/visual_audit.cjs
+          node scripts/hashnode_article_audit.cjs
       - name: Preserve browser screenshots
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
