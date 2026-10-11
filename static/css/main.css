@@ -648,6 +648,7 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 .credential-source-note{max-width:850px;margin-top:18px}
 /* Retain the authentic portrait but let technical work, not an old photograph, dominate. */
 .home-portrait{width:min(100%,225px);max-width:225px;align-self:center;margin-inline:auto}
+.home-portrait figcaption{background:#09131d;color:#fff}
 .home-portrait img{width:100%;height:auto;max-height:315px;aspect-ratio:4/5;object-fit:cover;object-position:center 22%;border-radius:3px}
 .home-intro:has(.home-portrait) .infra-scene{min-height:290px}
 @media(min-width:821px){.home-intro:has(.home-portrait){grid-template-columns:minmax(0,1fr) 235px}}
