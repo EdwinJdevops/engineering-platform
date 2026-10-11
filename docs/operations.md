@@ -6,7 +6,8 @@
 2. Open a pull request to `main`.
 3. Require CI, security scanning, and the visual browser audit to pass.
 4. Review visual artifacts, including 320px and 390px mobile captures.
-5. Merge and verify the `Deploy production` workflow and route probes.
+5. Merge and verify the `Deploy production` workflow, seven route probes, critical asset responses and portrait sanity check.
+6. When production behavior needs confirmation, run `Live production browser smoke` with workflow dispatch and inspect its screenshots and JSON artifact. This separate workflow is not automatically run by every deployment.
 
 Live site: https://edwinjdevops.github.io/engineering-platform/
 
@@ -17,7 +18,7 @@ hugo --minify --gc --baseURL /
 python3 -m http.server 4173 --directory public
 ```
 
-The pinned Hugo v0.164.0 container used in GitHub Actions is authoritative if local tooling versions differ. The visual workflow installs Playwright separately.
+The pinned Hugo v0.164.0 container used in GitHub Actions is authoritative if local tooling versions differ. The visual, live-production browser, and synthetic performance workflows install Playwright separately.
 
 ## Failures
 
@@ -26,7 +27,9 @@ The pinned Hugo v0.164.0 container used in GitHub Actions is authoritative if lo
 - **Responsive regression**: reproduce the reported viewport using `scripts/visual_audit.cjs` and inspect the browser artifact.
 - **WebGL unavailable or context lost**: users must see the static CSS layer diagram. Do not treat WebGL support as a prerequisite for the page.
 - **Motion preference**: reduced-motion browsers must retain the static diagram with no active WebGL scene.
-- **Deployment failure**: inspect the failed Pages action and affected route. Revert if necessary.
+- **Deployment failure**: inspect the failed Pages action and affected route or asset. Revert if necessary.
+- **Live browser smoke failure**: inspect the `live-production-browser-smoke` artifact, distinguish a site regression from runner/network behavior, and verify the deployed revision before changing source.
+- **Performance regression**: use `Production performance audit` for repeated laboratory measurements; do not label them field Core Web Vitals.
 
 ## Rollback
 
