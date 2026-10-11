@@ -119,7 +119,7 @@ def main() -> None:
             first = re.search(r"(?m)^#\s+(.+)\s*$", markdown)
             entry["heading"] = first.group(1).strip() if first else ""
             entry["bytes"] = len(markdown.encode("utf-8"))
-            entry["sha256"] = hashlib.sha256(markdown.encode("utf-8")).hexdigest()
+            entry["sha256"] = hashlib.sha256((markdown.rstrip() + "\n").encode("utf-8")).hexdigest()
             normalized = normalize(entry["heading"])
             matches = [x for x in published if
                        normalize(x.get("title", "")) == normalized or x.get("original_url") == original_url]
