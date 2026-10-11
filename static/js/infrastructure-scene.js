@@ -46,16 +46,5 @@
   reduced.addEventListener('change', requestUpdate);
   requestUpdate();
 
-  const reveals = document.querySelectorAll('[data-reveal]');
-  if (!('IntersectionObserver' in window) || reduced.matches) return;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      observer.unobserve(entry.target);
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-  reveals.forEach((element) => {
-    observer.observe(element);
-  });
+  // Section entrance animation is handled by scroll-reveal.js on every page.
 })();
