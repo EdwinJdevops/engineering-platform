@@ -64,14 +64,20 @@
   <p class="public-record-intro">DriftGuard's AWS collector could not safely treat an incomplete inventory as an empty account. A missed resource and an unknown result have different meanings.</p>
   <div class="proof-grid public-record-grid">
     <article>
-      <p class="card-kicker">MERGED CODE / REGRESSION COVERAGE</p>
+      <p class="card-kicker">01 / EXECUTED AWS PROVIDER DRIFT</p>
+      <h3>An out-of-band AWS change, detected and redacted.</h3>
+      <p>A successful GitHub Actions run created a disposable AWS Systems Manager parameter with Terraform, changed it outside Terraform, detected the change using a refresh-only plan, and verified a redacted evidence record before cleanup.</p>
+      <a href="https://github.com/EdwinJdevops/driftguard/actions/runs/35343278654">Examine actual AWS execution logs ↗</a>
+    </article>
+    <article>
+      <p class="card-kicker">02 / MERGED FAILURE-HANDLING REGRESSION</p>
       <h3>Stop an unsafe scan instead of reporting false deletions.</h3>
       <p>PR #3 adds failure handling for interrupted AWS inventory collection and preserves indexed Terraform resource identities. The change includes regression tests and was merged into DriftGuard's main branch.</p>
-      <a href="https://github.com/EdwinJdevops/driftguard/pull/3">Inspect source changes and test evidence ↗</a>
+      <a href="https://github.com/EdwinJdevops/driftguard/pull/3">Inspect source changes and regression tests ↗</a>
     </article>
   </div>
   <div class="public-record-bottom">
-    <p>This is a public project implementation, not a client testimonial. The tests establish the specified failure behavior—not a production availability guarantee.</p>
+    <p>This is public engineering evidence, not a client testimonial. The AWS proof exercises a bounded provider-native workflow; PR #3 tests inventory-failure handling. Neither constitutes a production availability guarantee.</p>
     <a class="text-link" href="{{ "projects/driftguard/" | relURL }}">Full DriftGuard case study ↗</a>
   </div>
 </section>

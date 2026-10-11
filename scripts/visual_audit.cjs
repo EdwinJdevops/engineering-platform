@@ -257,11 +257,20 @@ const fs = require("node:fs");
     if (await introLink.count() !== 1) failures.push("About route missing from hero");
     const homepageEmail = identity.locator('.footer-email[href^="mailto:edwinjonathanchibuike123@gmail.com"]').first();
     if (await homepageEmail.count() !== 1) failures.push("Verified contact link missing from footer");
+    const portraitWidth = await identity.locator(".home-portrait").evaluate(el => el.getBoundingClientRect().width);
+    if (portraitWidth > 230)
+      failures.push("Legacy portrait still dominates the homepage: "+viewport.width+"px viewport, "+portraitWidth+"px photo");
     const homeOverflow = await identity.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     if (homeOverflow > 2) failures.push("Identity homepage overflow at "+viewport.width+"px: "+homeOverflow);
     await identity.goto("http://127.0.0.1:4173/portfolio/", {waitUntil:"domcontentloaded"});
     if (await identity.locator(".tech-stack-grid > div").count() !== 6)
       failures.push("Expected six technical stack groups: "+viewport.width);
+    const credentialItems = identity.locator(".credential-entries article");
+    if (await credentialItems.count() !== 2)
+      failures.push("Expected CV-recorded Microsoft and ALX entries: "+viewport.width);
+    const credentialText = await identity.locator(".profile-credentials").innerText();
+    if (!credentialText.includes("Azure Fundamentals (AZ-900)") || !credentialText.includes("Cloud DevOps Engineering Programme") || !credentialText.includes("verification link"))
+      failures.push("Credentials or missing public-verification disclosure absent: "+viewport.width);
     if (await identity.locator(".career-timeline > li").count() !== 4)
       failures.push("Expected four CV-reported professional roles: "+viewport.width);
     const aboutText = await identity.locator(".profile-confidential").innerText();
@@ -278,8 +287,10 @@ const fs = require("node:fs");
     const publicEvidence = await browser.newPage({ viewport, reducedMotion:"reduce" });
     publicEvidence.on("pageerror", error => failures.push("Public evidence "+viewport.width+" JS exception: "+error.message));
     await publicEvidence.goto("http://127.0.0.1:4173/", {waitUntil:"domcontentloaded"});
-    if (await publicEvidence.locator(".public-record-grid article").count() !== 1)
-      failures.push("Only independent DriftGuard failure case should lead homepage: "+viewport.width);
+    if (await publicEvidence.locator(".public-record-grid article").count() !== 2)
+      failures.push("Both executed AWS drift proof and independent inventory regression must appear: "+viewport.width);
+    if (await publicEvidence.locator('.home-public-record a[href="https://github.com/EdwinJdevops/driftguard/actions/runs/35343278654"]').count() !== 1)
+      failures.push("Executed AWS provider evidence run missing: "+viewport.width);
     if (await publicEvidence.locator('.home-public-record a[href="https://github.com/EdwinJdevops/driftguard/pull/3"]').count() < 1)
       failures.push("Missing merged external DriftGuard PR evidence: "+viewport.width);
     const evidenceText = await publicEvidence.locator(".home-public-record").innerText();
