@@ -591,3 +591,22 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 .footer-signature span{color:var(--accent)}
 .footer-base a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:620px){.footer-invitation{padding-top:52px;padding-bottom:44px}.footer-signature{font-size:clamp(45px,10.8vw,76px)}.footer-invitation h2{font-size:clamp(34px,9.3vw,55px)}}
+
+/* Public evidence, never a simulated customer testimonial. */
+.public-record-intro,.service-assurance-intro{color:var(--muted);font-size:clamp(15px,1.7vw,18px);line-height:1.75;max-width:850px;margin:0 0 28px}
+.home-public-record .public-record-grid article{background:var(--surface)}
+.home-public-record .public-record-grid article a{min-height:44px;display:inline-flex;align-items:center}
+.public-record-bottom{border-top:1px solid var(--line);padding:22px 0 2px;margin-top:25px;display:flex;align-items:start;justify-content:space-between;gap:32px}
+.public-record-bottom p{max-width:715px;margin:0;color:var(--muted);font-size:13px;line-height:1.7}
+.public-record-bottom p strong{color:var(--text)}
+.public-record-bottom a{min-height:44px;display:inline-flex;align-items:center;font-size:14px}
+.engagement-boundary>div:last-child p{color:var(--muted);line-height:1.75;margin:0 0 12px}
+.engagement-boundary>div:last-child a{display:inline-flex;min-height:44px;align-items:center}
+.service-assurance{border-top:1px solid var(--line)}
+.assurance-ledger{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.assurance-ledger article{min-width:0;padding:30px 26px;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+.assurance-ledger article>span{font:700 11px/1.5 ui-monospace,Consolas,monospace;letter-spacing:.08em;color:var(--accent)}
+.assurance-ledger h3{font-size:clamp(22px,2.5vw,31px);font-weight:560;letter-spacing:-.045em;line-height:1.17;margin:23px 0 17px}
+.assurance-ledger p{font-size:14px;line-height:1.75;color:var(--muted);margin:0}
+.service-assurance-note{font-size:13px;color:var(--muted);line-height:1.7;max-width:800px;margin:23px 0 0}
+@media(max-width:850px){.assurance-ledger{grid-template-columns:1fr}.public-record-bottom{flex-direction:column;gap:6px}.assurance-ledger article{padding:25px 20px}}
