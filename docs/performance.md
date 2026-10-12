@@ -48,3 +48,25 @@ The source artifact is [GitHub Actions run #38254467740](https://github.com/Edwi
 **Interpretation:** The observed LCP and initial CLS values do not, on their own, justify introducing more client-side JavaScript or changing deployment infrastructure. The sample is small, runner-dependent and not a statistically representative experience of real visitors.
 
 **Next comparison:** A subsequent revision of this audit adds mobile About and mobile contact profiles. Earlier samples did not include those routes, so do not invent their baseline or compare them to desktop About. Re-run the same audit after meaningful media, CSS or JavaScript changes. Collect Search Console / CrUX field data when sufficient traffic exists, especially INP and the 75th-percentile distribution.
+
+## Expanded recruiter-journey baseline — 12 October 2026
+
+The [nine-profile Chromium audit #38259772324](https://github.com/EdwinJdevops/engineering-platform/actions/runs/38259772324) completed successfully and uploaded its per-sample measurements. It ran on the audit PR and measured the **already-deployed website**, not unmerged PR content.
+
+| Synthetic profile | Median LCP (ms) | Median FCP (ms) | Initial CLS | Median TTFB (ms) | Reported mode |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Mobile homepage | 564 | 564 | 0 | 101.5 | CSS fallback |
+| Mobile services | 408 | 408 | 0 | 112.4 | Not applicable |
+| Mobile projects | 388 | 388 | 0 | 90.3 | Not applicable |
+| Mobile articles | 1,064 | 412 | 0 | 95.7 | Not applicable |
+| Mobile About | 424 | 424 | 0 | 106.7 | Not applicable |
+| Mobile contact | 360 | 360 | 0 | 95.9 | Not applicable |
+| Desktop homepage | 576 | 576 | 0 | 11.2 | WebGL |
+| Desktop About | 424 | 424 | 0 | 86 | Not applicable |
+| Desktop homepage, reduced motion | 544 | 544 | 0 | 10.3 | CSS fallback |
+
+Each row is the median of three separate browser samples under the documented synthetic conditions. The reported zero CLS applies **only to the initial observation window**. Cross-origin resource timing can undercount transfer bytes. No 75th-percentile field-data claim, INP claim, global guarantee or Lighthouse score follows from this table.
+
+**Field-data status:** No valid URL-level CrUX/Core Web Vitals report could be retrieved with the available access on this date. The connected Search Console property returned zero recorded clicks/impressions for the last 28 days with no confirmed completeness boundary; those are search visibility metrics, not field speed measurements. Do not interpret either fact as a passing or failing field Core Web Vitals assessment. Check PageSpeed Insights / Chrome UX Report when enough qualifying real-user data becomes available. Avoid introducing site instrumentation merely to produce a score.
+
+**Engineering decision:** No new framework, instrumentation SDK or WebGL rewrite is justified by these observations. Retest the mobile article index if imagery or CSS changes, since it had the highest LCP of the mobile routes in this particular sample.
