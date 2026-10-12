@@ -13,6 +13,7 @@ dev = "https://dev.to/edwindevops"
 hashnode = "https://hashnode.com/@jonathandevops"
 linkedin = "https://www.linkedin.com/in/edwin-jonathan-1094093b0"
 twitter = "https://x.com/TheCloudDeveng"
+azure_fundamentals_credential = "https://learn.microsoft.com/en-us/users/jonathanedwin-0146/credentials/certification/azure-fundamentals"
 
 [markup]
   [markup.highlight]
