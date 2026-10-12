@@ -92,6 +92,11 @@ jobs:
             exit 1
           fi
           echo "Published credential link and ALX training reference verified in About HTML"
+          # Search Console ownership token is intentionally not a complete HTML document.
+          # Its exact public response is what Google validates.
+          curl --fail --location --silent --show-error --max-time 20 "${base}google19c4bfed3c4a8a5b.html" -o /tmp/production-google-verification.html
+          printf 'google-site-verification: google19c4bfed3c4a8a5b.html' | cmp - /tmp/production-google-verification.html
+          echo "Google Search Console ownership token exactly matches the published response"
           # A successful HTML response alone does not establish that the portrait and assets shipped.
           for asset in "images/edwin-portrait-web.webp" "css/main.css" \
             "js/infrastructure-scene.js" "js/infrastructure-webgl.js" \
