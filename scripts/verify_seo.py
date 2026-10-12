@@ -153,9 +153,18 @@ def main() -> None:
     for source in dev_copies:
         built = PUBLIC / "articles" / source.stem / "index.html"
         contents = built.read_text(encoding="utf-8")
-        assert 'data-publication-context="archived-dev"' in contents, (
-            f"Missing archival context on {source}"
-        )
+        # Hugo's minifier may remove optional quotes around HTML attribute values.
+        # Parse the actual HTML attributes instead of comparing minifier formatting.
+        class ProvenanceParser(HTMLParser):
+            found = False
+
+            def handle_starttag(self, tag, attrs):
+                if tag == "p" and dict(attrs).get("data-publication-context") == "archived-dev":
+                    self.found = True
+
+        parser = ProvenanceParser()
+        parser.feed(contents)
+        assert parser.found, f"Missing archival context on {source}"
         assert "current verification" in contents, f"Missing evidence boundary on {source}"
     print("Historical DEV article provenance shown on all nine archived copies")
 
