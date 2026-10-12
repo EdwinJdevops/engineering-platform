@@ -5,7 +5,7 @@ description: "A recruiter-facing view of Edwin Jonathan's platform, cloud and De
 draft: false
 ---
 
-This is the short path through my engineering work for hiring teams and technical reviewers.
+A summary of my engineering experience, tools and selected projects.
 
 ## Engineering focus
 
@@ -22,19 +22,19 @@ This is the short path through my engineering work for hiring teams and technica
 
 Alongside public engineering projects, I have delivered paid cloud and DevOps work through Edwin Cloud DevOps Services.
 
-Some engagements are contractually confidential. Client identities and sensitive implementation details remain private. Public descriptions are limited to claims that can be made without violating those agreements.
+I keep confidential client details private.
 
 [Edwin Cloud DevOps Services →]({{< relref "/services" >}})
 
-## Evidence over claims
+## Selected work
 
-The project pages on this platform are published from real repositories and implementation evidence. Each case study is expected to document the problem, constraints, architecture, implementation, failure modes, security decisions, testing, operations and trade-offs.
+Project pages link to source code, tests and technical decisions.
 
 [Inspect projects →]({{< relref "/projects" >}})
 
 ## Technical writing
 
-My writing is being consolidated here as the canonical source while existing publishing profiles remain distribution channels.
+My articles cover infrastructure, software delivery, cloud security and operational engineering.
 
 [Read technical writing →]({{< relref "/articles" >}})
 
