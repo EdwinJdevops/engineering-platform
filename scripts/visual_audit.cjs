@@ -269,8 +269,17 @@ const fs = require("node:fs");
     if (await credentialItems.count() !== 2)
       failures.push("Expected CV-recorded Microsoft and ALX entries: "+viewport.width);
     const credentialText = await identity.locator(".profile-credentials").innerText();
-    if (!credentialText.includes("Azure Fundamentals (AZ-900)") || !credentialText.includes("Cloud DevOps Engineering Programme") || !credentialText.includes("verification link"))
-      failures.push("Credentials or missing public-verification disclosure absent: "+viewport.width);
+    if (!credentialText.includes("Azure Fundamentals (AZ-900)") || !credentialText.includes("Cloud DevOps Engineering Programme") || !credentialText.includes("Microsoft Learn credential"))
+      failures.push("Credentials or Microsoft Learn reference missing: "+viewport.width);
+    const microsoftUrl = await identity.locator('.profile-credentials .credential-link').getAttribute('href');
+    if (microsoftUrl !== "https://learn.microsoft.com/en-us/users/jonathanedwin-0146/credentials/certification/azure-fundamentals")
+      failures.push("Microsoft credential link differs from holder-supplied URL: "+viewport.width);
+    const microsoftRel = await identity.locator('.profile-credentials .credential-link').getAttribute('rel');
+    if (!microsoftRel?.includes("noopener") || !microsoftRel?.includes("noreferrer"))
+      failures.push("Microsoft credential link missing cross-origin protections: "+viewport.width);
+    const htmlTheme = await identity.locator('meta[name="theme-color"]').getAttribute('content');
+    if (htmlTheme !== "#080b10")
+      failures.push("Browser theme metadata does not match dark site palette: "+viewport.width);
     if (await identity.locator(".career-timeline > li").count() !== 4)
       failures.push("Expected four CV-reported professional roles: "+viewport.width);
     const aboutText = await identity.locator(".profile-confidential").innerText();
