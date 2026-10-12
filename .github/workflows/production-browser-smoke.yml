@@ -7,6 +7,9 @@ on:
       - 'scripts/production_browser_smoke.cjs'
       - '.github/workflows/production-browser-smoke.yml'
   workflow_dispatch:
+  workflow_run:
+    workflows: ['Deploy production']
+    types: [completed]
 
 permissions:
   contents: read
@@ -14,6 +17,7 @@ permissions:
 jobs:
   smoke:
     name: Verify deployed site interactions
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
