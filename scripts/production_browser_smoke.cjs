@@ -8,7 +8,7 @@ const { chromium } = require('playwright');
 
 const BASE = new URL('https://edwinjdevops.github.io/engineering-platform/');
 const REPORT_DIR = path.resolve('production-browser-smoke');
-const ROUTES = ['', 'projects/', 'articles/', 'services/', 'contact/'];
+const ROUTES = ['', 'projects/', 'articles/', 'services/', 'portfolio/', 'contact/'];
 const EMAIL = 'edwinjonathanchibuike123@gmail.com';
 const observations = [];
 
@@ -106,7 +106,17 @@ async function runProfile(browser, { name, viewport, reducedMotion, mobile }) {
     } else {
       assert.ok(await page.locator('.desktop-nav').isVisible(), 'Desktop navigation not visible');
     }
-    for (const route of ROUTES.slice(1)) await expectPage(page, route);
+    for (const route of ROUTES.slice(1)) {
+      await expectPage(page, route);
+      if (route === 'portfolio/') {
+        const credential = page.locator('.profile-credentials a.credential-link');
+        assert.equal(await credential.count(), 1, 'Microsoft credential verification link missing');
+        assert.equal(await credential.getAttribute('href'),
+          'https://learn.microsoft.com/en-us/users/jonathanedwin-0146/credentials/certification/azure-fundamentals',
+          'Microsoft Learn credential URL differs from the supplied public profile');
+        assert.ok(await credential.isVisible(), 'Microsoft credential link is not visible');
+      }
+    }
     const emailLink = page.locator('.contact-methods a[href^="mailto:"]').first();
     assert.equal(await emailLink.count(), 1, 'Contact page missing direct email link');
     assert.ok((await emailLink.getAttribute('href')).startsWith('mailto:' + EMAIL),
