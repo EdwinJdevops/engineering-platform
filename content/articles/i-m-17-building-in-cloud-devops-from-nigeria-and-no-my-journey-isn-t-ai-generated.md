@@ -10,7 +10,6 @@ aliases: []
 
 People assume my work is fake because they cannot imagine someone my age writing with this level of clarity, structure, and technical direction. This is the truth behind my journey.
 
-
 There’s something strange happening in tech culture lately.
 
 The moment a young person sounds too polished, too intentional, or too technically aware, people immediately assume it’s fake.
