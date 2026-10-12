@@ -317,6 +317,16 @@ const fs = require("node:fs");
       document.documentElement.scrollWidth - document.documentElement.clientWidth);
     if (homeOverflow > 2) failures.push("Evidence homepage overflow at "+viewport.width+"px: "+homeOverflow);
 
+    await publicEvidence.goto("http://127.0.0.1:4173/projects/warden/", {waitUntil:"domcontentloaded"});
+    const wardenEvidence = await publicEvidence.locator("main").innerText();
+    if (!wardenEvidence.includes("Executed verification") || !wardenEvidence.includes("Verification boundary"))
+      failures.push("Warden case study must distinguish executed unit tests from unverified integration work");
+    if (await publicEvidence.locator('main a[href="https://github.com/EdwinJdevops/warden/actions/runs/38250292469"]').count() !== 1)
+      failures.push("Warden case study missing completed post-merge safety workflow");
+    const wardenOverflow = await publicEvidence.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    if (wardenOverflow > 2)
+      failures.push("Warden case study overflow at "+viewport.width+"px: "+wardenOverflow);
+
     await publicEvidence.goto("http://127.0.0.1:4173/services/", {waitUntil:"domcontentloaded"});
     if (await publicEvidence.locator(".assurance-ledger article").count() !== 3)
       failures.push("Service delivery boundaries missing: "+viewport.width);
