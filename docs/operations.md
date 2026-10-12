@@ -6,8 +6,9 @@
 2. Open a pull request to `main`.
 3. Require CI, security scanning, and the visual browser audit to pass.
 4. Review visual artifacts, including 320px and 390px mobile captures.
-5. Merge and verify the `Deploy production` workflow, seven route probes, critical asset responses and portrait sanity check.
-6. When production behavior needs confirmation, run `Live production browser smoke` with workflow dispatch and inspect its screenshots and JSON artifact. This separate workflow is not automatically run by every deployment.
+5. Merge and verify the `Deploy production` workflow. Its post-deployment step checks 13 selected routes, critical CSS/JavaScript/SVG assets, the WebP portrait signature, the exact Microsoft credential link in the deployed About HTML, and the Google Search Console verification file's status and bytes.
+6. After a **successful** production workflow, GitHub Actions automatically triggers `Live production browser smoke` via `workflow_run`. Confirm the follow-up workflow completed successfully for the expected deployment; a successful Pages job alone is not the end of the release gate. Inspect its screenshot/JSON artifact when diagnosing changes. You can also run this workflow manually.
+7. For performance-sensitive releases, compare `Production performance audit` results with an earlier run using the same method. This audit is not an automatic deployment gate and is not a field Core Web Vitals measurement.
 
 Live site: https://edwinjdevops.github.io/engineering-platform/
 
@@ -34,6 +35,14 @@ The pinned Hugo v0.164.0 container used in GitHub Actions is authoritative if lo
 ## Rollback
 
 Revert the problematic merge commit in a new PR, pass checks, and merge. The production workflow deploys the previous content. For an urgent incident, use GitHub's controlled revert flow and verify the deployed URLs.
+
+## Search discoverability (not a deployment gate)
+
+- The live Hugo sitemap is `https://edwinjdevops.github.io/engineering-platform/sitemap.xml`.
+- On 2026-10-12, Google Search Console showed the submitted sitemap as **pending**, with zero reported errors or warnings. URL Inspection returned **URL is unknown to Google** for the homepage, DriftGuard case study and article index.
+- These are indexing observations, **not** evidence that the site returned an HTTP error. Google may take time to crawl a new or changed site. Neither sitemap submission nor verification of an ownership token guarantees indexing or search rankings.
+- Recheck URL Inspection and sitemap processing after Google has had time to crawl. Do not submit the same sitemap repeatedly or publish an unverified ranking claim.
+- Search Console impression/click reports had no established settled-through date at the time of this check; zero recorded activity must not be treated as an analytically complete traffic baseline.
 
 ## Operational boundaries
 
