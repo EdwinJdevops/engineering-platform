@@ -1,4 +1,5 @@
 ---
+seo_title: "DriftGuard: Terraform Drift Detection on AWS | Edwin Jonathan"
 artifact_file: "backend/tests/test_drift_engine.py"
 artifact_url: "https://github.com/EdwinJdevops/driftguard/blob/main/backend/tests/test_drift_engine.py"
 artifact_summary: "Terraform state parser and drift-engine regression tests"

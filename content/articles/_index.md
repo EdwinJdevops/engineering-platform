@@ -1,4 +1,5 @@
 ---
+seo_title: "Cloud and Platform Engineering Articles | Edwin Jonathan"
 title: "Writing"
 description: "Engineering articles on cloud systems, GitOps, AWS infrastructure, AI observability and operational failure analysis."
 draft: false

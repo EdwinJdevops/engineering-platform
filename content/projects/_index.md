@@ -1,4 +1,5 @@
 ---
+seo_title: "Cloud Infrastructure Engineering Case Studies | Edwin Jonathan"
 title: "Projects"
 description: "Engineering case studies backed by implementation evidence, source repositories, constraints and explicit limitations."
 draft: false

@@ -1,4 +1,5 @@
 ---
+seo_title: "Contact Edwin Jonathan | Cloud and Platform Engineering"
 title: "Contact"
 description: "Contact Edwin Jonathan about engineering roles, technical collaboration, or Edwin Cloud DevOps Services."
 draft: false

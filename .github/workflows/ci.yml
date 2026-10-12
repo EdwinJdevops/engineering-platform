@@ -85,6 +85,9 @@ jobs:
           fi
           grep -q 'not a customer project' public/engineering/delivery-record/index.html
 
+      - name: Verify search titles, canonicals and JSON-LD
+        run: python3 scripts/verify_seo.py
+
       - name: Check generated links
         uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411 # v2.8.0
         with:

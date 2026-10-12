@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#080b10">
-  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · Edwin Jonathan{{ end }}</title>
+  {{ $searchTitle := site.Title }}
+  {{ if not .IsHome }}{{ $searchTitle = printf "%s · Edwin Jonathan" .Title }}{{ end }}
+  {{ with .Params.seo_title }}{{ $searchTitle = . }}{{ end }}
+  <title>{{ $searchTitle }}</title>
   <meta name="description" content="{{ .Description | default site.Params.description }}">
   <meta name="author" content="Edwin Jonathan">
   <link rel="canonical" href="{{ with .Params.canonical_url }}{{ . }}{{ else }}{{ .Permalink }}{{ end }}">
@@ -16,7 +19,7 @@
   <script src="{{ "js/editorial-covers.js" | relURL }}" defer></script>
   <link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | absURL }}" title="{{ site.Title }}">
   <meta property="og:site_name" content="Edwin Jonathan Engineering Platform">
-  <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+  <meta property="og:title" content="{{ $searchTitle }}">
   <meta property="og:description" content="{{ .Description | default site.Params.description }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">

@@ -1,4 +1,5 @@
 ---
+seo_title: "Cloud and Platform Engineering Portfolio | Edwin Jonathan"
 title: "Portfolio"
 description: "A recruiter-facing view of Edwin Jonathan's platform, cloud and DevOps engineering work."
 draft: false
