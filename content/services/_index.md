@@ -4,15 +4,13 @@ description: "Cloud, platform and delivery engineering services for teams that n
 draft: false
 ---
 
-Edwin Cloud DevOps Services is the commercial engineering surface of this platform.
+I provide cloud infrastructure and DevOps engineering services through Edwin Cloud DevOps Services.
 
 ## Commercial delivery
 
 Edwin Cloud DevOps Services has delivered paid engineering work for external organizations.
 
-Some engagements are governed by confidentiality agreements. Client identities, private infrastructure, repositories, credentials, commercial terms, internal architecture and identifying implementation details are therefore not published here.
-
-Where an engagement can be discussed publicly, the case study is limited to information the engagement permits: the engineering problem class, responsibility, delivery approach, verification and any outcome that can be substantiated without identifying the client.
+Some engagements are confidential, so I don't publish client identities or private implementation details. I can discuss the work within the terms of each engagement.
 
 ## What we work on
 
@@ -31,12 +29,6 @@ Kubernetes deployment architecture, GitOps, workload configuration, security pos
 ### Infrastructure security and reliability
 
 Infrastructure security review, dependency and container scanning, policy controls, deployment verification, operational runbooks and failure-mode analysis.
-
-## Evidence policy
-
-Public project case studies use attributable repositories and artifacts where they exist. Confidential commercial engagements use a stricter boundary: no client identity and no sensitive implementation detail.
-
-Ratings and testimonials are published only when the underlying evidence can be verified and publication is compatible with the engagement's confidentiality terms.
 
 ## How engagements start
 
