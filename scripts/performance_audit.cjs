@@ -11,7 +11,10 @@ const ROUNDS = 3;
 const PROFILES = [
   { name: 'mobile-home', pathname: '', viewport: { width: 390, height: 844 }, isMobile: true, reducedMotion: 'no-preference' },
   { name: 'mobile-services', pathname: 'services/', viewport: { width: 390, height: 844 }, isMobile: true, reducedMotion: 'no-preference' },
+  { name: 'mobile-projects', pathname: 'projects/', viewport: { width: 390, height: 844 }, isMobile: true, reducedMotion: 'no-preference' },
+  { name: 'mobile-articles', pathname: 'articles/', viewport: { width: 390, height: 844 }, isMobile: true, reducedMotion: 'no-preference' },
   { name: 'desktop-home', pathname: '', viewport: { width: 1440, height: 900 }, isMobile: false, reducedMotion: 'no-preference' },
+  { name: 'desktop-about', pathname: 'portfolio/', viewport: { width: 1440, height: 900 }, isMobile: false, reducedMotion: 'no-preference' },
   { name: 'desktop-reduced-motion-home', pathname: '', viewport: { width: 1440, height: 900 }, isMobile: false, reducedMotion: 'reduce' }
 ];
 
