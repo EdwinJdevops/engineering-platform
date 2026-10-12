@@ -1,4 +1,5 @@
 ---
+seo_title: "Warden: Kubernetes GitOps Remediation Controls | Edwin Jonathan"
 artifact_file: "controller/internal/remediation/tier_test.go"
 artifact_url: "https://github.com/EdwinJdevops/warden/blob/master/controller/internal/remediation/tier_test.go"
 artifact_summary: "Manual-gate policy tests that reject automatic merge"
