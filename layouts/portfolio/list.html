@@ -5,7 +5,7 @@
     <h1 id="profile-name">About the <span class="profile-period">work.</span></h1>
     <p class="profile-role">Platform engineering · DevOps · Cloud infrastructure · Backend software</p>
     <p class="lede">I am an engineer based in Lagos, Nigeria, working across infrastructure, software delivery and the services used to operate them. I build in Python and cloud-native tooling, keep infrastructure changes reviewable, and test the assumptions behind automation.</p>
-    <p>My public projects are not a substitute for explaining engineering trade-offs. Each case study separates implementation, verification and remaining uncertainty, so a reviewer can inspect both the solution and the boundary of the evidence.</p>
+    <p>My case studies link to source code, tests and engineering decisions. I also document where a project is still in progress.</p>
     <div class="actions"><a class="button primary" href="{{ "projects/" | relURL }}">Inspect engineering work ↗</a><a class="button" href="{{ "contact/" | relURL }}">Contact me ↗</a></div>
   </div>
   <aside class="profile-sidebar" aria-label="Professional links">
@@ -29,7 +29,7 @@
   </div>
 </section>
 <section class="shell section-block profile-tech" aria-labelledby="tech-stack-heading">
-  <div class="home-section-title"><div><p class="eyebrow">WORKING TOOLCHAIN</p><h2 id="tech-stack-heading">Tools in context, not a logo wall.</h2></div></div>
+  <div class="home-section-title"><div><p class="eyebrow">WORKING TOOLCHAIN</p><h2 id="tech-stack-heading">Technical stack.</h2></div></div>
   <div class="tech-stack-grid">
     <div><span>01 / SOFTWARE</span><h3>Python · FastAPI · PostgreSQL</h3><p>Infrastructure APIs, automation, persistence and tests. Bash and Git support operational workflows.</p></div>
     <div><span>02 / CLOUD</span><h3>AWS · IAM · Networking</h3><p>VPC, ECS Fargate, ECR, ALB, S3, RDS and short-lived authentication. Azure experience is also part of my learning and project work.</p></div>
@@ -47,15 +47,14 @@
     <article>
       <p class="card-kicker">MICROSOFT / FUNDAMENTALS</p>
       <h3>Microsoft Certified: Azure Fundamentals (AZ-900)</h3>
-      <p>Azure Fundamentals certification. <a class="credential-link" href="{{ site.Params.azure_fundamentals_credential }}" rel="noopener noreferrer">View my Microsoft Learn credential ↗</a></p>
+      <p><a class="credential-link" href="{{ site.Params.azure_fundamentals_credential }}" rel="noopener noreferrer">View Microsoft Learn credential ↗</a></p>
     </article>
     <article>
       <p class="card-kicker">ALX AFRICA / COMPLETED PROGRAMME</p>
       <h3>Cloud DevOps Engineering Programme</h3>
-      <p>Completed project-based training in cloud infrastructure, Linux, containers, CI/CD and infrastructure as code, with team-coordination responsibilities.</p>
+      <p>Completed training in Linux, cloud infrastructure, containers, CI/CD and infrastructure as code.</p>
     </article>
   </div>
-  <p class="credential-source-note">The Microsoft Learn credential URL was supplied by the credential holder; its public verification result depends on Microsoft Learn's visibility settings. The ALX programme completion is documented in my CV; no issuer-validation link has been added. No Cisco certification or uncompleted exam is listed here.</p>
 </section>
 <section class="shell section-block profile-career" aria-labelledby="career-heading">
   <div class="home-section-title"><div><p class="eyebrow">PROFESSIONAL EXPERIENCE</p><h2 id="career-heading">Work and responsibilities.</h2></div><a class="text-link" href="{{ "contact/" | relURL }}">Discuss a role ↗</a></div>
@@ -65,13 +64,12 @@
     <li><time>Feb — May 2026</time><div><h3>TeKnowledge</h3><p class="career-role">DevOps engineer intern · Remote</p><p>Supported infrastructure-as-code work, cloud/CI operations and deployment troubleshooting.</p></div></li>
     <li><time>Aug 2024 — Sep 2025</time><div><h3>Bincom Dev Center</h3><p class="career-role">Cloud and DevOps engineer intern · Lagos / Hybrid</p><p>Worked with AWS/Linux environments, application deployment and Git-based delivery, including a two-tier EC2/RDS exercise.</p></div></li>
   </ol>
-  <p class="career-note">Experience is presented from my professional CV. Organization names identify roles, not client endorsements or permission to disclose internal work.</p>
 </section>
 <section class="shell section-block profile-confidential" aria-labelledby="private-work-heading">
   <p class="eyebrow">COMMERCIAL WORK / DISCLOSURE BOUNDARY</p>
-  <div><h2 id="private-work-heading">Trust without a client-logo carousel.</h2>
-  <p>Some engagements are confidential. I can explain the responsibilities and engineering decisions appropriate to a role discussion, but I do not publish client names, private infrastructure, source code, ratings or attributed quotes without evidence and permission.</p>
-  <p>My public repositories and their delivery records offer concrete evidence of engineering decisions, failures and corrections. They do not constitute client endorsements or prove the outcome of confidential engagements.</p>
+  <div><h2 id="private-work-heading">Confidential client work.</h2>
+  <p>Some contracts restrict what I can share publicly. I can discuss my role and approach without disclosing client systems or sensitive details.</p>
+  <p>For examples of my work, see the public repositories, tests and release records linked here.</p>
   <p><a class="text-link" href="{{ "engineering/delivery-record/" | relURL }}">Inspect a complete public change-to-deployment record ↗</a></p>
   <a class="text-link" href="{{ "projects/" | relURL }}">Review the project evidence ↗</a></div>
 </section>
@@ -89,7 +87,7 @@
   <div><p class="eyebrow">THE WEBSITE ITSELF</p><h2>Delivery is inspectable.</h2></div>
   <div class="profile-groups">
     <div><h3>Hugo, GitHub Pages and source-controlled publication</h3><p>This site builds from Git, with content changes reviewed through pull requests rather than edited in production.</p></div>
-    <div><h3>Browser, accessibility and deployment checks</h3><p>Automated checks cover critical routes, assets, motion preferences and publishing regressions. These are defined tests, not proof that the site has zero accessibility or security risk.</p></div>
+    <div><h3>Browser, accessibility and deployment checks</h3><p>Playwright tests cover key routes, mobile layouts, keyboard navigation and reduced motion. GitHub Actions builds the site and checks published assets.</p></div>
     <a class="text-link" href="{{ "engineering/" | relURL }}">Read architecture and operational limits ↗</a>
     <a class="text-link" href="https://github.com/EdwinJdevops/engineering-platform/actions">Inspect GitHub Actions ↗</a>
   </div>
