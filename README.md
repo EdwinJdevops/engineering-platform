@@ -36,10 +36,11 @@ The generated output is in `public/`. Do not commit generated HTML.
 2. Wait for CI, security scanning, and the visual browser audit to pass.
 3. Review `browser-visual-audit` screenshots for small mobile, mobile, tablet, and desktop.
 4. Merge; the GitHub Pages workflow builds and deploys.
-5. Confirm the production workflow's seven route checks, critical asset responses and portrait sanity checks pass.
-6. For live functional assurance, run the separate on-demand `Live production browser smoke` workflow against the deployed site and review its screenshots. It is not a mandatory gate on every deployment.
+5. Confirm the production workflow's thirteen selected route checks, fourteen first-party asset responses, portrait signature check, Microsoft credential URL and Google Search Console verification-token checks pass.
+6. Wait for the automatically triggered `Live production browser smoke` workflow (`workflow_run` on successful Pages deployment), and inspect its Chromium results and screenshots. A completed Pages deployment by itself is not evidence that browser smoke passed.
+7. For performance-sensitive changes, run the separate `Production performance audit` and compare against the [documented baseline](docs/performance.md). The audit is synthetic and is not an automatic release gate.
 
-The visual audit includes scroll behavior, keyboard menu access, horizontal overflow, reduced-motion fallback, and frontend asset budgets. The separately triggered production browser smoke checks the deployed website's portrait, navigation, CSS/WebGL fallback, project interactions and contact link. The on-demand production performance audit records synthetic loading metrics. None of these establish complete real-device coverage or real-user Core Web Vitals.
+The visual audit includes scroll behavior, keyboard menu access, horizontal overflow, reduced-motion fallback, and frontend asset budgets. Live-production browser smoke covers the published website's portrait, navigation, CSS/WebGL fallback, project interactions and contact link. Neither these checks nor the on-demand performance audit establish complete real-device coverage or real-user Core Web Vitals.
 
 ## Safety and scope
 
