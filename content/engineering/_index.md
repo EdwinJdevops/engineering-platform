@@ -28,9 +28,23 @@ The [production workflow](https://github.com/EdwinJdevops/engineering-platform/b
 
 After deployment, the workflow checks HTTP 200 for thirteen published routes, including the public delivery record, and fourteen first-party assets (portrait, CSS, browser scripts and project illustrations). It also checks the portrait size and both RIFF and WEBP signature markers. These are availability and basic asset-integrity checks, not exhaustive decoding, browser compatibility or real-device validation.
 
-The [live production browser smoke workflow](https://github.com/EdwinJdevops/engineering-platform/blob/main/.github/workflows/production-browser-smoke.yml) separately exercises the deployed site in Chromium across mobile and desktop profiles. It checks portrait loading, the WebGL/CSS fallback, reduced motion, navigation, project focus, expertise panels and contact email. **It runs on demand and on changes to its own test files; it is not automatically triggered by every production deployment.** Its evidence concerns the tested browser profiles, not all user devices or an uptime SLO.
+The [live production browser smoke workflow](https://github.com/EdwinJdevops/engineering-platform/blob/main/.github/workflows/production-browser-smoke.yml) separately exercises the deployed site in Chromium across mobile and desktop profiles. It checks portrait loading, the WebGL/CSS fallback, reduced motion, navigation, project focus, expertise panels and contact email. **After a successful Pages deployment, it starts automatically through a GitHub Actions `workflow_run` trigger**; it can also be run manually. The Pages deployment is not fully browser-verified until this follow-up run succeeds. Its evidence concerns the tested browser profiles, not all user devices or an uptime SLO.
 
-The [production performance audit](https://github.com/EdwinJdevops/engineering-platform/blob/main/.github/workflows/performance-audit.yml) collects synthetic load measurements on demand. These are not real-user Core Web Vitals or INP results.
+The [production performance audit](https://github.com/EdwinJdevops/engineering-platform/blob/main/.github/workflows/performance-audit.yml) collects synthetic load measurements on demand, using fresh Chromium contexts with repeatable throttling. These are not real-user Core Web Vitals or INP results.
+
+## Measured synthetic performance — 12 October 2026
+
+The [latest nine-profile performance audit](https://github.com/EdwinJdevops/engineering-platform/actions/runs/38259772324) passed and preserved its samples as a workflow artifact. The reported **medians of three synthetic samples** include:
+
+| Route/profile | Median largest contentful paint | Initial layout shift |
+| --- | ---: | ---: |
+| Mobile homepage | 564 ms | 0 |
+| Mobile article index | 1,064 ms | 0 |
+| Mobile About | 424 ms | 0 |
+| Mobile contact | 360 ms | 0 |
+| Desktop homepage | 576 ms | 0 |
+
+The synthetic profile used 80 ms latency, 200,000 bytes/sec download throughput and 4× CPU slowdown in Chromium. These observations are **not** representative 75th-percentile field measurements, a Lighthouse score, an INP measurement or a performance certification. The article-index LCP is the slowest among those five rows, but this sample does not establish a user-visible regression requiring a new runtime dependency or site redesign. [Methodology and baseline history](https://github.com/EdwinJdevops/engineering-platform/blob/main/docs/performance.md).
 
 ## A fully traceable public delivery example
 
