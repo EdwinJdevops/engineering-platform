@@ -16,7 +16,7 @@ The workflow also runs on PRs changing this audit's script, workflow, or documen
 ## Method and limitations
 
 - Playwright 1.56.1 launches Chromium against the deployed GitHub Pages URL.
-- Mobile uses a 390 × 844 viewport and device scale factor 2 for the homepage, services, projects and articles. Desktop uses a 1440 × 900 viewport for the homepage and About page, plus a reduced-motion homepage profile.
+- Mobile uses a 390 × 844 viewport and device scale factor 2 for the homepage, services, projects, articles, About and contact pages. Desktop uses a 1440 × 900 viewport for the homepage and About page, plus a reduced-motion homepage profile.
 - Each scenario uses three fresh browser contexts, 80 ms network latency, 200000 bytes/sec download, 100000 bytes/sec upload, and 4× CPU throttling. These settings are a **synthetic profile**, not measurements of Nigerian mobile networks or a named physical device.
 - The script records TTFB, FCP, LCP, initial-observation CLS, long-task blocking, request counts, resource transfer bytes, and the reported render mode. A 2.5-second post-load observation window means later page interactions and shifts are excluded.
 - Desktop reduced-motion and normal-motion results can reveal a difference worth investigating, but do **not** attribute a difference solely to WebGL: other animations change too, and software rendering on CI runners may prevent WebGL activation.
@@ -30,3 +30,21 @@ This is intentionally an on-demand workflow rather than continuous polling or ne
 The expanded audit covers the routes most relevant to an international recruiter and prospective engineering customer. Each route receives three fresh-context synthetic samples. A passing workflow confirms the collection completed, **not** that its timings meet Core Web Vitals thresholds or that all third-party article images are reliably available. Record the median and individual samples from the workflow artifact before approving any performance claim.
 
 Do not label the site as "performance certified", "perfect", or "100/100" unless a defined, reproducible measurement supports the exact claim. Actual portrait replacement and real-user performance remain dependent on independently provided media and traffic data.
+
+## First inspected baseline: 2026-10-12
+
+The source artifact is [GitHub Actions run #38254467740](https://github.com/EdwinJdevops/engineering-platform/actions/runs/38254467740), which executed on a performance-audit pull request and measured the **then-deployed** site. These are medians of three independent synthetic samples with the methodology above. The artifact includes individual samples and should be preserved as the point of comparison.
+
+| Profile | Median LCP | Median FCP | Initial CLS | Reported render mode |
+| --- | ---: | ---: | ---: | --- |
+| Mobile homepage | 580 ms | 580 ms | 0 | CSS fallback |
+| Mobile services | 400 ms | 400 ms | 0 | Not applicable |
+| Mobile projects | 404 ms | 404 ms | 0 | Not applicable |
+| Mobile articles | 1,112 ms | 424 ms | 0 | Not applicable |
+| Desktop homepage | 652 ms | 652 ms | 0 | WebGL |
+| Desktop About | 448 ms | 448 ms | 0 | Not applicable |
+| Desktop homepage (reduced motion) | 580 ms | 580 ms | 0 | CSS fallback |
+
+**Interpretation:** The observed LCP and initial CLS values do not, on their own, justify introducing more client-side JavaScript or changing deployment infrastructure. The sample is small, runner-dependent and not a statistically representative experience of real visitors.
+
+**Next comparison:** A subsequent revision of this audit adds mobile About and mobile contact profiles. Earlier samples did not include those routes, so do not invent their baseline or compare them to desktop About. Re-run the same audit after meaningful media, CSS or JavaScript changes. Collect Search Console / CrUX field data when sufficient traffic exists, especially INP and the 75th-percentile distribution.
