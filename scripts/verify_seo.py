@@ -7,7 +7,7 @@ import json
 from html.parser import HTMLParser
 from pathlib import Path
 
-SITE = "https://edwinjdevops.github.io/engineering-platform/"
+BUILD_BASE = "/"  # CI deliberately runs Hugo with --baseURL /
 PUBLIC = Path("public")
 
 TITLES = {
@@ -81,7 +81,7 @@ def main() -> None:
         assert page.title == expected_title, (
             f"{relative}: wrong HTML title: {page.title!r}"
         )
-        assert page.canonical_urls == [SITE + relative], (
+        assert page.canonical_urls == [BUILD_BASE + relative], (
             f"{relative}: wrong canonical(s): {page.canonical_urls!r}"
         )
         print(f"SEO title and canonical OK: /{relative}")
@@ -101,7 +101,7 @@ def main() -> None:
     assert any(
         s.get("@type") == "BlogPosting"
         and isinstance(s.get("headline"), str)
-        and s.get("url") == SITE + article_path
+        and s.get("url") == BUILD_BASE + article_path
         for s in article
     ), "Original engineering article must emit parseable BlogPosting JSON-LD"
     print("Original technical article JSON-LD parses with BlogPosting")
