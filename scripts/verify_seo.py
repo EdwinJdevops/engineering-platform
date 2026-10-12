@@ -26,6 +26,7 @@ class HeadParser(HTMLParser):
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
         self.title = ""
+        self.h1_count = 0
         self.canonical_urls: list[str] = []
         self.schema_texts: list[str] = []
         self._in_title = False
@@ -34,6 +35,8 @@ class HeadParser(HTMLParser):
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = dict(attrs)
+        if tag == "h1":
+            self.h1_count += 1
         if tag == "title":
             self._in_title = True
         if tag == "link" and values.get("rel") == "canonical":
@@ -112,6 +115,14 @@ def main() -> None:
         "https://edwinjonathand-devops.hashnode.dev/why-most-gitops-migrations-fail-after-six-months"
     ], "Do not silently replace source-publication canonical URL"
     print("Archived Hashnode article retains original canonical")
+
+    for path in sorted((PUBLIC / "articles").rglob("index.html")):
+        relative = path.parent.relative_to(PUBLIC).as_posix() + "/"
+        page = read_page(relative)
+        assert page.h1_count == 1, (
+            f"{relative}: expected one article H1, found {page.h1_count}"
+        )
+    print("Article heading hierarchy verified: exactly one H1 per article")
 
 
 if __name__ == "__main__":

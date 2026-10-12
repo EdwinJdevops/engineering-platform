@@ -8,9 +8,6 @@ original_platform: "devto"
 aliases: []
 ---
 
----
-
-# Deployment Isn't the Hard Part. Recovery Is
 
 When I first started learning DevOps, I thought deployment was the destination.
 
