@@ -1,4 +1,5 @@
 ---
+seo_title: "SENTINEL: Kubernetes Security Scanning | Edwin Jonathan"
 artifact_file: ".github/workflows/sentinel-scan.yml"
 artifact_url: "https://github.com/EdwinJdevops/SENTINEL/blob/main/.github/workflows/sentinel-scan.yml"
 artifact_summary: "Trivy and Kubescape scan jobs with uploaded artifacts"
