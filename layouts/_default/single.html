@@ -37,6 +37,9 @@
   {{ if eq .Section "articles" }}
     {{ partial "editorial-cover.html" (dict "page" . "variant" "hero") }}
   {{ end }}
+  {{ if and (eq .Section "articles") (eq .Params.original_platform "devto") }}
+  <p class="article-source" data-publication-context="archived-dev">Archive context ({{ .Date.Format "Jan 2006" }}): this is a preserved DEV publication, not a current verification of every engineering or deployment claim. For present implementation evidence and limitations, see the <a href="{{ "projects/" | relURL }}">engineering case studies</a>.</p>
+  {{ end }}
   {{ with .Params.original_url }}<p class="article-source">Originally published at <a href="{{ . }}" rel="noopener noreferrer">{{ $.Params.original_platform | default "the original publication" }}</a>.</p>{{ end }}
   <div class="prose-body">{{ .Content }}</div>
 </article>

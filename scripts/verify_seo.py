@@ -143,6 +143,31 @@ def main() -> None:
     assert required.issubset(set(locations)), "Sitemap missing primary canonical pages"
     print(f"Sitemap contains {len(locations)} verified canonical URLs")
 
+    # DEV-derived publications must visibly distinguish historic prose from
+    # independently verified current engineering implementation.
+    dev_copies = [
+        path for path in sorted(Path("content/articles").glob("*.md"))
+        if 'original_platform: "devto"' in path.read_text(encoding="utf-8")
+    ]
+    assert len(dev_copies) == 9, f"Expected nine reviewed DEV archives; found {len(dev_copies)}"
+    for source in dev_copies:
+        built = PUBLIC / "articles" / source.stem / "index.html"
+        contents = built.read_text(encoding="utf-8")
+        # Hugo's minifier may remove optional quotes around HTML attribute values.
+        # Parse the actual HTML attributes instead of comparing minifier formatting.
+        class ProvenanceParser(HTMLParser):
+            found = False
+
+            def handle_starttag(self, tag, attrs):
+                if tag == "p" and dict(attrs).get("data-publication-context") == "archived-dev":
+                    self.found = True
+
+        parser = ProvenanceParser()
+        parser.feed(contents)
+        assert parser.found, f"Missing archival context on {source}"
+        assert "current verification" in contents, f"Missing evidence boundary on {source}"
+    print("Historical DEV article provenance shown on all nine archived copies")
+
     for path in sorted((PUBLIC / "articles").rglob("index.html")):
         relative = path.parent.relative_to(PUBLIC).as_posix() + "/"
         page = read_page(relative)
