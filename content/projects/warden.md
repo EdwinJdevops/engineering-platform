@@ -24,9 +24,17 @@ The public repository contains a Go controller, policy-tier classification, reso
 
 The decision path is a policy report, a declared trust tier, an eligible source patch and a GitHub PR. A manual-gate tier must not auto-merge because an inferred confidence score is high.
 
-## Verification boundary
+## Executed verification
 
-The README reports local kind/AKS policy checks and passing unit tests, but also identifies an untested PolicyReport watcher and an unexecuted full end-to-end run using a live cluster and GitHub token. Those gaps prevent a claim that Warden operates a fully autonomous production remediation loop.
+Warden now runs its source-controlled [Go safety checks on pull requests and `master`](https://github.com/EdwinJdevops/warden/actions/workflows/go-ci.yml). The [first successful post-merge run (#38250292469)](https://github.com/EdwinJdevops/warden/actions/runs/38250292469) executed:
+
+- Policy-tier tests, including the `TestManualGateNeverAutoMerges` boundary across confidence values.
+- GitOps resource-limits patch-generator tests using example Kubernetes manifests.
+- All Go package tests, `go vet`, and a controller binary build.
+
+The workflow uses the Go version declared by the [source module](https://github.com/EdwinJdevops/warden/blob/master/go.mod). The [test implementation](https://github.com/EdwinJdevops/warden/blob/master/controller/internal/remediation/tier_test.go) and [current build workflow](https://github.com/EdwinJdevops/warden/blob/master/.github/workflows/go-ci.yml) are public.
+
+**Verification boundary:** These checks establish the behavior of the tested functions and that the controller compiles; they do not establish live PolicyReport watching, safe GitHub PR delivery under retries, deployed auto-merge authorization, or a full finding-to-cluster end-to-end run. The repository still documents those integration gaps.
 
 ## Next meaningful test
 
