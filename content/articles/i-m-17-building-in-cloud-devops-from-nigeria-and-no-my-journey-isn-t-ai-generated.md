@@ -10,9 +10,6 @@ aliases: []
 
 People assume my work is fake because they cannot imagine someone my age writing with this level of clarity, structure, and technical direction. This is the truth behind my journey.
 
----
-
-# I’m 17, Building in Cloud & DevOps From Nigeria — and No, My Journey Isn’t “AI Generated”
 
 There’s something strange happening in tech culture lately.
 
