@@ -115,7 +115,7 @@ async function runProfile(browser, { name, viewport, reducedMotion, mobile }) {
           'https://learn.microsoft.com/en-us/users/jonathanedwin-0146/credentials/certification/azure-fundamentals',
           'Microsoft credential URL differs from the owner-provided link');
         const rel = (await credentialLink.getAttribute('rel')) || '';
-        assert.ok(rel.split(/\\s+/).includes('noopener'), 'External credential link missing noopener');
+        assert.ok(rel.split(/\s+/).includes('noopener'), 'External credential link missing noopener');
         assert.ok(await page.locator('.credential-entries article').count() === 2,
           'Expected Microsoft credential and ALX training entries');
         await page.screenshot({ path: path.join(REPORT_DIR, name + '-about.png'), fullPage: true });
