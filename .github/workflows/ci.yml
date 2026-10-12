@@ -99,7 +99,16 @@ jobs:
             --output /tmp/htmltest.tar.gz \
             https://github.com/wjdp/htmltest/releases/download/v0.17.0/htmltest_0.17.0_linux_amd64.tar.gz
           tar -xzf /tmp/htmltest.tar.gz -C /tmp htmltest
-          /tmp/htmltest -s public
+          # Google's ownership token is intentionally plain text in a .html file.
+          # Check its exact required bytes, rather than treating it as an HTML page.
+          verification_file="google19c4bfed3c4a8a5b.html"
+          printf 'google-site-verification: google19c4bfed3c4a8a5b.html' | cmp - "public/${verification_file}"
+          # Validate every actual rendered HTML page; exclude only the byte-checked token.
+          htmltest_root="$(mktemp -d)"
+          trap 'rm -rf "$htmltest_root"' EXIT
+          cp -a public/. "$htmltest_root/"
+          rm -- "$htmltest_root/${verification_file}"
+          /tmp/htmltest -s "$htmltest_root"
 
       - name: Accessibility audit
         shell: bash
