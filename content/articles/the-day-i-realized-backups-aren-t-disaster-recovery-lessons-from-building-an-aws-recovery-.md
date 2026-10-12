@@ -8,9 +8,6 @@ original_platform: "devto"
 aliases: []
 ---
 
----
-
-# The Day I Realized Backups Aren't Disaster Recovery: Lessons From Building an AWS Recovery Strategy
 
 One of the biggest misconceptions in cloud engineering is believing that backups automatically mean you're prepared for a disaster.
 
