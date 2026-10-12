@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 from html.parser import HTMLParser
 from pathlib import Path
+from xml.etree import ElementTree
 
 BUILD_BASE = "/"  # CI deliberately runs Hugo with --baseURL /
 PUBLIC = Path("public")
@@ -115,6 +116,32 @@ def main() -> None:
         "https://edwinjonathand-devops.hashnode.dev/why-most-gitops-migrations-fail-after-six-months"
     ], "Do not silently replace source-publication canonical URL"
     print("Archived Hashnode article retains original canonical")
+
+    # Sitemap URLs must agree with their published HTML canonical signal.
+    sitemap = ElementTree.parse(PUBLIC / "sitemap.xml")
+    ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+    assert sitemap.getroot().tag == ns + "urlset", "Unexpected sitemap root"
+    locations = [
+        (node.text or "").strip()
+        for node in sitemap.findall(f"./{ns}url/{ns}loc")
+    ]
+    assert locations and len(locations) == len(set(locations)), (
+        "Sitemap is empty or contains duplicate locations"
+    )
+    for location in locations:
+        assert location.startswith(BUILD_BASE), f"Unexpected sitemap URL: {location}"
+        assert not location.startswith("http"), f"CI sitemap must use / base: {location}"
+        relative = location[len(BUILD_BASE):]
+        page = read_page(relative)
+        assert page.canonical_urls == [location], (
+            f"Sitemap includes noncanonical page {location}: {page.canonical_urls!r}"
+        )
+    required = {BUILD_BASE + path for path in (
+        "", "portfolio/", "contact/", "projects/driftguard/",
+        "articles/aws-inventory-failure-terraform-drift/",
+    )}
+    assert required.issubset(set(locations)), "Sitemap missing primary canonical pages"
+    print(f"Sitemap contains {len(locations)} verified canonical URLs")
 
     for path in sorted((PUBLIC / "articles").rglob("index.html")):
         relative = path.parent.relative_to(PUBLIC).as_posix() + "/"
