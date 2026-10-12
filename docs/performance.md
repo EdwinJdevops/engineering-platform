@@ -16,7 +16,7 @@ The workflow also runs on PRs changing this audit's script, workflow, or documen
 ## Method and limitations
 
 - Playwright 1.56.1 launches Chromium against the deployed GitHub Pages URL.
-- Mobile uses a 390 × 844 viewport and device scale factor 2. Desktop uses a 1440 × 900 viewport.
+- Mobile uses a 390 × 844 viewport and device scale factor 2 for the homepage, services, projects and articles. Desktop uses a 1440 × 900 viewport for the homepage and About page, plus a reduced-motion homepage profile.
 - Each scenario uses three fresh browser contexts, 80 ms network latency, 200000 bytes/sec download, 100000 bytes/sec upload, and 4× CPU throttling. These settings are a **synthetic profile**, not measurements of Nigerian mobile networks or a named physical device.
 - The script records TTFB, FCP, LCP, initial-observation CLS, long-task blocking, request counts, resource transfer bytes, and the reported render mode. A 2.5-second post-load observation window means later page interactions and shifts are excluded.
 - Desktop reduced-motion and normal-motion results can reveal a difference worth investigating, but do **not** attribute a difference solely to WebGL: other animations change too, and software rendering on CI runners may prevent WebGL activation.
@@ -24,3 +24,9 @@ The workflow also runs on PRs changing this audit's script, workflow, or documen
 - No performance threshold is applied until the first baseline is reviewed. Network failures and non-200 primary document responses fail the audit.
 
 This is intentionally an on-demand workflow rather than continuous polling or new production telemetry. The site remains static and tracking-free.
+
+## Release-readiness interpretation
+
+The expanded audit covers the routes most relevant to an international recruiter and prospective engineering customer. Each route receives three fresh-context synthetic samples. A passing workflow confirms the collection completed, **not** that its timings meet Core Web Vitals thresholds or that all third-party article images are reliably available. Record the median and individual samples from the workflow artifact before approving any performance claim.
+
+Do not label the site as "performance certified", "perfect", or "100/100" unless a defined, reproducible measurement supports the exact claim. Actual portrait replacement and real-user performance remain dependent on independently provided media and traffic data.
