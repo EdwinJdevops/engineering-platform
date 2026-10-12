@@ -257,6 +257,9 @@ const fs = require("node:fs");
     if (await introLink.count() !== 1) failures.push("About route missing from hero");
     const homepageEmail = identity.locator('.footer-email[href^="mailto:edwinjonathanchibuike123@gmail.com"]').first();
     if (await homepageEmail.count() !== 1) failures.push("Verified contact link missing from footer");
+    const photoCaption = (await identity.locator(".home-portrait figcaption").innerText()).trim();
+    if (photoCaption !== "Edwin Jonathan")
+      failures.push("Portrait caption is no longer a simple name: "+photoCaption);
     const portraitWidth = await identity.locator(".home-portrait").evaluate(el => el.getBoundingClientRect().width);
     if (portraitWidth > 230)
       failures.push("Legacy portrait still dominates the homepage: "+viewport.width+"px viewport, "+portraitWidth+"px photo");
@@ -269,6 +272,8 @@ const fs = require("node:fs");
     if (await credentialItems.count() !== 2)
       failures.push("Expected CV-recorded Microsoft and ALX entries: "+viewport.width);
     const credentialText = await identity.locator(".profile-credentials").innerText();
+    if (await identity.locator(".credential-source-note").count() !== 0)
+      failures.push("Unnecessary credential disclaimer reappeared: "+viewport.width);
     if (!credentialText.includes("Azure Fundamentals (AZ-900)") || !credentialText.includes("Cloud DevOps Engineering Programme") || !credentialText.includes("Microsoft Learn credential"))
       failures.push("Credentials or Microsoft Learn reference missing: "+viewport.width);
     const microsoftUrl = await identity.locator('.profile-credentials .credential-link').getAttribute('href');
@@ -303,7 +308,7 @@ const fs = require("node:fs");
     if (await publicEvidence.locator('.home-public-record a[href="https://github.com/EdwinJdevops/driftguard/pull/3"]').count() < 1)
       failures.push("Missing merged external DriftGuard PR evidence: "+viewport.width);
     const evidenceText = await publicEvidence.locator(".home-public-record").innerText();
-    if (!evidenceText.includes("failed read") || !evidenceText.includes("not a client testimonial"))
+    if (!evidenceText.includes("failed read") || !evidenceText.includes("PR #3"))
       failures.push("Missing precise independent implementation disclosure: "+viewport.width);
     if (await publicEvidence.locator(".featured-project").count() !== 3)
       failures.push("Research stage projects were not excluded from homepage selected work");
