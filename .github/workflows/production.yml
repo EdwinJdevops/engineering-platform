@@ -108,6 +108,25 @@ jobs:
             fi
             echo "Verified HTTP 200: $asset"
           done
+          # Verify the Google Search Console ownership token at the exact published URL.
+          # Google requires HTTP 200 without a redirect and the unmodified file body.
+          verification="google19c4bfed3c4a8a5b.html"
+          expected="google-site-verification: $verification"
+          verified=false
+          for attempt in 1 2 3 4 5; do
+            code="$(curl --silent --show-error --max-time 15 --output /tmp/gsc-verification.html --write-out '%{http_code}' "${base}${verification}" || true)"
+            if [[ "$code" == "200" ]] && cmp -s /tmp/gsc-verification.html <(printf '%s' "$expected"); then
+              verified=true
+              break
+            fi
+            echo "Verification file attempt $attempt returned HTTP ${code:-unavailable} or mismatched content"
+            sleep 5
+          done
+          if [[ "$verified" != true ]]; then
+            echo "::error::Google ownership file is not served at the required URL"
+            exit 1
+          fi
+          echo "Google ownership file verified: HTTP 200, no redirect, exact bytes"
           # Verify the portrait is nonempty and WebP, rather than a missing-page response.
           curl --fail --location --silent --show-error --max-time 20 "${base}images/edwin-portrait-web.webp" -o /tmp/production-portrait.webp
           bytes="$(wc -c < /tmp/production-portrait.webp)"

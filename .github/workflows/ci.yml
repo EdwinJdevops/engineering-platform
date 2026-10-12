@@ -99,6 +99,15 @@ jobs:
             --output /tmp/htmltest.tar.gz \
             https://github.com/wjdp/htmltest/releases/download/v0.17.0/htmltest_0.17.0_linux_amd64.tar.gz
           tar -xzf /tmp/htmltest.tar.gz -C /tmp htmltest
+          # Google's required ownership file is plain text with an .html suffix.
+          # Assert the supplied token is intact; exclude only this file from htmltest.
+          token="google19c4bfed3c4a8a5b.html"
+          if [[ "$(cat "public/$token")" != "google-site-verification: $token" ]]; then
+            echo "::error::Google ownership file is missing or its content changed"
+            exit 1
+          fi
+          mv "public/$token" "/tmp/$token"
+          trap 'mv "/tmp/google19c4bfed3c4a8a5b.html" "public/google19c4bfed3c4a8a5b.html"' EXIT
           /tmp/htmltest -s public
 
       - name: Accessibility audit
