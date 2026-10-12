@@ -4,7 +4,7 @@
     <p class="eyebrow hero-index"><span class="hero-index-dot" aria-hidden="true"></span> PLATFORM / DEVOPS ENGINEER · LAGOS, NIGERIA </p>
     <h1>Edwin<br><span>Jonathan.</span></h1>
     <p class="home-role">Platform, cloud and DevOps engineer · Backend engineering</p>
-    <p class="lede">I build infrastructure and backend tools for delivery, security and operational visibility. Review the source code and tests, including how the systems behave when AWS reads fail or an automated change requires approval.</p>
+    <p class="lede">I build cloud infrastructure, deployment pipelines and backend tools. My projects include Terraform drift detection, Kubernetes policy controls and the software that supports them.</p>
     <p class="home-availability">Based in Lagos, Nigeria · Open to international remote engineering roles and scoped contracts</p>
     <div class="actions">
       <a class="button primary" href="{{ "projects/" | relURL }}">Review engineering work ↗</a>
@@ -15,7 +15,7 @@
   {{ if fileExists "static/images/edwin-portrait-web.webp" }}
   <figure class="home-portrait" data-reveal>
     <img src="{{ "images/edwin-portrait-web.webp" | relURL }}" alt="Portrait of Edwin Jonathan" width="720" height="1205" fetchpriority="high" decoding="async">
-    <figcaption>EDWIN JONATHAN / ENGINEERING PRACTICE</figcaption>
+    <figcaption>Edwin Jonathan</figcaption>
   </figure>
   {{ end }}
   <div class="infra-scene" aria-label="Three infrastructure layers: application, delivery, and infrastructure" role="img" data-infra-scene>
@@ -77,13 +77,13 @@
     </article>
   </div>
   <div class="public-record-bottom">
-    <p>This is public engineering evidence, not a client testimonial. The AWS proof exercises a bounded provider-native workflow; PR #3 tests inventory-failure handling. Neither constitutes a production availability guarantee.</p>
+    <p>The AWS run verifies one drift-detection workflow. PR #3 tests how DriftGuard handles incomplete AWS inventory. The scope and results are linked above.</p>
     <a class="text-link" href="{{ "projects/driftguard/" | relURL }}">Full DriftGuard case study ↗</a>
   </div>
 </section>
 <section class="shell section-block home-expertise" aria-labelledby="expertise-heading">
   <div class="home-section-title"><div><p class="eyebrow">AREAS OF EXPERTISE / THE WORK I DO</p><h2 id="expertise-heading">Infrastructure and software, together.</h2></div><a class="text-link" href="{{ "portfolio/" | relURL }}">Background and technical stack ↗</a></div>
-  <p class="expertise-context">Cloud engineering is not separate from software delivery. I work across the layers where infrastructure, applications, permissions and operational behaviour meet. Each discipline below connects to work you can inspect.</p>
+  <p class="expertise-context">I work across cloud infrastructure, backend APIs, deployment pipelines and operations. These examples show how I use those skills.</p>
   <div class="expertise-list">
     <details><summary><span>01</span><strong>Platform engineering</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>Internal engineering workflows, service boundaries, GitOps delivery and infrastructure-facing APIs. I focus on reducing repeated manual operations without introducing an opaque control plane.</p><a href="{{ "projects/warden/" | relURL }}">Warden: policy-bound automation ↗</a></div></details>
     <details><summary><span>02</span><strong>DevOps and release engineering</strong><span class="expertise-toggle" aria-hidden="true"></span></summary><div><p>CI/CD, containers, GitHub Actions, Argo CD, deployment health checks and rollback/recovery considerations. A successful build is not the same thing as a verified release.</p><a href="{{ "engineering/" | relURL }}">Inspect this site's delivery workflow ↗</a></div></details>
@@ -96,7 +96,7 @@
 </section>
 <section class="shell section-block home-experience" aria-labelledby="experience-heading">
   <div class="home-section-title"><div><p class="eyebrow">PROFESSIONAL BACKGROUND / SELECTED WORK</p><h2 id="experience-heading">Engineering beyond public repositories.</h2></div><a class="text-link" href="{{ "portfolio/" | relURL }}">Full background ↗</a></div>
-  <p class="experience-intro">Alongside open-source engineering, I deliver paid infrastructure and DevOps work through Edwin Cloud DevOps Services. Some commercial engagements cannot be identified publicly. I do not substitute client logos or anonymous praise for permission-backed references.</p>
+  <p class="experience-intro">I also take on cloud and DevOps contracts through Edwin Cloud DevOps Services. Some client work is confidential.</p>
   <div class="experience-ledger">
     <div class="experience-entry"><span>2026 — PRESENT</span><div><h3>Edwin Cloud DevOps Services</h3><p>Independent cloud and DevOps engineering · Contract delivery, infrastructure changes, pipelines and technical handoff.</p></div><a href="{{ "services/" | relURL }}">Services ↗</a></div>
     <div class="experience-entry"><span>2026</span><div><h3>Allianz</h3><p>Remote DevOps contract · CI/CD operations, deployment verification and cloud application environments under team oversight.</p></div><a href="{{ "portfolio/" | relURL }}">Role context ↗</a></div>
@@ -105,7 +105,7 @@
   </div>
   <div class="engagement-boundary">
     <div><p class="eyebrow">CLIENT CONFIDENTIALITY</p><h3>Private work stays private.</h3></div>
-    <div><p>Public work can be reviewed without revealing a customer's identity, environment or commercial terms. Employer names above identify roles recorded in my CV, not client endorsements.</p><a class="text-link" href="{{ "engineering/delivery-record/" | relURL }}">Read an independent delivery example ↗</a></div>
+    <div><p>Client environments and contract details stay private. My public repositories show the engineering work I can share.</p><a class="text-link" href="{{ "engineering/delivery-record/" | relURL }}">See a public delivery example ↗</a></div>
   </div>
 </section>
 <section class="shell home-articles section-block" aria-labelledby="home-articles-heading">
