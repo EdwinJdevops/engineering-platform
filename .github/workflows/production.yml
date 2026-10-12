@@ -80,6 +80,18 @@ jobs:
             echo "Verified HTTP 200: ${route:-/}"
           done
           echo "Production route smoke checks passed"
+          # Recruiter credential reference must be present in the published About HTML.
+          # This checks the local link, not issuer authentication or external service availability.
+          curl --fail --location --silent --show-error --max-time 20 "${base}portfolio/" -o /tmp/production-portfolio.html
+          if ! grep -Fq 'https://learn.microsoft.com/en-us/users/jonathanedwin-0146/credentials/certification/azure-fundamentals' /tmp/production-portfolio.html; then
+            echo "::error::Published About page missing exact owner-provided Microsoft credential link"
+            exit 1
+          fi
+          if ! grep -Fq 'Cloud DevOps Engineering Programme' /tmp/production-portfolio.html; then
+            echo "::error::Published About page missing ALX training reference"
+            exit 1
+          fi
+          echo "Published credential link and ALX training reference verified in About HTML"
           # A successful HTML response alone does not establish that the portrait and assets shipped.
           for asset in "images/edwin-portrait-web.webp" "css/main.css" \
             "js/infrastructure-scene.js" "js/infrastructure-webgl.js" \
