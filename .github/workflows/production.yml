@@ -96,6 +96,7 @@ jobs:
           for asset in "images/edwin-portrait-web.webp" "css/main.css" \
             "js/infrastructure-scene.js" "js/infrastructure-webgl.js" \
             "js/scroll-reveal.js" "js/editorial-covers.js" \
+            "js/system-stage.js" "css/system-stage.css" \
             "images/projects/warden.svg" "images/projects/infraguard.svg" \
             "images/projects/infraguard-agent.svg" "images/projects/driftguard.svg" \
             "images/projects/optimization-evidence.svg" "images/projects/cer.svg" \
