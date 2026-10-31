@@ -355,6 +355,32 @@ const fs = require("node:fs");
     await publicEvidence.close();
   }
 
+  // Interactive systems stage: all three controls, real evidence links and keyboard access.
+  for (const viewport of [{width:320,height:720},{width:390,height:844},{width:1440,height:900}]) {
+    const stagePage = await browser.newPage({ viewport, reducedMotion:"reduce" });
+    await stagePage.goto("http://127.0.0.1:4173/", { waitUntil:"domcontentloaded" });
+    const stage = stagePage.locator("[data-system-stage]");
+    if (await stage.count() !== 1) failures.push("Missing system-stage section at "+viewport.width);
+    for (const [name, evidence] of [
+      ["application","driftguard/pull/3"],
+      ["delivery","/engineering/"],
+      ["infrastructure","35343278654"]
+    ]) {
+      const control = stage.locator('[data-layer="'+name+'"]');
+      await control.click();
+      if (await control.getAttribute("aria-pressed") !== "true")
+        failures.push("System stage control not selected: "+name);
+      const selected = stage.locator('[data-case="'+name+'"]');
+      if (!(await selected.isVisible()) || !(await selected.locator("a").getAttribute("href")).includes(evidence))
+        failures.push("Wrong visible evidence for system stage "+name);
+      if (await stage.locator(".system-stage-cases article:not([hidden])").count() !== 1)
+        failures.push("Multiple system stage panels visible: "+name);
+    }
+    const overflow = await stagePage.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    if (overflow > 2) failures.push("System-stage homepage overflow "+viewport.width+": "+overflow);
+    await stagePage.close();
+  }
+
   const noScript = await browser.newPage({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
   await noScript.goto("http://127.0.0.1:4173/", { waitUntil: "load" });
   const staticVisibility = await noScript.locator(".home-work").evaluate(el => ({
