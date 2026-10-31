@@ -695,3 +695,5 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 .system-stage-viewport-label,.system-stage-viewport-caption{color:#fff;background:#101f2b;padding:5px 8px;border:1px solid #516e81}
 .system-stage-plane span{color:#fff;background:#122434;padding:5px 7px;border:1px solid #638298}
 .system-stage-controls button:not([aria-pressed=true]){background:#193348;color:#fff;border-color:#7798ae}
+
+.system-stage-overline{font:700 12px/1.6 ui-monospace,Consolas,monospace;color:#10314b;background:#c8f4ee;display:inline-block;padding:5px 8px;letter-spacing:.06em}
