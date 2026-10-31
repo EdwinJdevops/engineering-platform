@@ -15,6 +15,7 @@
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  {{ if .IsHome }}<link rel="stylesheet" href="{{ "css/system-stage.css" | relURL }}">{{ end }}
   <script src="{{ "js/scroll-reveal.js" | relURL }}" defer></script>
   <script src="{{ "js/editorial-covers.js" | relURL }}" defer></script>
   {{ if .IsHome }}<script src="{{ "js/system-stage.js" | relURL }}" defer></script>{{ end }}
