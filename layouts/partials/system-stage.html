@@ -1,0 +1,50 @@
+<section class="shell system-stage section-block" aria-labelledby="system-stage-heading" data-system-stage>
+  <div class="system-stage-heading">
+    <div>
+      <p class="system-stage-overline">ENGINEERING / INTERACTIVE SYSTEM MODEL</p>
+      <h2 id="system-stage-heading">Every deployment crosses a boundary.</h2>
+    </div>
+    <p>Explore the layers behind a real release. Each stage links to engineering evidence rather than a decorative animation.</p>
+  </div>
+  <div class="system-stage-shell">
+    <div class="system-stage-viewport" role="img" aria-label="Three connected infrastructure layers: application, delivery and infrastructure. Select a stage to inspect its engineering controls.">
+      <div class="system-stage-model" aria-hidden="true">
+        <div class="system-stage-plane system-stage-plane--app"><i></i><i></i><i></i></div>
+        <div class="system-stage-plane system-stage-plane--delivery"><i></i><i></i><i></i></div>
+        <div class="system-stage-plane system-stage-plane--infra"><i></i><i></i><i></i></div>
+        <div class="system-stage-connector"></div>
+      </div>
+      
+      
+    </div>
+    <div class="system-stage-detail">
+      <p class="eyebrow">SYSTEM BOUNDARIES</p>
+      <div class="system-stage-controls" role="group" aria-label="Select an engineering layer">
+        <button type="button" data-layer="application" aria-pressed="true">01 Application</button>
+        <button type="button" data-layer="delivery" aria-pressed="false">02 Delivery</button>
+        <button type="button" data-layer="infrastructure" aria-pressed="false">03 Infrastructure</button>
+      </div>
+      <div class="system-stage-cases">
+        <article data-case="application">
+          <p class="card-kicker">APPLICATION / BEHAVIOUR</p>
+          <h3>Software must report uncertainty.</h3>
+          <p>An incomplete AWS inventory cannot safely be interpreted as deleted resources. DriftGuard distinguishes failed reads from actual resource absence.</p>
+          <a class="text-link" href="https://github.com/EdwinJdevops/driftguard/pull/3">Inspect merged failure-handling regression ↗</a>
+        </article>
+        <article data-case="delivery" hidden>
+          <p class="card-kicker">DELIVERY / RELEASE ASSURANCE</p>
+          <h3>A successful build is not a release.</h3>
+          <p>This site's GitHub Pages workflow separately verifies deployed routes and critical assets after a merge. The workflow is public and reproducible.</p>
+          <a class="text-link" href="{{ "engineering/" | relURL }}">Inspect site delivery architecture ↗</a>
+        </article>
+        <article data-case="infrastructure" hidden>
+          <p class="card-kicker">INFRASTRUCTURE / DESIRED STATE</p>
+          <h3>Detect changes outside Terraform.</h3>
+          <p>A recorded AWS Systems Manager experiment changed a resource outside Terraform and produced drift evidence through a refresh-only plan.</p>
+          <a class="text-link" href="https://github.com/EdwinJdevops/driftguard/actions/runs/35343278654">Inspect executed AWS evidence ↗</a>
+        </article>
+      </div>
+      <p class="system-stage-note">Interactive model, not live telemetry. Links open source code, operational documentation or execution records.</p>
+    </div>
+  </div>
+</section>
