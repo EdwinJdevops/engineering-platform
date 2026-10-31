@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
   <script src="{{ "js/scroll-reveal.js" | relURL }}" defer></script>
   <script src="{{ "js/editorial-covers.js" | relURL }}" defer></script>
+  {{ if .IsHome }}<script src="{{ "js/system-stage.js" | relURL }}" defer></script>{{ end }}
   <link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | absURL }}" title="{{ site.Title }}">
   <meta property="og:site_name" content="Edwin Jonathan Engineering Platform">
   <meta property="og:title" content="{{ $searchTitle }}">
