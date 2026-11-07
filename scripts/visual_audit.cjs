@@ -174,7 +174,7 @@ const fs = require("node:fs");
       failures.push("Expected three implementation-first source cards: "+viewport.width);
     if (await editorial.locator(".work-research-list article").count() !== 5)
       failures.push("Five research-stage entries must remain accessible: "+viewport.width);
-    for (const slug of ["driftguard","warden","sentinel"]) {
+    for (const slug of ["driftguard","chart-ledger","warden"]) {
       const link = editorial.locator('.work-visual-card h3 a[href$="/projects/'+slug+'/"]').first();
       if (await link.count() !== 1) failures.push("Missing tested implementation: "+slug);
     }
