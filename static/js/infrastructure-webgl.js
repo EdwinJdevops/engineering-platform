@@ -6,10 +6,11 @@
   const hero = document.querySelector('[data-scroll-scene]');
   if (!host || !hero || !window.WebGLRenderingContext) return;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const mobile = window.matchMedia('(max-width: 760px)');
   const canvas = document.createElement('canvas');
   canvas.className = 'infra-webgl';
   canvas.setAttribute('aria-hidden', 'true');
-  if (reduced.matches) return;
+  if (reduced.matches || mobile.matches) return;
 
   let gl;
   try { gl = canvas.getContext('webgl', { alpha: true, antialias: true, depth: true, powerPreference: 'low-power' }); }
@@ -149,7 +150,7 @@
     if (!frame && active) frame = window.requestAnimationFrame(render);
   }
   function preferenceChange() {
-    const enabled = active && !reduced.matches;
+    const enabled = active && !reduced.matches && !mobile.matches;
     host.classList.toggle('webgl-ready',enabled);
     host.dataset.renderMode = enabled ? 'webgl' : 'css';
     if (enabled) requestRender();
@@ -166,6 +167,7 @@
   window.addEventListener('resize',requestRender,{ passive:true });
   document.addEventListener('visibilitychange',requestRender);
   reduced.addEventListener('change',preferenceChange);
+  mobile.addEventListener('change',preferenceChange);
   canvas.addEventListener('webglcontextlost',event => {
     event.preventDefault();
     active=false;
