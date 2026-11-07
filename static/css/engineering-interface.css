@@ -1,7 +1,5 @@
 /* Engineering interface v3: evidence-driven interaction, not decorative 3D. */
-body{background:#080c13!important;background-image:radial-gradient(ellipse 70% 25% at 80% 0%,#143a4a55,transparent),radial-gradient(ellipse 45% 30% at 0% 50%,#24395a40,transparent)!important;background-attachment:fixed!important}
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(#a8d7e808 1px,transparent 1px),linear-gradient(90deg,#a8d7e808 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,#0008,transparent 90%)}
-.home-intro{min-height:auto!important;grid-template-columns:minmax(0,1.25fr) minmax(220px,.7fr)!important;gap:clamp(18px,4vw,60px)!important}
+body{background:#080c13!important;background-image:none!important}\nbody::before{content:none!important}\n.home-intro{min-height:auto!important;grid-template-columns:minmax(0,1.25fr) minmax(220px,.7fr)!important;gap:clamp(18px,4vw,60px)!important}
 .home-intro h1{font-size:clamp(52px,7.2vw,116px)!important;line-height:.91!important;letter-spacing:-.075em!important}
 .home-intro .infra-scene{grid-column:1/-1;min-height:300px!important;max-height:390px!important}
 .home-intro .home-portrait{align-self:center}
@@ -44,3 +42,12 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 @media(max-width:650px){.home-intro{grid-template-columns:minmax(0,1fr) minmax(112px,.44fr)!important;gap:12px!important;padding:32px 18px!important}.home-intro-copy{grid-column:1/-1}.home-intro h1{font-size:clamp(55px,12vw,82px)!important}.home-intro .home-portrait{grid-column:2;grid-row:2;max-width:100%}.home-intro .infra-scene{grid-column:1/-1;grid-row:3;min-height:250px!important}.release-lab-track{margin:35px 0 20px}.release-lab-node{min-height:110px;padding:12px 7px}.release-lab-node strong{font-size:14px}.release-lab-node small{font-size:9px}.release-lab-connector{width:8px}.release-lab-footer{font-size:8px}.release-lab-diagram{padding:16px}.release-lab-heading h2{font-size:clamp(37px,9vw,55px)}}
 @media(prefers-reduced-motion:no-preference){.release-lab-pulse{animation:release-pulse 8s ease-in-out infinite alternate}@keyframes release-pulse{to{transform:translate(25%,20%) scale(1.1)}}}
 @media(prefers-reduced-motion:reduce){.release-lab-node{transition:none}.release-lab-pulse{animation:none}}
+
+/* Explicit opaque surfaces make contrast deterministic for users and axe. */
+.release-lab{background:#080c13}
+.release-lab-heading{background:#080c13}
+.release-lab-layout{background:#0b1521}
+.release-lab-diagram{background:#0b1b2b}
+.release-lab-inspector{background:#0b1521}
+.release-lab-node{background:#142d3d}
+.release-lab-node[aria-pressed=true]{background:#a5f1db}
