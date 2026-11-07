@@ -5,12 +5,11 @@
   const host = document.querySelector('[data-infra-scene]');
   const hero = document.querySelector('[data-scroll-scene]');
   if (!host || !hero || !window.WebGLRenderingContext) return;
-  const desktop = window.matchMedia('(min-width: 900px)');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const canvas = document.createElement('canvas');
   canvas.className = 'infra-webgl';
   canvas.setAttribute('aria-hidden', 'true');
-  if (!desktop.matches || reduced.matches) return;
+  if (reduced.matches) return;
 
   let gl;
   try { gl = canvas.getContext('webgl', { alpha: true, antialias: true, depth: true, powerPreference: 'low-power' }); }
@@ -121,10 +120,10 @@
   let frame = 0, pointerX = 0, pointerY = 0, active = true;
   function render() {
     frame = 0;
-    if (!active || !desktop.matches || reduced.matches || document.hidden) return;
+    if (!active || reduced.matches || document.hidden) return;
     const bounds = canvas.getBoundingClientRect();
     if (bounds.width <= 0 || bounds.height <= 0) return;
-    const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+    const ratio = Math.min(window.devicePixelRatio || 1, window.innerWidth < 900 ? 1 : 1.5);
     const width = Math.min(1800, Math.max(1,Math.round(bounds.width * ratio)));
     const height = Math.min(1200, Math.max(1,Math.round(bounds.height * ratio)));
     if (canvas.width !== width || canvas.height !== height) {
@@ -150,7 +149,7 @@
     if (!frame && active) frame = window.requestAnimationFrame(render);
   }
   function preferenceChange() {
-    const enabled = desktop.matches && !reduced.matches;
+    const enabled = active && !reduced.matches;
     host.classList.toggle('webgl-ready',enabled);
     host.dataset.renderMode = enabled ? 'webgl' : 'css';
     if (enabled) requestRender();
@@ -166,7 +165,6 @@
   window.addEventListener('scroll',requestRender,{ passive:true });
   window.addEventListener('resize',requestRender,{ passive:true });
   document.addEventListener('visibilitychange',requestRender);
-  desktop.addEventListener('change',preferenceChange);
   reduced.addEventListener('change',preferenceChange);
   canvas.addEventListener('webglcontextlost',event => {
     event.preventDefault();
