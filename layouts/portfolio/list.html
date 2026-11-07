@@ -2,10 +2,10 @@
 <section class="shell profile-intro profile-intro-refined" aria-labelledby="profile-name">
   <div>
     <p class="eyebrow">EDWIN JONATHAN / ENGINEERING BACKGROUND</p>
-    <h1 id="profile-name">About the <span class="profile-period">work.</span></h1>
+    <h1 id="profile-name">Engineering is a practice of <span class="profile-period">making uncertainty explicit.</span></h1>
     <p class="profile-role">Platform engineering · DevOps · Cloud infrastructure · Backend software</p>
-    <p class="lede">I am an engineer based in Lagos, Nigeria, working across infrastructure, software delivery and the services used to operate them. I build in Python and cloud-native tooling, keep infrastructure changes reviewable, and test the assumptions behind automation.</p>
-    <p>My case studies link to source code, tests and engineering decisions. I also document where a project is still in progress.</p>
+    <p class="lede">I am Edwin Jonathan, a Lagos-based engineer working on cloud infrastructure, software delivery and the backend systems behind operational tooling. My public work concentrates on failure boundaries: what a system can actually observe, what an automated change is allowed to do, and what evidence is sufficient to call a release successful.</p>
+    <p>DriftGuard investigates incomplete AWS inventory and Terraform drift. Warden explores policy-bound automation. Other work covers Kubernetes security and delivery verification. The repositories, tests and limitations are available for inspection; experiments are identified as experiments.</p>
     <div class="actions"><a class="button primary" href="{{ "projects/" | relURL }}">Inspect engineering work ↗</a><a class="button" href="{{ "contact/" | relURL }}">Contact me ↗</a></div>
   </div>
   <aside class="profile-sidebar" aria-label="Professional links">
@@ -18,7 +18,7 @@
   </aside>
 </section>
 <section class="shell section-block profile-details" aria-labelledby="profile-expertise-heading">
-  <div><p class="eyebrow">DISCIPLINES / PRACTICAL SCOPE</p><h2 id="profile-expertise-heading">Engineering across boundaries.</h2></div>
+  <div><p class="eyebrow">DISCIPLINES / PRACTICAL SCOPE</p><h2 id="profile-expertise-heading">From an API response to a production decision.</h2></div>
   <div class="profile-groups">
     <div><h3>Platform engineering</h3><p>GitOps workflows, developer delivery systems, internal automation and infrastructure-facing control surfaces.</p><p class="profile-boundary"><a href="{{ "projects/warden/" | relURL }}">Warden implementation ↗</a></p></div>
     <div><h3>DevOps and delivery engineering</h3><p>GitHub Actions, Docker, deployment verification, Argo CD, CI/CD and change-management boundaries.</p><p class="profile-boundary"><a href="{{ "engineering/" | relURL }}">This site's release pipeline ↗</a></p></div>
@@ -29,7 +29,7 @@
   </div>
 </section>
 <section class="shell section-block profile-tech" aria-labelledby="tech-stack-heading">
-  <div class="home-section-title"><div><p class="eyebrow">WORKING TOOLCHAIN</p><h2 id="tech-stack-heading">Technical stack.</h2></div></div>
+  <div class="home-section-title"><div><p class="eyebrow">WORKING TOOLCHAIN</p><h2 id="tech-stack-heading">Tools used in the work.</h2></div></div>
   <div class="tech-stack-grid">
     <div><span>01 / SOFTWARE</span><h3>Python · FastAPI · PostgreSQL</h3><p>Infrastructure APIs, automation, persistence and tests. Bash and Git support operational workflows.</p></div>
     <div><span>02 / CLOUD</span><h3>AWS · IAM · Networking</h3><p>VPC, ECS Fargate, ECR, ALB, S3, RDS and short-lived authentication. Azure experience is also part of my learning and project work.</p></div>
@@ -41,7 +41,7 @@
 </section>
 <section class="shell section-block profile-credentials" aria-labelledby="credentials-heading">
   <div class="home-section-title">
-    <div><p class="eyebrow">CREDENTIALS / STRUCTURED TRAINING</p><h2 id="credentials-heading">Education and certification.</h2></div>
+    <div><p class="eyebrow">CREDENTIALS / STRUCTURED TRAINING</p><h2 id="credentials-heading">Credentials and structured training.</h2></div>
   </div>
   <div class="credential-entries">
     <article>
@@ -57,7 +57,7 @@
   </div>
 </section>
 <section class="shell section-block profile-career" aria-labelledby="career-heading">
-  <div class="home-section-title"><div><p class="eyebrow">PROFESSIONAL EXPERIENCE</p><h2 id="career-heading">Work and responsibilities.</h2></div><a class="text-link" href="{{ "contact/" | relURL }}">Discuss a role ↗</a></div>
+  <div class="home-section-title"><div><p class="eyebrow">PROFESSIONAL EXPERIENCE</p><h2 id="career-heading">Professional work, in context.</h2></div><a class="text-link" href="{{ "contact/" | relURL }}">Discuss a role ↗</a></div>
   <ol class="career-timeline">
     <li><time>Feb 2026 — present</time><div><h3>Edwin Cloud DevOps Services</h3><p class="career-role">Independent cloud / DevOps engineer · Lagos / Remote</p><p>Paid cloud and delivery work across AWS, Linux, Terraform, CI/CD and containers. Client identities, commercial terms and private implementations remain undisclosed.</p></div></li>
     <li><time>Apr — May 2026</time><div><h3>Allianz</h3><p class="career-role">DevOps engineer · Remote contract</p><p>Supported deployment verification, CI/CD and cloud-hosted application environments with engineering oversight.</p></div></li>
@@ -67,14 +67,14 @@
 </section>
 <section class="shell section-block profile-confidential" aria-labelledby="private-work-heading">
   <p class="eyebrow">COMMERCIAL WORK / DISCLOSURE BOUNDARY</p>
-  <div><h2 id="private-work-heading">Confidential client work.</h2>
+  <div><h2 id="private-work-heading">What I can publish—and what I cannot.</h2>
   <p>Some contracts restrict what I can share publicly. I can discuss my role and approach without disclosing client systems or sensitive details.</p>
   <p>For examples of my work, see the public repositories, tests and release records linked here.</p>
   <p><a class="text-link" href="{{ "engineering/delivery-record/" | relURL }}">Inspect a complete public change-to-deployment record ↗</a></p>
   <a class="text-link" href="{{ "projects/" | relURL }}">Review the project evidence ↗</a></div>
 </section>
 <section class="shell section-block profile-details">
-  <div><p class="eyebrow">SELECTED SYSTEMS</p><h2>Start with the source.</h2></div>
+  <div><p class="eyebrow">SELECTED SYSTEMS</p><h2>Read the implementation before the claims.</h2></div>
   <div class="profile-groups">
     {{ range $slug := slice "warden" "driftguard" "infraguard" "infraguard-agent" "consequential-execution-runtime" }}
       {{ with site.GetPage (printf "/projects/%s" $slug) }}
