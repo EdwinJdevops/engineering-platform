@@ -1,0 +1,6 @@
+/* Progressive, composited ambient scene. Decorative only; never covers content. */
+.home-intro{position:relative;isolation:isolate}
+.home-intro::before{content:"";position:absolute;z-index:-1;pointer-events:none;inset:0 -3vw;background:radial-gradient(ellipse 45% 48% at var(--ambient-x,72%) var(--ambient-y,42%),rgba(114,226,174,.105),transparent 78%),radial-gradient(ellipse 38% 45% at 22% 75%,rgba(168,199,255,.07),transparent 80%);opacity:.95}
+.home-intro::after{content:"";position:absolute;z-index:-1;inset:4% -3vw 7%;pointer-events:none;background:linear-gradient(90deg,rgba(114,226,174,.055) 1px,transparent 1px),linear-gradient(rgba(114,226,174,.055) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom,transparent,#000 25%,#000 75%,transparent)}
+@media(prefers-reduced-motion:no-preference) and (pointer:fine){.home-intro::before{transition:opacity .25s ease}.home-intro .infra-scene{transform:translate3d(0,var(--scene-shift,0px),0);transition:transform .35s ease-out}}
+@media(prefers-reduced-motion:reduce){.home-intro{--ambient-x:72%!important;--ambient-y:42%!important;--scene-shift:0px!important}.home-intro .infra-scene{transform:none!important}}
