@@ -72,3 +72,11 @@ body::before{content:none!important}
 
 /* WCAG 2.2 AA: portfolio links need a >=24px high pointer target. */
 .profile-intro ~ .profile-details .text-link,body:has(.profile-intro) .text-link{min-height:28px;display:inline-flex;align-items:center}
+
+/* Scroll-led infrastructure narrative. The existing interactive controls remain authoritative. */
+.system-stage-viewport{position:relative;isolation:isolate;overflow:hidden;--story-progress:.5}
+.system-stage-model{translate:0 calc((.5 - var(--story-progress)) * 28px);transition:filter .25s ease;filter:drop-shadow(0 14px 30px #071e2b44)}
+.system-stage-depth-labels{position:absolute;inset:12px 14px auto;display:flex;justify-content:space-between;gap:8px;z-index:2;pointer-events:none}
+.system-stage-depth-labels span{font:700 10px/1.4 ui-monospace,monospace;letter-spacing:.06em;color:#e2f9f3;background:#102b37;padding:6px 8px;border:1px solid #668b91;border-radius:4px}
+@media(max-width:540px){.system-stage-depth-labels{inset:8px 8px auto;gap:4px}.system-stage-depth-labels span{font-size:8px;padding:4px}}
+@media(prefers-reduced-motion:reduce){.system-stage-model{translate:none!important;transition:none!important}}
