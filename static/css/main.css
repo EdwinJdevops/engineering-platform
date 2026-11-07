@@ -696,3 +696,13 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 @media(prefers-reduced-motion:reduce){
  .home-intro-copy,.featured-project,.system-stage-model{animation:none!important;transition:none!important}
 }
+
+
+/* Editorial archive: hierarchy without decorative cards or layout shifts. */
+.editorial-index-head{max-width:920px}
+.editorial-index-head h1{max-width:780px;text-wrap:balance}
+.editorial-index-deck{max-width:650px;margin:26px 0 0;color:var(--muted);font-size:clamp(17px,1.65vw,21px);line-height:1.55}
+.editorial-index .editorial-section-heading h2{max-width:760px;text-wrap:balance}
+.editorial-index .editorial-feature-copy h3,.editorial-index .editorial-archive-item h3{text-wrap:pretty}
+.editorial-index .editorial-feature-copy p,.editorial-index .editorial-archive-item>p{max-width:62ch}
+@media(max-width:700px){.editorial-index-head{padding-top:60px}.editorial-index-deck{margin-top:18px}.editorial-index .editorial-section-heading h2{line-height:1.13}}
