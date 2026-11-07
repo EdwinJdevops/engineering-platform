@@ -1,7 +1,14 @@
 {{- $page := .page -}}
 {{- $variant := .variant | default "card" -}}
 {{- $url := $page.Params.cover_image | default "" -}}
-{{- $alt := $page.Params.cover_alt | default (printf "Editorial illustration for %s" $page.Title) -}}
+{{- $alt := $page.Params.cover_alt | default (printf "Illustration associated with %s" $page.Title) -}}
+{{- if not $url -}}
+  {{- $matches := findRE "!\\\\[[^]]*\\\\]\\\\(https?://[^) ]+" $page.RawContent 1 -}}
+  {{- with $matches -}}
+    {{- $url = replaceRE "^.*\\\\(" "" (index . 0) -}}
+    {{- $alt = printf "Image from the original article: %s" $page.Title -}}
+  {{- end -}}
+{{- end -}}
 <div class="editorial-cover editorial-cover--{{ $variant }}">
   <div class="editorial-cover-graphic" aria-hidden="true">
     <span class="editorial-cover-orbit editorial-cover-orbit--one"></span>
