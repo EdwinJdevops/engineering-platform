@@ -212,8 +212,16 @@ const fs = require("node:fs");
   await blockedArtwork.goto("http://127.0.0.1:4173/articles/", { waitUntil: "domcontentloaded" });
   const fallbackCover = blockedArtwork.locator(".editorial-feature-article .editorial-cover").first();
   const originalImage = fallbackCover.locator("img");
-  if (await originalImage.count() !== 1)
-    failures.push("Hashnode feature lacks an original-image element for resilience test");
+  if (await originalImage.count() !== 1) {
+    const fallback = await fallbackCover.evaluate(el => ({
+      hasTitle: !!el.querySelector(".editorial-cover-graphic strong")?.textContent?.trim(),
+      graphicVisible: !!el.querySelector(".editorial-cover-graphic") &&
+        getComputedStyle(el.querySelector(".editorial-cover-graphic")).visibility !== "hidden",
+      hasImage: !!el.querySelector("img")
+    }));
+    if (!fallback.hasTitle || !fallback.graphicVisible || fallback.hasImage)
+      failures.push("Article without verified cover must render a visible editorial fallback: "+JSON.stringify(fallback));
+  }
   else {
     await originalImage.scrollIntoViewIfNeeded();
     await originalImage.evaluate(img => img.decode().catch(() => {}));
