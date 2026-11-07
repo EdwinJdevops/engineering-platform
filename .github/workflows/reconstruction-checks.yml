@@ -1,0 +1,27 @@
+name: Reconstruction regression checks
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/audit_article_covers.py'
+      - 'tests/test_article_covers.py'
+      - 'static/js/ambient-scene.js'
+      - 'static/js/system-stage.js'
+      - '.github/workflows/reconstruction-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python unit tests
+        run: python3 -m unittest discover -s tests -p 'test_article_covers.py' -v
+      - name: JavaScript syntax validation
+        run: |
+          node --check static/js/ambient-scene.js
+          node --check static/js/system-stage.js

@@ -1,0 +1,17 @@
+/* Keep text on an opaque, contrast-testable surface; animate only decorative scene. */
+.home-intro{position:relative;isolation:isolate;background:var(--bg)}
+.home-intro::before,.home-intro::after{content:none}
+.home-intro .infra-scene{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at var(--ambient-x,72%) var(--ambient-y,42%),rgba(114,226,174,.12),transparent 72%),radial-gradient(ellipse at 20% 80%,rgba(168,199,255,.08),transparent 70%)}
+.home-intro .infra-scene::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(114,226,174,.07) 1px,transparent 1px),linear-gradient(rgba(114,226,174,.07) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom,transparent,#000 25%,#000 75%,transparent)}
+@media(prefers-reduced-motion:no-preference) and (pointer:fine){.home-intro .infra-scene{transform:translate3d(0,var(--scene-shift,0px),0);transition:transform .35s ease-out}}
+@media(prefers-reduced-motion:reduce){.home-intro{--ambient-x:72%!important;--ambient-y:42%!important;--scene-shift:0px!important}.home-intro .infra-scene{transform:none!important}}
+
+/* Pa11y regression: scene labels must remain legible on an opaque surface. */
+.home-intro .infra-scene .scene-coordinate-top,
+.home-intro .infra-scene .scene-coordinate-bottom span{
+  background-color:#091923!important;
+  color:#ffffff!important;
+  border-color:#8096a5!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}

@@ -381,6 +381,26 @@ const fs = require("node:fs");
     await stagePage.close();
   }
 
+  // Keyboard-only regression for the evidence-linked 3D layer selector.
+  const keyboardStage = await browser.newPage({viewport:{width:1440,height:900},reducedMotion:"reduce"});
+  await keyboardStage.goto("http://127.0.0.1:4173/",{waitUntil:"domcontentloaded"});
+  const stageRoot = keyboardStage.locator("[data-system-stage]");
+  const firstLayer = stageRoot.locator('[data-layer="application"]');
+  await firstLayer.focus();
+  await keyboardStage.keyboard.press("ArrowRight");
+  if (await stageRoot.getAttribute("data-active-layer") !== "delivery" ||
+      await stageRoot.locator('[data-layer="delivery"]').getAttribute("aria-pressed") !== "true")
+    failures.push("Keyboard ArrowRight did not select delivery");
+  await keyboardStage.keyboard.press("End");
+  if (await stageRoot.getAttribute("data-active-layer") !== "infrastructure")
+    failures.push("Keyboard End did not select infrastructure");
+  await keyboardStage.keyboard.press("Home");
+  if (await stageRoot.getAttribute("data-active-layer") !== "application")
+    failures.push("Keyboard Home did not restore application");
+  if (await stageRoot.locator(".system-stage-cases article:not([hidden])").count() !== 1)
+    failures.push("Keyboard navigation exposed multiple system evidence panels");
+  await keyboardStage.close();
+
   const noScript = await browser.newPage({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
   await noScript.goto("http://127.0.0.1:4173/", { waitUntil: "load" });
   const staticVisibility = await noScript.locator(".home-work").evaluate(el => ({

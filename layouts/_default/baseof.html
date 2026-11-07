@@ -15,10 +15,12 @@
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
-  {{ if .IsHome }}<link rel="stylesheet" href="{{ "css/system-stage.css" | relURL }}">{{ end }}
+  {{ if .IsHome }}<link rel="stylesheet" href="{{ "css/system-stage.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/ambient-scene.css" | relURL }}">{{ end }}
   <script src="{{ "js/scroll-reveal.js" | relURL }}" defer></script>
   <script src="{{ "js/editorial-covers.js" | relURL }}" defer></script>
-  {{ if .IsHome }}<script src="{{ "js/system-stage.js" | relURL }}" defer></script>{{ end }}
+  {{ if .IsHome }}<script src="{{ "js/system-stage.js" | relURL }}" defer></script>
+  <script src="{{ "js/ambient-scene.js" | relURL }}" defer></script>{{ end }}
   <link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | absURL }}" title="{{ site.Title }}">
   <meta property="og:site_name" content="Edwin Jonathan Engineering Platform">
   <meta property="og:title" content="{{ $searchTitle }}">
@@ -26,14 +28,25 @@
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">
   {{ $socialImage := "https://edwinjdevops.github.io/engineering-platform/images/edwin-portrait-web.webp" }}
+  {{ $socialAlt := "Portrait of Edwin Jonathan, platform and cloud engineer" }}
+  {{ $articleCover := false }}
+  {{ if and .IsPage (eq .Section "articles") }}
+    {{ with .Params.cover_image }}
+      {{ $socialImage = . | absURL }}
+      {{ $articleCover = true }}
+      {{ with $.Params.cover_alt }}{{ $socialAlt = . }}{{ end }}
+    {{ end }}
+  {{ end }}
   <meta property="og:image" content="{{ $socialImage }}">
   <meta property="og:image:secure_url" content="{{ $socialImage }}">
+  {{ if not $articleCover }}
   <meta property="og:image:type" content="image/webp">
   <meta property="og:image:width" content="720">
   <meta property="og:image:height" content="1205">
-  <meta property="og:image:alt" content="Portrait of Edwin Jonathan, platform and cloud engineer">
+  {{ end }}
+  <meta property="og:image:alt" content="{{ $socialAlt }}">
   <meta name="twitter:image" content="{{ $socialImage }}">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="{{ if $articleCover }}summary_large_image{{ else }}summary{{ end }}">
   {{ partial "structured-data.html" . }}
 </head>
 <body>

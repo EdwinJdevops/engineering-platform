@@ -28,7 +28,12 @@
   {{ else }}
   <div class="card-grid">
     {{ range .Pages.ByDate.Reverse }}
-    <article class="card">
+    <article class="card article-index-card">
+      {{ if eq .Section "articles" }}
+        <a class="article-index-cover" href="{{ .RelPermalink }}" aria-label="Read {{ .Title }}">
+          {{ partial "editorial-cover.html" (dict "page" . "variant" "card") }}
+        </a>
+      {{ end }}
       <p class="card-kicker">{{ .Section }}</p>
       <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
       {{ with .Description }}<p>{{ . }}</p>{{ end }}

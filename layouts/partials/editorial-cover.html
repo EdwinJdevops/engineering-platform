@@ -1,15 +1,15 @@
 {{- $page := .page -}}
 {{- $variant := .variant | default "card" -}}
-{{- $matches := findRE "!\\[[^]]*\\]\\(https?://[^) ]+" $page.RawContent 1 -}}
-{{- $url := "" -}}
-{{- with $page.Params.cover_image -}}
-  {{- $url = . -}}
-{{- else -}}
+{{- $url := $page.Params.cover_image | default "" -}}
+{{- $alt := $page.Params.cover_alt | default (printf "Illustration associated with %s" $page.Title) -}}
+{{- if not $url -}}
+  {{- $matches := findRE "!\\[[^]]*\\]\\(https?://[^) ]+" $page.RawContent 1 -}}
   {{- with $matches -}}
     {{- $url = replaceRE "^.*\\(" "" (index . 0) -}}
+    {{- $alt = printf "Image from the original article: %s" $page.Title -}}
   {{- end -}}
 {{- end -}}
-<div class="editorial-cover editorial-cover--{{ $variant }}" role="img" aria-label="Editorial artwork for {{ $page.Title }}">
+<div class="editorial-cover editorial-cover--{{ $variant }}">
   <div class="editorial-cover-graphic" aria-hidden="true">
     <span class="editorial-cover-orbit editorial-cover-orbit--one"></span>
     <span class="editorial-cover-orbit editorial-cover-orbit--two"></span>
@@ -17,6 +17,6 @@
     <strong>{{ $page.Title }}</strong>
   </div>
   {{ with $url }}
-    <img src="{{ . }}" alt="Original illustration published with {{ $page.Title }}" loading="{{ if eq $variant "hero" }}eager{{ else }}lazy{{ end }}" decoding="async" referrerpolicy="no-referrer">
+    <img src="{{ . | safeURL }}" alt="{{ $alt }}" loading="{{ if eq $variant "hero" }}eager{{ else }}lazy{{ end }}" decoding="async" referrerpolicy="no-referrer">
   {{ end }}
 </div>

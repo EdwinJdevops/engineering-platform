@@ -39,3 +39,17 @@
 .system-stage-controls button:not([aria-pressed=true]){background:#193348;color:#fff;border-color:#7798ae}
 
 .system-stage-overline{font:700 12px/1.6 ui-monospace,Consolas,monospace;color:#10314b;background:#c8f4ee;display:inline-block;padding:5px 8px;letter-spacing:.06em}
+
+/* Evidence-linked layer transitions: the selected state controls the 3D emphasis. */
+.system-stage-plane{transition:opacity .42s ease,filter .42s ease,box-shadow .42s ease}
+.system-stage[data-active-layer=application] .system-stage-plane:not(.system-stage-plane--app),
+.system-stage[data-active-layer=delivery] .system-stage-plane:not(.system-stage-plane--delivery),
+.system-stage[data-active-layer=infrastructure] .system-stage-plane:not(.system-stage-plane--infra){opacity:.48;filter:saturate(.65)}
+.system-stage[data-active-layer=application] .system-stage-plane--app,
+.system-stage[data-active-layer=delivery] .system-stage-plane--delivery,
+.system-stage[data-active-layer=infrastructure] .system-stage-plane--infra{opacity:1;filter:none}
+.system-stage-controls button{transition:background-color .18s ease,border-color .18s ease,color .18s ease}
+.system-stage-controls button:hover{border-color:#d3fff0}
+.system-stage-cases article:not([hidden]){animation:system-case-enter .32s ease-out both}
+@keyframes system-case-enter{from{opacity:.45;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.system-stage-plane,.system-stage-controls button{transition:none!important}.system-stage-cases article:not([hidden]){animation:none!important}}
