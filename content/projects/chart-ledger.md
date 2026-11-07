@@ -4,7 +4,7 @@ seo_title: "Chart Ledger: Helm Upgrade Review Tool | Edwin Jonathan"
 description: "A working Helm upgrade review tool that connects manifest changes to migration documentation and leaves deployment approval with the engineer."
 date: 2026-10-25
 draft: false
-domain: "Kubernetes release engineering / Open-weight inference"
+domain: "Kubernetes release engineering / Helm upgrade review"
 evidence: "Public Python source, tests, hosted model review and measured HTTP checks"
 boundary: "Review preparation only; no upgrade execution or safety approval"
 artifact_file: "tests/test_review.py"

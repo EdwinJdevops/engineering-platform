@@ -63,7 +63,8 @@
     {{ range $slug := slice "driftguard" "chart-ledger" "warden" }}
       {{ with site.GetPage (printf "/projects/%s" $slug) }}
       <article class="featured-project">
-        <a class="featured-project-art source-artifact" href="{{ .Params.artifact_url }}" aria-label="Open {{ .Title }} source artifact">\n          {{ if eq $slug "chart-ledger" }}<img class="project-evidence-image" src="https://raw.githubusercontent.com/EdwinJdevops/upgrade-review-brief/main/docs/demo/report-desktop.png" alt="Actual Chart Ledger report interface from the public repository" loading="lazy" decoding="async" referrerpolicy="no-referrer">{{ end }}
+        <a class="featured-project-art source-artifact" href="{{ .Params.artifact_url }}" aria-label="Open {{ .Title }} source artifact">
+          {{ if eq $slug "chart-ledger" }}<img class="project-evidence-image" src="https://raw.githubusercontent.com/EdwinJdevops/upgrade-review-brief/main/docs/demo/report-desktop.png" alt="Actual Chart Ledger report interface from the public repository" loading="lazy" decoding="async" referrerpolicy="no-referrer">{{ end }}
           <span class="source-artifact-kind">{{ .Params.artifact_kind }}</span>
           <code>{{ .Params.artifact_file }}</code>
           <span class="source-artifact-description">{{ .Params.artifact_summary }}</span>
