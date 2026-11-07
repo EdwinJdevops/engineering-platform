@@ -18,6 +18,8 @@
   {{ if .IsHome }}<link rel="stylesheet" href="{{ "css/system-stage.css" | relURL }}">
   <link rel="stylesheet" href="{{ "css/ambient-scene.css" | relURL }}">{{ end }}
   <link rel="stylesheet" href="{{ "css/visual-reconstruction.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/engineering-interface.css" | relURL }}">
+  {{ if .IsHome }}<script src="{{ "js/release-lab.js" | relURL }}" defer></script>{{ end }}
   <script src="{{ "js/scroll-reveal.js" | relURL }}" defer></script>
   <script src="{{ "js/editorial-covers.js" | relURL }}" defer></script>
   {{ if .IsHome }}<script src="{{ "js/system-stage.js" | relURL }}" defer></script>
