@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/building-agentic-operations-assistant-aws-bedrock-s3.svg"
+cover_alt: "Conceptual flow: Question, Retrieve, Respond"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "Building an Agentic Operations Assistant on AWS with Amazon Bedrock and Amazon S3"
 date: "2026-07-14"
 description: "An architecture discussion of AWS Bedrock, S3-backed operational knowledge, IAM, retrieval reliability, and failure handling."
