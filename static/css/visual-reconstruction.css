@@ -1,0 +1,39 @@
+/* Visual reconstruction v2: layered hero, editorial mastheads, touch-safe motion. */
+.home-intro{border-radius:18px;overflow:hidden;padding-top:clamp(36px,6vw,90px)!important;padding-bottom:clamp(30px,5vw,70px)!important;background:radial-gradient(ellipse at 85% 28%,#173e4c 0%,transparent 50%),radial-gradient(ellipse at 10% 80%,#203a58 0%,transparent 48%),#09131f!important;color:#f3f8ff!important;box-shadow:0 28px 100px #08172629}
+.home-intro::before{content:""!important;position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(#ffffff0c 1px,transparent 1px),linear-gradient(90deg,#ffffff0c 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(90deg,#0009,transparent 85%)}
+.home-intro::after{content:""!important;position:absolute;inset:-35%;pointer-events:none;background:radial-gradient(circle at var(--ambient-x,70%) var(--ambient-y,35%),#6be4d225,transparent 26%);animation:hero-atmosphere 14s ease-in-out infinite alternate}
+.home-intro-copy,.home-intro .home-portrait,.home-intro .infra-scene{z-index:1}
+.home-intro h1,.home-intro .home-role{color:#f7fbff!important}
+.home-intro .lede,.home-intro .home-availability,.home-intro .home-profile-links,.home-intro .eyebrow{color:#c8d9e8!important}
+.home-intro .home-profile-links a{color:#bcece3!important}
+.home-intro .infra-scene{background:radial-gradient(ellipse at 50% 50%,#1c647b88,transparent 65%)!important;border-color:#ffffff35!important;border-radius:16px}
+.home-intro .home-portrait{border-radius:12px;overflow:hidden}
+@keyframes hero-atmosphere{from{transform:translate(-3%,0)}to{transform:translate(4%,3%)}}
+@media(prefers-reduced-motion:no-preference){.home-intro .infra-stack{animation:visual-stack-breathe 8s ease-in-out infinite alternate}@keyframes visual-stack-breathe{from{filter:drop-shadow(0 0 4px #73d6e555)}to{filter:drop-shadow(0 0 24px #73d6e5aa)}}}
+@media(max-width:720px){.home-intro{border-radius:0;padding-left:20px!important;padding-right:20px!important}.home-intro .infra-scene{min-height:300px}.home-intro .home-profile-links a{display:inline-block;padding-block:8px}}
+.article-masthead{position:relative;isolation:isolate;overflow:hidden;border-radius:18px;min-height:clamp(340px,48vw,610px);display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(24px,6vw,76px);background:radial-gradient(ellipse at 82% 22%,#256b79 0%,transparent 42%),radial-gradient(ellipse at 10% 75%,#293f6b 0%,transparent 55%),#081624;color:#f7fbff;margin-bottom:28px}
+.article-masthead::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(#ffffff12 1px,transparent 1px),linear-gradient(90deg,#ffffff12 1px,transparent 1px);background-size:48px 48px;transform:perspective(600px) rotateX(16deg) scale(1.2)}
+.article-masthead::after{content:"";position:absolute;z-index:-1;width:min(55vw,500px);aspect-ratio:1;right:-10%;top:-30%;border:1px solid #91f6e766;border-radius:50%;box-shadow:0 0 0 50px #8de7e70b,0 0 0 110px #8de7e70b,0 0 100px #2de0ce24}
+.article-masthead .eyebrow{color:#9fe7d8!important;letter-spacing:.15em}
+.article-masthead h1{font-size:clamp(38px,6.8vw,92px);line-height:1.03;letter-spacing:-.055em;max-width:1000px;color:#fff!important;margin:18px 0}
+.article-masthead .lede{max-width:760px;color:#cbdce9!important}
+.article-masthead .article-hero-label{font:600 12px/1.5 ui-monospace,monospace;letter-spacing:.12em;color:#a5dfd8}
+.article-masthead+.editorial-cover{margin-top:0}
+@media(max-width:600px){.article-masthead{border-radius:10px;min-height:390px;padding:24px}.article-masthead h1{overflow-wrap:anywhere;font-size:clamp(36px,10vw,54px)}}
+@media(prefers-reduced-motion:reduce){.home-intro::after,.home-intro .infra-stack{animation:none!important}}
+
+/* Accessibility: solid contrast surface beneath decorative gradients for automated and real readers. */
+.home-intro{background:#09131f!important}
+.home-intro::before{background:radial-gradient(ellipse at 85% 28%,#173e4c 0%,transparent 50%),radial-gradient(ellipse at 10% 80%,#203a58 0%,transparent 48%),linear-gradient(#ffffff0c 1px,transparent 1px),linear-gradient(90deg,#ffffff0c 1px,transparent 1px);background-size:auto,auto,56px 56px,56px 56px}
+.home-intro h1,.home-intro h1 span,.home-intro .home-role{color:#fff!important;-webkit-text-fill-color:#fff!important}
+.home-intro .lede,.home-intro .home-availability,.home-intro .home-profile-links,.home-intro .eyebrow{color:#e0eaf2!important}
+.home-intro .actions .button{background:#e6f6f4!important;color:#09131f!important;border-color:#e6f6f4!important}
+.home-intro .actions .button.primary{background:#9af0d5!important;color:#07131c!important}
+.home-intro .home-profile-links a{color:#e1fff6!important}
+.home-intro .home-portrait figcaption{background:#07131c!important;color:#fff!important}
+
+/* Pa11y must be able to determine an unambiguous opaque background behind every hero text node. */
+.home-intro::before,.home-intro::after{content:none!important;display:none!important}
+.home-intro .home-intro-copy{background:#09131f!important;isolation:isolate}
+.home-intro .home-portrait{background:#09131f}
+.home-intro .infra-scene{background:radial-gradient(ellipse at 50% 50%,#1c647b88,transparent 65%),#09131f!important}

@@ -29,8 +29,9 @@
 </article>
 {{ else }}
 <article class="shell prose">
-  <header class="page-head">
+  <header class="{{ if eq .Section "articles" }}article-masthead{{ else }}page-head{{ end }}">
     <p class="eyebrow">{{ .Section | upper }}{{ if eq .Section "articles" }} · {{ .Date.Format "02 Jan 2006" }}{{ end }}</p>
+    {{ if eq .Section "articles" }}<span class="article-hero-label">ENGINEERING / FIELD NOTES</span>{{ end }}
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
   </header>
