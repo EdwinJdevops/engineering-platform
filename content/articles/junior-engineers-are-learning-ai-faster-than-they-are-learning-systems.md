@@ -1,7 +1,7 @@
 ---
 title: "Junior Engineers Are Learning AI Faster Than They Are Learning Systems"
 date: "2026-06-18"
-description: "The most important engineering gap nobody seems interested in talking about   A few months..."
+description: "An opinion on the trade-offs between AI-assisted development and foundational systems knowledge."
 draft: false
 original_url: "https://dev.to/edwindevops/junior-engineers-are-learning-ai-faster-than-they-are-learning-systems-jg7"
 original_platform: "devto"

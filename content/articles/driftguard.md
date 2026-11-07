@@ -1,7 +1,7 @@
 ---
 title: "DRIFTGUARD"
 date: "2026-06-11"
-description: "Hey DEV.to 👋  I'm Edwin, a self-taught Cloud &amp; DevOps Engineer from Lagos, Nigeria.  I built..."
+description: "An early introduction to DriftGuard and its Terraform drift-detection goals; see the current case study for implementation evidence."
 draft: false
 original_url: "https://dev.to/edwindevops/driftguard-93n"
 original_platform: "devto"
