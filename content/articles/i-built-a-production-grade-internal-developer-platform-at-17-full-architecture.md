@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/i-built-a-production-grade-internal-developer-platform-at-17-full-architecture.svg"
+cover_alt: "Conceptual flow: Source, Delivery, Runtime"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "I Built a Production-Grade Internal Developer Platform at 17 — Full Architecture"
 date: "2026-05-03"
 description: "The Problem  Most engineers deploy to Kubernetes by clicking buttons in a UI.  That's not DevOps...."
