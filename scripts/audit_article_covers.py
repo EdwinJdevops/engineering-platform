@@ -46,6 +46,7 @@ def audit() -> tuple[list[dict[str, object]], int]:
             continue
         record: dict[str, object] = {"article": str(path.relative_to(ROOT)), "issues": []}
         issues: list[str] = record["issues"]  # type: ignore[assignment]
+        meta: dict[str, str] = {}
         try:
             meta = front_matter(path)
             if meta.get("draft", "").lower() == "true":
