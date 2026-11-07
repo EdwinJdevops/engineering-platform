@@ -21,6 +21,6 @@
     <strong>{{ $page.Title }}</strong>
   </div>
   {{ with $url }}
-    <img src="{{ . | safeURL }}" alt="{{ $alt }}" loading="{{ if eq $variant "hero" }}eager{{ else }}lazy{{ end }}" decoding="async" referrerpolicy="no-referrer">
+    <img src="{{ if hasPrefix . "/" }}{{ strings.TrimPrefix "/" . | relURL }}{{ else }}{{ . | safeURL }}{{ end }}" alt="{{ $alt }}" loading="{{ if eq $variant "hero" }}eager{{ else }}lazy{{ end }}" decoding="async" referrerpolicy="no-referrer">
   {{ end }}
 </div>
