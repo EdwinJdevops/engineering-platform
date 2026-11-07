@@ -62,3 +62,10 @@ body::before{content:none!important}
 .release-lab-panel a{background:#0b1521}
 .release-lab-node{background:#142d3d;background-image:none}
 .release-lab-node[aria-pressed=true]{background:#a5f1db;background-image:none}
+
+/* Text-level opaque contrast surfaces: avoid axe 4.2 background inference through layered graphics. */
+.release-lab-topline>span,.release-lab-footer>span{background:#0b1b2b}
+.release-lab-node .release-lab-node-index,.release-lab-node strong,.release-lab-node small{background:#142d3d}
+.release-lab-node[aria-pressed=true] .release-lab-node-index,.release-lab-node[aria-pressed=true] strong,.release-lab-node[aria-pressed=true] small{background:#a5f1db}
+.release-lab-signal-caption span,.release-lab-signal-caption strong{background:#071925}
+.release-lab-panel a{background:#0b1521}
