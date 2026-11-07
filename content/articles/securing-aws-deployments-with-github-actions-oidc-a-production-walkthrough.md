@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/securing-aws-deployments-with-github-actions-oidc-a-production-walkthrough.svg"
+cover_alt: "Conceptual flow: GitHub, Trust, AWS"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "Securing AWS deployments with GitHub Actions OIDC — a production walkthrough"
 date: "2026-05-08"
 description: "A technical walkthrough of GitHub Actions OIDC federation and scoped AWS IAM roles as alternatives to static CI credentials."
