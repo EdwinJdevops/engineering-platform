@@ -10,7 +10,7 @@ draft: false
 description: "Policy-tiered Kubernetes remediation with a deliberately bounded GitOps approval path."
 domain: "Kubernetes / Policy enforcement"
 evidence: "Public Go source and tests; live end-to-end automation not established"
-boundary: "PR automation defaults to dry-run; production integration unverified"
+boundary: "PR automation defaults to dry-run; deployment integration evidence is not supplied"
 illustration: "warden"
 featured_rank: 1
 ---

@@ -7,7 +7,7 @@ date: 2026-09-26
 draft: false
 domain: "Cloud security / agentic remediation"
 evidence: "Main-branch prototype + unmerged hardening evidence"
-boundary: "Human-reviewed proposals; not production-ready"
+boundary: "Human-reviewed proposals; execution requires explicit operator approval"
 ---
 
 ## Scope
