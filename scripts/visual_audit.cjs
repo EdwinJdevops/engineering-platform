@@ -16,7 +16,7 @@ const fs = require("node:fs");
   // Report actual computed styles to diagnose accessibility contrast without changing the gate.
   const diagnosticPage = await browser.newPage({viewport:{width:1440,height:900}});
   await diagnosticPage.goto("http://127.0.0.1:4173/",{waitUntil:"networkidle"});
-  for (const selector of [".practice-strip span","#system-stage-heading","#selected-work",".site-header .brand strong",".release-lab-heading h2"]) {
+  for (const selector of [".release-lab-topline span",".release-lab-status",".release-lab-node strong",".release-lab-node small",".release-lab-signal-caption strong",".release-lab-footer span",".release-lab-panel a"]) {
     const target=diagnosticPage.locator(selector).first();
     if (!await target.count()) continue;
     const result=await target.evaluate(el=>{
