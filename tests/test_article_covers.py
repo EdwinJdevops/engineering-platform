@@ -76,6 +76,22 @@ class ArticleCoverAuditTests(unittest.TestCase):
         self.assertEqual(failures, 1)
         self.assertIn("cover_image escapes static directory", records[0]["issues"])
 
+    def test_external_body_images_inventory_does_not_claim_rights(self):
+        self.article('---\\ncover_image: "https://example.com/cover.png"\\ncover_alt: "Deployment diagram"\\ncover_credit: "Source supplied"\\n---\\n![Diagram](https://example.com/diagram.png)\\n')
+        records, failures = audit_module.audit()
+        self.assertEqual(failures, 0)
+        self.assertEqual(records[0]["cover_source"], "explicit")
+        self.assertEqual(records[0]["external_body_images"], ["https://example.com/diagram.png"])
+        self.assertTrue(records[0]["credit_supplied"])
+        self.assertFalse(records[0]["rights_verified"])
+
+    def test_invalid_front_matter_still_produces_inventory_record(self):
+        self.article('---\\ncover_image: /images/x.webp\\n')
+        records, failures = audit_module.audit()
+        self.assertEqual(failures, 1)
+        self.assertEqual(records[0]["cover_source"], "fallback_or_generated")
+        self.assertFalse(records[0]["rights_verified"])
+
     def test_unclosed_front_matter(self):
         self.article("---\ncover_image: /images/x.webp\n")
         records, failures = audit_module.audit()
