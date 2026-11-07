@@ -3,6 +3,9 @@ title: "Your Terraform State Is Lying to You. I Built the Tool That Proves It."
 date: "2026-06-21"
 description: "An examination of Terraform state, AWS resource observation and the failure modes that can produce misleading drift reports."
 draft: false
+cover_image: "/images/projects/driftguard.svg"
+cover_alt: "Illustrative DriftGuard workflow showing Terraform state input, live AWS read and reviewable difference"
+cover_credit: "Edwin Jonathan / original DriftGuard explanatory diagram"
 original_url: "https://dev.to/edwindevops/your-terraform-state-is-lying-to-you-i-built-the-tool-that-proves-it-ck9"
 original_platform: "devto"
 aliases: []
