@@ -3,9 +3,9 @@
 {{- $url := $page.Params.cover_image | default "" -}}
 {{- $alt := $page.Params.cover_alt | default (printf "Illustration associated with %s" $page.Title) -}}
 {{- if not $url -}}
-  {{- $matches := findRE "!\\\\[[^]]*\\\\]\\\\(https?://[^) ]+" $page.RawContent 1 -}}
+  {{- $matches := findRE "!\\[[^]]*\\]\\(https?://[^) ]+" $page.RawContent 1 -}}
   {{- with $matches -}}
-    {{- $url = replaceRE "^.*\\\\(" "" (index . 0) -}}
+    {{- $url = replaceRE "^.*\\(" "" (index . 0) -}}
     {{- $alt = printf "Image from the original article: %s" $page.Title -}}
   {{- end -}}
 {{- end -}}
