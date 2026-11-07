@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ARTICLES = ROOT / "content" / "articles"
 STATIC = ROOT / "static"
 FIELDS = ("cover_image", "cover_alt", "cover_credit")
-IMAGE_RE = re.compile(r"!\\[[^]]*\\]\\((https?://[^)\\s]+)")
+IMAGE_RE = re.compile(r"!\[[^]]*\]\((https?://[^)\s]+)")
 FIELD_RE = re.compile(r"^([A-Za-z_][A-Za-z0-9_-]*)\s*:\s*(.*?)\s*$")
 URL_RE = re.compile(r"^https?://", re.I)
 
