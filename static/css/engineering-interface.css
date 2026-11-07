@@ -71,4 +71,4 @@ body::before{content:none!important}
 .release-lab-panel a{background:#0b1521}
 
 /* WCAG 2.2 AA: portfolio links need a >=24px high pointer target. */
-body:has(.portfolio-page) .text-link{min-height:28px;display:inline-flex;align-items:center}
+.profile-intro ~ .profile-details .text-link,body:has(.profile-intro) .text-link{min-height:28px;display:inline-flex;align-items:center}
