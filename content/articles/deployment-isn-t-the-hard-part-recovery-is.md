@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/deployment-isn-t-the-hard-part-recovery-is.svg"
+cover_alt: "Conceptual flow: Deploy, Detect, Recover"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "Deployment Isn't the Hard Part. Recovery Is."
 date: "2026-06-05"
 description: "A reflection on deployment recovery, rollback planning and operational verification beyond successful CI/CD runs."
