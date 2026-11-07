@@ -654,3 +654,14 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 @media(min-width:821px){.home-intro:has(.home-portrait){grid-template-columns:minmax(0,1fr) 235px}}
 @media(max-width:820px){.home-portrait{width:175px;max-width:175px;margin:0}.home-portrait img{max-height:220px;aspect-ratio:4/5}.home-intro:has(.home-portrait) .infra-scene{min-height:280px}}
 @media(max-width:640px){.credential-entries{grid-template-columns:1fr}.credential-entries article{padding:20px}}
+
+/* Article index: the entire cover is a keyboard-accessible link. */
+.article-index-card{min-width:0}
+.article-index-cover{display:block;margin:-1px -1px 22px;overflow:hidden;text-decoration:none}
+.article-index-cover:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.article-index-cover .editorial-cover{width:100%;min-height:185px;aspect-ratio:16/9;overflow:hidden}
+.article-index-cover .editorial-cover img{transition:transform .35s ease}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+  .article-index-cover:hover .editorial-cover img{transform:scale(1.035)}
+}
+@media(prefers-reduced-motion:reduce){.article-index-cover .editorial-cover img{transition:none}}
