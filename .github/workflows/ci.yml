@@ -12,6 +12,8 @@ on:
       - 'package.json'
       - '.markdownlint-cli2.jsonc'
       - 'scripts/accessibility_audit.cjs'
+      - 'scripts/audit_article_covers.py'
+      - 'tests/test_article_covers.py'
       - '.github/workflows/**'
 
 permissions:
@@ -39,6 +41,11 @@ jobs:
               exit 1
             fi
           done < <(find content -type f -name '*.md' -print0)
+
+      - name: Validate article covers and source assets
+        run: |
+          python3 -m unittest discover -s tests -p 'test_article_covers.py' -v
+          python3 scripts/audit_article_covers.py
 
       - name: Markdown lint
         run: npx --yes markdownlint-cli2@0.13.0 'content/**/*.md'
