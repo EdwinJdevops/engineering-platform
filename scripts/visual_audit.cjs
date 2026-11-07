@@ -236,7 +236,7 @@ const fs = require("node:fs");
     });
     await blockedArtwork.waitForFunction(() => {
       const img = document.querySelector('.editorial-cover img[src^="data:image/svg+xml"]');
-      return img?.classList.contains("is-ready") && img.closest(".editorial-cover")?.classList.contains("has-loaded-image");
+      return img?.classList.contains("is-ready") && img.closest(".editorial-cover")?.classList.contains("has-loaded-image") && Number(getComputedStyle(img).opacity) === 1 && getComputedStyle(img.closest(".editorial-cover").querySelector(".editorial-cover-graphic")).visibility === "hidden";
     });
     const loadedState = await fallbackCover.evaluate(cover => ({
       opacity: getComputedStyle(cover.querySelector("img")).opacity,
