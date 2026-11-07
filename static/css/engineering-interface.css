@@ -73,10 +73,21 @@ body::before{content:none!important}
 /* WCAG 2.2 AA: portfolio links need a >=24px high pointer target. */
 .profile-intro ~ .profile-details .text-link,body:has(.profile-intro) .text-link{min-height:28px;display:inline-flex;align-items:center}
 
-/* Scroll-led infrastructure narrative. The existing interactive controls remain authoritative. */
-.system-stage-viewport{position:relative;isolation:isolate;overflow:hidden;--story-offset:0px}
-.system-stage-model{translate:0 var(--story-offset);transition:filter .25s ease;filter:drop-shadow(0 14px 30px #071e2b44)}
-.system-stage-depth-labels{position:absolute;inset:12px 14px auto;display:flex;justify-content:space-between;gap:8px;z-index:2;pointer-events:none}
-.system-stage-depth-labels span{font:700 10px/1.4 ui-monospace,monospace;letter-spacing:.06em;color:#e2f9f3;background:#102b37;padding:6px 8px;border:1px solid #668b91;border-radius:4px}
-@media(max-width:540px){.system-stage-depth-labels{inset:8px 8px auto;gap:4px}.system-stage-depth-labels span{font-size:8px;padding:4px}}
-@media(prefers-reduced-motion:reduce){.system-stage-model{translate:none!important;transition:none!important}}
+/* Editorial cover taxonomy: meaningful subject variation, no invented publication artwork. */
+.editorial-cover--cloud .editorial-cover-graphic{background:radial-gradient(circle at 86% 25%,#277ea477,transparent 35%),linear-gradient(135deg,#0b2136,#143b56)}
+.editorial-cover--state .editorial-cover-graphic{background:radial-gradient(circle at 84% 20%,#7dd4ab44,transparent 38%),linear-gradient(135deg,#092b2c,#164d42)}
+.editorial-cover--delivery .editorial-cover-graphic{background:radial-gradient(circle at 86% 20%,#e5a47744,transparent 35%),linear-gradient(135deg,#2d1b27,#63403b)}
+.editorial-cover--agents .editorial-cover-graphic{background:radial-gradient(circle at 84% 20%,#c0a4fb55,transparent 38%),linear-gradient(135deg,#201b39,#40346d)}
+.editorial-cover--systems .editorial-cover-graphic{background:radial-gradient(circle at 84% 20%,#91bddc44,transparent 38%),linear-gradient(135deg,#132235,#34455a)}
+.editorial-cover--hero{aspect-ratio:2.1/1;min-height:240px}
+.editorial-cover--hero .editorial-cover-graphic{padding:clamp(22px,4vw,56px)}
+.editorial-cover--hero .editorial-cover-graphic strong{max-width:78%;font-size:clamp(26px,4.3vw,62px);line-height:1.04}
+@media(max-width:640px){.editorial-cover--hero{aspect-ratio:1.5/1;min-height:250px}.editorial-cover--hero .editorial-cover-graphic strong{max-width:94%;font-size:clamp(25px,7vw,42px)}}
+
+/* Imported technical titles and long source tokens must not widen the mobile document. */
+.prose,.article-masthead,.editorial-cover,.editorial-cover-graphic{min-width:0;max-width:100%}
+.article-masthead h1,.editorial-cover-graphic strong,.prose-body h2,.prose-body h3{overflow-wrap:anywhere}
+.prose-body{min-width:0;overflow-wrap:anywhere}
+.prose-body pre{max-width:100%;overflow-x:auto;white-space:pre}
+.prose-body img,.prose-body svg,.prose-body video,.prose-body iframe{max-width:100%;height:auto}
+.prose-body table{display:block;max-width:100%;overflow-x:auto}
