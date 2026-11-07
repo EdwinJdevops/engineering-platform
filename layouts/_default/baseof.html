@@ -15,6 +15,7 @@
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}?v={{ (sha256 (readFile "static/css/main.css")) | truncate 12 }}">
+  {{ if and (eq .Section "articles") .IsSection }}<link rel="stylesheet" href="{{ "css/article-showcase.css" | relURL }}?v={{ (sha256 (readFile "static/css/article-showcase.css")) | truncate 12 }}">{{ end }}
   {{ if .IsHome }}<link rel="stylesheet" href="{{ "css/system-stage.css" | relURL }}?v={{ (sha256 (readFile "static/css/system-stage.css")) | truncate 12 }}">
   <link rel="stylesheet" href="{{ "css/ambient-scene.css" | relURL }}?v={{ (sha256 (readFile "static/css/ambient-scene.css")) | truncate 12 }}">{{ end }}
   <link rel="stylesheet" href="{{ "css/visual-reconstruction.css" | relURL }}?v={{ (sha256 (readFile "static/css/visual-reconstruction.css")) | truncate 12 }}">
