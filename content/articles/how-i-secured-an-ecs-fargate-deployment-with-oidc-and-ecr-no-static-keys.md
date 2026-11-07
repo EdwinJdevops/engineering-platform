@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/how-i-secured-an-ecs-fargate-deployment-with-oidc-and-ecr-no-static-keys.svg"
+cover_alt: "Conceptual flow: OIDC, ECR, Fargate"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "How I Secured an ECS Fargate Deployment With OIDC and ECR — No Static Keys"
 date: "2026-05-16"
 description: "A GitHub Actions to AWS ECS Fargate deployment walkthrough using OIDC federation, Amazon ECR, and short-lived credentials."
