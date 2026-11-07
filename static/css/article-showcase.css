@@ -21,3 +21,8 @@
 .article-showcase a:focus-visible{outline:3px solid #f7dc92;outline-offset:4px}
 @media(max-width:760px){.article-showcase .editorial-archive-grid,.article-showcase .editorial-featured-grid{grid-template-columns:1fr}.article-showcase .editorial-archive-item,.article-showcase .editorial-feature-article{border-radius:30px}.article-showcase .editorial-index-head h1{font-size:clamp(54px,15vw,90px)}}
 @media(prefers-reduced-motion:reduce){.article-showcase .editorial-archive-item,.article-showcase .editorial-feature-article{transition:none}}
+
+/* Explicit contrast against dark card surfaces; overrides older light-card rules. */
+.article-showcase .editorial-archive-item h3 a,.article-showcase .editorial-feature-copy h3 a{color:#eef2f7}
+.article-showcase .editorial-archive-item>.editorial-read,.article-showcase .editorial-feature-copy>.editorial-read{color:#b6f5de}
+.article-showcase .editorial-archive-item h3 a:hover,.article-showcase .editorial-feature-copy h3 a:hover{color:#b6f5de}
