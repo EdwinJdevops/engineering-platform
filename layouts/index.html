@@ -58,12 +58,12 @@
   </div>
 </section>
 <section class="shell home-work section-block" data-reveal aria-labelledby="selected-work">
-  <div class="home-section-title"><div><p class="eyebrow">SELECTED WORK</p><h2 id="selected-work">Code and tests, not architecture diagrams.</h2></div><a class="text-link" href="{{ "projects/" | relURL }}">All projects ↗</a></div>
+  <div class="home-section-title"><div><p class="eyebrow">SELECTED WORK</p><h2 id="selected-work">Selected engineering work, with inspectable evidence.</h2></div><a class="text-link" href="{{ "projects/" | relURL }}">All projects ↗</a></div>
   <div class="featured-projects featured-projects-visual">
     {{ range $slug := slice "driftguard" "chart-ledger" "warden" }}
       {{ with site.GetPage (printf "/projects/%s" $slug) }}
       <article class="featured-project">
-        <a class="featured-project-art source-artifact" href="{{ .Params.artifact_url }}" aria-label="Open {{ .Title }} source artifact">
+        <a class="featured-project-art source-artifact" href="{{ .Params.artifact_url }}" aria-label="Open {{ .Title }} source artifact">\n          {{ if eq $slug "chart-ledger" }}<img class="project-evidence-image" src="https://raw.githubusercontent.com/EdwinJdevops/upgrade-review-brief/main/docs/demo/report-desktop.png" alt="Actual Chart Ledger report interface from the public repository" loading="lazy" decoding="async" referrerpolicy="no-referrer">{{ end }}
           <span class="source-artifact-kind">{{ .Params.artifact_kind }}</span>
           <code>{{ .Params.artifact_file }}</code>
           <span class="source-artifact-description">{{ .Params.artifact_summary }}</span>
