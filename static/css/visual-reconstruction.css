@@ -31,3 +31,9 @@
 .home-intro .actions .button.primary{background:#9af0d5!important;color:#07131c!important}
 .home-intro .home-profile-links a{color:#e1fff6!important}
 .home-intro .home-portrait figcaption{background:#07131c!important;color:#fff!important}
+
+/* Pa11y must be able to determine an unambiguous opaque background behind every hero text node. */
+.home-intro::before,.home-intro::after{content:none!important;display:none!important}
+.home-intro .home-intro-copy{background:#09131f!important;isolation:isolate}
+.home-intro .home-portrait{background:#09131f}
+.home-intro .infra-scene{background:radial-gradient(ellipse at 50% 50%,#1c647b88,transparent 65%),#09131f!important}
