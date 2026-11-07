@@ -3,13 +3,14 @@
   'use strict';
   const root = document.querySelector('[data-system-stage]');
   if (!root) return;
-  const controls = [...root.querySelectorAll('[data-layer]')];
+  const controls = [...root.querySelectorAll('.system-stage-controls [data-layer]')];
+  const modelButtons = [...root.querySelectorAll('.system-stage-model [data-layer]')];
   const cases = [...root.querySelectorAll('[data-case]')];
   const layers = ['application', 'delivery', 'infrastructure'];
   const choose = name => {
     if (!layers.includes(name)) return;
     root.dataset.activeLayer = name;
-    controls.forEach(control => control.setAttribute('aria-pressed', String(control.dataset.layer === name)));
+    [...controls, ...modelButtons].forEach(control => control.setAttribute('aria-pressed', String(control.dataset.layer === name)));
     cases.forEach(panel => { panel.hidden = panel.dataset.case !== name; });
   };
   controls.forEach((control, index) => {
@@ -23,6 +24,7 @@
       choose(controls[next].dataset.layer);
     });
   });
+  modelButtons.forEach(control => control.addEventListener('click', () => choose(control.dataset.layer)));
   choose('application');
 
   const viewport = root.querySelector('.system-stage-viewport');

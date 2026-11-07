@@ -4,15 +4,15 @@
       <p class="system-stage-overline">ENGINEERING / INTERACTIVE SYSTEM MODEL</p>
       <h2 id="system-stage-heading">Every deployment crosses a boundary.</h2>
     </div>
-    <p>Follow the application, delivery and infrastructure boundaries. The model shifts in depth as you scroll; select a layer to inspect the actual engineering evidence.</p>
+    <p>Follow the application, delivery and infrastructure boundaries. Select any layer in the model or its controls to reveal the associated engineering evidence.</p>
   </div>
   <div class="system-stage-shell">
-    <div class="system-stage-viewport" role="img" aria-label="Three connected infrastructure layers: application, delivery and infrastructure. Select a stage to inspect its engineering controls.">
+    <div class="system-stage-viewport">
       <div class="system-stage-depth-labels" aria-hidden="true"><span>APPLICATION</span><span>DELIVERY</span><span>INFRASTRUCTURE</span></div>
-      <div class="system-stage-model" aria-hidden="true">
-        <div class="system-stage-plane system-stage-plane--app"><i></i><i></i><i></i></div>
-        <div class="system-stage-plane system-stage-plane--delivery"><i></i><i></i><i></i></div>
-        <div class="system-stage-plane system-stage-plane--infra"><i></i><i></i><i></i></div>
+      <div class="system-stage-model">
+        <button type="button" class="system-stage-plane system-stage-plane--app" data-layer="application" aria-label="Inspect application layer" aria-pressed="true"><i></i><i></i><i></i></button>
+        <button type="button" class="system-stage-plane system-stage-plane--delivery" data-layer="delivery" aria-label="Inspect delivery layer" aria-pressed="false"><i></i><i></i><i></i></button>
+        <button type="button" class="system-stage-plane system-stage-plane--infra" data-layer="infrastructure" aria-label="Inspect infrastructure layer" aria-pressed="false"><i></i><i></i><i></i></button>
         <div class="system-stage-connector"></div>
       </div>
       

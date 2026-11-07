@@ -392,7 +392,7 @@ const fs = require("node:fs");
       ["delivery","/engineering/"],
       ["infrastructure","35343278654"]
     ]) {
-      const control = stage.locator('[data-layer="'+name+'"]');
+      const control = stage.locator('.system-stage-controls [data-layer="'+name+'"]');
       await control.click();
       if (await control.getAttribute("aria-pressed") !== "true")
         failures.push("System stage control not selected: "+name);
@@ -411,11 +411,11 @@ const fs = require("node:fs");
   const keyboardStage = await browser.newPage({viewport:{width:1440,height:900},reducedMotion:"reduce"});
   await keyboardStage.goto("http://127.0.0.1:4173/",{waitUntil:"domcontentloaded"});
   const stageRoot = keyboardStage.locator("[data-system-stage]");
-  const firstLayer = stageRoot.locator('[data-layer="application"]');
+  const firstLayer = stageRoot.locator('.system-stage-controls [data-layer="application"]');
   await firstLayer.focus();
   await keyboardStage.keyboard.press("ArrowRight");
   if (await stageRoot.getAttribute("data-active-layer") !== "delivery" ||
-      await stageRoot.locator('[data-layer="delivery"]').getAttribute("aria-pressed") !== "true")
+      await stageRoot.locator('.system-stage-controls [data-layer="delivery"]').getAttribute("aria-pressed") !== "true")
     failures.push("Keyboard ArrowRight did not select delivery");
   await keyboardStage.keyboard.press("End");
   if (await stageRoot.getAttribute("data-active-layer") !== "infrastructure")
