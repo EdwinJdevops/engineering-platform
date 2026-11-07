@@ -14,12 +14,11 @@
   <link rel="canonical" href="{{ with .Params.canonical_url }}{{ . }}{{ else }}{{ .Permalink }}{{ end }}">
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
-  {{ if .IsHome }}<link rel="stylesheet" href="{{ "css/system-stage.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/ambient-scene.css" | relURL }}">{{ end }}
-  <link rel="stylesheet" href="{{ "css/visual-reconstruction.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/engineering-interface.css" | relURL }}">
-  {{ if .IsHome }}<script src="{{ "js/release-lab.js" | relURL }}" defer></script>{{ end }}
+  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}?v={{ (sha256 (readFile "static/css/main.css")) | truncate 12 }}">
+  {{ if .IsHome }}<link rel="stylesheet" href="{{ "css/system-stage.css" | relURL }}?v={{ (sha256 (readFile "static/css/system-stage.css")) | truncate 12 }}">
+  <link rel="stylesheet" href="{{ "css/ambient-scene.css" | relURL }}?v={{ (sha256 (readFile "static/css/ambient-scene.css")) | truncate 12 }}">{{ end }}
+  <link rel="stylesheet" href="{{ "css/visual-reconstruction.css" | relURL }}?v={{ (sha256 (readFile "static/css/visual-reconstruction.css")) | truncate 12 }}">
+  <link rel="stylesheet" href="{{ "css/engineering-interface.css" | relURL }}?v={{ (sha256 (readFile "static/css/engineering-interface.css")) | truncate 12 }}">
   <script src="{{ "js/scroll-reveal.js" | relURL }}" defer></script>
   <script src="{{ "js/editorial-covers.js" | relURL }}" defer></script>
   {{ if .IsHome }}<script src="{{ "js/system-stage.js" | relURL }}" defer></script>
