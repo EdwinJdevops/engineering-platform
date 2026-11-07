@@ -196,9 +196,9 @@ const fs = require("node:fs");
     await editorial.goto("http://127.0.0.1:4173/articles/", { waitUntil:"domcontentloaded" });
     const featuredCount = await editorial.locator(".editorial-feature-article").count();
     const archiveCount = await editorial.locator(".editorial-archive-item").count();
-    if (featuredCount !== 3 || archiveCount !== 17)
+    if (featuredCount !== 3 || archiveCount !== 18)
       failures.push("Unexpected article counts: featured="+featuredCount+", archive="+archiveCount);
-    if (await editorial.locator(".editorial-cover").count() !== 20)
+    if (await editorial.locator(".editorial-cover").count() !== 21)
       failures.push("Missing editorial art on an article listing: "+viewport.width);
     const articleOverflow = await editorial.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     if (articleOverflow > 2) failures.push("Article index overflow at "+viewport.width+"px: "+articleOverflow);
