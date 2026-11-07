@@ -206,23 +206,19 @@ const fs = require("node:fs");
     await editorial.close();
   }
 
-  // Regression: blocked original-host images must not leave empty dark covers.
+  // Regression: force an image failure on an explicit cover, independent of article ordering.
   const blockedArtwork = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
-  await blockedArtwork.route("https://cdn.hashnode.com/**", route => route.abort("failed"));
+  await blockedArtwork.route("https://example.invalid/**", route => route.abort("failed"));
   await blockedArtwork.goto("http://127.0.0.1:4173/articles/", { waitUntil: "domcontentloaded" });
-  const fallbackCover = blockedArtwork.locator(".editorial-feature-article .editorial-cover").first();
-  const originalImage = fallbackCover.locator("img");
-  if (await originalImage.count() !== 1) {
-    const fallback = await fallbackCover.evaluate(el => ({
-      hasTitle: !!el.querySelector(".editorial-cover-graphic strong")?.textContent?.trim(),
-      graphicVisible: !!el.querySelector(".editorial-cover-graphic") &&
-        getComputedStyle(el.querySelector(".editorial-cover-graphic")).visibility !== "hidden",
-      hasImage: !!el.querySelector("img")
-    }));
-    if (!fallback.hasTitle || !fallback.graphicVisible || fallback.hasImage)
-      failures.push("Article without verified cover must render a visible editorial fallback: "+JSON.stringify(fallback));
+  const fallbackCover = blockedArtwork.locator(".editorial-cover--image").first();
+  if (await fallbackCover.count() === 1) {
+    await fallbackCover.locator("img").evaluate(img => { img.src = "https://example.invalid/forced-cover-failure.svg"; });
+    await fallbackCover.locator("img").evaluate(img => img.decode().catch(() => {}));
   }
-  else {
+  if (await fallbackCover.count() !== 1) {
+    failures.push("Expected an explicit article cover to exercise blocked-image fallback");
+  } else {
+    const originalImage = fallbackCover.locator("img");
     await originalImage.scrollIntoViewIfNeeded();
     await originalImage.evaluate(img => img.decode().catch(() => {}));
     const fallbackState = await fallbackCover.evaluate(el => ({
@@ -239,30 +235,13 @@ const fs = require("node:fs");
       await img.decode();
     });
     await blockedArtwork.waitForFunction(() => {
-      const img = document.querySelector(".editorial-feature-article .editorial-cover img");
-      return img?.classList.contains("is-ready") &&
-        img.closest(".editorial-cover")?.classList.contains("has-loaded-image");
+      const img = document.querySelector('.editorial-cover img[src^="data:image/svg+xml"]');
+      return img?.classList.contains("is-ready") && img.closest(".editorial-cover")?.classList.contains("has-loaded-image") && Number(getComputedStyle(img).opacity) === 1 && getComputedStyle(img.closest(".editorial-cover").querySelector(".editorial-cover-graphic")).visibility === "hidden";
     });
-    await blockedArtwork.waitForFunction(() => {
-      const cover = document.querySelector(".editorial-feature-article .editorial-cover");
-      if (!cover) return false;
-      const image = cover.querySelector("img");
-      const graphic = cover.querySelector(".editorial-cover-graphic");
-      return image?.naturalWidth > 0 &&
-        Number(getComputedStyle(image).opacity) === 1 &&
-        getComputedStyle(graphic).visibility === "hidden";
-    }, undefined, { timeout: 5000 }).catch(() => {});
     const loadedState = await fallbackCover.evaluate(cover => ({
       opacity: getComputedStyle(cover.querySelector("img")).opacity,
       imageWidth: cover.querySelector("img").naturalWidth,
-      fallbackVisibility: getComputedStyle(cover.querySelector(".editorial-cover-graphic")).visibility,
-      imgClass: cover.querySelector("img").className,
-      coverClass: cover.className,
-      cssLink: document.querySelector('link[href$="css/main.css"]')?.href || null,
-      cssRulesMatching: [...document.styleSheets].flatMap(sheet => {
-        try { return [...sheet.cssRules].filter(rule => /editorial-cover img\.is-ready|editorial-cover\.has-loaded-image/.test(rule.cssText)).map(rule => rule.cssText.slice(0,180)); }
-        catch (_) { return []; }
-      })
+      fallbackVisibility: getComputedStyle(cover.querySelector(".editorial-cover-graphic")).visibility
     }));
     if (Number(loadedState.opacity) !== 1 || loadedState.imageWidth <= 0 || loadedState.fallbackVisibility !== "hidden")
       failures.push("Loaded editorial image state incorrect: "+JSON.stringify(loadedState));

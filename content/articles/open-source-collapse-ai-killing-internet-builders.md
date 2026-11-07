@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/open-source-collapse-ai-killing-internet-builders.svg"
+cover_alt: "Conceptual flow: Code, Review, Maintain"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "The Open-Source Collapse: Why AI Is Quietly Killing the People Who Built the Internet"
 date: "2026-07-01"
 description: "An essay on the dependence of AI infrastructure on open-source software and the economics of maintaining it."

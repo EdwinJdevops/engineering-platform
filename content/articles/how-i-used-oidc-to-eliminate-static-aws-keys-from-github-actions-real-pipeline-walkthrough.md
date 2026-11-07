@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/how-i-used-oidc-to-eliminate-static-aws-keys-from-github-actions-real-pipeline-walkthrough.svg"
+cover_alt: "Conceptual flow: Workflow, Token, AWS role"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "How I Used OIDC to Eliminate Static AWS Keys from GitHub Actions (Real Pipeline Walkthrough)"
 date: "2026-05-06"
 description: "Static AWS access keys in GitHub Actions secrets is how  production environments get..."

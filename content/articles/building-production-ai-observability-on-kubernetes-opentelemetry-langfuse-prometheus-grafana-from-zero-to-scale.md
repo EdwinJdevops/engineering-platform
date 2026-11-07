@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/building-production-ai-observability-on-kubernetes-opentelemetry-langfuse-prometheus-grafana-from-zero-to-scale.svg"
+cover_alt: "Conceptual flow: Trace, Metrics, Review"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "Exploring AI Observability on Kubernetes with OpenTelemetry, Langfuse, Prometheus and Grafana"
 date: "2026-07-24"
 description: "A technical examination of Kubernetes AI observability using OpenTelemetry, Langfuse, Prometheus, Grafana, and operational telemetry."

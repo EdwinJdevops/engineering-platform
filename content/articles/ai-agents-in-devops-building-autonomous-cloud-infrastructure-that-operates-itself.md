@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/ai-agents-in-devops-building-autonomous-cloud-infrastructure-that-operates-itself.svg"
+cover_alt: "Conceptual flow: Request, Policy, Action"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "AI Agents in DevOps: Building Autonomous Cloud Infrastructure That Operates Itself"
 date: "2026-05-10"
 description: "An exploratory analysis of AI agents in infrastructure operations, Kubernetes, GitOps, and observability."

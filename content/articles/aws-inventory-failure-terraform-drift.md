@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/aws-inventory-failure-terraform-drift.svg"
+cover_alt: "Conceptual flow: AWS read, Failure, Fail closed"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "When an AWS inventory failure looks like Terraform drift"
 description: "A source-code examination of DriftGuard's comparison pipeline, partial AWS collection failures, and the boundary between a missing observation and a deleted resource."
 date: 2026-10-10

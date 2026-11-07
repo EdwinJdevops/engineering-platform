@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/the-day-i-realized-backups-aren-t-disaster-recovery-lessons-from-building-an-aws-recovery-.svg"
+cover_alt: "Conceptual flow: Backup, Restore, Verify"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "The Day I Realized Backups Aren't Disaster Recovery: Lessons From Building an AWS Recovery Strategy"
 date: "2026-06-03"
 description: "The Day I Realized Backups Aren't Disaster Recovery: Lessons From Building an AWS Recovery..."

@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/i-m-17-building-in-cloud-devops-from-nigeria-and-no-my-journey-isn-t-ai-generated.svg"
+cover_alt: "Conceptual flow: Build, Test, Reflect"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "I’m 17, Building in Cloud & DevOps From Nigeria — and No, My Journey Isn’t “AI Generated”"
 date: "2026-05-30"
 description: "People assume my work is fake because they cannot imagine someone my age writing with this level of..."

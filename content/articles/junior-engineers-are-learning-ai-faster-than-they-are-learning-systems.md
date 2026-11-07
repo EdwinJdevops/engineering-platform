@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/junior-engineers-are-learning-ai-faster-than-they-are-learning-systems.svg"
+cover_alt: "Conceptual flow: Model, System, Evidence"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "Junior Engineers Are Learning AI Faster Than They Are Learning Systems"
 date: "2026-06-18"
 description: "An opinion on the trade-offs between AI-assisted development and foundational systems knowledge."
