@@ -125,4 +125,27 @@ jobs:
             sleep 0.5
           done
           curl --fail --silent http://127.0.0.1:4173/ >/dev/null
+          # Capture computed foreground/background and opacity before the accessibility gate.
+          node - <<'NODE'
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            const page = await browser.newPage({viewport:{width:1440,height:900}});
+            await page.goto('http://127.0.0.1:4173/',{waitUntil:'networkidle'});
+            for (const selector of ['.practice-strip span','#system-stage-heading','#selected-work','.site-header .brand strong','.release-lab-heading h2']) {
+              const match = page.locator(selector).first();
+              if (!await match.count()) continue;
+              const value = await match.evaluate(el => {
+                const chain=[];
+                for(let node=el;node&&chain.length<7;node=node.parentElement){
+                  const c=getComputedStyle(node);
+                  chain.push({tag:node.tagName,cls:typeof node.className==='string'?node.className.slice(0,100):'',color:c.color,background:c.backgroundColor,opacity:c.opacity,filter:c.filter,visibility:c.visibility});
+                }
+                return chain;
+              });
+              console.log('CONTRAST_DIAGNOSTIC',selector,JSON.stringify(value));
+            }
+            await browser.close();
+          })().catch(e=>{console.error('Contrast diagnostic failed',e);process.exitCode=1});
+          NODE
           npx --yes pa11y-ci@3.1.0 --config .pa11yci.json
