@@ -1,0 +1,74 @@
+/* Engineering interface v3: evidence-driven interaction, not decorative 3D. */
+/* Preserve the site's light editorial palette; dark surfaces are scoped to the release lab. */
+body::before{content:none!important}
+.home-intro{min-height:auto!important;grid-template-columns:minmax(0,1.25fr) minmax(220px,.7fr)!important;gap:clamp(18px,4vw,60px)!important}
+.home-intro h1{font-size:clamp(52px,7.2vw,116px)!important;line-height:.91!important;letter-spacing:-.075em!important}
+.home-intro .infra-scene{grid-column:1/-1;min-height:300px!important;max-height:390px!important}
+.home-intro .home-portrait{align-self:center}
+.release-lab{margin-top:clamp(60px,9vw,140px);margin-bottom:clamp(70px,10vw,160px)}
+.release-lab-heading{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,.65fr);gap:24px 50px;align-items:end;margin-bottom:34px}
+.release-lab-heading .eyebrow{grid-column:1/-1;margin:0;color:#96e6d9}
+.release-lab-heading h2{font-size:clamp(38px,6vw,78px);line-height:1.02;letter-spacing:-.06em;max-width:870px;margin:0;color:#f5f8fc}
+.release-lab-heading>p:last-child{max-width:390px;color:#b6c8d7;line-height:1.7;margin:0}
+.release-lab-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(310px,.7fr);border:1px solid #385165;background:#0b1521;border-radius:16px;overflow:hidden;box-shadow:0 35px 120px #0006}
+.release-lab-diagram{min-width:0;padding:clamp(20px,3vw,42px);background:radial-gradient(ellipse at 50% 60%,#1d516080,transparent 65%),#0b1b2b;position:relative;isolation:isolate}
+.release-lab-diagram::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(#a8e5e70b 1px,transparent 1px),linear-gradient(90deg,#a8e5e70b 1px,transparent 1px);background-size:38px 38px}
+.release-lab-topline,.release-lab-footer{display:flex;justify-content:space-between;gap:12px;color:#c5dbe5;font:600 10px/1.5 ui-monospace,monospace;letter-spacing:.09em}
+.release-lab-topline{border-bottom:1px solid #4d6974;padding-bottom:18px}
+.release-lab-status{color:#9ef1d5}
+.release-lab-track{display:flex;align-items:center;justify-content:space-between;gap:6px;margin:65px 0 20px}
+.release-lab-node{min-width:0;flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-height:125px;text-align:left;background:#142d3d;color:#d9e9f0;border:1px solid #6c94a3;border-radius:8px;padding:16px 12px;cursor:pointer;transition:background .25s,border-color .25s,transform .25s}
+.release-lab-node strong{font-size:clamp(15px,1.8vw,22px);letter-spacing:-.03em}.release-lab-node small{font-size:10px;line-height:1.4;color:#b8d3dc}
+.release-lab-node-index{font:700 11px ui-monospace,monospace;color:#a7e5db}
+.release-lab-node[aria-pressed=true]{background:#a5f1db;color:#071e24;border-color:#a5f1db;transform:translateY(-7px);box-shadow:0 18px 55px #67e5d733}
+.release-lab-node[aria-pressed=true] .release-lab-node-index,.release-lab-node[aria-pressed=true] small{color:#173b41}
+.release-lab-node:focus-visible{outline:3px solid #ffda8d;outline-offset:4px}
+.release-lab-connector{height:1px;width:clamp(8px,3vw,45px);background:#90e9d5;flex-shrink:0;box-shadow:0 0 15px #7ff4d5}
+.release-lab-signal{height:clamp(135px,18vw,210px);position:relative;overflow:hidden;border:1px solid #3a6d79;border-radius:8px;background:linear-gradient(120deg,#071925,#0e3540)}
+.release-lab-signal-grid{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 29px,#8be6e611 30px 31px),repeating-linear-gradient(0deg,transparent 0 29px,#8be6e611 30px 31px);transform:skewY(-8deg) scale(1.3)}
+.release-lab-pulse{position:absolute;inset:-80%;border:1px solid #82efdb55;border-radius:50%;box-shadow:0 0 0 60px #8fe8da08,0 0 0 140px #8fe8da08;transform:translate(32%,15%)}
+.release-lab-signal-caption{position:absolute;bottom:18px;left:20px;display:flex;flex-direction:column;gap:8px}
+.release-lab-signal-caption span{font:700 10px ui-monospace,monospace;color:#b4e2e4;letter-spacing:.1em}
+.release-lab-signal-caption strong{font:700 clamp(18px,2.4vw,31px) ui-monospace,monospace;color:#f4ffff;letter-spacing:-.04em}
+.release-lab-footer{margin-top:24px;color:#c1d4df}
+.release-lab-inspector{border-left:1px solid #385165;padding:clamp(22px,3vw,42px);display:flex;align-items:center}
+.release-lab-panel[hidden]{display:none}
+.release-lab-tag{font:700 10px ui-monospace,monospace;letter-spacing:.1em;color:#a3ead8}
+.release-lab-panel h3{font-size:clamp(28px,3.2vw,46px);line-height:1.07;letter-spacing:-.05em;color:#fff;margin:24px 0}
+.release-lab-panel p{color:#c9d8e4;line-height:1.7}
+.release-lab-panel dl{margin:28px 0}.release-lab-panel dl div{border-top:1px solid #3b5164;padding:12px 0}
+.release-lab-panel dt{font:700 10px ui-monospace,monospace;letter-spacing:.1em;color:#a4b9c9;margin-bottom:8px}
+.release-lab-panel dd{margin:0;color:#f0f7fc;font-size:14px}
+.release-lab-panel a{color:#a9f3dc;font-weight:700;text-underline-offset:4px}
+@media(max-width:920px){.release-lab-layout{grid-template-columns:1fr}.release-lab-inspector{border-left:0;border-top:1px solid #385165}.release-lab-heading{grid-template-columns:1fr}.release-lab-heading .eyebrow{grid-column:auto}}
+@media(max-width:650px){.home-intro{grid-template-columns:minmax(0,1fr) minmax(112px,.44fr)!important;gap:12px!important;padding:32px 18px!important}.home-intro-copy{grid-column:1/-1}.home-intro h1{font-size:clamp(55px,12vw,82px)!important}.home-intro .home-portrait{grid-column:2;grid-row:2;max-width:100%}.home-intro .infra-scene{grid-column:1/-1;grid-row:3;min-height:250px!important}.release-lab-track{margin:35px 0 20px}.release-lab-node{min-height:110px;padding:12px 7px}.release-lab-node strong{font-size:14px}.release-lab-node small{font-size:9px}.release-lab-connector{width:8px}.release-lab-footer{font-size:8px}.release-lab-diagram{padding:16px}.release-lab-heading h2{font-size:clamp(37px,9vw,55px)}}
+@media(prefers-reduced-motion:no-preference){.release-lab-pulse{animation:release-pulse 8s ease-in-out infinite alternate}@keyframes release-pulse{to{transform:translate(25%,20%) scale(1.1)}}}
+@media(prefers-reduced-motion:reduce){.release-lab-node{transition:none}.release-lab-pulse{animation:none}}
+
+/* Explicit opaque surfaces make contrast deterministic for users and axe. */
+.release-lab{background:#080c13}
+.release-lab-heading{background:#080c13}
+.release-lab-layout{background:#0b1521}
+.release-lab-diagram{background:#0b1b2b}
+.release-lab-inspector{background:#0b1521}
+.release-lab-node{background:#142d3d}
+.release-lab-node[aria-pressed=true]{background:#a5f1db}
+
+/* Opaque local surfaces for axe 4.2's contrast calculation, including nested text. */
+.release-lab-topline,.release-lab-footer,.release-lab-track{background-color:#0b1b2b}
+.release-lab-signal{background:#071925}
+.release-lab-signal-caption{background:#071925;padding:8px 10px;border-radius:4px;left:10px;bottom:10px}
+.release-lab-panel{background:#0b1521}
+.release-lab-panel a{background:#0b1521}
+.release-lab-node{background:#142d3d;background-image:none}
+.release-lab-node[aria-pressed=true]{background:#a5f1db;background-image:none}
+
+/* Text-level opaque contrast surfaces: avoid axe 4.2 background inference through layered graphics. */
+.release-lab-topline>span,.release-lab-footer>span{background:#0b1b2b}
+.release-lab-node .release-lab-node-index,.release-lab-node strong,.release-lab-node small{background:#142d3d}
+.release-lab-node[aria-pressed=true] .release-lab-node-index,.release-lab-node[aria-pressed=true] strong,.release-lab-node[aria-pressed=true] small{background:#a5f1db}
+.release-lab-signal-caption span,.release-lab-signal-caption strong{background:#071925}
+.release-lab-panel a{background:#0b1521}
+
+/* WCAG 2.2 AA: portfolio links need a >=24px high pointer target. */
+.profile-intro ~ .profile-details .text-link,body:has(.profile-intro) .text-link{min-height:28px;display:inline-flex;align-items:center}

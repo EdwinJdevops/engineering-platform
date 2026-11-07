@@ -44,5 +44,6 @@
     element.classList.add('scroll-reveal-pending');
     observer.observe(element);
   }
+  // Transform-only reveal retains full text opacity and preserves the browser audit contract.
   document.documentElement.classList.add('scroll-reveal-active');
 })();

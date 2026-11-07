@@ -1,0 +1,22 @@
+<section class="shell release-lab" data-release-lab aria-labelledby="release-lab-title">
+  <div class="release-lab-heading"><p class="eyebrow">INTERACTIVE / RELEASE DECISION LAB</p><h2 id="release-lab-title">A green pipeline is not a safe deployment.</h2><p>Explore three distinct failure boundaries. Select a scenario to inspect the signal, the decision and the supporting engineering evidence.</p></div>
+  <div class="release-lab-layout">
+    <div class="release-lab-diagram" role="region" aria-label="Interactive release pipeline with three selectable failure boundaries">
+      <div class="release-lab-topline"><span>RELEASE PATH / EXPLORER</span><span class="release-lab-status" aria-live="polite">01 / INVENTORY</span></div>
+      <div class="release-lab-track" role="group" aria-label="Choose failure scenario">
+        <button type="button" class="release-lab-node" data-scenario="inventory" aria-pressed="true"><span class="release-lab-node-index">01</span><strong>Observe</strong><small>Inventory read</small></button>
+        <span class="release-lab-connector" aria-hidden="true"></span>
+        <button type="button" class="release-lab-node" data-scenario="delivery" aria-pressed="false"><span class="release-lab-node-index">02</span><strong>Release</strong><small>Deployment proof</small></button>
+        <span class="release-lab-connector" aria-hidden="true"></span>
+        <button type="button" class="release-lab-node" data-scenario="drift" aria-pressed="false"><span class="release-lab-node-index">03</span><strong>Reconcile</strong><small>Live state</small></button>
+      </div>
+      <div class="release-lab-signal" aria-hidden="true"><div class="release-lab-pulse"></div><div class="release-lab-signal-grid"></div><div class="release-lab-signal-caption"><span>DECISION BOUNDARY</span><strong data-signal-label>UNKNOWN ≠ ABSENT</strong></div></div>
+      <div class="release-lab-footer"><span>SELECT A NODE TO INSPECT ITS FAILURE MODE</span><span>NOT LIVE TELEMETRY</span></div>
+    </div>
+    <div class="release-lab-inspector" aria-live="polite">
+      <div class="release-lab-panel" data-scenario-panel="inventory"><span class="release-lab-tag">01 / INCOMPLETE OBSERVATION</span><h3>Unknown is not deleted.</h3><p>An interrupted AWS inventory scan must not turn missing observations into false resource deletions.</p><dl><div><dt>Signal</dt><dd>Incomplete provider inventory</dd></div><div><dt>Safe decision</dt><dd>Stop and report uncertainty</dd></div></dl><a href="https://github.com/EdwinJdevops/driftguard/pull/3">Inspect merged regression and tests ↗</a></div>
+      <div class="release-lab-panel" data-scenario-panel="delivery" hidden><span class="release-lab-tag">02 / RELEASE VERIFICATION</span><h3>Build success is not delivery proof.</h3><p>A passing build does not establish that the intended site routes and assets were actually published.</p><dl><div><dt>Signal</dt><dd>Build passed, publication unverified</dd></div><div><dt>Safe decision</dt><dd>Verify deployed routes and assets</dd></div></dl><a href="{{ "engineering/delivery-record/" | relURL }}">Inspect the site's delivery record ↗</a></div>
+      <div class="release-lab-panel" data-scenario-panel="drift" hidden><span class="release-lab-tag">03 / DESIRED VS LIVE STATE</span><h3>Configuration can change outside Git.</h3><p>A disposable AWS Systems Manager parameter was changed outside Terraform, then checked with a refresh-only plan.</p><dl><div><dt>Signal</dt><dd>Observed state differs from desired state</dd></div><div><dt>Safe decision</dt><dd>Record and review drift evidence</dd></div></dl><a href="https://github.com/EdwinJdevops/driftguard/actions/runs/35343278654">Inspect recorded AWS execution ↗</a></div>
+    </div>
+  </div>
+</section>

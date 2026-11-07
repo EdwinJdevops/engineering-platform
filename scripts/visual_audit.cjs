@@ -13,6 +13,24 @@ const fs = require("node:fs");
     { name:"desktop", width:1440, height:900 }
   ];
   const failures = [], observations = [];
+  // Report actual computed styles to diagnose accessibility contrast without changing the gate.
+  const diagnosticPage = await browser.newPage({viewport:{width:1440,height:900}});
+  await diagnosticPage.goto("http://127.0.0.1:4173/",{waitUntil:"networkidle"});
+  for (const selector of [".release-lab-topline span",".release-lab-status",".release-lab-node strong",".release-lab-node small",".release-lab-signal-caption strong",".release-lab-footer span",".release-lab-panel a"]) {
+    const target=diagnosticPage.locator(selector).first();
+    if (!await target.count()) continue;
+    const result=await target.evaluate(el=>{
+      const chain=[];
+      for(let node=el;node&&chain.length<8;node=node.parentElement){
+        const c=getComputedStyle(node);
+        chain.push({tag:node.tagName,cls:typeof node.className==="string"?node.className.slice(0,80):"",color:c.color,background:c.backgroundColor,opacity:c.opacity,filter:c.filter,visibility:c.visibility});
+      }
+      return chain;
+    });
+    console.log("CONTRAST_DIAGNOSTIC",selector,JSON.stringify(result));
+  }
+  await diagnosticPage.close();
+
   const assetBudgets = [
     { path:"public/css/main.css", maximum:64000 },
     { path:"public/js/infrastructure-scene.js", maximum:8000 },
