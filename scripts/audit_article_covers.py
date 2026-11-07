@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ARTICLES = ROOT / "content" / "articles"
 STATIC = ROOT / "static"
 FIELDS = ("cover_image", "cover_alt", "cover_credit")
+IMAGE_RE = re.compile(r"!\\[[^]]*\\]\\((https?://[^)\\s]+)")
 FIELD_RE = re.compile(r"^([A-Za-z_][A-Za-z0-9_-]*)\s*:\s*(.*?)\s*$")
 URL_RE = re.compile(r"^https?://", re.I)
 
@@ -70,6 +71,12 @@ def audit() -> tuple[list[dict[str, object]], int]:
                 issues.append("cover_alt is non-descriptive")
         except (OSError, ValueError, UnicodeError) as exc:
             issues.append(str(exc))
+        body = path.read_text(encoding="utf-8-sig")
+        external_images = sorted(set(IMAGE_RE.findall(body)))
+        record["external_body_images"] = external_images
+        record["cover_source"] = "explicit" if meta.get("cover_image") else "fallback_or_generated"
+        record["credit_supplied"] = bool(meta.get("cover_credit"))
+        record["rights_verified"] = False  # Must be established through a separate human review.
         record["status"] = "fail" if issues else "pass"
         failures += bool(issues)
         records.append(record)
