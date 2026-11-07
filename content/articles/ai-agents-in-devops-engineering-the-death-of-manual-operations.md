@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/ai-agents-in-devops-engineering-the-death-of-manual-operations.svg"
+cover_alt: "Conceptual flow: Signal, Decision, Review"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "AI Agents in DevOps Engineering: The Death of Manual Operations Has Already Started"
 date: "2026-05-07"
 description: "An essay on autonomous operations, context engineering, tooling interfaces, and security implications for DevOps teams."
