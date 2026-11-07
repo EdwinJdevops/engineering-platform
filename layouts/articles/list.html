@@ -1,8 +1,8 @@
 {{ define "main" }}
-<section class="shell editorial-index">
+<section class="shell editorial-index article-showcase">
   <header class="page-head editorial-index-head">
     <p class="eyebrow">PUBLICATIONS / CLOUD SYSTEMS & ENGINEERING</p>
-    <h1>Field notes from the work.</h1>
+    <h1>ARTICLES</h1>
     <p class="editorial-index-deck">Implementation decisions, failed assumptions, and the evidence behind them. Start with a selected investigation or browse the complete archive.</p>
     {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
   </header>
@@ -27,6 +27,7 @@
           <p class="editorial-article-meta">{{ .Date.Format "02 Jan 2006" }} <span aria-hidden="true">/</span> {{ .ReadingTime }} min read</p>
           <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
           <p>{{ .Description }}</p>
+          {{ with .Params.tags }}<ul class="article-topic-list" aria-label="Article topics">{{ range first 4 . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
           <a class="editorial-read" href="{{ .RelPermalink }}">Read publication ↗</a>
         </div>
       </article>
@@ -46,9 +47,10 @@
         <a href="{{ .RelPermalink }}" class="editorial-visual-link" aria-label="Read {{ .Title }}">
           {{ partial "editorial-cover.html" (dict "page" . "variant" "compact") }}
         </a>
-        <p class="editorial-article-meta">{{ .Date.Format "02 Jan 2006" }} <span aria-hidden="true">/</span> {{ .Params.original_platform | default "Engineering notes" }}</p>
+        <p class="editorial-article-meta">{{ .Date.Format "02 Jan 2006" }} <span aria-hidden="true">·</span> {{ .ReadingTime }} min read</p>
         <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
         <p>{{ .Description }}</p>
+        {{ with .Params.tags }}<ul class="article-topic-list" aria-label="Article topics">{{ range first 4 . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
         <a class="editorial-read" href="{{ .RelPermalink }}">Read article ↗</a>
       </article>
       {{ end }}
