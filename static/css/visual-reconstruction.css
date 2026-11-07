@@ -37,3 +37,10 @@
 .home-intro .home-intro-copy{background:#09131f!important;isolation:isolate}
 .home-intro .home-portrait{background:#09131f}
 .home-intro .infra-scene{background:radial-gradient(ellipse at 50% 50%,#1c647b88,transparent 65%),#09131f!important}
+
+/* Explicit contact closure, with direct destinations and touch-safe links. */
+.footer-invitation>p:not(.eyebrow){max-width:60ch;line-height:1.65;color:#d3dce6}
+.footer-contact-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.footer-contact-links a{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 18px;border:1px solid #8295a7;border-radius:4px;color:#fff;text-decoration:none}
+.footer-contact-links a:hover,.footer-contact-links a:focus-visible{background:#d7f6ee;color:#07151d;border-color:#d7f6ee}
+.footer-contact-links a:focus-visible{outline:3px solid #f6d894;outline-offset:3px}
