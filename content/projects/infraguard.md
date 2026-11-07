@@ -5,7 +5,7 @@ draft: false
 description: "Source-backed AWS Security Hub remediation hardening: live-state verification, Terraform ownership and fail-closed proposal eligibility."
 domain: "AWS security / Remediation assurance"
 evidence: "Open Security Hub hardening PR; not part of the released main branch"
-boundary: "Design and tests in an unmerged, draft pull request; no production deployment"
+boundary: "Design and tests documented in a draft pull request; deployment evidence is not supplied"
 illustration: "infraguard"
 featured_rank: 2
 ---
