@@ -62,6 +62,9 @@ jobs:
           test -s public/projects/archnet/index.html
           test -s public/projects/sentinel/index.html
           test -s public/articles/index.html
+          test -s public/cv/index.html
+          grep -Fq "Edwin Jonathan Chibuike" public/cv/index.html
+          grep -Fq "Engineering CV" public/portfolio/index.html
           test -s public/engineering/delivery-record/index.html
           grep -q 'Edwin Jonathan' public/index.html
           grep -q 'Edwin Cloud DevOps Services' public/services/index.html
