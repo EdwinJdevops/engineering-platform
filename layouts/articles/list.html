@@ -2,7 +2,8 @@
 <section class="shell editorial-index">
   <header class="page-head editorial-index-head">
     <p class="eyebrow">PUBLICATIONS / CLOUD SYSTEMS & ENGINEERING</p>
-    <h1>Engineering, documented.</h1>
+    <h1>Field notes from the work.</h1>
+    <p class="editorial-index-deck">Implementation decisions, failed assumptions, and the evidence behind them. Start with a selected investigation or browse the complete archive.</p>
     {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
   </header>
   {{ $featuredSlugs := slice
@@ -13,7 +14,7 @@
   <section class="editorial-featured" aria-labelledby="editorial-featured-heading">
     <div class="editorial-section-heading">
       <p class="eyebrow">SELECTED TECHNICAL WRITING / 01–03</p>
-      <h2 id="editorial-featured-heading">Featured articles</h2>
+      <h2 id="editorial-featured-heading">Three investigations worth opening first.</h2>
     </div>
     <div class="editorial-featured-grid">
     {{ range $featuredSlugs }}
@@ -35,8 +36,8 @@
   </section>
   <section class="editorial-all" aria-labelledby="editorial-all-heading">
     <div class="editorial-section-heading">
-      <p class="eyebrow">THE WRITING ARCHIVE</p>
-      <h2 id="editorial-all-heading">All articles</h2>
+      <p class="eyebrow">THE WRITING ARCHIVE / {{ len .Pages }} PUBLICATIONS</p>
+      <h2 id="editorial-all-heading">The archive</h2>
     </div>
     <div class="editorial-archive-grid">
     {{ range .Pages.ByDate.Reverse }}
