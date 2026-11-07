@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/iam-least-privilege-in-practice-what-most-tutorials-get-wrong.svg"
+cover_alt: "Conceptual flow: Principal, Policy, Resource"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "IAM Least Privilege in Practice — What Most Tutorials Get Wrong"
 date: "2026-05-17"
 description: "Practical AWS IAM least-privilege analysis covering scoped permissions, role delegation, and Access Analyzer."
