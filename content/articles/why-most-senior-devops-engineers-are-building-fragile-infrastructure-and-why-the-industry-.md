@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/why-most-senior-devops-engineers-are-building-fragile-infrastructure-and-why-the-industry-.svg"
+cover_alt: "Conceptual flow: Change, Failure, Recovery"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "Why Most “Senior” DevOps Engineers Are Building Fragile Infrastructure — And Why the Industry Rewards It"
 date: "2026-05-23"
 description: "For years, the tech industry has sold an illusion.  The illusion is that more tools automatically..."
