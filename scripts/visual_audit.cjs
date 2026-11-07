@@ -209,7 +209,7 @@ const fs = require("node:fs");
   // Regression: deliberately block the external Hashnode cover, not a newly self-hosted featured image.
   const blockedArtwork = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
   await blockedArtwork.route("https://cdn.hashnode.com/**", route => route.abort("failed"));
-  await blockedArtwork.goto("http://127.0.0.1:4173/articles/", { waitUntil: "domcontentloaded" });
+  await blockedArtwork.goto("http://127.0.0.1:4173/articles/why-most-gitops-migrations-fail-after-six-months/", { waitUntil: "domcontentloaded" });
   const fallbackCover = blockedArtwork.locator('.editorial-cover:has(img[src*="cdn.hashnode.com"])').first();
   if (await fallbackCover.count() !== 1) {
     failures.push("Expected a Hashnode-hosted article cover to exercise blocked-image fallback");
