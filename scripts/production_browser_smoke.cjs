@@ -108,6 +108,26 @@ async function runProfile(browser, { name, viewport, reducedMotion, mobile }) {
     }
     for (const route of ROUTES.slice(1)) {
       await expectPage(page, route);
+      if (route === 'articles/') {
+        const covers = page.locator('.editorial-cover--image img[src]');
+        const count = await covers.count();
+        assert.ok(count > 0, 'Published articles have no explicit cover images');
+        for (let i = 0; i < count; i++) {
+          const img = covers.nth(i);
+          const src = await img.getAttribute('src');
+          if (!new URL(src, BASE).href.startsWith(BASE.href)) continue;
+          await img.scrollIntoViewIfNeeded();
+          await img.evaluate(async element => {
+            if (!element.complete) await new Promise((resolve, reject) => {
+              element.addEventListener('load', resolve, { once: true });
+              element.addEventListener('error', reject, { once: true });
+            });
+          });
+          assert.ok(await img.evaluate(element => element.naturalWidth > 0 && element.naturalHeight > 0),
+            'Local article cover failed to decode: ' + src);
+        }
+        observations.push({ profile: name, localArticleCoversDecoded: true, explicitCoverCount: count });
+      }
       if (route === 'portfolio/') {
         const credentialLink = page.locator('.profile-credentials a.credential-link');
         assert.equal(await credentialLink.count(), 1, 'Microsoft credential link missing from About page');
