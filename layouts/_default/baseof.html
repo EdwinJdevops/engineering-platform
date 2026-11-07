@@ -27,7 +27,7 @@
   <meta property="og:description" content="{{ .Description | default site.Params.description }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">
-  {{ $socialImage := "images/edwin-portrait-web.webp" | absURL }}
+  {{ $socialImage := "https://edwinjdevops.github.io/engineering-platform/images/edwin-portrait-web.webp" }}
   {{ $socialAlt := "Portrait of Edwin Jonathan, platform and cloud engineer" }}
   {{ $articleCover := false }}
   {{ if and .IsPage (eq .Section "articles") }}
