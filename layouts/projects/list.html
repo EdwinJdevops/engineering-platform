@@ -13,7 +13,7 @@
       <p>These projects have committed implementation and inspectable test or scan artifacts. That does not establish an independently validated production deployment.</p>
     </div>
     <div class="work-visual-grid">
-    {{ range $slug := slice "driftguard" "warden" "sentinel" }}
+    {{ range $slug := slice "driftguard" "chart-ledger" "warden" }}
       {{ with site.GetPage (printf "/projects/%s" $slug) }}
       <article class="work-visual-card">
         <a class="work-image-link source-artifact" href="{{ .Params.artifact_url }}" aria-label="Open {{ .Title }} source artifact">
