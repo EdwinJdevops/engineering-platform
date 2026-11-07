@@ -5,7 +5,7 @@
     <h1>Edwin<br><span>Jonathan.</span></h1>
     <p class="home-role">Platform engineering · Cloud infrastructure · Software delivery</p>
     <p class="lede">Infrastructure failures rarely begin with a dramatic outage. Sometimes an API returns an incomplete inventory, a pipeline reports success before publication, or live infrastructure changes outside Git. I build and investigate the systems that have to distinguish those states.</p>
-    <p class="home-availability">Independent engineering work from Lagos, Nigeria · Available for remote roles and defined engagements</p>
+    <p class="home-availability">Independent engineering work from Lagos, Nigeria · Available for remote engineering roles and defined engagements</p>
     <div class="actions">
       <a class="button primary" href="{{ "projects/" | relURL }}">Examine the work ↗</a>
       <a class="button" href="{{ "portfolio/" | relURL }}">Background and experience ↗</a>
@@ -63,7 +63,7 @@
 
 <section class="shell home-proof section-block home-public-record" data-reveal aria-labelledby="proof-heading">
   <div class="home-section-title"><div><p class="eyebrow">ENGINEERING EVIDENCE / DRIFTGUARD</p><h2 id="proof-heading">When AWS stopped answering, the scan had to stop too.</h2></div><a class="text-link" href="https://github.com/EdwinJdevops/driftguard/pull/3">Read the merged fix ↗</a></div>
-  <p class="public-record-intro">An inventory request failed partway through collection. Treating the partial result as complete could report resources as deleted when their state was simply unknown. This is the failure boundary addressed by the linked regression.</p>
+  <p class="public-record-intro">An AWS inventory request returned a failed read partway through collection. Treating the partial result as complete could report resources as deleted when their state was simply unknown. This is the failure boundary addressed by the linked regression.</p>
   <div class="proof-grid public-record-grid">
     <article>
       <p class="card-kicker">01 / EXECUTED AWS PROVIDER DRIFT</p>
