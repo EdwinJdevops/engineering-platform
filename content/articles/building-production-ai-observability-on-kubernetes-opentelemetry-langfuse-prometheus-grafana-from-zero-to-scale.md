@@ -1,5 +1,5 @@
 ---
-title: "Building Production AI Observability on Kubernetes: OpenTelemetry, Langfuse, Prometheus & Grafana From Zero to Scale"
+title: "Exploring AI Observability on Kubernetes with OpenTelemetry, Langfuse, Prometheus and Grafana"
 date: "2026-07-24"
 description: "A technical examination of Kubernetes AI observability using OpenTelemetry, Langfuse, Prometheus, Grafana, and operational telemetry."
 draft: false
@@ -8,7 +8,7 @@ original_platform: "hashnode"
 canonical_url: "https://edwinjonathand-devops.hashnode.dev/building-production-ai-observability-on-kubernetes-opentelemetry-langfuse-prometheus-grafana-from-zero-to-scale"
 ---
 
-## Building Production-Grade AI Observability on Kubernetes
+## Exploring AI Observability on Kubernetes
 
 Most AI teams are solving the wrong problem.
 
@@ -44,7 +44,7 @@ HTTP 200 doesn't mean the response was useful.
 
 AI introduces an entirely new operational layer that demands observability beyond infrastructure.
 
-This article walks through the architecture used to monitor production AI systems at scale.
+This article examines an observability architecture for AI workloads. It does not establish independently verified production-scale operation.
 
 * * *
 
@@ -76,7 +76,7 @@ HTTP 200 doesn't mean the response was useful.
 
 AI introduces an entirely new operational layer that demands observability beyond infrastructure.
 
-This article walks through the architecture used to monitor production AI systems at scale.
+This article examines an observability architecture for AI workloads. It does not establish independently verified production-scale operation.
 
 The Hidden Problem
 
