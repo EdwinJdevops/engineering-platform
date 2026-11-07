@@ -44,5 +44,6 @@
     element.classList.add('scroll-reveal-pending');
     observer.observe(element);
   }
-  // Do not hide content while waiting for scroll: accessibility scans, search and readers must see it.
+  // Transform-only reveal retains full text opacity and preserves the browser audit contract.
+  document.documentElement.classList.add('scroll-reveal-active');
 })();
