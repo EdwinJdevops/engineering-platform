@@ -60,7 +60,7 @@
 <section class="shell home-work section-block" data-reveal aria-labelledby="selected-work">
   <div class="home-section-title"><div><p class="eyebrow">SELECTED WORK</p><h2 id="selected-work">Code and tests, not architecture diagrams.</h2></div><a class="text-link" href="{{ "projects/" | relURL }}">All projects ↗</a></div>
   <div class="featured-projects featured-projects-visual">
-    {{ range $slug := slice "driftguard" "warden" "sentinel" }}
+    {{ range $slug := slice "driftguard" "chart-ledger" "warden" }}
       {{ with site.GetPage (printf "/projects/%s" $slug) }}
       <article class="featured-project">
         <a class="featured-project-art source-artifact" href="{{ .Params.artifact_url }}" aria-label="Open {{ .Title }} source artifact">
