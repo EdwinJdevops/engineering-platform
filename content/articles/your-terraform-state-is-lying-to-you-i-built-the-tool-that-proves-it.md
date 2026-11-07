@@ -1,7 +1,7 @@
 ---
 title: "Your Terraform State Is Lying to You. I Built the Tool That Proves It."
 date: "2026-06-21"
-description: "The Quiet Failure Mode Every AWS Team Pretends Doesn't Exist I Found the Gap Every DevOps..."
+description: "An examination of Terraform state, AWS resource observation and the failure modes that can produce misleading drift reports."
 draft: false
 original_url: "https://dev.to/edwindevops/your-terraform-state-is-lying-to-you-i-built-the-tool-that-proves-it-ck9"
 original_platform: "devto"
