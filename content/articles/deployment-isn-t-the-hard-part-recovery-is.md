@@ -1,7 +1,7 @@
 ---
 title: "Deployment Isn't the Hard Part. Recovery Is."
 date: "2026-06-05"
-description: "Deployment Isn't the Hard Part. Recovery Is.   When I first started learning DevOps, I..."
+description: "A reflection on deployment recovery, rollback planning and operational verification beyond successful CI/CD runs."
 draft: false
 original_url: "https://dev.to/edwindevops/deployment-isnt-the-hard-part-recovery-is-4e2e"
 original_platform: "devto"
