@@ -1,19 +1,23 @@
 {{- $page := .page -}}
 {{- $variant := .variant | default "card" -}}
 {{- $url := $page.Params.cover_image | default "" -}}
-{{- $alt := $page.Params.cover_alt | default (printf "Illustration associated with %s" $page.Title) -}}
-{{- if not $url -}}
-  {{- $matches := findRE "!\\[[^]]*\\]\\(https?://[^) ]+" $page.RawContent 1 -}}
-  {{- with $matches -}}
-    {{- $url = replaceRE "^.*\\(" "" (index . 0) -}}
-    {{- $alt = printf "Image from the original article: %s" $page.Title -}}
-  {{- end -}}
+{{- $alt := $page.Params.cover_alt | default (printf "Cover image for %s" $page.Title) -}}
+{{- $title := lower $page.Title -}}
+{{- $subject := "systems" -}}
+{{- if or (in $title "aws") (in $title "cloud") (in $title "bedrock") -}}
+  {{- $subject = "cloud" -}}
+{{- else if or (in $title "terraform") (in $title "drift") (in $title "state") -}}
+  {{- $subject = "state" -}}
+{{- else if or (in $title "kubernetes") (in $title "gitops") (in $title "deployment") -}}
+  {{- $subject = "delivery" -}}
+{{- else if or (in $title "ai") (in $title "agent") -}}
+  {{- $subject = "agents" -}}
 {{- end -}}
-<div class="editorial-cover editorial-cover--{{ $variant }}">
+<div class="editorial-cover editorial-cover--{{ $variant }} editorial-cover--{{ $subject }}{{ if $url }} editorial-cover--image{{ end }}">
   <div class="editorial-cover-graphic" aria-hidden="true">
     <span class="editorial-cover-orbit editorial-cover-orbit--one"></span>
     <span class="editorial-cover-orbit editorial-cover-orbit--two"></span>
-    <span class="editorial-cover-type">EDWIN / SYSTEM NOTES</span>
+    <span class="editorial-cover-type">EDWIN / {{ upper $subject }} / {{ $page.Date.Format "2006" }}</span>
     <strong>{{ $page.Title }}</strong>
   </div>
   {{ with $url }}
