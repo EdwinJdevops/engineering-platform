@@ -3,6 +3,9 @@ title: "DRIFTGUARD"
 date: "2026-06-11"
 description: "An early introduction to DriftGuard and its Terraform drift-detection goals; see the current case study for implementation evidence."
 draft: false
+cover_image: "/images/projects/driftguard.svg"
+cover_alt: "Illustrative DriftGuard flow from Terraform state through AWS observation to a reviewable difference"
+cover_credit: "Edwin Jonathan / original DriftGuard explanatory diagram"
 original_url: "https://dev.to/edwindevops/driftguard-93n"
 original_platform: "devto"
 aliases: []
