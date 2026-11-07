@@ -72,3 +72,14 @@ body::before{content:none!important}
 
 /* WCAG 2.2 AA: portfolio links need a >=24px high pointer target. */
 .profile-intro ~ .profile-details .text-link,body:has(.profile-intro) .text-link{min-height:28px;display:inline-flex;align-items:center}
+
+/* Editorial cover taxonomy: meaningful subject variation, no invented publication artwork. */
+.editorial-cover--cloud .editorial-cover-graphic{background:radial-gradient(circle at 86% 25%,#277ea477,transparent 35%),linear-gradient(135deg,#0b2136,#143b56)}
+.editorial-cover--state .editorial-cover-graphic{background:radial-gradient(circle at 84% 20%,#7dd4ab44,transparent 38%),linear-gradient(135deg,#092b2c,#164d42)}
+.editorial-cover--delivery .editorial-cover-graphic{background:radial-gradient(circle at 86% 20%,#e5a47744,transparent 35%),linear-gradient(135deg,#2d1b27,#63403b)}
+.editorial-cover--agents .editorial-cover-graphic{background:radial-gradient(circle at 84% 20%,#c0a4fb55,transparent 38%),linear-gradient(135deg,#201b39,#40346d)}
+.editorial-cover--systems .editorial-cover-graphic{background:radial-gradient(circle at 84% 20%,#91bddc44,transparent 38%),linear-gradient(135deg,#132235,#34455a)}
+.editorial-cover--hero{aspect-ratio:2.1/1;min-height:240px}
+.editorial-cover--hero .editorial-cover-graphic{padding:clamp(22px,4vw,56px)}
+.editorial-cover--hero .editorial-cover-graphic strong{max-width:78%;font-size:clamp(26px,4.3vw,62px);line-height:1.04}
+@media(max-width:640px){.editorial-cover--hero{aspect-ratio:1.5/1;min-height:250px}.editorial-cover--hero .editorial-cover-graphic strong{max-width:94%;font-size:clamp(25px,7vw,42px)}}
