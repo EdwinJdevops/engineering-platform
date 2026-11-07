@@ -44,5 +44,5 @@
     element.classList.add('scroll-reveal-pending');
     observer.observe(element);
   }
-  document.documentElement.classList.add('scroll-reveal-active');
+  // Do not hide content while waiting for scroll: accessibility scans, search and readers must see it.
 })();
