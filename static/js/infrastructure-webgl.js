@@ -10,6 +10,8 @@
   const canvas = document.createElement('canvas');
   canvas.className = 'infra-webgl';
   canvas.setAttribute('aria-hidden', 'true');
+  // Do not allocate a WebGL context on mobile or with reduced motion.
+  // Desktop activation after a mobile-first load requires a page reload.
   if (reduced.matches || mobile.matches) return;
 
   let gl;
@@ -154,6 +156,7 @@
     host.classList.toggle('webgl-ready',enabled);
     host.dataset.renderMode = enabled ? 'webgl' : 'css';
     if (enabled) requestRender();
+    else if (frame) { window.cancelAnimationFrame(frame); frame = 0; }
   }
   hero.addEventListener('pointermove', event => {
     if (event.pointerType === 'touch') return;
