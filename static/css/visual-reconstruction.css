@@ -21,3 +21,13 @@
 .article-masthead+.editorial-cover{margin-top:0}
 @media(max-width:600px){.article-masthead{border-radius:10px;min-height:390px;padding:24px}.article-masthead h1{overflow-wrap:anywhere;font-size:clamp(36px,10vw,54px)}}
 @media(prefers-reduced-motion:reduce){.home-intro::after,.home-intro .infra-stack{animation:none!important}}
+
+/* Accessibility: solid contrast surface beneath decorative gradients for automated and real readers. */
+.home-intro{background:#09131f!important}
+.home-intro::before{background:radial-gradient(ellipse at 85% 28%,#173e4c 0%,transparent 50%),radial-gradient(ellipse at 10% 80%,#203a58 0%,transparent 48%),linear-gradient(#ffffff0c 1px,transparent 1px),linear-gradient(90deg,#ffffff0c 1px,transparent 1px);background-size:auto,auto,56px 56px,56px 56px}
+.home-intro h1,.home-intro h1 span,.home-intro .home-role{color:#fff!important;-webkit-text-fill-color:#fff!important}
+.home-intro .lede,.home-intro .home-availability,.home-intro .home-profile-links,.home-intro .eyebrow{color:#e0eaf2!important}
+.home-intro .actions .button{background:#e6f6f4!important;color:#09131f!important;border-color:#e6f6f4!important}
+.home-intro .actions .button.primary{background:#9af0d5!important;color:#07131c!important}
+.home-intro .home-profile-links a{color:#e1fff6!important}
+.home-intro .home-portrait figcaption{background:#07131c!important;color:#fff!important}
