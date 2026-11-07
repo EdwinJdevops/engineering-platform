@@ -1,8 +1,14 @@
 # Edwin Jonathan — Engineering Platform
 
+![Edwin Jonathan — Software, Cloud, Platform and Delivery](docs/engineering-banner.svg)
+
 A Hugo-based engineering publication, project case-study library, portfolio, and services site. Source code and claims are reviewable; project limitations are documented.
 
 Production: https://edwinjdevops.github.io/engineering-platform/
+
+## What this repository demonstrates
+
+A published engineering portfolio with inspectable project evidence, editorial content and browser-tested releases. It is not a hosted cloud control plane or a live Kubernetes dashboard.
 
 ## Architecture
 
