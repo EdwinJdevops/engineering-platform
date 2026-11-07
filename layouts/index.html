@@ -37,7 +37,7 @@
 
 <section class="shell home-proof section-block home-public-record" data-reveal aria-labelledby="proof-heading">
   <div class="home-section-title"><div><p class="eyebrow">ENGINEERING EVIDENCE / DRIFTGUARD</p><h2 id="proof-heading">An AWS read failure must not become a deletion report.</h2></div><a class="text-link" href="https://github.com/EdwinJdevops/driftguard/pull/3">Read the merged fix ↗</a></div>
-  <p class="public-record-intro">DriftGuard previously risked treating an incomplete AWS inventory as complete. The merged fix stops the scan when collection fails. A separate executed AWS test records an out-of-band Terraform drift event.</p>
+  <p class="public-record-intro">DriftGuard previously risked treating an incomplete AWS inventory as complete after a failed read. The merged fix stops the scan when collection fails. A separate executed AWS test records an out-of-band Terraform drift event.</p>
   <div class="proof-grid public-record-grid">
     <article>
       <p class="card-kicker">01 / EXECUTED AWS PROVIDER DRIFT</p>
