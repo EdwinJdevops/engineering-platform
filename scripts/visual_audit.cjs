@@ -206,13 +206,17 @@ const fs = require("node:fs");
     await editorial.close();
   }
 
-  // Regression: deliberately block the external Hashnode cover, not a newly self-hosted featured image.
+  // Regression: force an image failure on an explicit cover, independent of article ordering.
   const blockedArtwork = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
-  await blockedArtwork.route("https://cdn.hashnode.com/**", route => route.abort("failed"));
-  await blockedArtwork.goto("http://127.0.0.1:4173/articles/why-most-gitops-migrations-fail-after-six-months/", { waitUntil: "domcontentloaded" });
-  const fallbackCover = blockedArtwork.locator('.editorial-cover:has(img[src*="cdn.hashnode.com"])').first();
+  await blockedArtwork.route("https://example.invalid/**", route => route.abort("failed"));
+  await blockedArtwork.goto("http://127.0.0.1:4173/articles/", { waitUntil: "domcontentloaded" });
+  const fallbackCover = blockedArtwork.locator(".editorial-cover--image").first();
+  if (await fallbackCover.count() === 1) {
+    await fallbackCover.locator("img").evaluate(img => { img.src = "https://example.invalid/forced-cover-failure.svg"; });
+    await fallbackCover.locator("img").evaluate(img => img.decode().catch(() => {}));
+  }
   if (await fallbackCover.count() !== 1) {
-    failures.push("Expected a Hashnode-hosted article cover to exercise blocked-image fallback");
+    failures.push("Expected an explicit article cover to exercise blocked-image fallback");
   } else {
     const originalImage = fallbackCover.locator("img");
     await originalImage.scrollIntoViewIfNeeded();
