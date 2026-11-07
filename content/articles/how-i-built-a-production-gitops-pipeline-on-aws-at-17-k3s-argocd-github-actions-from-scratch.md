@@ -1,4 +1,7 @@
 ---
+cover_image: "/images/articles/how-i-built-a-production-gitops-pipeline-on-aws-at-17-k3s-argocd-github-actions-from-scratch.svg"
+cover_alt: "Conceptual flow: Git, Argo CD, Cluster"
+cover_credit: "Original editorial SVG diagram by Edwin Jonathan; conceptual illustration"
 title: "How I Built a Production GitOps Pipeline on AWS at 17 — K3s + ArgoCD + GitHub Actions from Scratch"
 date: "2026-04-27"
 description: "A first-person AWS GitOps pipeline walkthrough covering k3s, ArgoCD, GitHub Actions, and delivery architecture."
