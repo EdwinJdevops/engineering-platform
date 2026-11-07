@@ -675,3 +675,24 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
   .home-intro:has(.home-portrait) .infra-scene{min-height:340px}
   .infra-scene{min-height:340px;background-image:linear-gradient(rgba(160,200,245,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(160,200,245,.12) 1px,transparent 1px),radial-gradient(circle at 50% 44%,#31516b 0%,#10202e 76%)}
 }
+
+
+/* Editorial hierarchy: fewer competing elements, stronger reading rhythm. */
+.home-intro-copy .lede{max-width:55ch;line-height:1.58;text-wrap:pretty}
+.home-intro-copy h1{letter-spacing:-.065em;text-wrap:balance}
+.home-section-title h2,.system-stage-heading h2{max-width:19ch;line-height:1.08;letter-spacing:-.045em;text-wrap:balance}
+.home-section-title .eyebrow,.system-stage-overline{letter-spacing:.1em}
+.home-work .featured-project-copy p,.home-expertise .expertise-context,.home-proof .public-record-intro{max-width:70ch}
+.home-articles .home-article-grid h3{line-height:1.22;text-wrap:pretty}
+.home-expertise .expertise-list details{scroll-margin-top:110px}
+@media(min-width:900px){
+ .home-work.section-block,.home-proof.section-block,.home-expertise.section-block,.home-experience.section-block,.home-articles.section-block{padding-block:clamp(72px,8vw,120px)}
+ .home-intro-copy .lede{font-size:clamp(18px,1.65vw,22px)}
+}
+@media(max-width:600px){
+ .home-intro-copy h1{letter-spacing:-.05em}
+ .home-section-title h2,.system-stage-heading h2{max-width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+ .home-intro-copy,.featured-project,.system-stage-model{animation:none!important;transition:none!important}
+}
