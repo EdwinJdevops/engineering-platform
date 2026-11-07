@@ -69,3 +69,6 @@ body::before{content:none!important}
 .release-lab-node[aria-pressed=true] .release-lab-node-index,.release-lab-node[aria-pressed=true] strong,.release-lab-node[aria-pressed=true] small{background:#a5f1db}
 .release-lab-signal-caption span,.release-lab-signal-caption strong{background:#071925}
 .release-lab-panel a{background:#0b1521}
+
+/* WCAG 2.2 AA: portfolio links need a >=24px high pointer target. */
+body:has(.portfolio-page) .text-link{min-height:28px;display:inline-flex;align-items:center}
