@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Python unit tests
         run: python3 -m unittest discover -s tests -p 'test_article_covers.py' -v
       - name: JavaScript syntax validation
